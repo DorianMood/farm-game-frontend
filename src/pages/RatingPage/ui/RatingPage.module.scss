@@ -1,0 +1,17 @@
+.Rating {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 100px 20px;
+}
+
+.ratingHeading {
+  margin-bottom: 20px;
+}
+
+.ratingCardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
