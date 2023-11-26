@@ -21,7 +21,7 @@
     "noFallthroughCasesInSwitch": true,
 
     "baseUrl": "./src",
-"typeRoots": ["./use-sound.d.ts"]
+    "typeRoots": ["./use-sound.d.ts"]
   },
   "include": ["src", "index.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
