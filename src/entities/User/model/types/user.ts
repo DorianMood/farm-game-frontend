@@ -6,5 +6,13 @@ export interface User {
 }
 
 export interface UserSchema {
-  authData?: User;
+  data?: User;
+  // TODO: need to separate this from user
+  isAuthentificated: {
+    data: boolean | null;
+    isLoading: boolean;
+    error: boolean;
+  };
+  isLoading: boolean;
+  error: boolean;
 }
