@@ -25,6 +25,7 @@ import { SurveyModal, PlantModal } from "features/FarmGame";
 import cls from "./FarmPage.module.scss";
 import { fetchGameData } from "entities/Game/model/services/fetchGameData/fetchGameData";
 import { CropEnum } from "entities/Bed/model/types/bed";
+import { fetchUserData } from "entities/User/model/services/fetchUserData/fetchUserData";
 
 interface BedPlant {
   crop: CropEnum;
@@ -39,11 +40,15 @@ const FarmPage = () => {
   const [emptyFields, setEmptyFields] = useState<Set<HTMLElement>>(new Set());
 
   useEffect(() => {
-    if (user) {
-      dispatch(fetchBedsData());
-      dispatch(fetchTasksData());
+    if (!user) {
+      dispatch(fetchUserData());
     }
   }, [dispatch, user]);
+
+  useEffect(() => {
+    dispatch(fetchBedsData());
+    dispatch(fetchTasksData());
+  }, [dispatch]);
 
   const plantActivity = useMemo(
     () =>
@@ -142,7 +147,7 @@ const FarmPage = () => {
   };
 
   const handleSubmitPlantModal = (bed: BedPlant) => {
-    if (!bedIndex) {
+    if (typeof bedIndex !== "number") {
       return;
     }
 
