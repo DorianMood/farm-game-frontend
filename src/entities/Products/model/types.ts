@@ -4,12 +4,13 @@ export type Product = {
   name: string;
   picture: string;
   content?: string;
-}
+};
 
 export type Products = Product[];
 
 export interface ProductsSchema {
-    data?: Products;
-    isLoading: boolean;
-    isUpdating: boolean;
+  data?: Products;
+  isLoading: boolean;
+  isUpdating: boolean;
+  error: boolean;
 }

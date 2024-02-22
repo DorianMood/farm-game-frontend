@@ -4,13 +4,13 @@ import { ShopCard } from "shared/ui/ShopCard/ShopCard";
 import { Heading } from "shared/ui/Heading/Heading";
 import { Tabs } from "shared/ui/Tabs/Tabs";
 import { Tab } from "shared/ui/Tabs/components/tab";
-import { fetchProductsData } from "entities/Products/model/services/fetchProductsData/fetchProductsData";
+import { fetchProductsData } from "entities/Products/model/thunks";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
-import { getProductsData } from "entities/Products";
+import { productsSelector } from "entities/Products";
 import { userSelector } from "entities/User";
 import { Loader } from "shared/ui/Loader/Loader";
-import { getProductsLoading } from "entities/Products/model/selectors/getProductsData/getProductsData";
+import { productsIsLoadingSelector } from "entities/Products/model/selectors";
 import NotFound from "shared/assets/images/not-found.png";
 import { BuyProductModal } from "features/BuyProduct/BuyProductModal";
 import cls from "./ShopPage.module.scss";
@@ -47,8 +47,8 @@ export const ShopPage = ({ className }: ShopPageProps) => {
   };
 
   const user = useSelector(userSelector);
-  const products = useSelector(getProductsData);
-  const isProductsLoading = useSelector(getProductsLoading);
+  const products = useSelector(productsSelector);
+  const isProductsLoading = useSelector(productsIsLoadingSelector);
 
   const handleClickShopCard = (productId: string) => {
     setProductId(productId);

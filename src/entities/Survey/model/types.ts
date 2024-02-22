@@ -11,7 +11,7 @@ export interface Survey {
 
 export interface SurveysSchema {
   isLoading: boolean;
-  error?: string;
+  error: boolean;
   data: {
     survey: Survey | null;
   };

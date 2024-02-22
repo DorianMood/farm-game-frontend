@@ -15,7 +15,7 @@ export interface Bed {
 
 export interface BedsSchema {
   isLoading: boolean;
-  error?: string;
+  error: boolean;
   data: {
     beds: Bed[];
   };

@@ -1,6 +1,6 @@
 import FarmMap from "shared/assets/images/farm/map.svg?react";
 import { useSelector } from "react-redux";
-import { Bed, getBedsData } from "entities/Bed";
+import { Bed, bedsSelector } from "entities/Bed";
 import {
   useCallback,
   useEffect,
@@ -13,15 +13,15 @@ import {
   fetchBedsData,
   harvestBeds,
   plantBeds,
-} from "entities/Bed/model/services/fetchBedsData/fetchBedsData";
+} from "entities/Bed/model/thunks";
 import { userSelector } from "entities/User";
-import { getTasksData } from "entities/Task";
+import { tasksSelector } from "entities/Task";
 import { completeTask, fetchTasksData } from "entities/Task/model/thunks";
 import { TaskCard } from "shared/ui/TaskCard/TaskCard";
 import { SurveyModal, PlantModal } from "features/FarmGame";
-import cls from "./FarmPage.module.scss";
-import { CropEnum } from "entities/Bed/model/types/bed";
+import { CropEnum } from "entities/Bed/model/types";
 import { fetchUserData } from "entities/User/model/thunks";
+import cls from "./FarmPage.module.scss";
 
 interface BedPlant {
   crop: CropEnum;
@@ -30,8 +30,8 @@ interface BedPlant {
 
 export const FarmPage = () => {
   const dispatch = useAppDispatch();
-  const beds: Bed[] = useSelector(getBedsData);
-  const tasks = useSelector(getTasksData);
+  const beds: Bed[] = useSelector(bedsSelector);
+  const tasks = useSelector(tasksSelector);
   const user = useSelector(userSelector);
   const [emptyFields, setEmptyFields] = useState<Set<HTMLElement>>(new Set());
 
@@ -185,8 +185,6 @@ export const FarmPage = () => {
     }
     setOpenedGeniusModal(false);
   };
-
-  console.log("plant activity ", plantActivity);
 
   return (
     <div className={cls.FarmPage}>

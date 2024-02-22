@@ -1,12 +1,4 @@
-export {
-    getProductsData,
-} from 'entities/Products/model/selectors/getProductsData/getProductsData';
+export { productsSelector } from "./model/selectors";
 
-export {
-    productsReducer,
-    productsActions,
-} from './model/slice/productsSlice';
-export type {
-    ProductsSchema,
-    Products,
-} from './model/types/Products';
+export { productsReducer, productsActions } from "./model/slice";
+export type { ProductsSchema, Products } from "./model/types";

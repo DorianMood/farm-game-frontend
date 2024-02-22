@@ -4,7 +4,7 @@ import { completeTask, fetchTasksData } from "./thunks";
 
 const initialState: TasksSchema = {
   isLoading: false,
-  error: undefined,
+  error: false,
   data: {
     tasks: [],
   },
@@ -27,7 +27,7 @@ export const tasksSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTasksData.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(
@@ -37,12 +37,12 @@ export const tasksSlice = createSlice({
           state.data.tasks = action.payload;
         },
       )
-      .addCase(fetchTasksData.rejected, (state, action) => {
+      .addCase(fetchTasksData.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = true;
       })
       .addCase(completeTask.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(
@@ -52,9 +52,9 @@ export const tasksSlice = createSlice({
           state.data.tasks = action.payload;
         },
       )
-      .addCase(completeTask.rejected, (state, action) => {
+      .addCase(completeTask.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = true;
       });
   },
 });

@@ -12,7 +12,7 @@ export interface Task {
 
 export interface TasksSchema {
   isLoading: boolean;
-  error?: string;
+  error: boolean;
   data: {
     tasks: Task[];
   };

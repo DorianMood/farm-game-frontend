@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "app/providers/StoreProvider";
-import { Bed } from "entities/Bed";
+import { Bed } from "./types";
 
 export const fetchBedsData = createAsyncThunk<
   Bed[],
@@ -11,10 +11,6 @@ export const fetchBedsData = createAsyncThunk<
 
   try {
     const response = await extra.api.get<Bed[]>(`/beds`);
-
-    if (!response.data) {
-      throw new Error();
-    }
 
     return response.data;
   } catch (e) {
@@ -35,10 +31,6 @@ export const harvestBeds = createAsyncThunk<
       index,
     });
 
-    if (!response.data) {
-      throw new Error();
-    }
-
     return response.data;
   } catch (e) {
     console.log(e);
@@ -54,11 +46,7 @@ export const plantBeds = createAsyncThunk<
   const { extra, rejectWithValue } = thunkApi;
 
   try {
-    const response = await extra.api.post<Bed[]>("/beds/plant", bed);
-
-    if (response.status !== 200) {
-      throw new Error();
-    }
+    await extra.api.post<Bed[]>("/beds/plant", bed);
 
     return;
   } catch (e) {

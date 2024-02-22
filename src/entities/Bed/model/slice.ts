@@ -1,14 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BedsSchema, Bed } from "../types/bed";
-import {
-  fetchBedsData,
-  harvestBeds,
-  plantBeds,
-} from "../services/fetchBedsData/fetchBedsData";
+import { BedsSchema, Bed } from "./types";
+import { fetchBedsData, harvestBeds, plantBeds } from "./thunks";
 
 const initialState: BedsSchema = {
   isLoading: false,
-  error: undefined,
+  error: false,
   data: {
     beds: [],
   },
@@ -31,42 +27,45 @@ export const bedsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchBedsData.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(
         fetchBedsData.fulfilled,
         (state, action: PayloadAction<Bed[]>) => {
           state.isLoading = false;
+          state.error = false;
           state.data.beds = action.payload;
         },
       )
-      .addCase(fetchBedsData.rejected, (state, action) => {
+      .addCase(fetchBedsData.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = true;
       })
       .addCase(harvestBeds.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(harvestBeds.fulfilled, (state, action: PayloadAction<Bed[]>) => {
         state.isLoading = false;
+        state.error = false;
         state.data.beds = action.payload;
       })
-      .addCase(harvestBeds.rejected, (state, action) => {
+      .addCase(harvestBeds.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = true;
       })
       .addCase(plantBeds.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(plantBeds.fulfilled, (state) => {
+        state.error = false;
         state.isLoading = false;
       })
-      .addCase(plantBeds.rejected, (state, action) => {
+      .addCase(plantBeds.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = true;
       });
   },
 });

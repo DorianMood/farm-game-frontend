@@ -4,12 +4,12 @@ import useSound from "use-sound";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { updateProductsData } from "entities/Products/model/services/updateProductsData/updateProductsData";
+import { updateProductsData } from "entities/Products/model/thunks";
 import { useSelector } from "react-redux";
 import { userSelector } from "entities/User";
 import { useEffect, useState } from "react";
-import { getProductsUpdating } from "entities/Products/model/selectors/getProductsData/getProductsData";
-import { Product } from "entities/Products/model/types/Products";
+import { productsIsUpdatingSelector } from "entities/Products/model/selectors";
+import { Product } from "entities/Products/model/types";
 import BuyImage from "shared/assets/images/buy.png";
 import cls from "./BuyProductModal.module.scss";
 
@@ -29,7 +29,7 @@ export const BuyProductModal = ({
   const dispatch = useAppDispatch();
   const user = useSelector(userSelector);
 
-  const isUpdating = useSelector(getProductsUpdating);
+  const isUpdating = useSelector(productsIsUpdatingSelector);
   const [isSuccess, setSuccess] = useState(false);
   const [play] = useSound(coinSound);
 

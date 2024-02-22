@@ -14,7 +14,7 @@ import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import classNames from "classnames";
 import coinSound from "shared/assets/sounds/coins.mp3";
 import cls from "./PlantModal.module.scss";
-import { CropEnum } from "entities/Bed/model/types/bed";
+import { CropEnum } from "entities/Bed/model/types";
 
 interface Props {
   onClose: () => void;

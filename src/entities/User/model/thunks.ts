@@ -32,7 +32,6 @@ export const isAuthentificatedThunk = createAsyncThunk<
 
   try {
     const response = await extra.api.get<boolean>("/auth/authenticated");
-    console.log(response.data);
 
     return response.data;
   } catch (e) {

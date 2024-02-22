@@ -1,4 +1,4 @@
-export { getSurveyData } from './model/selectors/getSurveyData/getSurveyData';
+export { surveySelector } from "./model/selectors";
 
-export { surveyReducer, surveyActions } from './model/slice/surveySlice';
-export type { SurveysSchema, Survey, Question } from './model/types/survey';
+export { surveyReducer, surveyActions } from "./model/slice";
+export type { SurveysSchema, Survey, Question } from "./model/types";

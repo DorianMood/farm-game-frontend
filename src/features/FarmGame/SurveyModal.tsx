@@ -4,9 +4,9 @@ import Pause from "shared/assets/images/farm/pause.svg?react";
 import Play from "shared/assets/images/farm/play.svg?react";
 import { DragEvent, MouseEvent, useEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { fetchSurveyData } from "entities/Survey/model/services/fetchSurveyData/fetchSurveyData";
+import { fetchSurveyData } from "entities/Survey/model/thunks";
 import { useSelector } from "react-redux";
-import { getSurveyData } from "entities/Survey";
+import { surveySelector } from "entities/Survey";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./SurveyModal.module.scss";
 import { useTimer } from "./useTimer";
@@ -34,7 +34,7 @@ const TIMEOUT = 60_000; // minute
 
 export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
   const dispatch = useAppDispatch();
-  const survey = useSelector(getSurveyData);
+  const survey = useSelector(surveySelector);
 
   const { elapsedTime, isRunning, handlePause, handleReset, handleStart } =
     useTimer();

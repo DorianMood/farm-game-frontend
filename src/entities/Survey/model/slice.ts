@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SurveysSchema, Survey } from "../types/survey";
-import { fetchSurveyData } from "../services/fetchSurveyData/fetchSurveyData";
+import { SurveysSchema, Survey } from "./types";
+import { fetchSurveyData } from "./thunks";
 
 const initialState: SurveysSchema = {
   isLoading: false,
-  error: undefined,
+  error: false,
   data: {
     survey: null,
   },
@@ -27,7 +27,7 @@ export const surveySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSurveyData.pending, (state) => {
-        state.error = undefined;
+        state.error = false;
         state.isLoading = true;
       })
       .addCase(
@@ -37,9 +37,9 @@ export const surveySlice = createSlice({
           state.data.survey = action.payload;
         },
       )
-      .addCase(fetchSurveyData.rejected, (state, action) => {
+      .addCase(fetchSurveyData.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = true;
       });
   },
 });
