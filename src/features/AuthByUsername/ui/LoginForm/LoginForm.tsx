@@ -1,5 +1,4 @@
 import { classNames } from "shared/lib/classNames/classNames";
-import { useTranslation } from "react-i18next";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useSelector } from "react-redux";
 import { ChangeEvent, memo, useCallback } from "react";
@@ -27,8 +26,7 @@ const initialReducers: ReducersList = {
   loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
-  const { t } = useTranslation();
+export const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const dispatch = useAppDispatch();
   const username = useSelector(getLoginUsername);
   const password = useSelector(getLoginPassword);
@@ -61,24 +59,24 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   return (
     <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
       <div className={classNames(cls.LoginForm, {}, [className])}>
-        <Text className={cls.title} title={t("Вход в игру")} />
+        <Text className={cls.title} title={"Вход в игру"} />
         {error && (
           <Text
-            text={t("Вы ввели неверный логин или пароль")}
+            text={"Вы ввели неверный логин или пароль"}
             theme={TextTheme.ERROR}
           />
         )}
         <LoginInput
           type="text"
           className={cls.input}
-          label={t("Введите имя")}
+          label={"Введите имя"}
           value={username}
           onChange={onChangeUsername}
         />
         <LoginInput
           type="email"
           className={cls.input}
-          label={t("Введите пароль")}
+          label={"Введите пароль"}
           value={password}
           onChange={onChangePassword}
         />
@@ -88,11 +86,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
           onClick={onLoginClick}
           disabled={isLoading}
         >
-          {t("Войти")}
+          {"Войти"}
         </Button>
       </div>
     </DynamicModuleLoader>
   );
 });
-
-export default LoginForm;

@@ -26,6 +26,16 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      const shouldRedirect =
+        isAuthenticated !== null &&
+        !isLoading &&
+        isAuthenticated &&
+        location.pathname === RoutePath.main;
+
+      if (shouldRedirect) {
+        navigate(RoutePath.farm);
+      }
+
       return;
     }
 

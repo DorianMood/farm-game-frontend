@@ -1,3 +1,1 @@
-export {
-    RatingPageAsync as RatingPage,
-} from './ui/RatingPage.async';
+export { RatingPage } from "./ui/RatingPage";

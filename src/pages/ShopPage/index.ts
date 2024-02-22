@@ -1,3 +1,1 @@
-export {
-    ShopPageAsync as ShopPage,
-} from './ui/ShopPage.async';
+export { ShopPage } from "./ui/ShopPage";

@@ -1,4 +1,4 @@
-export { getTasksData } from './model/selectors/getTasksData/getTasksData';
+export { getTasksData } from "./model/selectors";
 
-export { tasksReducer, tasksActions } from './model/slice/tasksSlice';
-export type { TasksSchema, Task } from './model/types/task';
+export { tasksReducer, tasksActions } from "./model/slice";
+export type { TasksSchema, Task } from "./model/types";

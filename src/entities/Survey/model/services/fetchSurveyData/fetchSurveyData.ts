@@ -12,10 +12,6 @@ export const fetchSurveyData = createAsyncThunk<
   try {
     const response = await extra.api.get<Survey>(`/surveys?taskId=${task_id}`);
 
-    if (!response.data) {
-      throw new Error();
-    }
-
     return response.data;
   } catch (e) {
     console.log(e);

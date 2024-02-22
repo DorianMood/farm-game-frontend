@@ -25,14 +25,14 @@ export const fetchBedsData = createAsyncThunk<
 
 export const harvestBeds = createAsyncThunk<
   Bed[],
-  { bed_id: string },
+  { index: number },
   ThunkConfig<string>
->("beds/harvestBeds", async ({ bed_id }, thunkApi) => {
+>("beds/harvestBeds", async ({ index }, thunkApi) => {
   const { extra, rejectWithValue } = thunkApi;
 
   try {
     const response = await extra.api.post<Bed[]>("/beds/harvest", {
-      bed_id,
+      index,
     });
 
     if (!response.data) {

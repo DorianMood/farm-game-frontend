@@ -12,3 +12,5 @@ export const isUserLoadingSelector = createSelector(
   [rootSelector],
   (user) => user.isAuthentificated.isLoading,
 );
+
+export const userSelector = createSelector([rootSelector], (user) => user.data);

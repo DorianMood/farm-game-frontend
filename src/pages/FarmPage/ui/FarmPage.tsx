@@ -14,29 +14,25 @@ import {
   harvestBeds,
   plantBeds,
 } from "entities/Bed/model/services/fetchBedsData/fetchBedsData";
-import { getUserAuthData } from "entities/User";
+import { userSelector } from "entities/User";
 import { getTasksData } from "entities/Task";
-import {
-  completeTask,
-  fetchTasksData,
-} from "entities/Task/model/services/fetchTasksData/fetchTasksData";
+import { completeTask, fetchTasksData } from "entities/Task/model/thunks";
 import { TaskCard } from "shared/ui/TaskCard/TaskCard";
 import { SurveyModal, PlantModal } from "features/FarmGame";
 import cls from "./FarmPage.module.scss";
-import { fetchGameData } from "entities/Game/model/services/fetchGameData/fetchGameData";
 import { CropEnum } from "entities/Bed/model/types/bed";
-import { fetchUserData } from "entities/User/model/services/fetchUserData/fetchUserData";
+import { fetchUserData } from "entities/User/model/thunks";
 
 interface BedPlant {
   crop: CropEnum;
   index: number;
 }
 
-const FarmPage = () => {
+export const FarmPage = () => {
   const dispatch = useAppDispatch();
   const beds: Bed[] = useSelector(getBedsData);
   const tasks = useSelector(getTasksData);
-  const user = useSelector(getUserAuthData);
+  const user = useSelector(userSelector);
   const [emptyFields, setEmptyFields] = useState<Set<HTMLElement>>(new Set());
 
   useEffect(() => {
@@ -52,7 +48,12 @@ const FarmPage = () => {
 
   const plantActivity = useMemo(
     () =>
-      beds.some((bed) => !bed.crop) &&
+      beds.some((bed) => {
+        return (
+          bed.crop === null ||
+          Date.now() - new Date(bed.plantedAt).getTime() > 24 * 60 * 60 * 1000
+        );
+      }) ||
       tasks.some((task) => !task.completedAt && task.task.type === "Plant"),
     [beds, tasks],
   );
@@ -69,13 +70,12 @@ const FarmPage = () => {
     if (bed.plantedAt && user) {
       dispatch(
         harvestBeds({
-          bed_id: bed.id,
+          index: bed.index,
         }),
-      )
-        .unwrap()
-        .then(() => {
-          dispatch(fetchGameData(user?.id));
-        });
+      ).then(() => {
+        dispatch(fetchBedsData());
+        // Fetch balance
+      });
     }
   };
 
@@ -96,7 +96,11 @@ const FarmPage = () => {
         element && emptyFields.add(element);
       } else {
         element?.classList.add(
-          beds[i].plantedAt ? cls[beds[i].crop] : cls.field,
+          beds[i].crop !== null &&
+            Date.now() - new Date(beds[i].plantedAt).getTime() >
+              24 * 60 * 60 * 1000
+            ? cls[beds[i].crop.toLowerCase()]
+            : cls.field,
         );
       }
       listeners.push(getClickHandler(beds[i]));
@@ -122,7 +126,7 @@ const FarmPage = () => {
         dispatch(completeTask(task.id))
           .unwrap()
           .then(() => {
-            dispatch(fetchGameData(user?.id));
+            // Fetch balance
           });
       }
     },
@@ -161,7 +165,9 @@ const FarmPage = () => {
             crop: bed.crop,
           },
         }),
-      );
+      ).then(() => {
+        dispatch(fetchBedsData());
+      });
       // TODO: завершить таск
       // handleCompleteTask("plant")
     }
@@ -179,6 +185,8 @@ const FarmPage = () => {
     }
     setOpenedGeniusModal(false);
   };
+
+  console.log("plant activity ", plantActivity);
 
   return (
     <div className={cls.FarmPage}>
@@ -223,7 +231,7 @@ const FarmPage = () => {
       {surveyActivity && surveyTask && (
         <SurveyModal
           opened={openedGeniusModal}
-          taskId={surveyTask.id}
+          taskId={surveyTask?.task.id}
           onClose={handleCloseGeniusModal}
           onSubmit={handleSubmitGeniusModal}
         />
@@ -232,5 +240,3 @@ const FarmPage = () => {
     </div>
   );
 };
-
-export default FarmPage;

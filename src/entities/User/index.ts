@@ -1,4 +1,4 @@
-export { getUserAuthData } from './model/selectors/getUserAuthData/getUserAuthData';
+export { userSelector, isAuthentificatedSelector } from "./model/selectors";
 
-export { userReducer, userActions } from './model/slice/userSlice';
-export type { UserSchema, User } from './model/types/user';
+export { userReducer, userActions } from "./model/slice";
+export type { UserSchema, User } from "./model/types";

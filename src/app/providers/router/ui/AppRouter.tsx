@@ -1,23 +1,22 @@
-import { memo, Suspense, useMemo } from "react";
+import { memo, useMemo } from "react";
 import { Route, Routes } from "react-router-dom";
 import { routeConfig } from "shared/config/routeConfig/routeConfig";
-import { PageLoader } from "shared/ui/PageLoader/PageLoader";
 import { useSelector } from "react-redux";
-import { getUserAuthData } from "entities/User";
+import { isAuthentificatedSelector } from "entities/User/model/selectors";
 
 const AppRouter = () => {
-  const isAuth = useSelector(getUserAuthData);
+  const isAthentificated = useSelector(isAuthentificatedSelector);
 
   const routes = useMemo(
     () =>
       Object.values(routeConfig).filter((route) => {
-        if (route.authOnly && !isAuth) {
+        if (route.authOnly && !isAthentificated) {
           return false;
         }
 
         return true;
       }),
-    [isAuth],
+    [isAthentificated],
   );
 
   return (
@@ -26,11 +25,7 @@ const AppRouter = () => {
         <Route
           key={path}
           path={path}
-          element={
-            <Suspense fallback={<PageLoader />}>
-              <div className="page-wrapper">{element}</div>
-            </Suspense>
-          }
+          element={<div className="page-wrapper">{element}</div>}
         />
       ))}
     </Routes>

@@ -6,7 +6,7 @@ import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { updateProductsData } from "entities/Products/model/services/updateProductsData/updateProductsData";
 import { useSelector } from "react-redux";
-import { getUserAuthData } from "entities/User";
+import { userSelector } from "entities/User";
 import { useEffect, useState } from "react";
 import { getProductsUpdating } from "entities/Products/model/selectors/getProductsData/getProductsData";
 import { Product } from "entities/Products/model/types/Products";
@@ -27,7 +27,7 @@ export const BuyProductModal = ({
   product,
 }: Props) => {
   const dispatch = useAppDispatch();
-  const user = useSelector(getUserAuthData);
+  const user = useSelector(userSelector);
 
   const isUpdating = useSelector(getProductsUpdating);
   const [isSuccess, setSuccess] = useState(false);
