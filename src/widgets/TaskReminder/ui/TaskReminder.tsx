@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { tasksSelector } from "entities/Task";
 import { classNames } from "shared/lib/classNames/classNames";
 import FarmerGirl from "shared/assets/images/farmer-girl.png";
 import { MessageCard } from "shared/ui/MessageCard/MessageCard";
-import { useState } from "react";
 import cls from "./TaskReminder.module.scss";
 
 interface TaskReminderProps {
@@ -9,11 +11,19 @@ interface TaskReminderProps {
 }
 
 export const TaskReminder = ({ className }: TaskReminderProps) => {
+  const tasks = useSelector(tasksSelector);
+
   const [isVisible, setVisible] = useState(true);
 
   const handleCloseClick = () => {
     setVisible(false);
   };
+
+  useEffect(() => {
+    if (tasks?.length === 0) {
+      setVisible(false);
+    }
+  }, [tasks]);
 
   if (!isVisible) {
     return null;
@@ -23,7 +33,7 @@ export const TaskReminder = ({ className }: TaskReminderProps) => {
     <div className={cls["game-bottom"]}>
       <div className={classNames(cls.TaskReminder, {}, [className])}>
         <MessageCard
-          text="Добро пожаловать обратно! Сегодня у нас на ферме 5 новых заданий!"
+          text={`Добро пожаловать обратно! Сегодня у нас на ферме ${tasks?.length} новых заданий!`}
           onClose={handleCloseClick}
         />
         <img src={FarmerGirl} alt="farmer-girl-helper" />

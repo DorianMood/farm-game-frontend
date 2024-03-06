@@ -3,6 +3,8 @@ import { useMemo } from "react";
 import { StatisticsCard } from "shared/ui/StatisticsCard/StatisticsCard";
 import { StatisticsCardType } from "shared/ui/StatisticsCard/types";
 import cls from "./GameHeader.module.scss";
+import { useSelector } from "react-redux";
+import { userSelector } from "entities/User";
 
 export enum GameHeaderTheme {
   LIGHT = "light",
@@ -16,15 +18,19 @@ interface GameHeaderProps {
 
 // TODO: Добавить здесь вызовы, подцепить к беку
 export const GameHeader = ({ theme, className }: GameHeaderProps) => {
-  const balance = 1337;
+  const user = useSelector(userSelector);
+
+  const balance = user?.ballance ?? 0;
 
   const date = useMemo(
     () =>
-      Math.ceil(
-        (new Date().valueOf() - new Date("01.01.1997").valueOf()) /
-          (1000 * 60 * 60 * 24),
-      ),
-    [],
+      user?.createdAt
+        ? Math.ceil(
+            (new Date().valueOf() - new Date(user?.createdAt).valueOf()) /
+              (1000 * 60 * 60 * 24),
+          )
+        : null,
+    [user?.createdAt],
   );
 
   return (

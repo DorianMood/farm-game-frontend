@@ -2,7 +2,7 @@ export interface User {
   id: string;
   username: string;
   ballance?: number;
-  signup_date?: string;
+  createdAt?: string;
 }
 
 export interface UserSchema {

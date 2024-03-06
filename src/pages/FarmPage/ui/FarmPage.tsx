@@ -48,7 +48,7 @@ export const FarmPage = () => {
 
   const plantActivity = useMemo(
     () =>
-      beds.some((bed) => {
+      beds?.some?.((bed) => {
         return (
           bed.crop === null ||
           Date.now() - new Date(bed.plantedAt).getTime() > 24 * 60 * 60 * 1000
