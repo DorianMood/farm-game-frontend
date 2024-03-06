@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
-import GameLogo from "shared/assets/images/game-logo.png";
 import Farmer from "shared/assets/images/farmer.png";
 import { MainPageHeader } from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
 import { LoginModal } from "features/AuthByUsername";
@@ -30,7 +29,10 @@ export const MainPage = () => {
       <MainPageHeader />
       <div className={cls["game-logo"]}>
         <div className={cls.rays} style={{ backgroundImage: `url(${Rays})` }} />
-        <img src={GameLogo} alt="game-logo" className={cls.logo} />
+        <h1 className={cls["game-logo-title"]}>
+          <span data-text="Финансовый">Финансовый</span>
+          <span data-text="фермер">фермер</span>
+        </h1>
       </div>
       <div className={cls.buttons}>
         <Button theme={ButtonTheme.BACKGROUND} onClick={onShowModal}>

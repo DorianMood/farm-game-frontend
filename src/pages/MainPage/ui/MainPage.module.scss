@@ -6,20 +6,22 @@
   justify-content: space-between;
   height: 100vh;
   background: #2a5259;
+
+  overflow: hidden;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  z-index: 2;
+  z-index: 1;
 }
 
 .logo {
   position: relative;
   width: 320px;
   height: 164px;
-  z-index: 2;
+  z-index: 1;
 }
 
 .fermer {
@@ -27,41 +29,97 @@
   height: 282px;
 }
 
-
 /* keyframes for animation;  simple 0 to 360 */
 @-webkit-keyframes spin {
-  from { -webkit-transform: rotate(0deg); }
-  to { -webkit-transform: rotate(360deg); }
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @-moz-keyframes spin {
-  from { -moz-transform: rotate(0deg); }
-  to { -moz-transform: rotate(360deg); }
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
 }
 
 @-ms-keyframes spin {
-  from { -ms-transform: rotate(0deg); }
-  to { -ms-transform: rotate(360deg); }
+  from {
+    -ms-transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+  }
 }
-
 
 .game-logo {
   position: relative;
+
+  &-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & span:not(:first-child) {
+      margin-top: -36px;
+    }
+
+    span {
+      color: #ffd600;
+
+      font-family: Pacifico;
+      font-size: 60px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+      position: relative;
+      z-index: 0;
+
+      &:before {
+        content: attr(data-text);
+        position: absolute;
+
+        background: linear-gradient(180deg, #1efe20, #2095af);
+        background-clip: text;
+        -webkit-text-stroke: 14px transparent;
+        color: red;
+        text-shadow: black 1px 1px 1px;
+        -webkit-text-fill-color: transparent;
+
+        z-index: -1;
+
+        //INFO: because it cuts the text, we need to extend this element's width
+        width: 120%;
+        left: -10%;
+        height: 120%;
+        top: -10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
 }
 
-.rays	{
+.rays {
   position: absolute;
   top: -125px;
   right: -80px;
   width: 490px;
   height: 490px;
-  z-index: 1;
+  z-index: 0;
 
   /* webkit chrome, safari, mobile */
-  -webkit-animation-name: spin;
-  -webkit-animation-duration: 90000ms; /* 40 seconds */
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
+  animation-name: spin;
+  animation-duration: 90000ms; /* 40 seconds */
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 
   /* mozilla ff */
   -moz-animation-name: spin;

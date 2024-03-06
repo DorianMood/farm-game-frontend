@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Golos+Text&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Golos+Text&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 @import "reset";
 @import "variables/global";
 @import "themes/normal";
@@ -7,28 +8,28 @@
 @import "themes/green";
 
 body {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-    &::-webkit-scrollbar {
-        display: none; /* Chrome, Safari and Opera */
-    }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
 }
 
 .app,
 .app_modal {
-    font: var(--font-m);
-    color: var(--primary-color);
+  font: var(--font-m);
+  color: var(--primary-color);
 }
 
 .app {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .content-page {
-    position: relative;
-    display: flex;
+  position: relative;
+  display: flex;
 }
 
 .page-wrapper {
-    flex-grow: 1;
+  flex-grow: 1;
 }
