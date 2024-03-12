@@ -29,7 +29,7 @@ export const MainPage = () => {
       <MainPageHeader />
       <div className={cls["game-logo"]}>
         <div className={cls.rays} style={{ backgroundImage: `url(${Rays})` }} />
-        <h1 className={cls["game-logo-title"]}>
+        <h1 className={cls["game-logo-title"]} translate="no">
           <span data-text="Финансовый">Финансовый</span>
           <span data-text="фермер">фермер</span>
         </h1>
@@ -43,13 +43,11 @@ export const MainPage = () => {
         </Button>
       </div>
       <img src={Farmer} alt="farmer-logo" />
-      {isAuthModal && (
-        <LoginModal
-          isOpen={isAuthModal}
-          onClose={onCloseModal}
-          onSuccess={onSuccess}
-        />
-      )}
+      <LoginModal
+        isOpen={isAuthModal}
+        onClose={onCloseModal}
+        onSuccess={onSuccess}
+      />
     </div>
   );
 };

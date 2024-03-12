@@ -30,6 +30,15 @@
 }
 
 /* keyframes for animation;  simple 0 to 360 */
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
 @-webkit-keyframes spin {
   from {
     -webkit-transform: rotate(0deg);
@@ -71,6 +80,7 @@
 
     span {
       color: #ffd600;
+      text-shadow: black 1px 1px 1px;
 
       font-family: Pacifico;
       font-size: 60px;
@@ -82,14 +92,13 @@
       z-index: 0;
 
       &:before {
-        content: attr(data-text);
+        // INFO: After / show alternative value for screenreader
+        content: attr(data-text) / "";
         position: absolute;
 
         background: linear-gradient(180deg, #1efe20, #2095af);
         background-clip: text;
         -webkit-text-stroke: 14px transparent;
-        color: red;
-        text-shadow: black 1px 1px 1px;
         -webkit-text-fill-color: transparent;
 
         z-index: -1;
