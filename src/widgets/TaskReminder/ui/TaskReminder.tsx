@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { tasksSelector } from "entities/Task";
-import { classNames } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import FarmerGirl from "shared/assets/images/farmer-girl.png";
 import { MessageCard } from "shared/ui/MessageCard/MessageCard";
 import cls from "./TaskReminder.module.scss";

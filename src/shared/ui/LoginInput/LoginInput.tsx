@@ -8,7 +8,7 @@ import {
   ChangeEvent,
   KeyboardEvent,
 } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import CloseIcon from "shared/assets/icons/my_village-24-24.svg?react";
 import { Hint } from "./components/hint";
 import { Icon } from "./components/icon";
@@ -56,7 +56,7 @@ export const LoginInput = forwardRef<InputRef, InputProps>(
       onClick,
       ...restProps
     },
-    forwardedRef,
+    _
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [hovered, setHover] = useState<boolean>(false);
@@ -152,7 +152,7 @@ export const LoginInput = forwardRef<InputRef, InputProps>(
         [styles["with-left-icon"]]: !!leftIcon,
         [styles["with-right-icon"]]: !disabled && clearable && !!onClear,
       },
-      [className],
+      [className]
     );
 
     const inputClassNames = classNames(styles.input, {
@@ -232,7 +232,7 @@ export const LoginInput = forwardRef<InputRef, InputProps>(
         {isHintVisible && (
           <Hint
             error={error}
-            className={classNames(styles.hint, { [styles.disabled]: disabled })}
+            className={classNames(styles.hint, {[styles.disabled]: disabled})}
             dataTestId={`${dataTestId}-hint`}
           >
             {hint}
@@ -240,7 +240,7 @@ export const LoginInput = forwardRef<InputRef, InputProps>(
         )}
       </div>
     );
-  },
+  }
 );
 
 LoginInput.displayName = "LoginInput";

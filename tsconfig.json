@@ -23,6 +23,6 @@
     "baseUrl": "./src",
     "typeRoots": ["./use-sound.d.ts"]
   },
-  "include": ["src", "index.d.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "index.d.ts", "./use-sound.d.ts"],
+  "references": [{"path": "./tsconfig.node.json"}]
 }

@@ -1,16 +1,16 @@
-import { classNames } from "shared/lib/classNames/classNames";
-import { memo, useCallback, useState } from "react";
-import { Button, ButtonTheme } from "shared/ui/Button/Button";
-import { LoginModal } from "features/AuthByUsername";
-import { useDispatch, useSelector } from "react-redux";
-import { userSelector, userActions } from "entities/User";
+import classNames from "classnames";
+import {memo, useCallback, useState} from "react";
+import {Button, ButtonTheme} from "shared/ui/Button/Button";
+import {LoginModal} from "features/AuthByUsername";
+import {useDispatch, useSelector} from "react-redux";
+import {userSelector} from "entities/User";
 import cls from "./Navbar.module.scss";
 
 interface NavbarProps {
   className?: string;
 }
 
-export const Navbar = memo(({ className }: NavbarProps) => {
+export const Navbar = memo(({className}: NavbarProps) => {
   const [isAuthModal, setIsAuthModal] = useState(false);
   const authData = useSelector(userSelector);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   }, []);
 
   const onLogout = useCallback(() => {
-    dispatch(userActions.logout());
+    // TODO: logout
   }, [dispatch]);
 
   if (authData) {

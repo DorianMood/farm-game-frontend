@@ -1,4 +1,4 @@
-import { classNames } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import LogoIcon from "shared/assets/icons/logo-47-47.svg?react";
 import cls from "./MainPageHeader.module.scss";
 
@@ -7,7 +7,7 @@ interface ProfilePageHeaderProps {
 }
 
 export const MainPageHeader = (props: ProfilePageHeaderProps) => {
-  const { className } = props;
+  const {className} = props;
 
   return (
     <div className={classNames(cls.MainPageHeader, {}, [className])}>

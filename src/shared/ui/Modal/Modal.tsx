@@ -1,4 +1,4 @@
-import { classNames, Mods } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import React, {
   MutableRefObject,
   ReactNode,
@@ -7,8 +7,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Portal } from "shared/ui/Portal/Portal";
-import { useTheme } from "app/providers/ThemeProvider";
+import {Portal} from "shared/ui/Portal/Portal";
+import {useTheme} from "app/providers/ThemeProvider";
 import cls from "./Modal.module.scss";
 
 interface ModalProps {
@@ -22,12 +22,12 @@ interface ModalProps {
 const ANIMATION_DELAY = 300;
 
 export const Modal = (props: ModalProps) => {
-  const { className, children, isOpen, onClose, lazy } = props;
+  const {className, children, isOpen, onClose, lazy} = props;
 
   const [isClosing, setIsClosing] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
-  const { theme } = useTheme();
+  const {theme} = useTheme();
 
   useEffect(() => {
     if (isOpen) {
@@ -52,7 +52,7 @@ export const Modal = (props: ModalProps) => {
         closeHandler();
       }
     },
-    [closeHandler],
+    [closeHandler]
   );
 
   const onContentClick = (e: React.MouseEvent) => {
@@ -70,11 +70,6 @@ export const Modal = (props: ModalProps) => {
     };
   }, [isOpen, onKeyDown]);
 
-  const mods: Mods = {
-    [cls.opened]: isOpen,
-    [cls.isClosing]: isClosing,
-  };
-
   if (lazy && !isMounted) {
     return null;
   }
@@ -82,7 +77,14 @@ export const Modal = (props: ModalProps) => {
   return (
     <Portal>
       <div
-        className={classNames(cls.Modal, mods, [className, theme, "app_modal"])}
+        className={classNames(
+          cls.Modal,
+          {
+            [cls.opened]: isOpen,
+            [cls.isClosing]: isClosing,
+          },
+          [className, theme, "app_modal"]
+        )}
       >
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>

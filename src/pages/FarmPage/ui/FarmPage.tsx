@@ -169,7 +169,7 @@ export const FarmPage = () => {
         dispatch(fetchBedsData());
       });
       // TODO: завершить таск
-      // handleCompleteTask("plant")
+      handleCompleteTask("plant");
     }
   };
 
@@ -181,7 +181,7 @@ export const FarmPage = () => {
 
   const handleSubmitGeniusModal = (success: boolean) => {
     if (success) {
-      // handleCompleteTask('finance_genius');
+      handleCompleteTask("finance_genius");
     }
     setOpenedGeniusModal(false);
   };

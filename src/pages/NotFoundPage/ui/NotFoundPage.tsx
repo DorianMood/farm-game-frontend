@@ -1,12 +1,12 @@
-import { classNames } from "shared/lib/classNames/classNames";
-import { useEffect, useState } from "react";
+import classNames from "classnames";
+import {useEffect, useState} from "react";
 import cls from "./NotFoundPage.module.scss";
 
 interface NotFoundPageProps {
   className?: string;
 }
 
-export const NotFoundPage = ({ className }: NotFoundPageProps) => {
+export const NotFoundPage = ({className}: NotFoundPageProps) => {
   const [text, setText] = useState<string | null>(null);
 
   useEffect(() => {

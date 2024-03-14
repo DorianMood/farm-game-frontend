@@ -7,7 +7,7 @@ import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchSurveyData } from "entities/Survey/model/thunks";
 import { useSelector } from "react-redux";
 import { surveySelector } from "entities/Survey";
-import { classNames } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import cls from "./SurveyModal.module.scss";
 import { useTimer } from "./useTimer";
 

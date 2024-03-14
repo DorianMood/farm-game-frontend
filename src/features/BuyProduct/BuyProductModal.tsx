@@ -5,8 +5,7 @@ import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { updateProductsData } from "entities/Products/model/thunks";
-import { useSelector } from "react-redux";
-import { userSelector } from "entities/User";
+import {useSelector} from "react-redux";
 import { useEffect, useState } from "react";
 import { productsIsUpdatingSelector } from "entities/Products/model/selectors";
 import { Product } from "entities/Products/model/types";
@@ -27,7 +26,6 @@ export const BuyProductModal = ({
   product,
 }: Props) => {
   const dispatch = useAppDispatch();
-  const user = useSelector(userSelector);
 
   const isUpdating = useSelector(productsIsUpdatingSelector);
   const [isSuccess, setSuccess] = useState(false);
@@ -39,9 +37,8 @@ export const BuyProductModal = ({
   const onBuyProductsClick = () => {
     dispatch(
       updateProductsData({
-        user_id: user?.id || "",
-        product_id: product?.id || "",
-      }),
+        productId: product?.id || "",
+      })
     );
 
     setSuccess(true);

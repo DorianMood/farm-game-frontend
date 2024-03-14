@@ -1,15 +1,15 @@
-import { classNames } from "shared/lib/classNames/classNames";
-import { Heading } from "shared/ui/Heading/Heading";
-import { useMemo } from "react";
-import { RatingCardsList } from "shared/ui/RatingCard/items";
-import { RatingCard } from "shared/ui/RatingCard/RatingCard";
+import classNames from "classnames";
+import {Heading} from "shared/ui/Heading/Heading";
+import {useMemo} from "react";
+import {RatingCardsList} from "shared/ui/RatingCard/items";
+import {RatingCard} from "shared/ui/RatingCard/RatingCard";
 import cls from "./RatingPage.module.scss";
 
 interface RatingPageProps {
   className?: string;
 }
 
-export const RatingPage = ({ className }: RatingPageProps) => {
+export const RatingPage = ({className}: RatingPageProps) => {
   const itemsList = useMemo(
     () =>
       RatingCardsList.map((item, index) => (
@@ -21,7 +21,7 @@ export const RatingPage = ({ className }: RatingPageProps) => {
           isCurrent={index === RatingCardsList.length - 1}
         />
       )),
-    [],
+    []
   );
 
   return (

@@ -1,32 +1,30 @@
 import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink";
 import { memo } from "react";
 import { useSelector } from "react-redux";
-import { classNames, Mods } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import cls from "./MenuItem.module.scss";
-import { SidebarItemType } from "../../model/items";
-import { isAuthentificatedSelector } from "entities/User/model/selectors";
+import {SidebarItemType} from "../../model/items";
+import {isAuthentificatedSelector} from "entities/User/model/selectors";
 
 interface GameMenuItemProps {
   item: SidebarItemType;
   isActive: boolean;
 }
 
-export const GameMenuItem = memo(({ item, isActive }: GameMenuItemProps) => {
+export const GameMenuItem = memo(({item, isActive}: GameMenuItemProps) => {
   const isAuth = useSelector(isAuthentificatedSelector);
 
   if (item.authOnly && !isAuth) {
     return null;
   }
 
-  const mods: Mods = {
-    [cls.active]: isActive,
-  };
-
   return (
     <AppLink
       theme={AppLinkTheme.SECONDARY}
       to={item.path}
-      className={classNames(cls.item, mods)}
+      className={classNames(cls.item, {
+        [cls.active]: isActive,
+      })}
     >
       <item.Icon className={cls.icon} />
       <span className={cls.link}>{item.text}</span>

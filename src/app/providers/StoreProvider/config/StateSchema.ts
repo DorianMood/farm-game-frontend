@@ -6,8 +6,7 @@ import {
   Reducer,
   ReducersMapObject,
 } from "@reduxjs/toolkit";
-import { CombinedState } from "redux";
-import { ProfileSchema } from "entities/Profile";
+import {CombinedState} from "redux";
 import { AxiosInstance } from "axios";
 import { NavigateOptions } from "react-router";
 import { BedsSchema } from "entities/Bed";
@@ -24,7 +23,6 @@ export interface StateSchema {
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;
-  profile?: ProfileSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
