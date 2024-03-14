@@ -1,4 +1,4 @@
-import { classNames } from "shared/lib/classNames/classNames";
+import classNames from "classnames";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useSelector } from "react-redux";
 import { ChangeEvent, memo, useCallback } from "react";
