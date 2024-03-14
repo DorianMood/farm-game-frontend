@@ -18,7 +18,7 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
     <StoreProvider>
       <ErrorBoundary>
         <ThemeProvider>

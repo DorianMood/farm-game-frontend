@@ -24,5 +24,5 @@
     "typeRoots": ["./use-sound.d.ts"]
   },
   "include": ["src", "index.d.ts", "./use-sound.d.ts"],
-  "references": [{"path": "./tsconfig.node.json"}]
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
