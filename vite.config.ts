@@ -6,5 +6,5 @@ import svgr from "vite-plugin-svgr";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [tsconfigPaths(), svgr(), react()],
-  base: "http://93.93.207.63:8000/api",
+  base: "/",
 });
