@@ -15,6 +15,7 @@ export enum TextAlign {
 
 interface TextProps {
   className?: string;
+  textClassName?: string;
   title?: string;
   text?: string;
   theme?: TextTheme;
@@ -24,6 +25,7 @@ interface TextProps {
 export const Text = memo((props: TextProps) => {
   const {
     className,
+    textClassName,
     text,
     title,
     theme = TextTheme.PRIMARY,
@@ -41,8 +43,8 @@ export const Text = memo((props: TextProps) => {
         [className]
       )}
     >
-      {title && <p className={cls.title}>{title}</p>}
-      {text && <p className={cls.text}>{text}</p>}
+      {title && <p className={classNames(cls.title, {}, [textClassName])}>{title}</p>}
+      {text && <p className={classNames(cls.text, {}, [textClassName])}>{text}</p>}
     </div>
   );
 });

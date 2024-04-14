@@ -16,3 +16,9 @@ export interface UserSchema {
   isLoading: boolean;
   error: boolean;
 }
+
+export interface NewUser {
+  username: string;
+  email: string;
+  password: string;
+}

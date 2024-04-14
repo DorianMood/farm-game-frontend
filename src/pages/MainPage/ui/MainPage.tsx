@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import Farmer from "shared/assets/images/farmer.png";
 import { MainPageHeader } from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
-import { LoginModal } from "features/AuthByUsername";
+import { AuthModal } from "features/AuthUser";
 import { useNavigate } from "react-router-dom";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import Rays from "shared/assets/images/rays.png";
@@ -43,7 +43,7 @@ export const MainPage = () => {
         </Button>
       </div>
       <img src={Farmer} alt="farmer-logo" />
-      <LoginModal
+      <AuthModal
         isOpen={isAuthModal}
         onClose={onCloseModal}
         onSuccess={onSuccess}

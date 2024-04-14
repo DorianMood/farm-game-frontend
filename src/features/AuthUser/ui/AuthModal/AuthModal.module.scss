@@ -1,0 +1,28 @@
+.AuthModal {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.title {
+  text-align: center;
+  color: var(--light) !important;
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #FFFFFF;
+  cursor: pointer;
+
+  &:hover {
+    color: #4cb24e;
+  }
+}
+
+.registration {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
