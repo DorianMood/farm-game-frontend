@@ -2,9 +2,9 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "app/providers/StoreProvider";
 
 export const logout = createAsyncThunk<
-    never,
-    never,
-    ThunkConfig
+    any,
+    undefined,
+    ThunkConfig<string>
     >("login/loginByUsername", async (_, thunkApi) => {
   const { extra, rejectWithValue } = thunkApi;
 

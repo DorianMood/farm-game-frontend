@@ -4,7 +4,7 @@ import {SignUpSchema} from "../types/signUpSchema";
 
 const initialState: SignUpSchema = {
     isLoading: false,
-    error: {}
+    error: ""
 };
 
 export const signUpSlice = createSlice({
