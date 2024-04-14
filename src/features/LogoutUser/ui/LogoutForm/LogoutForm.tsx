@@ -10,15 +10,15 @@ import {logoutReducer} from "../../model/slice/logoutSlice";
 import {logout} from "../../model/services/logout/logout";
 import cls from "./LogoutForm.module.scss";
 
-export interface LoginFormProps {
-    className?: string;
+export interface LogoutFormProps {
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
     logoutForm: logoutReducer,
 };
 
-export const LogoutForm = memo(({onSuccess}: LoginFormProps) => {
+export const LogoutForm = memo(({onSuccess}: LogoutFormProps) => {
     const dispatch = useAppDispatch();
 
     const isLoading = useSelector(getLogoutIsLoading);
