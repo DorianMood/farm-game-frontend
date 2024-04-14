@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import {memo, useCallback, useState} from "react";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
-import {LoginModal} from "features/AuthByUsername";
+import {AuthModal} from "features/AuthUser";
 import {useDispatch, useSelector} from "react-redux";
 import {userSelector} from "entities/User";
 import cls from "./Navbar.module.scss";
@@ -51,7 +51,7 @@ export const Navbar = memo(({className}: NavbarProps) => {
         {"Войти"}
       </Button>
       {isAuthModal && (
-        <LoginModal
+        <AuthModal
           isOpen={isAuthModal}
           onClose={onCloseModal}
           onSuccess={onCloseModal}

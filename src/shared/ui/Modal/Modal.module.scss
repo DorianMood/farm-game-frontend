@@ -21,10 +21,9 @@
 
 .content {
   padding: 20px;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px;
   background: var(--bg-color);
   transition: 0.3s bottom;
-  position: absolute;
   bottom: -100%;
   max-width: 720px;
   max-height: 70vh;

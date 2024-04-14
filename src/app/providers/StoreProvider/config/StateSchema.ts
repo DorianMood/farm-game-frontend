@@ -1,5 +1,6 @@
 import { UserSchema } from "entities/User";
-import { LoginSchema } from "features/AuthByUsername";
+import { LoginSchema, SignUpSchema } from "features/AuthUser";
+import { LogoutSchema } from "features/LogoutUser";
 import {
   AnyAction,
   EnhancedStore,
@@ -23,6 +24,8 @@ export interface StateSchema {
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;
+  signUpForm?: SignUpSchema;
+  logoutForm?: LogoutSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
