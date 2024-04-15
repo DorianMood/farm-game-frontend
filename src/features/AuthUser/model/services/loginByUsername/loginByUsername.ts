@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { User } from "entities/User";
 import { ThunkConfig } from "app/providers/StoreProvider";
+import {AxiosError} from "axios";
 
 interface LoginByUsernameProps {
   login?: string;
@@ -23,8 +24,12 @@ export const loginByUsername = createAsyncThunk<
     }
 
     return response.data;
-  } catch (e) {
-    console.log(e);
-    return rejectWithValue("error");
+  } catch (e: unknown) {
+      if (e instanceof AxiosError) {
+          if (e?.response?.status === 401) {
+              return rejectWithValue("Вы ввели неверный логин или пароль");
+          }
+      }
+      return rejectWithValue("Произошла ошибка");
   }
 });

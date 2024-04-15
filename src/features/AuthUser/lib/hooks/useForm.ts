@@ -5,8 +5,6 @@ export const useForm = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
 
-    const [formErrors, setFormErrors] = useState({});
-
     const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
     };
@@ -22,7 +20,5 @@ export const useForm = () => {
     return {
         fields: {password, email, username},
         setters: {onChangeUsername, onChangeEmail, onChangePassword},
-        formErrors,
-        setFormErrors
     }
 };

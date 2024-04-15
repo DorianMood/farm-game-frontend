@@ -1,0 +1,30 @@
+.Notification {
+  position: fixed;
+  top: 20px;
+  right: -100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  font: var(--font-size-m);
+  color: var(--green-light);
+  background: var(--green-extra-light);
+  width: 300px;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.opened {
+  opacity: 1;
+  right: 20px;
+  z-index: var(--notification-z-index);
+  transition: 1s;
+}
+
+.isClosing {
+  .content {
+    right: -100%;
+  }
+}

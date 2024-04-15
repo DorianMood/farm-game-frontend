@@ -41,7 +41,7 @@ export const LoginForm = memo(( {onSuccess }: LoginFormProps) => {
     <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
         {error && (
           <Text
-            text={"Вы ввели неверный логин или пароль"}
+            text={error}
             theme={TextTheme.ERROR}
           />
         )}
@@ -51,6 +51,7 @@ export const LoginForm = memo(( {onSuccess }: LoginFormProps) => {
           label={"Введите имя"}
           value={username}
           onChange={onChangeUsername}
+          error={!!error}
         />
         <LoginInput
             type="password"
@@ -58,6 +59,7 @@ export const LoginForm = memo(( {onSuccess }: LoginFormProps) => {
             label={"Введите пароль"}
             value={password}
             onChange={onChangePassword}
+            error={!!error}
         />
         <Button
           theme={ButtonTheme.BACKGROUND_INVERTED}
