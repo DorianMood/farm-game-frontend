@@ -2,6 +2,7 @@ import {useState} from "react";
 import classNames from "classnames";
 import {Modal} from "shared/ui/Modal/Modal";
 import {Text} from "shared/ui/Text/Text";
+import {useNotification} from "shared/lib/hooks/useNotification/useNotification";
 import {LoginForm} from "../LoginForm/LoginForm";
 import {SignUpForm} from "../SignUpForm/SignUpForm";
 import cls from "./AuthModal.module.scss";
@@ -21,16 +22,23 @@ export const AuthModal = ({
 }: AuthModalProps) => {
   const [isRegistration, setRegistration] = useState(false);
 
+  const {openNotification, notificationComponent} = useNotification('Профиль успешно создан!');
+
   const onSuccessSignUp = () => {
     setRegistration(false);
-    // TODO: Добавить компонент с уведомлениями!
+    openNotification();
+  };
+
+  const handleCloseModal = () => {
+    setRegistration(false);
+    onClose();
   };
 
   return (
       <Modal
           className={classNames("", {}, [className])}
           isOpen={isOpen}
-          onClose={onClose}
+          onClose={handleCloseModal}
           lazy
       >
         <div className={classNames(cls.AuthModal, {}, [className])}>
@@ -43,6 +51,7 @@ export const AuthModal = ({
           </div>
           {isRegistration ? <SignUpForm onSuccess={onSuccessSignUp}/> : <LoginForm onSuccess={onSuccess}/>}
         </div>
+        {notificationComponent}
       </Modal>
   )
 }

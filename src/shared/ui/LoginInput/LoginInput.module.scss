@@ -1,6 +1,7 @@
 .container {
   position: relative;
   display: flex;
+  margin-bottom: 20px;
 }
 
 .label {
@@ -91,6 +92,7 @@
 
   &.error {
     border-color: red;
+    border-width: 3px;
   }
 
   &::placeholder {
@@ -134,6 +136,7 @@
   bottom: 0;
   left: 0;
   transform: translateY(calc(100% + 2px));
+  font-size: 12px;
 
   &.disabled {
     color: grey;
