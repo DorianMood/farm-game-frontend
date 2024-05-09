@@ -1,26 +1,17 @@
 import FarmMap from "shared/assets/images/farm/map.svg?react";
-import { useSelector } from "react-redux";
-import { Bed, bedsSelector } from "entities/Bed";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {
-  fetchBedsData,
-  harvestBeds,
-  plantBeds,
-} from "entities/Bed/model/thunks";
-import { userSelector } from "entities/User";
-import { tasksSelector } from "entities/Task";
-import { completeTask, fetchTasksData } from "entities/Task/model/thunks";
-import { TaskCard } from "shared/ui/TaskCard/TaskCard";
-import { SurveyModal, PlantModal } from "features/FarmGame";
-import { CropEnum } from "entities/Bed/model/types";
-import { fetchUserData } from "entities/User/model/thunks";
+import {useSelector} from "react-redux";
+import {Bed, bedsSelector} from "entities/Bed";
+import {useCallback, useEffect, useLayoutEffect, useMemo, useState,} from "react";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchBedsData, harvestBeds, plantBeds,} from "entities/Bed/model/thunks";
+import {userSelector} from "entities/User";
+import {tasksSelector} from "entities/Task";
+import {completeTask, fetchTasksData} from "entities/Task/model/thunks";
+import {TaskCard} from "shared/ui/TaskCard/TaskCard";
+import {CustomGameModal, PlantModal, SurveyModal} from "features/FarmGame";
+import {CropEnum} from "entities/Bed/model/types";
+import {fetchUserData} from "entities/User/model/thunks";
+import {PLANTS_VS_ZOMBIES_URL} from "shared/const/games";
 import cls from "./FarmPage.module.scss";
 
 interface BedPlant {
@@ -54,13 +45,13 @@ export const FarmPage = () => {
           Date.now() - new Date(bed.plantedAt).getTime() > 24 * 60 * 60 * 1000
         );
       }) ||
-      tasks.some((task) => !task.completedAt && task.task.type === "Plant"),
+        tasks?.some((task) => !task.completedAt && task.task.type === "Plant"),
     [beds, tasks],
   );
 
   const surveyActivity = useMemo(
     () =>
-      tasks.some(
+        tasks?.some(
         (task) => !task.completedAt && task.task.type === "FinanceGenius",
       ),
     [tasks],
@@ -118,15 +109,45 @@ export const FarmPage = () => {
     };
   }, [beds]);
 
+  const [openedCustomGameModal, setOpenedCustomGameModal] = useState(false);
+  const [farmCardPosition, setFarmCardPosition] = useState(null);
+
+  useLayoutEffect(() => {
+    const element = document.getElementById(`big_house`);
+
+    const position = element.getBoundingClientRect();
+    setFarmCardPosition({
+      top: position.top + position.height / 4 + window.scrollY,
+      left: position.left + position.width / 4 + window.scrollX,
+    });
+
+    const handleOpenCustomGame = () => {
+      setOpenedCustomGameModal(true);
+    };
+
+    element?.addEventListener("click", handleOpenCustomGame);
+
+    return () => {
+      element?.removeEventListener("click", handleOpenCustomGame);
+    }
+  }, []);
+
+  const handleCloseCustomGameModal = (isSuccess: boolean) => {
+    if (isSuccess) {
+      handleCompleteTask("customGame");
+    }
+    setOpenedCustomGameModal(false);
+  };
+
   const handleCompleteTask = useCallback(
     (type: string) => {
-      const task = tasks.find((task) => task.task.type === type);
-
+      const task = tasks?.find((task) => task?.task?.type === type);
       if (task && user) {
         dispatch(completeTask(task.id))
           .unwrap()
           .then(() => {
             // Fetch balance
+            dispatch(fetchUserData());
           });
       }
     },
@@ -169,7 +190,7 @@ export const FarmPage = () => {
         dispatch(fetchBedsData());
       });
       // TODO: завершить таск
-      handleCompleteTask("plant");
+      handleCompleteTask("Plant");
     }
   };
 
@@ -181,7 +202,7 @@ export const FarmPage = () => {
 
   const handleSubmitGeniusModal = (success: boolean) => {
     if (success) {
-      handleCompleteTask("finance_genius");
+      handleCompleteTask("FinanceGenius");
     }
     setOpenedGeniusModal(false);
   };
@@ -206,15 +227,16 @@ export const FarmPage = () => {
 
             return (
               <div
-                className={cls.task}
-                style={{
+                  className={cls.task}
+                  style={{
                   top: position.top + position.height / 4 + window.scrollY,
                   left: position.left + position.width / 4 + window.scrollX,
                 }}
-                onClick={() => {
+                  onClick={() => {
                   setBedIndex(+id);
                   setOpenedPlantModal(true);
                 }}
+                  key={id}
               >
                 <TaskCard
                   text="Посеять растения"
@@ -226,6 +248,22 @@ export const FarmPage = () => {
           })}
         </>
       )}
+      {farmCardPosition && <>
+        <div
+            className={cls.task}
+            style={farmCardPosition}
+            onClick={() => {
+              setOpenedCustomGameModal(true)
+            }}
+        >
+          <TaskCard
+              text="Спасти ферму от вредителей"
+              test={farmCardPosition}
+              coinsCount={'50'}
+              className={cls.card}
+          />
+        </div>
+      </>}
       {surveyActivity && surveyTask && (
         <SurveyModal
           opened={openedGeniusModal}
@@ -234,6 +272,11 @@ export const FarmPage = () => {
           onSubmit={handleSubmitGeniusModal}
         />
       )}
+      <CustomGameModal
+          opened={openedCustomGameModal}
+          onClose={handleCloseCustomGameModal}
+          url={PLANTS_VS_ZOMBIES_URL}
+      />
       <FarmMap />
     </div>
   );
