@@ -49,7 +49,6 @@ export const tasksSlice = createSlice({
         completeTask.fulfilled,
         (state, action: PayloadAction<Task[]>) => {
           state.isLoading = false;
-          state.data.tasks = action.payload;
         },
       )
       .addCase(completeTask.rejected, (state) => {
