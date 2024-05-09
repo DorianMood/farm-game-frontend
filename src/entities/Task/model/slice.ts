@@ -47,7 +47,7 @@ export const tasksSlice = createSlice({
       })
       .addCase(
         completeTask.fulfilled,
-        (state, action: PayloadAction<Task[]>) => {
+        (state) => {
           state.isLoading = false;
         },
       )

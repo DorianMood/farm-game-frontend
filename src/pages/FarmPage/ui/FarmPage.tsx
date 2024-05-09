@@ -19,6 +19,11 @@ interface BedPlant {
   index: number;
 }
 
+interface Position {
+  top?: number,
+  left?: number
+}
+
 export const FarmPage = () => {
   const dispatch = useAppDispatch();
   const beds: Bed[] = useSelector(bedsSelector);
@@ -109,17 +114,19 @@ export const FarmPage = () => {
     };
   }, [beds]);
 
-  const [openedCustomGameModal, setOpenedCustomGameModal] = useState(false);
-  const [farmCardPosition, setFarmCardPosition] = useState(null);
+  const [openedCustomGameModal, setOpenedCustomGameModal] = useState<boolean>(false);
+  const [farmCardPosition, setFarmCardPosition] = useState<Position>({});
 
   useLayoutEffect(() => {
     const element = document.getElementById(`big_house`);
 
-    const position = element.getBoundingClientRect();
-    setFarmCardPosition({
-      top: position.top + position.height / 4 + window.scrollY,
-      left: position.left + position.width / 4 + window.scrollX,
-    });
+    if (element != null) {
+      const position: DOMRect = element.getBoundingClientRect();
+      setFarmCardPosition({
+        top: position?.top ?? 0 + position?.height ?? 0 / 4 + window?.scrollY ?? 0,
+        left: position?.left ?? 0 + position?.width ?? 0 / 4 + window?.scrollX ?? 0,
+      });
+    }
 
     const handleOpenCustomGame = () => {
       setOpenedCustomGameModal(true);
@@ -258,7 +265,6 @@ export const FarmPage = () => {
         >
           <TaskCard
               text="Спасти ферму от вредителей"
-              test={farmCardPosition}
               coinsCount={'50'}
               className={cls.card}
           />
