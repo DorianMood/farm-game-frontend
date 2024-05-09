@@ -31,8 +31,12 @@ export const Modal = (props: ModalProps) => {
 
   useEffect(() => {
     if (isOpen) {
+      document.body.style.overflow = 'hidden';
       setIsMounted(true);
+    } else {
+      document.body.style.overflow = 'scroll';
     }
+
   }, [isOpen]);
 
   const closeHandler = useCallback(() => {
