@@ -4,7 +4,7 @@ import {Notification} from "../../../ui/Notification/Notification";
 const ANIMATION_DELAY = 5000;
 
 export const useNotification = (text: string) => {
-    const [isOpenedNotification, setOpenedNotification] = useState(true);
+    const [isOpenedNotification, setOpenedNotification] = useState(false);
 
     const openNotification = () => {
         setOpenedNotification(true);
