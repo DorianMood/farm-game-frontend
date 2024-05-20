@@ -13,13 +13,10 @@ interface Props {
 export const CustomGameModal = ({onClose, opened, url, origin}: Props) => {
     useEffect(() => {
         const handleMessageEvent = (event: MessageEvent) => {
-            console.log('Получили event', event?.origin, origin);
-            //if (event.origin !== origin) return;
+            if (event.origin !== origin) return;
 
             try {
                 let data = JSON.parse(event.data);
-
-                console.log('Данные из iframe', event.data);
 
                 if (data.action) {
                     onClose(data.action)

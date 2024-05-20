@@ -140,7 +140,6 @@ export const FarmPage = () => {
   }, []);
 
   const handleCloseCustomGameModal = (actionName: 'success' | 'failed' | 'close') => {
-    console.log('actionName', actionName)
     if (actionName === 'success') {
       handleCompleteTask("customGame");
     }
