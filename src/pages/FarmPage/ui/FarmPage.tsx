@@ -1,17 +1,30 @@
 import FarmMap from "shared/assets/images/farm/map.svg?react";
-import {useSelector} from "react-redux";
-import {Bed, bedsSelector} from "entities/Bed";
-import {useCallback, useEffect, useLayoutEffect, useMemo, useState,} from "react";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchBedsData, harvestBeds, plantBeds,} from "entities/Bed/model/thunks";
-import {userSelector} from "entities/User";
-import {tasksSelector} from "entities/Task";
-import {completeTask, fetchTasksData} from "entities/Task/model/thunks";
-import {TaskCard} from "shared/ui/TaskCard/TaskCard";
-import {CustomGameModal, PlantModal, SurveyModal} from "features/FarmGame";
-import {CropEnum} from "entities/Bed/model/types";
-import {fetchUserData} from "entities/User/model/thunks";
-import {PLANTS_VS_ZOMBIES_ORIGIN, PLANTS_VS_ZOMBIES_URL} from "shared/const/games";
+import { useSelector } from "react-redux";
+import { Bed, bedsSelector } from "entities/Bed";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {
+  fetchBedsData,
+  harvestBeds,
+  plantBeds,
+} from "entities/Bed/model/thunks";
+import { userSelector } from "entities/User";
+import { tasksSelector } from "entities/Task";
+import { completeTask, fetchTasksData } from "entities/Task/model/thunks";
+import { TaskCard } from "shared/ui/TaskCard/TaskCard";
+import { CustomGameModal, PlantModal, SurveyModal } from "features/FarmGame";
+import { CropEnum } from "entities/Bed/model/types";
+import { fetchUserData } from "entities/User/model/thunks";
+import {
+  PLANTS_VS_ZOMBIES_ORIGIN,
+  PLANTS_VS_ZOMBIES_URL,
+} from "shared/const/games";
 import cls from "./FarmPage.module.scss";
 
 interface BedPlant {
@@ -20,8 +33,8 @@ interface BedPlant {
 }
 
 interface Position {
-  top?: number,
-  left?: number
+  top?: number;
+  left?: number;
 }
 
 export const FarmPage = () => {
@@ -50,13 +63,13 @@ export const FarmPage = () => {
           Date.now() - new Date(bed.plantedAt).getTime() > 24 * 60 * 60 * 1000
         );
       }) ||
-        tasks?.some((task) => !task.completedAt && task.task.type === "Plant"),
+      tasks?.some((task) => !task.completedAt && task.task.type === "Plant"),
     [beds, tasks],
   );
 
   const surveyActivity = useMemo(
     () =>
-        tasks?.some(
+      tasks?.some(
         (task) => !task.completedAt && task.task.type === "FinanceGenius",
       ),
     [tasks],
@@ -114,7 +127,8 @@ export const FarmPage = () => {
     };
   }, [beds]);
 
-  const [openedCustomGameModal, setOpenedCustomGameModal] = useState<boolean>(false);
+  const [openedCustomGameModal, setOpenedCustomGameModal] =
+    useState<boolean>(false);
   const [farmCardPosition, setFarmCardPosition] = useState<Position>({});
 
   useLayoutEffect(() => {
@@ -123,8 +137,10 @@ export const FarmPage = () => {
     if (element != null) {
       const position: DOMRect = element.getBoundingClientRect();
       setFarmCardPosition({
-        top: position?.top ?? 0 + position?.height ?? 0 / 4 + window?.scrollY ?? 0,
-        left: position?.left ?? 0 + position?.width ?? 0 / 4 + window?.scrollX ?? 0,
+        top:
+          position?.top ?? 0 + position?.height ?? 0 / 4 + window?.scrollY ?? 0,
+        left:
+          position?.left ?? 0 + position?.width ?? 0 / 4 + window?.scrollX ?? 0,
       });
     }
 
@@ -136,12 +152,16 @@ export const FarmPage = () => {
 
     return () => {
       element?.removeEventListener("click", handleOpenCustomGame);
-    }
+    };
   }, []);
 
-  const handleCloseCustomGameModal = (actionName: 'success' | 'failed' | 'close') => {
-    if (actionName === 'success') {
-      handleCompleteTask("customGame");
+  const handleCloseCustomGameModal = (
+    actionName: "success" | "failed" | "close",
+  ) => {
+    console.log("close modal", actionName);
+
+    if (actionName === "success") {
+      handleCompleteTask("CustomGame");
     }
     setOpenedCustomGameModal(false);
   };
@@ -149,6 +169,9 @@ export const FarmPage = () => {
   const handleCompleteTask = useCallback(
     (type: string) => {
       const task = tasks?.find((task) => task?.task?.type === type);
+
+      console.log(task, tasks);
+
       if (task && user) {
         dispatch(completeTask(task.id))
           .unwrap()
@@ -234,16 +257,16 @@ export const FarmPage = () => {
 
             return (
               <div
-                  className={cls.task}
-                  style={{
+                className={cls.task}
+                style={{
                   top: position.top + position.height / 4 + window.scrollY,
                   left: position.left + position.width / 4 + window.scrollX,
                 }}
-                  onClick={() => {
+                onClick={() => {
                   setBedIndex(+id);
                   setOpenedPlantModal(true);
                 }}
-                  key={id}
+                key={id}
               >
                 <TaskCard
                   text="Посеять растения"
@@ -255,21 +278,23 @@ export const FarmPage = () => {
           })}
         </>
       )}
-      {farmCardPosition && <>
-        <div
+      {farmCardPosition && (
+        <>
+          <div
             className={cls.task}
             style={farmCardPosition}
             onClick={() => {
-              setOpenedCustomGameModal(true)
+              setOpenedCustomGameModal(true);
             }}
-        >
-          <TaskCard
+          >
+            <TaskCard
               text="Спасти ферму от вредителей"
-              coinsCount={'50'}
+              coinsCount={"50"}
               className={cls.card}
-          />
-        </div>
-      </>}
+            />
+          </div>
+        </>
+      )}
       {surveyActivity && surveyTask && (
         <SurveyModal
           opened={openedGeniusModal}
@@ -279,10 +304,10 @@ export const FarmPage = () => {
         />
       )}
       <CustomGameModal
-          opened={openedCustomGameModal}
-          onClose={handleCloseCustomGameModal}
-          url={PLANTS_VS_ZOMBIES_URL}
-          origin={PLANTS_VS_ZOMBIES_ORIGIN}
+        opened={openedCustomGameModal}
+        onClose={handleCloseCustomGameModal}
+        url={PLANTS_VS_ZOMBIES_URL}
+        origin={PLANTS_VS_ZOMBIES_ORIGIN}
       />
       <FarmMap />
     </div>
