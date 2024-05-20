@@ -11,7 +11,7 @@ import {TaskCard} from "shared/ui/TaskCard/TaskCard";
 import {CustomGameModal, PlantModal, SurveyModal} from "features/FarmGame";
 import {CropEnum} from "entities/Bed/model/types";
 import {fetchUserData} from "entities/User/model/thunks";
-import {PLANTS_VS_ZOMBIES_URL} from "shared/const/games";
+import {PLANTS_VS_ZOMBIES_ORIGIN, PLANTS_VS_ZOMBIES_URL} from "shared/const/games";
 import cls from "./FarmPage.module.scss";
 
 interface BedPlant {
@@ -283,6 +283,7 @@ export const FarmPage = () => {
           opened={openedCustomGameModal}
           onClose={handleCloseCustomGameModal}
           url={PLANTS_VS_ZOMBIES_URL}
+          origin={PLANTS_VS_ZOMBIES_ORIGIN}
       />
       <FarmMap />
     </div>

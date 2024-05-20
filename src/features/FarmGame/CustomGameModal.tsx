@@ -7,13 +7,14 @@ interface Props {
     onClose: (actionName: 'success' | 'failed' | 'close') => void;
     opened: boolean;
     url: string;
+    origin: string;
 }
 
-export const CustomGameModal = ({onClose, opened, url}: Props) => {
+export const CustomGameModal = ({onClose, opened, url, origin}: Props) => {
     useEffect(() => {
         const handleMessageEvent = (event: MessageEvent) => {
             console.log('Получили event', event);
-            if (event.origin !== url) return;
+            if (event.origin !== origin) return;
 
             try {
                 let data = JSON.parse(event.data);
