@@ -12,6 +12,7 @@ interface Props {
 export const CustomGameModal = ({onClose, opened, url}: Props) => {
     useEffect(() => {
         const handleMessageEvent = (event: MessageEvent) => {
+            console.log('Получили event', event);
             if (event.origin !== url) return;
 
             try {
