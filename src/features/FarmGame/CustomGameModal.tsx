@@ -4,7 +4,7 @@ import {Modal} from "shared/ui/Modal/Modal";
 import cls from "./CustomGameModal.module.scss";
 
 interface Props {
-    onClose: (isSuccess: boolean) => void;
+    onClose: (actionName: 'success' | 'failed' | 'close') => void;
     opened: boolean;
     url: string;
 }
@@ -14,8 +14,16 @@ export const CustomGameModal = ({onClose, opened, url}: Props) => {
         const handleMessageEvent = (event: MessageEvent) => {
             if (event.origin !== url) return;
 
-            if (event.data === 'success') {
-                onClose(true)
+            try {
+                let data = JSON.parse(event.data);
+
+                console.log('Данные из iframe', event.data);
+
+                if (data.action) {
+                    onClose(data.action)
+                }
+            } catch {
+                console.log('Ошибка парсинга iframe')
             }
         };
 
@@ -30,7 +38,7 @@ export const CustomGameModal = ({onClose, opened, url}: Props) => {
     return (
         <Modal isOpen={opened} className={cls.modal}>
             <div className={cls.root}>
-                <CloseIcon className={cls["close-icon"]} onClick={() => {onClose(false)}}/>
+                <CloseIcon className={cls["close-icon"]} onClick={() => {onClose('close')}}/>
                 <iframe className={cls.game} src={url} frameBorder="0"/>
             </div>
         </Modal>
