@@ -168,9 +168,12 @@ export const FarmPage = () => {
 
   const handleCompleteTask = useCallback(
     (type: string) => {
+      console.log('type', type);
+      console.log('tasks', tasks);
+
       const task = tasks?.find((task) => task?.task?.type === type);
 
-      console.log(task, tasks);
+      console.log('task', task);
 
       if (task && user) {
         dispatch(completeTask(task.id))
