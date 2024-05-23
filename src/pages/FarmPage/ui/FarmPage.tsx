@@ -26,6 +26,8 @@ import {
   PLANTS_VS_ZOMBIES_URL,
 } from "shared/const/games";
 import cls from "./FarmPage.module.scss";
+import {Task} from "../../../entities/Task/model/types";
+import {User} from "../../../entities/User/model/types";
 
 interface BedPlant {
   crop: CropEnum;
@@ -161,15 +163,19 @@ export const FarmPage = () => {
     console.log("close modal", actionName);
 
     if (actionName === "success") {
-      handleCompleteTask("CustomGame");
+      handleCompleteTask("CustomGame", tasks, user);
     }
     setOpenedCustomGameModal(false);
   };
 
+  useEffect(() => {
+    console.log('tasks monitoring', tasks)
+  }, [tasks])
+
   const handleCompleteTask = useCallback(
-    (type: string) => {
+    (type: string, tasks: Task[], user?: User) => {
       console.log('type', type);
-      console.log('tasks', tasks);
+      console.log('tasks из аргументов функции', tasks);
 
       const task = tasks?.find((task) => task?.task?.type === type);
 
@@ -184,7 +190,7 @@ export const FarmPage = () => {
           });
       }
     },
-    [dispatch, tasks, user],
+    [dispatch],
   );
 
   const plantTask = useMemo(
@@ -223,7 +229,7 @@ export const FarmPage = () => {
         dispatch(fetchBedsData());
       });
       // TODO: завершить таск
-      handleCompleteTask("Plant");
+      handleCompleteTask("Plant", tasks, user);
     }
   };
 
@@ -235,7 +241,7 @@ export const FarmPage = () => {
 
   const handleSubmitGeniusModal = (success: boolean) => {
     if (success) {
-      handleCompleteTask("FinanceGenius");
+      handleCompleteTask("FinanceGenius", tasks, user);
     }
     setOpenedGeniusModal(false);
   };
