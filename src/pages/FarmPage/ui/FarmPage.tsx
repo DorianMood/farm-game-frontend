@@ -180,6 +180,7 @@ export const FarmPage = () => {
       const task = tasks?.find((task) => task?.task?.type === type);
 
       console.log('task', task);
+      console.log('user', user);
 
       if (task && user) {
         dispatch(completeTask(task.id))
