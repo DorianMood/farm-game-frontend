@@ -166,6 +166,10 @@ export const FarmPage = () => {
     setOpenedCustomGameModal(false);
   };
 
+  useEffect(() => {
+    console.log('tasks monitoring', tasks)
+  }, [tasks])
+
   const handleCompleteTask = useCallback(
     (type: string) => {
       console.log('type', type);
