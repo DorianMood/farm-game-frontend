@@ -1,13 +1,7 @@
 import FarmMap from "shared/assets/images/farm/map.svg?react";
 import { useSelector } from "react-redux";
 import { Bed, bedsSelector } from "entities/Bed";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
   fetchBedsData,
@@ -26,8 +20,6 @@ import {
   PLANTS_VS_ZOMBIES_URL,
 } from "shared/const/games";
 import cls from "./FarmPage.module.scss";
-import {Task} from "../../../entities/Task/model/types";
-import {User} from "../../../entities/User/model/types";
 
 interface BedPlant {
   crop: CropEnum;
@@ -157,42 +149,30 @@ export const FarmPage = () => {
     };
   }, []);
 
+  const handleCompleteTask = (type: string) => {
+    const task = tasks?.find((task) => task?.task?.type === type);
+
+    console.log("handleCompleteTask", type, task, tasks, user);
+
+    if (task && user) {
+      dispatch(completeTask(task.id))
+        .unwrap()
+        .then(() => {
+          // Fetch balance
+          dispatch(fetchUserData());
+        });
+    }
+  };
+
   const handleCloseCustomGameModal = (
     actionName: "success" | "failed" | "close",
   ) => {
-    console.log("close modal", actionName);
-
+    console.log(actionName, actionName === "success");
     if (actionName === "success") {
-      handleCompleteTask("CustomGame", tasks, user);
+      handleCompleteTask("CustomGame");
     }
     setOpenedCustomGameModal(false);
   };
-
-  useEffect(() => {
-    console.log('tasks monitoring', tasks)
-  }, [tasks])
-
-  const handleCompleteTask = useCallback(
-    (type: string, tasks: Task[], user?: User) => {
-      console.log('type', type);
-      console.log('tasks из аргументов функции', tasks);
-
-      const task = tasks?.find((task) => task?.task?.type === type);
-
-      console.log('task', task);
-      console.log('user', user);
-
-      if (task && user) {
-        dispatch(completeTask(task.id))
-          .unwrap()
-          .then(() => {
-            // Fetch balance
-            dispatch(fetchUserData());
-          });
-      }
-    },
-    [dispatch],
-  );
 
   const plantTask = useMemo(
     () => tasks.find((task) => task.task.type === "Plant"),
@@ -229,8 +209,7 @@ export const FarmPage = () => {
       ).then(() => {
         dispatch(fetchBedsData());
       });
-      // TODO: завершить таск
-      handleCompleteTask("Plant", tasks, user);
+      handleCompleteTask("Plant");
     }
   };
 
@@ -242,7 +221,7 @@ export const FarmPage = () => {
 
   const handleSubmitGeniusModal = (success: boolean) => {
     if (success) {
-      handleCompleteTask("FinanceGenius", tasks, user);
+      handleCompleteTask("FinanceGenius");
     }
     setOpenedGeniusModal(false);
   };
