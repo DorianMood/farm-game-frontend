@@ -1,10 +1,12 @@
 import classNames from "classnames";
-import {useMemo} from "react";
-import {StatisticsCard} from "shared/ui/StatisticsCard/StatisticsCard";
-import {StatisticsCardType} from "shared/ui/StatisticsCard/types";
+import { useEffect, useMemo } from "react";
+import { StatisticsCard } from "shared/ui/StatisticsCard/StatisticsCard";
+import { StatisticsCardType } from "shared/ui/StatisticsCard/types";
 import cls from "./GameHeader.module.scss";
-import {useSelector} from "react-redux";
-import {userSelector} from "entities/User";
+import { useSelector } from "react-redux";
+import { userSelector } from "entities/User";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { fetchUserData } from "entities/User/model/thunks";
 
 export enum GameHeaderTheme {
   LIGHT = "light",
@@ -17,7 +19,8 @@ interface GameHeaderProps {
 }
 
 // TODO: Добавить здесь вызовы, подцепить к беку
-export const GameHeader = ({theme, className}: GameHeaderProps) => {
+export const GameHeader = ({ theme, className }: GameHeaderProps) => {
+  const dispatch = useAppDispatch();
   const user = useSelector(userSelector);
 
   const balance = user?.ballance ?? 0;
@@ -27,11 +30,17 @@ export const GameHeader = ({theme, className}: GameHeaderProps) => {
       user?.createdAt
         ? Math.ceil(
             (new Date().valueOf() - new Date(user?.createdAt).valueOf()) /
-              (1000 * 60 * 60 * 24)
+              (1000 * 60 * 60 * 24),
           )
         : null,
-    [user?.createdAt]
+    [user?.createdAt],
   );
+
+  useEffect(() => {
+    if (!user) {
+      dispatch(fetchUserData());
+    }
+  }, [dispatch, user]);
 
   return (
     <div className={classNames(cls.GameHeader, {}, [className])}>

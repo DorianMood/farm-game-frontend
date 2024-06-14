@@ -1,17 +1,17 @@
 import classNames from "classnames";
-import {useEffect, useMemo, useState} from "react";
-import {ShopCard} from "shared/ui/ShopCard/ShopCard";
-import {Heading} from "shared/ui/Heading/Heading";
-import {Tabs} from "shared/ui/Tabs/Tabs";
-import {Tab} from "shared/ui/Tabs/components/tab";
-import {fetchProductsData} from "entities/Products/model/thunks";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {useSelector} from "react-redux";
-import {productsSelector} from "entities/Products";
-import {Loader} from "shared/ui/Loader/Loader";
-import {productsIsLoadingSelector} from "entities/Products/model/selectors";
+import { useEffect, useMemo, useState } from "react";
+import { ShopCard } from "shared/ui/ShopCard/ShopCard";
+import { Heading } from "shared/ui/Heading/Heading";
+import { Tabs } from "shared/ui/Tabs/Tabs";
+import { Tab } from "shared/ui/Tabs/components/tab";
+import { fetchProductsData } from "entities/Products/model/thunks";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useSelector } from "react-redux";
+import { productsSelector } from "entities/Products";
+import { Loader } from "shared/ui/Loader/Loader";
+import { productsIsLoadingSelector } from "entities/Products/model/selectors";
 import NotFound from "shared/assets/images/not-found.png";
-import {BuyProductModal} from "features/BuyProduct/BuyProductModal";
+import { BuyProductModal } from "features/BuyProduct/BuyProductModal";
 import cls from "./ShopPage.module.scss";
 
 interface ShopPageProps {
@@ -36,7 +36,7 @@ const tabs = [
   },
 ];
 
-export const ShopPage = ({className}: ShopPageProps) => {
+export const ShopPage = ({ className }: ShopPageProps) => {
   const dispatch = useAppDispatch();
 
   const [activeTabName, setActiveTabName] = useState("all");
@@ -56,12 +56,12 @@ export const ShopPage = ({className}: ShopPageProps) => {
   };
 
   const handleSubmitBuyProduct = () => {
-    dispatch(fetchProductsData({filter: "all"}));
+    dispatch(fetchProductsData({ filter: "all" }));
     setActiveTabName("all");
   };
 
   useEffect(() => {
-    dispatch(fetchProductsData({filter: activeTabName}));
+    dispatch(fetchProductsData({ filter: activeTabName }));
   }, [dispatch, activeTabName]);
 
   const itemsList = useMemo(
@@ -76,7 +76,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
           onClick={() => handleClickShopCard(item.id)}
         />
       )),
-    [products]
+    [products],
   );
 
   return (

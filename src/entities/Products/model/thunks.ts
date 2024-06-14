@@ -39,3 +39,22 @@ export const updateProductsData = createAsyncThunk<
     return rejectWithValue("error");
   }
 });
+
+export const purchaseProduct = createAsyncThunk<
+  Products,
+  { productId: string },
+  ThunkConfig<string>
+>("user/updateProductsData", async ({ productId }, thunkApi) => {
+  const { extra, rejectWithValue } = thunkApi;
+
+  try {
+    const response = await extra.api.post<Products>("/products/purchase", {
+      id: productId,
+    });
+
+    return response.data;
+  } catch (e) {
+    console.log(e);
+    return rejectWithValue("error");
+  }
+});

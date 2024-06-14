@@ -4,8 +4,11 @@ import useSound from "use-sound";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { updateProductsData } from "entities/Products/model/thunks";
-import {useSelector} from "react-redux";
+import {
+  purchaseProduct,
+  //updateProductsData,
+} from "entities/Products/model/thunks";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { productsIsUpdatingSelector } from "entities/Products/model/selectors";
 import { Product } from "entities/Products/model/types";
@@ -34,12 +37,15 @@ export const BuyProductModal = ({
   useEffect(() => {
     setSuccess(false);
   }, [opened]);
-  const onBuyProductsClick = () => {
-    dispatch(
-      updateProductsData({
-        productId: product?.id || "",
-      })
-    );
+
+  const onBuyProductsClick = async () => {
+    await dispatch(purchaseProduct({ productId: product?.id || "" }));
+
+    // dispatch(
+    //   updateProductsData({
+    //     productId: product?.id || "",
+    //   }),
+    // );
 
     setSuccess(true);
     play();

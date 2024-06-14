@@ -39,12 +39,6 @@ export const FarmPage = () => {
   const [emptyFields, setEmptyFields] = useState<Set<HTMLElement>>(new Set());
 
   useEffect(() => {
-    if (!user) {
-      dispatch(fetchUserData());
-    }
-  }, [dispatch, user]);
-
-  useEffect(() => {
     dispatch(fetchBedsData());
     dispatch(fetchTasksData());
   }, [dispatch]);
