@@ -1,0 +1,15 @@
+type: object
+description: Вопрос
+properties:
+  question:
+    type: string
+    description: Вопрос
+    example: В каком году?
+    maxLength: 9
+  answer:
+    type: string
+    description: Ответ
+    example: В 2022
+    maxLength: 255
+
+additionalProperties: false

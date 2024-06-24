@@ -1,0 +1,4 @@
+description: Массив с грядками
+type: array
+items:
+  $ref: "../../common/bed.yaml"

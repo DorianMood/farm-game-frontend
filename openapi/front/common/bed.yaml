@@ -1,0 +1,23 @@
+type: object
+description: Грядка
+properties:
+  id:
+    type: string
+    description: Идентификатор грядки
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+  index:
+    type: number
+    description: Индекс грядки
+    example: 1
+    maxLength: 100
+  plantedAt:
+    type: string
+    description: Дата посадки
+    example: 2024-06-24T19:53:25.367Z
+    maxLength: 255
+  crop:
+    $ref: ./crop-type.yaml
+    description: Тип растения
+
+additionalProperties: false

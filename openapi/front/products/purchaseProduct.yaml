@@ -1,0 +1,26 @@
+openapi: "3.0.0"
+info:
+  title: Покупка продукта
+  version: 01.001.00
+
+paths:
+  /products/purchase:
+    post:
+      tags: [Магазин]
+      summary: Приобрести продукт
+      operationId: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postPurchaseProductRq.yaml
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/postPurchaseProductRs.yaml

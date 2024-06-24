@@ -1,0 +1,22 @@
+openapi: "3.0.0"
+info:
+  title: Засеять растение на грядку
+  version: 01.001.00
+
+paths:
+  /beds/plant:
+    post:
+      tags: [Грядки]
+      summary: Засеять растение
+      operationId: postBedsPlant
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postBedsPlantRq.yaml
+
+      responses:
+        200:
+          $ref: '../common/components.yaml#/components/responses/default'

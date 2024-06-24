@@ -1,0 +1,6 @@
+type: object
+description: Грядка
+
+$ref: ../../common/bed.yaml
+
+additionalProperties: false

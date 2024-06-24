@@ -1,0 +1,4 @@
+type: string
+description: Имя пользователя
+example: Иван
+maxLength: 255

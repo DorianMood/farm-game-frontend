@@ -1,0 +1,18 @@
+type: object
+description: Детальная информация по заданию
+properties:
+  id:
+    type: string
+    description: Идентификатор задания
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+  cost:
+    type: number
+    description: Стоимость задания
+    example: 100
+    maxLength: 255
+  type:
+    $ref: ./task-type.yaml
+    description: Тип задания
+
+additionalProperties: false

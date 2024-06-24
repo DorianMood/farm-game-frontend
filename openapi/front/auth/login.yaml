@@ -1,0 +1,22 @@
+openapi: "3.0.0"
+info:
+  title: Логин пользователя
+  version: 01.001.00
+
+paths:
+  /auth/login:
+    post:
+      tags: [Аутентификация]
+      summary: Логин
+      operationId: login
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/loginRq.yaml
+
+      responses:
+        200:
+          $ref: '../common/components.yaml#/components/responses/default'

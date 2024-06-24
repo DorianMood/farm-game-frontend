@@ -1,0 +1,46 @@
+openapi: "3.0.0"
+info:
+  title: OpenApi
+  description: Frontend OpenAPI
+  version: DEV-SNAPSHOT
+
+servers:
+  - url: https://93.93.207.63:444/api
+
+paths:
+
+  /auth/login:
+    $ref: './auth/login.yaml#/paths/~1auth~1login'
+
+  /auth/logout:
+    $ref: './auth/logout.yaml#/paths/~1auth~1logout'
+
+  /auth/authenticated:
+    $ref: './auth/authenticated.yaml#/paths/~1auth~1authenticated'
+
+  /users:
+    $ref: './users/users.yaml#/paths/~1users'
+
+  /beds:
+    $ref: './beds/beds.yaml#/paths/~1beds'
+
+  /beds/harvest:
+    $ref: './beds/harvest.yaml#/paths/~1beds~1harvest'
+
+  /beds/plant:
+    $ref: './beds/plant.yaml#/paths/~1beds~1plant'
+
+  /tasks:
+    $ref: './tasks/tasks.yaml#/paths/~1tasks'
+
+  /tasks/complete:
+    $ref: './tasks/completeTasks.yaml#/paths/~1tasks~1complete'
+
+  /surveys:
+    $ref: './surveys/surveys.yaml#/paths/~1surveys'
+
+  /products:
+    $ref: './products/products.yaml#/paths/~1products'
+
+  /products/purchase:
+    $ref: './products/purchaseProduct.yaml#/paths/~1products~1purchase'

@@ -1,0 +1,10 @@
+type: object
+description: Запрос списка заявок
+
+properties:
+  index:
+    type: number
+    description: Индекс грядки на карте
+    example: 0
+
+additionalProperties: false

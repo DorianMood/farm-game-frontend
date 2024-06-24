@@ -1,0 +1,26 @@
+openapi: "3.0.0"
+info:
+  title: Завершение задания
+  version: 01.001.00
+
+paths:
+  /tasks/complete:
+    post:
+      tags: [Задания]
+      summary: Завершить задание
+      operationId: postCompleteTask
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postCompleteTasksRq.yaml
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/postCompleteTaskRs.yaml

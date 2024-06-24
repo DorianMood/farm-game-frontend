@@ -1,0 +1,29 @@
+openapi: "3.0.0"
+info:
+  title: Опрос
+  version: 01.001.00
+
+paths:
+  /surveys:
+    get:
+      tags: [Викторина]
+      summary: Получить опрос
+      operationId: getSurvey
+      parameters:
+        - name: taskId
+          in: query
+          description: taskId
+          required: true
+          schema:
+            type: string
+            description: ID заявки
+            example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+            maxLength: 255
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/getSurveyRs.yaml

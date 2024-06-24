@@ -1,0 +1,4 @@
+description: Массив с продуктами
+type: array
+items:
+  $ref: "../../common/product.yaml"

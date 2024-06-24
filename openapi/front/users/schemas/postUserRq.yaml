@@ -1,0 +1,17 @@
+type: object
+description: Данные текущего пользователя
+
+properties:
+  email:
+    type: string
+    description: Email пользователя
+    example: test@test.ru
+    maxLength: 255
+  username:
+    $ref: ../../common/username.yaml
+    description: Имя пользователя
+  password:
+    $ref: ../../common/password.yaml
+    description: Пароль пользователя
+
+additionalProperties: false

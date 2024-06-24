@@ -1,0 +1,35 @@
+openapi: "3.0.0"
+info:
+  title: Информация о текущем пользователе
+  version: 01.001.00
+
+paths:
+  /users:
+    get:
+      tags: [Пользователь]
+      summary: Получить данные текущего пользователя
+      operationId: getUsers
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/getUsersRs.yaml
+
+    post:
+      tags: [Пользователь]
+      summary: Зарегистрировать пользователя
+      operationId: postUser
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postUserRq.yaml
+
+      responses:
+        200:
+          $ref: '../common/components.yaml#/components/responses/default'
