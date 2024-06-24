@@ -1,0 +1,26 @@
+openapi: "3.0.0"
+info:
+  title: Урожай
+  version: 01.001.00
+
+paths:
+  /beds/harvest:
+    post:
+      tags: [Грядки]
+      summary: Собрать урожай с грядки
+      operationId: postBedsHarvest
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postBedsHarvestRq.yaml
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/postBedsHarvestRs.yaml

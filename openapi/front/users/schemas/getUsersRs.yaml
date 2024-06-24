@@ -1,0 +1,24 @@
+type: object
+description: Данные текущего пользователя
+
+properties:
+  id:
+    type: string
+    description: Идентификатор пользователя
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 9
+  username:
+    $ref: ../../common/username.yaml
+    description: Имя пользователя
+  ballance:
+    type: number
+    description: Количество монет
+    example: 1000
+    maxLength: 255
+  createdAt:
+    type: string
+    description: Дата создания
+    example: 2024-06-24T19:53:25.367Z
+    maxLength: 255
+
+additionalProperties: false

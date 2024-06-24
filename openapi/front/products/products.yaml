@@ -1,0 +1,29 @@
+openapi: "3.0.0"
+info:
+  title: Список продуктов
+  version: 01.001.00
+
+paths:
+  /products:
+    get:
+      tags: [Магазин]
+      summary: Получить список продуктов
+      operationId: getProducts
+      parameters:
+        - name: filter
+          in: query
+          description: filter
+          required: true
+          schema:
+            type: string
+            description: фильтр
+            example: fasdf
+            maxLength: 255
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/getProductsRs.yaml

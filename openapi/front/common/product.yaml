@@ -1,0 +1,25 @@
+type: object
+description: Детальная информация по продукту
+properties:
+  id:
+    type: string
+    description: Идентификатор продукта
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+  price:
+    type: number
+    description: Стоимость продукта
+    example: 100
+    maxLength: 255
+  picture:
+    type: string
+    description: Картинка продукта
+    example: 40
+    maxLength: 255
+  content:
+    type: string
+    description: Контент продукта
+    example: 40
+    maxLength: 255
+
+additionalProperties: false

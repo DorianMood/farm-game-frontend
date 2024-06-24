@@ -1,0 +1,17 @@
+type: object
+description: Данные текущего пользователя
+
+properties:
+  login:
+    type: string
+    description: Логин пользователя
+    example: test
+    maxLength: 255
+  username:
+    $ref: ../../common/username.yaml
+    description: Имя пользователя
+  password:
+    $ref: ../../common/password.yaml
+    description: Пароль пользователя
+
+additionalProperties: false

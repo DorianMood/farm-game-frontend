@@ -1,0 +1,15 @@
+openapi: "3.0.0"
+info:
+  title: Разлогирование пользователя
+  version: 01.001.00
+
+paths:
+  /auth/logout:
+    post:
+      tags: [Аутентификация]
+      summary: Разлогин
+      operationId: logout
+
+      responses:
+        200:
+          $ref: '../common/components.yaml#/components/responses/default'

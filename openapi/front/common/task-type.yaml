@@ -1,0 +1,12 @@
+description: >
+  Тип задания
+  ﻿﻿* Plant - Засеивание грядок семенами
+  ﻿﻿* FinanceGenius - Финансовый гений
+  * CustomGame - Встроенная игра
+type: string
+enum:
+  - Plant
+  - FinanceGenius
+  - CustomGame
+example: Plant
+maxLength: 255

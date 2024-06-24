@@ -1,0 +1,19 @@
+openapi: "3.0.0"
+info:
+  title: Проверка логина пользователя
+  version: 01.001.00
+
+paths:
+  /auth/authenticated:
+    post:
+      tags: [Аутентификация]
+      summary: Проверка логина
+      operationId: authenticated
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/postAuthenticatedRs.yaml

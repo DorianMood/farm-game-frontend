@@ -1,0 +1,6 @@
+type: object
+description: Получение данных для опроса
+
+$ref: ../../common/survey.yaml
+
+additionalProperties: false
