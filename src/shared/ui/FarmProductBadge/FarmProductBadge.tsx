@@ -35,11 +35,11 @@ export const FarmProductBadge = ({
         ((now - startTime) / (endTime - startTime)) * 100,
       );
 
-      if (progress <= 100) {
-        rootRef.current?.style.setProperty("--progress", `${progress}%`);
-      } else {
-        clearInterval(t);
+      rootRef.current?.style.setProperty("--progress", `${progress}%`);
+
+      if (progress > 100) {
         setIsHarvestAvailable(true);
+        clearInterval(t);
       }
     }, 1_000 / 60);
 
