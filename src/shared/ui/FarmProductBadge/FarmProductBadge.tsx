@@ -5,7 +5,6 @@ import styles from "./FarmProductBadge.module.scss";
 
 interface FarmProductBadgeProps {
   icon: ReactNode;
-  isHarvestAvailable: boolean;
   /**
    * Timestamp when the product starts.
    */
@@ -59,7 +58,9 @@ export const FarmProductBadge = ({
   return (
     <button
       onClick={handleHarvestClick}
-      className={cn(styles.root, className)}
+      className={cn(styles.root, className, {
+        [styles.bounce]: isHarvestAvailable,
+      })}
       ref={rootRef}
     >
       {icon}
