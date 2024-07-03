@@ -1,0 +1,1 @@
+export { FarmProductBadge } from "./FarmProductBadge";
