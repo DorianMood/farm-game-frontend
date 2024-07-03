@@ -1,0 +1,22 @@
+type: object
+description: Растение
+properties:
+  type:
+    $ref: ./crop-type.yaml
+    description: Тип растения
+  harvestTimeout:
+    type: number
+    description: Время созревания в формате timestamp
+    example: 3600000
+  name:
+    type: string
+    description: Наименование
+    example: Морковь
+    maxLength: 255
+  description:
+    type: string
+    description: Описание растения
+    example: Морковь это неприхотливая сельскохозяйственная культура.
+    maxLength: 255
+
+additionalProperties: false

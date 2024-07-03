@@ -1,0 +1,8 @@
+type: object
+description: Семя
+properties:
+  crop:
+    $ref: ./crop.yaml
+    description: Растение
+
+additionalProperties: false

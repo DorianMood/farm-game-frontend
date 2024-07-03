@@ -8,7 +8,7 @@ properties:
     maxLength: 255
   cost:
     type: number
-    description: Стоимость задания
+    description: Вознаграждение за успешное прохождение задания
     example: 100
     maxLength: 255
   type:

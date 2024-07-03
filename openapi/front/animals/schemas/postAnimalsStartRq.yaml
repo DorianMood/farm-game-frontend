@@ -1,0 +1,6 @@
+type: object
+description: Загон с животными
+
+$ref: ../../common/animal-barn.yaml
+
+additionalProperties: false

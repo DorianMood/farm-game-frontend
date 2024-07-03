@@ -11,13 +11,13 @@ properties:
     description: Имя пользователя
   ballance:
     type: number
-    description: Количество монет
+    description: Количество монет на баллансе пользователя
     example: 1000
     maxLength: 255
   createdAt:
     type: string
-    description: Дата создания пользователя
-    example: 2024-06-24T19:53:25.367Z
+    description: Дата создания аккаунта пользователя
+    example: "2024-06-24T19:53:25.367Z"
     maxLength: 255
 
 additionalProperties: false

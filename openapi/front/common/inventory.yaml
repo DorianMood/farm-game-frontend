@@ -1,0 +1,10 @@
+type: object
+description: Инвентарь пользователя
+properties:
+  items:
+    type: array
+    description: Список элементов инвентаря
+    items:
+      $ref: ./inventory-item.yaml
+
+additionalProperties: false

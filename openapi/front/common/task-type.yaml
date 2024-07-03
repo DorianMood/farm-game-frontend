@@ -1,7 +1,7 @@
 description: >
   Тип задания
-  ﻿﻿* Plant - Засеивание грядок семенами
-  ﻿﻿* FinanceGenius - Финансовый гений
+  * Plant - Засеивание грядок семенами
+  * FinanceGenius - Финансовый гений
   * CustomGame - Встроенная игра
 type: string
 enum:

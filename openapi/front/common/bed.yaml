@@ -8,13 +8,13 @@ properties:
     maxLength: 255
   index:
     type: number
-    description: Индекс грядки
+    description: Индекс грядки на карте
     example: 1
     maxLength: 100
   plantedAt:
     type: string
     description: Дата посадки
-    example: 2024-06-24T19:53:25.367Z
+    example: "2024-06-24T19:53:25.367Z"
     maxLength: 255
   crop:
     $ref: ./crop-type.yaml

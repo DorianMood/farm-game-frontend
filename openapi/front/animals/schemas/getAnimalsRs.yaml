@@ -1,0 +1,4 @@
+description: Массив с загонами животных
+type: array
+items:
+  $ref: "../../common/animal-barn.yaml"

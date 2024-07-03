@@ -1,0 +1,4 @@
+description: Массив инвентарей пользователя
+type: array
+items:
+  $ref: "../../common/inventory.yaml"

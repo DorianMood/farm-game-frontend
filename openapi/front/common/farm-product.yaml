@@ -1,0 +1,20 @@
+type: object
+description: Продукт фермы
+properties:
+  price:
+    type: number
+    description: Стоимость продукта
+    example: 2
+  sellMultiplier:
+    type: number
+    description: Множитель при продаже
+  type:
+    $ref: ./farm-product-type.yaml
+    description: Тип продукта
+  item:
+    oneOf:
+      - $ref: ./animal.yaml
+      - $ref: ./crop.yaml
+      - $ref: ./seed.yaml
+
+additionalProperties: false

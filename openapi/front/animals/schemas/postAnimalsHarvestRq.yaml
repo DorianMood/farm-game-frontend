@@ -1,0 +1,10 @@
+type: object
+description: Запрос списка загонов животных
+
+properties:
+  index:
+    type: number
+    description: Индекс загона на карте
+    example: 0
+
+additionalProperties: false

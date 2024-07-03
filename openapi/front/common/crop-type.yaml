@@ -1,9 +1,9 @@
 description: >
   Тип грядки
-  ﻿﻿* Carrot - Морковь
-  ﻿﻿* Potato - Картофель
+  * Carrot - Морковь
+  * Potato - Картофель
   * Beet - Свекла
-  ﻿﻿* Wheat - Пшеница
+  * Wheat - Пшеница
   * Flower - Тюльпан
 type: string
 enum:

@@ -1,0 +1,26 @@
+openapi: "3.0.0"
+info:
+  title: Сбор ресурсов с животных
+  version: 01.001.00
+
+paths:
+  /animals/harvest:
+    post:
+      tags: [Животные]
+      summary: Собрать ресурсы с животных
+      operationId: postAnimalsHarvest
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postAnimalsHarvestRq.yaml
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/postAnimalsHarvestRs.yaml

@@ -1,0 +1,19 @@
+openapi: "3.0.0"
+info:
+  title: Список загонов с животными
+  version: 01.001.00
+
+paths:
+  /animals:
+    get:
+      tags: [Животные]
+      summary: Получить список загонов с животными
+      operationId: getAnimals
+
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/getAnimalsRs.yaml

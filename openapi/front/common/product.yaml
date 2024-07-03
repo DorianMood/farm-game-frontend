@@ -18,7 +18,7 @@ properties:
     maxLength: 255
   content:
     type: string
-    description: Контент продукта
+    description: Контент продукта, например промокод
     example: 40
     maxLength: 255
 

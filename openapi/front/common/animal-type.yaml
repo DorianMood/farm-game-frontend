@@ -1,0 +1,14 @@
+description: >
+  Тип животного
+  * Pig - Свинья
+  * Hen - Курица
+  * Sheep - Овца
+  * Cow - Корова
+type: string
+enum:
+  - Pig
+  - Hen
+  - Sheep
+  - Cow
+example: Pig
+maxLength: 255

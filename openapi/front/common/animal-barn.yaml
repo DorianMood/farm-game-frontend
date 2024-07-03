@@ -1,0 +1,23 @@
+type: object
+description: Загон с животными
+properties:
+  id:
+    type: string
+    description: Идентификатор загона
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+  index:
+    type: number
+    description: Индекс загона на карте
+    example: 1
+    maxLength: 100
+  startTime:
+    type: string
+    description: Дата начала выращивания
+    example: "2024-06-24T19:53:25.367Z"
+    maxLength: 255
+  animal:
+    $ref: ./animal-type.yaml
+    description: Тип животного
+
+additionalProperties: false

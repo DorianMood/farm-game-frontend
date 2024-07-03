@@ -1,0 +1,22 @@
+openapi: "3.0.0"
+info:
+  title: Поселить животное в загон
+  version: 01.001.00
+
+paths:
+  /animals/start:
+    post:
+      tags: [Животные]
+      summary: Поселить животное в загон
+      operationId: postAnimalsStart
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postAnimalsStartRq.yaml
+
+      responses:
+        200:
+          $ref: "../common/components.yaml#/components/responses/default"
