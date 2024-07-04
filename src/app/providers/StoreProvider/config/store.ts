@@ -7,13 +7,14 @@ import { bedsReducer } from "entities/Bed";
 import { tasksReducer } from "entities/Task";
 import { surveyReducer } from "entities/Survey";
 import { productsReducer } from "entities/Products";
-import { StateSchema, ThunkExtraArg } from "./StateSchema";
-import { createReducerManager } from "./reducerManager";
+import {inventoryReducer} from "entities/Inventory";
+import {StateSchema, ThunkExtraArg} from "./StateSchema";
+import {createReducerManager} from "./reducerManager";
 
 export function createReduxStore(
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
-  navigate?: (to: any, options?: NavigateOptions) => void,
+  navigate?: (to: any, options?: NavigateOptions) => void
 ) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
@@ -22,6 +23,7 @@ export function createReduxStore(
     tasks: tasksReducer,
     survey: surveyReducer,
     products: productsReducer,
+    inventory: inventoryReducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);
