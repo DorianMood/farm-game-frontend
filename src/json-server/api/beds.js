@@ -9,8 +9,8 @@ export const getBeds = () => {
         {
             "id": "34928b35-5d7f-4a0d-b136-1856c37f470f",
             "index": 2,
-            "plantedAt": null,
-            "crop": null
+            "plantedAt": new Date().toISOString(),
+            "crop": "Carrot"
         },
         {
             "id": "b6d4ee17-9c4e-4625-a138-d9b4678d0972",

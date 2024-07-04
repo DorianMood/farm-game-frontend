@@ -11,10 +11,11 @@ properties:
   type:
     $ref: ./farm-product-type.yaml
     description: Тип продукта
-  item:
-    oneOf:
-      - $ref: ./animal.yaml
-      - $ref: ./crop.yaml
-      - $ref: ./seed.yaml
+  animal:
+    $ref: ./animal.yaml
+  crop:
+    $ref: ./crop.yaml
+  seed:
+    $ref: ./seed.yaml
 
 additionalProperties: false
