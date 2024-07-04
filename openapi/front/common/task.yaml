@@ -4,7 +4,7 @@ properties:
   id:
     type: string
     description: Идентификатор задания
-    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    example: 964d5dcb-b6b3-454e-aa57-905c0f12e654
     maxLength: 255
   cost:
     type: number
