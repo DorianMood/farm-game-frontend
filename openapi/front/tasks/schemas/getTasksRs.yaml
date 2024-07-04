@@ -1,4 +1,4 @@
 description: Массив с заданиями
 type: array
 items:
-  $ref: "../../common/task.yaml"
+  $ref: "../../common/user-task.yaml"

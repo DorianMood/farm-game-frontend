@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "mock-server": "node src/json-server/http-server.js",
+    "dev-mock": "npm-run-all -p dev mock-server",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "eslint:fix": "eslint --fix",
     "preview": "vite preview"
@@ -35,6 +37,8 @@
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
+    "json-server": "0.17.4",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.69.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",

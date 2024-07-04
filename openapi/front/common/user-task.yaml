@@ -1,0 +1,18 @@
+type: object
+description: Задание пользователя
+properties:
+  id:
+    type: string
+    description: Идентификатор задания пользователя
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+  completedAt:
+    type: string
+    description: Дата выполнения
+    example: "2024-06-24T19:53:25.367Z"
+    maxLength: 255
+  task:
+    $ref: ./task.yaml
+    description: Задание
+
+additionalProperties: false

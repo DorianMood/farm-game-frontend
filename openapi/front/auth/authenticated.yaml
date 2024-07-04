@@ -5,7 +5,7 @@ info:
 
 paths:
   /auth/authenticated:
-    post:
+    get:
       tags: [Аутентификация]
       summary: Проверка логина
       operationId: authenticated
