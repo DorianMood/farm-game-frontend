@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import CloseIcon from "shared/assets/icons/close-44-44.svg?react";
-import { Modal } from "shared/ui/Modal/Modal";
+import { Modal } from "shared/ui/Modal/Modal.tsx";
 import cls from "./CustomGameModal.module.scss";
 
 interface Props {

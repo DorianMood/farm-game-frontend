@@ -1,15 +1,15 @@
-import { Modal } from "shared/ui/Modal/Modal";
+import { Modal } from "shared/ui/Modal/Modal.tsx";
 import Back from "shared/assets/images/farm/back.svg?react";
 import Pause from "shared/assets/images/farm/pause.svg?react";
 import Play from "shared/assets/images/farm/play.svg?react";
 import { DragEvent, MouseEvent, useEffect, useMemo, useState } from "react";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { fetchSurveyData } from "entities/Survey/model/thunks";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import { fetchSurveyData } from "entities/Survey/model/thunks.ts";
 import { useSelector } from "react-redux";
 import { surveySelector } from "entities/Survey";
 import classNames from "classnames";
 import cls from "./SurveyModal.module.scss";
-import { useTimer } from "./useTimer";
+import { useTimer } from "../useTimer.ts";
 
 interface Props {
   opened: boolean;
