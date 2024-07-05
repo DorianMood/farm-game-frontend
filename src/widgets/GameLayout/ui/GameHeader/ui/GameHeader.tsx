@@ -8,8 +8,7 @@ import { userSelector } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchUserData } from "entities/User/model/thunks";
 import {ResourcesCard} from "shared/ui/ResourcesCard/ResourcesCard";
-import {CropEnum} from "entities/Bed/model/types";
-import {FarmProductEnum, inventorySelector} from "entities/Inventory";
+import {inventorySelector} from "entities/Inventory";
 import {fetchInventory} from "entities/Inventory/model/thunks";
 import {FarmProductSeed, InventoryEnums} from "entities/Inventory/model/types";
 
