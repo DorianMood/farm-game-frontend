@@ -1,5 +1,4 @@
 export const loginUser = () => {
-    console.log('privet')
     return 'ok'
 }
 

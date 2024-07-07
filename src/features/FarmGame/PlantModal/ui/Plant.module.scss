@@ -27,6 +27,15 @@
       drop-shadow(2px -2px 0px #0dff11);
     }
   }
+
+  &:hover .product-card {
+    opacity: 0.95;
+  }
+}
+
+.plant-image {
+  height: 120%;
+  cursor: pointer;
 }
 
 .disabled {
@@ -34,11 +43,26 @@
   cursor: not-allowed;
 }
 
-.plant-image {
-  height: 120%;
-}
-
 .text {
   position: absolute;
   top: 50px;
 }
+
+.link {
+  position: absolute;
+  top: 50px;
+  filter: grayscale(0);
+}
+
+.product-card {
+  position: absolute;
+  bottom: 50px;
+  left: 30px;
+  opacity: 0;
+  transition: 0.9s opacity;
+
+  &--show {
+    opacity: 0.95;
+  }
+}
+
