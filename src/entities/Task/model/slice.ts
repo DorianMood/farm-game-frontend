@@ -15,15 +15,12 @@ export const tasksSlice = createSlice({
   initialState,
   reducers: {
     initTasksData: (state) => {
-      console.log('initTasksData')
       state.data.tasks = [];
     },
     setTasksData: (state, action: PayloadAction<Task[]>) => {
-      console.log('setTasksData', action.payload)
       state.data.tasks = action.payload;
     },
     resetTasksDate: (state) => {
-      console.log('resetTasksDate')
       state.data.tasks = [];
     },
   },

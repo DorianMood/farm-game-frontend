@@ -9,26 +9,36 @@ export const plants = [
     {
         type: CropEnum.Potato,
         icon: Potato,
-        name: 'potato'
+        name: 'Картофель',
+        genitiveСase: 'картофеля',
+        attributeName: 'potato',
     },
     {
         type: CropEnum.Carrot,
         icon: Carrot,
-        name: 'carrot'
+        name: 'Морковь',
+        genitiveСase: 'моркови',
+        attributeName: 'carrot',
     },
     {
         type: CropEnum.Beet,
         icon: Beet,
-        name: 'beet'
+        name: 'Свекла',
+        genitiveСase: 'свеклы',
+        attributeName: 'beet',
     },
     {
         type: CropEnum.Flower,
         icon: Flower,
-        name: 'flower'
+        name: 'Цветы',
+        genitiveСase: 'цветов',
+        attributeName: 'flower',
     },
     {
         type: CropEnum.Wheat,
         icon: Wheat,
-        name: 'wheat'
+        name: 'Пшеница',
+        genitiveСase: 'пшеницы',
+        attributeName: 'wheat',
     },
 ]

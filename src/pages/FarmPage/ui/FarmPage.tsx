@@ -26,6 +26,7 @@ import {
 } from "shared/const/games";
 import cls from "./FarmPage.module.scss";
 import {FarmProductBadge} from "shared/ui/FarmProductBadge";
+import {fetchInventory} from "entities/Inventory/model/thunks.ts";
 
 interface BedPlant {
   crop: CropEnum;
@@ -175,7 +176,6 @@ export const FarmPage = () => {
   const handleCloseCustomGameModal = (
     actionName: "success" | "failed" | "close"
   ) => {
-    console.log(actionName, actionName === "success");
     if (actionName === "success") {
       handleCompleteTask("CustomGame");
     }
@@ -216,6 +216,7 @@ export const FarmPage = () => {
         })
       ).then(() => {
         dispatch(fetchBedsData());
+        dispatch(fetchInventory());
       });
       handleCompleteTask("Plant");
     }

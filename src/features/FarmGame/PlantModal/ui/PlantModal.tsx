@@ -13,13 +13,16 @@ import {CropEnum} from "entities/Bed/model/types.ts";
 import {plants} from "../consts.ts";
 import {ActivePlant, ActivePlantType, Plant} from "./Plant.tsx";
 import {useSelector} from "react-redux";
-import {inventorySelector} from "../../../../entities/Inventory";
+import {inventorySelector} from "entities/Inventory";
 import {
     FarmProductAnimal,
     FarmProductCrop,
     FarmProductSeed,
     InventoryEnums
-} from "../../../../entities/Inventory/model/types.ts";
+} from "entities/Inventory/model/types.ts";
+import {AppLink} from "shared/ui/AppLink/AppLink.tsx";
+import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
+import ShopIcon from 'shared/assets/icons/shop-24-24.svg?react';
 
 function isSeed(farmProduct: FarmProductAnimal | FarmProductSeed | FarmProductCrop): farmProduct is FarmProductSeed {
     return farmProduct.type === InventoryEnums.FarmProductEnum.Seed;
@@ -164,16 +167,21 @@ export const PlantModal = ({onClose, onSubmit, opened, bedIndex}: Props) => {
                 </div>
 
                 <div className={cls.footer}>
-                    {plants.map((plant) => (
-                        <Plant
-                            plant={plant}
-                            activePlants={activePlants}
-                            isDraggable={!hasDoneTask}
-                            handleDragStart={handleChangePlant}
-                            handlePlantDragEnd={handlePlantDragEnd}
-                        />
-                    ))}
+                    <div className={cls.plants}>
+                        {plants.map((plant) => (
+                            <Plant
+                                key={plant.type}
+                                plant={plant}
+                                activePlants={activePlants}
+                                isDraggable={!hasDoneTask}
+                                handleDragStart={handleChangePlant}
+                                handlePlantDragEnd={handlePlantDragEnd}
+                            />
+                        ))}
+                    </div>
+                    <AppLink to={RoutePath.shop} className={cls.link}> <ShopIcon className={cls['shop-icon']}/> Магазин </AppLink>
                 </div>
+
             </div>
         </Modal>
     );
