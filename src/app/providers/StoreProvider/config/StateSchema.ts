@@ -15,10 +15,12 @@ import { TasksSchema } from "entities/Task";
 import { SurveysSchema } from "entities/Survey";
 import { ProductsSchema } from "entities/Products";
 import {InventorySchema} from "entities/Inventory";
+import {AnimalBarnSchema} from "entities/AnimalBarn";
 
 export interface StateSchema {
   user: UserSchema;
   beds: BedsSchema;
+  animalBarns: AnimalBarnSchema;
   tasks: TasksSchema;
   survey: SurveysSchema;
   products: ProductsSchema;

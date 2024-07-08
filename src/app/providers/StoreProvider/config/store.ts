@@ -10,6 +10,7 @@ import { productsReducer } from "entities/Products";
 import {inventoryReducer} from "entities/Inventory";
 import {StateSchema, ThunkExtraArg} from "./StateSchema";
 import {createReducerManager} from "./reducerManager";
+import {animalBarnsReducer} from "entities/AnimalBarn";
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -20,6 +21,7 @@ export function createReduxStore(
     ...asyncReducers,
     user: userReducer,
     beds: bedsReducer,
+    animalBarns: animalBarnsReducer,
     tasks: tasksReducer,
     survey: surveyReducer,
     products: productsReducer,

@@ -62,6 +62,70 @@ g[id^="bed"] {
   }
 }
 
+g[id^="pigs"] {
+  & {
+    display: none;
+  }
+
+  &.pig {
+      display: unset;
+  }
+
+  &:hover {
+    filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+      drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
+    cursor: pointer;
+  }
+}
+
+g[id^="hen-house"] {
+  & {
+    display: none;
+  }
+
+  &.hen {
+      display: unset;
+  }
+
+  &:hover {
+    filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+      drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
+    cursor: pointer;
+  }
+}
+
+g[id^="sheeps"] {
+  & {
+    display: none;
+  }
+
+  &.sheep {
+      display: unset;
+  }
+
+  &:hover {
+    filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+      drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
+    cursor: pointer;
+  }
+}
+
+g[id^="cows"] {
+  & {
+    display: none;
+  }
+
+  &.cow {
+      display: unset;
+  }
+
+  &:hover {
+    filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+      drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
+    cursor: pointer;
+  }
+}
+
 .task {
   position: absolute;
 

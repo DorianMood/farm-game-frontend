@@ -17,6 +17,10 @@ import Beet from "shared/assets/images/farm/beet-icon.svg?react";
 import Wheat from "shared/assets/images/farm/wheat-icon.svg?react";
 import Potato from "shared/assets/images/farm/potato-icon.svg?react";
 import Flower from "shared/assets/images/farm/flower-icon.svg?react";
+import Pig from "shared/assets/icons/pig.svg?react";
+import Cow from "shared/assets/icons/cow.svg?react";
+import Sheep from "shared/assets/icons/sheep.svg?react";
+import Hen from "shared/assets/icons/hen.svg?react";
 import {CustomGameModal, PlantModal, SurveyModal} from "features/FarmGame";
 import {CropEnum} from "entities/Bed/model/types";
 import {fetchUserData} from "entities/User/model/thunks";
@@ -27,6 +31,9 @@ import {
 import cls from "./FarmPage.module.scss";
 import {FarmProductBadge} from "shared/ui/FarmProductBadge";
 import {fetchInventory} from "entities/Inventory/model/thunks.ts";
+import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks";
+import {AnimalBarn, animalBarnsSelector} from "entities/AnimalBarn";
+import {AnimalEnum, InventoryEnums} from "entities/Inventory/model/types";
 
 interface BedPlant {
   crop: CropEnum;
@@ -41,14 +48,21 @@ interface Position {
 export const FarmPage = () => {
   const dispatch = useAppDispatch();
   const beds: Bed[] = useSelector(bedsSelector);
+  const animalBarns = useSelector(animalBarnsSelector);
   const tasks = useSelector(tasksSelector);
   const user = useSelector(userSelector);
+
   const [emptyFields, setEmptyFields] = useState<Set<HTMLElement>>(new Set());
   const [plantedFields, setPlantedFields] = useState<HTMLElement[]>([]);
   const [plantedBeds, setPlantedBeds] = useState<Bed[]>([]);
 
+  const [emptyBarns, setEmptyBarns] = useState<Set<HTMLElement>>(new Set());
+  const [startedBarns, setStartedBarns] = useState<HTMLElement[]>([]);
+  const [startedAnimals, setStartedAnimals] = useState<AnimalBarn[]>([]);
+
   useEffect(() => {
     dispatch(fetchBedsData());
+    dispatch(fetchAnimalBarns());
     dispatch(fetchTasksData());
   }, [dispatch]);
 
@@ -130,20 +144,87 @@ export const FarmPage = () => {
     };
   }, [beds]);
 
+  useLayoutEffect(() => {
+    // Это ужасно, но другого выхода нет.
+    // если подгружать svg через файл то доступа к жизненному циклу нет
+    // приходится развешивать классы и обработчики таким образом
+
+    if (animalBarns.length === 0) return;
+
+    const getAnimalBarnId = (animalBarn: AnimalBarn) => {
+      switch (animalBarn.animal) {
+        case InventoryEnums.AnimalEnum.Cow: {
+          return "cows";
+        }
+        case InventoryEnums.AnimalEnum.Hen: {
+          return "hen-house";
+        }
+        case InventoryEnums.AnimalEnum.Sheep: {
+          return "sheeps";
+        }
+        case InventoryEnums.AnimalEnum.Pig: {
+          return "pigs";
+        }
+      }
+    };
+
+    const emptyBarns = new Set<HTMLElement>();
+    const startedBarns = new Array<HTMLElement>();
+    const startedAnimals = new Array<AnimalBarn>();
+
+    const listeners: ((event: MouseEvent) => void)[] = [];
+    for (let i = 0; i < animalBarns.length; i++) {
+      const element = document.getElementById(getAnimalBarnId(animalBarns[i]));
+      element?.setAttribute("class", "");
+      if (!animalBarns[i].animal) {
+        element && emptyBarns.add(element);
+      } else {
+        element && startedBarns.push(element);
+        element && startedAnimals.push(animalBarns[i]);
+        element?.classList.add(
+          Date.now() - new Date(animalBarns[i].startTime).getTime() >
+            24 * 60 * 60 * 1000
+            ? cls[animalBarns[i].animal.toLowerCase()]
+            : cls.field
+        );
+      }
+      listeners.push(getClickHandler(beds[i]));
+      element?.addEventListener("click", listeners[i]);
+    }
+
+    setEmptyBarns(emptyBarns);
+    setStartedBarns(startedBarns);
+    setStartedAnimals(startedAnimals);
+
+    return () => {
+      for (let i = 0; i < animalBarns.length; i++) {
+        const element = document.getElementById(
+          getAnimalBarnId(animalBarns[i])
+        );
+        element?.setAttribute("class", "");
+        element?.removeEventListener("click", listeners[i]);
+      }
+    };
+  }, [animalBarns]);
+
   const [openedCustomGameModal, setOpenedCustomGameModal] =
     useState<boolean>(false);
   const [farmCardPosition, setFarmCardPosition] = useState<Position>({});
 
   useLayoutEffect(() => {
-    const element = document.getElementById(`big_house`);
+    const element = document.getElementById(`house`);
 
     if (element != null) {
       const position: DOMRect = element.getBoundingClientRect();
       setFarmCardPosition({
         top:
-          position?.top ?? 0 + position?.height ?? 0 / 4 + window?.scrollY ?? 0,
+          (position?.top ?? 0) +
+          (position?.height ?? 0) / 2 +
+          (window?.scrollY ?? 0),
         left:
-          position?.left ?? 0 + position?.width ?? 0 / 4 + window?.scrollX ?? 0,
+          (position?.left ?? 0) +
+          (position?.width ?? 0) / 2 +
+          (window?.scrollX ?? 0),
       });
     }
 
@@ -320,13 +401,61 @@ export const FarmPage = () => {
               </div>
             );
           })}
+          {startedBarns.map((element, index) => {
+            const position = element.getBoundingClientRect();
+            const id = element.getAttribute("id");
+
+            if (!id) {
+              return null;
+            }
+
+            const getFarmProductImage = (animal: AnimalEnum) => {
+              switch (animal) {
+                case AnimalEnum.Pig:
+                  return <Pig />;
+                case AnimalEnum.Cow:
+                  return <Cow />;
+                case AnimalEnum.Sheep:
+                  return <Sheep />;
+                case AnimalEnum.Hen:
+                  return <Hen />;
+              }
+            };
+
+            return (
+              <div
+                className={cls.task}
+                style={{
+                  top: position.top + position.height / 2 + window.scrollY,
+                  left: position.left + position.width / 2 + window.scrollX,
+                  transform: "translateX(-50%) translateY(-100%)",
+                }}
+                onClick={() => {}}
+                key={id}
+              >
+                <FarmProductBadge
+                  icon={getFarmProductImage(startedAnimals[index].animal)}
+                  startTime={new Date(
+                    startedAnimals[index].startTime
+                  ).getTime()}
+                  endTime={
+                    new Date(startedAnimals[index].startTime).getTime() + 10_000
+                  }
+                  onHarvest={() => console.log("harvest")}
+                />
+              </div>
+            );
+          })}
         </>
       )}
       {farmCardPosition && (
         <>
           <div
             className={cls.task}
-            style={farmCardPosition}
+            style={{
+              ...farmCardPosition,
+              transform: "translateX(-50%) translateY(-100%)",
+            }}
             onClick={() => {
               setOpenedCustomGameModal(true);
             }}
