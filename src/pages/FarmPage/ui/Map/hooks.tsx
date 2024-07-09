@@ -1,15 +1,15 @@
-import {useEffect, useLayoutEffect, useMemo, useState} from "react";
-import {useSelector} from "react-redux";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
-import {Bed, bedsSelector} from "entities/Bed";
-import {fetchBedsData} from "entities/Bed/model/thunks";
+import { bedsSelector } from "entities/Bed";
+import { fetchBedsData } from "entities/Bed/model/thunks";
 
-import {animalBarnsSelector} from "entities/AnimalBarn";
-import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks";
-import {fetchTasksData} from "entities/Task/model/thunks";
-import {tasksSelector} from "entities/Task";
+import { animalBarnsSelector } from "entities/AnimalBarn";
+import { fetchAnimalBarns } from "entities/AnimalBarn/model/thunks";
+import { fetchTasksData } from "entities/Task/model/thunks";
+import { tasksSelector } from "entities/Task";
 
 export const useBedsController = () => {
   const dispatch = useAppDispatch();
@@ -58,25 +58,25 @@ export const useTasksController = () => {
         );
       }) ||
       tasks?.some((task) => !task.completedAt && task.task.type === "Plant"),
-    [beds, tasks]
+    [beds, tasks],
   );
 
   const surveyActivity = useMemo(
     () =>
       tasks?.some(
-        (task) => !task.completedAt && task.task.type === "FinanceGenius"
+        (task) => !task.completedAt && task.task.type === "FinanceGenius",
       ),
-    [tasks]
+    [tasks],
   );
 
   const plantTask = useMemo(
     () => tasks.find((task) => task.task.type === "Plant"),
-    [tasks]
+    [tasks],
   );
 
   const surveyTask = useMemo(
     () => tasks.find((task) => task.task.type === "FinanceGenius"),
-    [tasks]
+    [tasks],
   );
 
   return {
@@ -106,7 +106,7 @@ export const useCustomGameController = ({
   const [farmCardPosition, setFarmCardPosition] = useState<Position>({});
 
   const handleCloseCustomGameModal = (
-    actionName: "success" | "failed" | "close"
+    actionName: "success" | "failed" | "close",
   ) => {
     console.log(actionName, actionName === "success");
     if (actionName === "success") {
