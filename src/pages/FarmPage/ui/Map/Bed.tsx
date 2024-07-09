@@ -1,5 +1,5 @@
 import { Bed as BedType } from "entities/Bed";
-import { useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 
 import cls from "../FarmPage.module.scss";
 import { FarmProductBadge } from "shared/ui/FarmProductBadge";
@@ -15,12 +15,14 @@ interface BedProps {
 export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   const [position, setPosition] = useState<DOMRect>();
   const [id, setId] = useState<string>();
+  const [element, setElement] = useState<HTMLElement | null>();
 
   useLayoutEffect(() => {
     if (!bed) return;
 
     // Search element in the map
     const element = document.getElementById(`bed-${bed.index}`);
+    setElement(element);
 
     // Clear class list
     element?.setAttribute("class", "");
@@ -56,6 +58,28 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
       cropImage: getCropImage(bed.crop),
     };
   }, [bed]);
+
+  useEffect(() => {
+    if (!bed.crop) return;
+
+    const startTime = new Date(bed.plantedAt).getTime();
+    const endTime = new Date(bed.plantedAt).getTime() + 10_000;
+
+    const t = setInterval(() => {
+      const now = Date.now();
+      const progress = Math.ceil(
+        ((now - startTime) / (endTime - startTime)) * 100,
+      );
+
+      if (progress > 100) {
+        element?.setAttribute("class", "");
+        element?.classList.add(cls[bed.crop.toLowerCase()]);
+        clearInterval(t);
+      }
+    }, 1_000 / 60);
+
+    return () => clearInterval(t);
+  }, [bed, element]);
 
   if (!id || !position) {
     return null;
