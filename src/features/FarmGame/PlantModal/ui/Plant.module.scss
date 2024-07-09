@@ -22,14 +22,14 @@
     cursor: pointer;
 
     &:hover {
-      filter: drop-shadow(2px 2px 0px #0dff11)
-      drop-shadow(-2px 2px 0px #0dff11) drop-shadow(-2px -2px 0px #0dff11)
-      drop-shadow(2px -2px 0px #0dff11);
+      filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
+        drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
     }
   }
 
   &:hover .product-card {
     opacity: 0.95;
+    visibility: unset;
   }
 }
 
@@ -59,10 +59,10 @@
   bottom: 50px;
   left: 30px;
   opacity: 0;
+  visibility: hidden;
   transition: 0.9s opacity;
 
   &--show {
     opacity: 0.95;
   }
 }
-
