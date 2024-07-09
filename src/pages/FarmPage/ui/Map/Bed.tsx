@@ -12,6 +12,8 @@ interface BedProps {
   onPlant: () => void;
 }
 
+const BED_TIMEOUT = 10_000;
+
 export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   const [position, setPosition] = useState<DOMRect>();
   const [id, setId] = useState<string>();
@@ -37,7 +39,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     if (bed.crop) {
       element?.classList.add(
         bed.crop !== null &&
-          Date.now() - new Date(bed.plantedAt).getTime() > 24 * 60 * 60 * 1000
+          Date.now() - new Date(bed.plantedAt).getTime() > BED_TIMEOUT
           ? cls[bed.crop.toLowerCase()]
           : cls.field,
       );
@@ -54,7 +56,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   const { startTime, endTime, cropImage } = useMemo(() => {
     return {
       startTime: new Date(bed.plantedAt).getTime(),
-      endTime: new Date(bed.plantedAt).getTime() + 10_000,
+      endTime: new Date(bed.plantedAt).getTime() + BED_TIMEOUT,
       cropImage: getCropImage(bed.crop),
     };
   }, [bed]);
@@ -63,7 +65,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     if (!bed.crop) return;
 
     const startTime = new Date(bed.plantedAt).getTime();
-    const endTime = new Date(bed.plantedAt).getTime() + 10_000;
+    const endTime = new Date(bed.plantedAt).getTime() + BED_TIMEOUT;
 
     const t = setInterval(() => {
       const now = Date.now();

@@ -14,29 +14,31 @@ interface BarnProps {
   onHarvest: () => void;
 }
 
+const ANIMAL_TIMEOUT = 10_000;
+
 export const Barn = ({ barn, onHarvest }: BarnProps) => {
   const [position, setPosition] = useState<DOMRect>();
   const [id, setId] = useState<string | null>();
 
+  const getAnimalBarnId = (animalBarn: AnimalBarn) => {
+    switch (animalBarn.animal) {
+      case InventoryEnums.AnimalEnum.Cow: {
+        return "cows";
+      }
+      case InventoryEnums.AnimalEnum.Hen: {
+        return "hen-house";
+      }
+      case InventoryEnums.AnimalEnum.Sheep: {
+        return "sheeps";
+      }
+      case InventoryEnums.AnimalEnum.Pig: {
+        return "pigs";
+      }
+    }
+  };
+
   useLayoutEffect(() => {
     if (!barn) return;
-
-    const getAnimalBarnId = (animalBarn: AnimalBarn) => {
-      switch (animalBarn.animal) {
-        case InventoryEnums.AnimalEnum.Cow: {
-          return "cows";
-        }
-        case InventoryEnums.AnimalEnum.Hen: {
-          return "hen-house";
-        }
-        case InventoryEnums.AnimalEnum.Sheep: {
-          return "sheeps";
-        }
-        case InventoryEnums.AnimalEnum.Pig: {
-          return "pigs";
-        }
-      }
-    };
 
     // Search element in the map
     const element = document.getElementById(getAnimalBarnId(barn));
@@ -49,11 +51,7 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
 
     // If has crop, then display it
     if (barn.animal) {
-      element?.classList.add(
-        Date.now() - new Date(barn.startTime).getTime() > 24 * 60 * 60 * 1000
-          ? cls[barn.animal.toLowerCase()]
-          : cls.field,
-      );
+      element?.classList.add(cls[barn.animal.toLowerCase()]);
     }
 
     return () => {
@@ -64,17 +62,17 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
   const { startTime, endTime, animalImage } = useMemo(() => {
     return {
       startTime: new Date(barn.startTime).getTime(),
-      endTime: new Date(barn.startTime).getTime() + 10_000,
+      endTime: new Date(barn.startTime).getTime() + ANIMAL_TIMEOUT,
       animalImage: getAnimalImage(barn.animal),
     };
   }, [barn]);
 
   useEffect(() => {
     // Search element in the map
-    const element = document.getElementById("pigs");
+    const element = document.getElementById(getAnimalBarnId(barn));
 
     setPosition(element?.getBoundingClientRect());
-  }, []);
+  }, [barn]);
 
   if (!id || !position) {
     return null;
