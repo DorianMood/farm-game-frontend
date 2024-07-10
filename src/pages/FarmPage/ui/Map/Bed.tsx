@@ -15,7 +15,6 @@ interface BedProps {
 const BED_TIMEOUT = 10_000;
 
 export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
-  const [position, setPosition] = useState<DOMRect>();
   const [id, setId] = useState<string>();
   const [element, setElement] = useState<HTMLElement | null>();
 
@@ -29,7 +28,6 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     // Clear class list
     element?.setAttribute("class", "");
 
-    setPosition(element?.getBoundingClientRect());
     setId(element?.getAttribute("id")?.split("-")[0]);
 
     // Click listener
@@ -83,9 +81,11 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     return () => clearInterval(t);
   }, [bed, element]);
 
-  if (!id || !position) {
+  if (!id || !element) {
     return null;
   }
+
+  const position = element?.getBoundingClientRect();
 
   // Empty bed
   if (!bed.crop) {
@@ -108,6 +108,8 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
       </div>
     );
   }
+
+  console.log("render bed");
 
   return (
     <div
