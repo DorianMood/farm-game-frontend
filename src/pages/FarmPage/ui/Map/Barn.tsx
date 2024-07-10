@@ -17,7 +17,7 @@ interface BarnProps {
 const ANIMAL_TIMEOUT = 10_000;
 
 export const Barn = ({ barn, onHarvest }: BarnProps) => {
-  const [position, setPosition] = useState<DOMRect>();
+  const [element, setElement] = useState<HTMLElement | null>();
   const [id, setId] = useState<string | null>();
 
   const getAnimalBarnId = (animalBarn: AnimalBarn) => {
@@ -46,7 +46,7 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     // Clear class list
     element?.setAttribute("class", "");
 
-    setPosition(element?.getBoundingClientRect());
+    setElement(element);
     setId(element?.getAttribute("id"));
 
     // If has crop, then display it
@@ -71,12 +71,14 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     // Search element in the map
     const element = document.getElementById(getAnimalBarnId(barn));
 
-    setPosition(element?.getBoundingClientRect());
+    setElement(element);
   }, [barn]);
 
-  if (!id || !position) {
+  if (!id || !element) {
     return null;
   }
+
+  const position = element?.getBoundingClientRect();
 
   return (
     <div
