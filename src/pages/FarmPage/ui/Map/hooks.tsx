@@ -17,8 +17,8 @@ export const useBedsController = () => {
   const beds = useSelector(bedsSelector);
 
   useEffect(() => {
-    !beds.length && dispatch(fetchBedsData());
-  }, [dispatch, beds]);
+    dispatch(fetchBedsData());
+  }, [dispatch]);
 
   return {
     beds,
@@ -31,8 +31,8 @@ export const useBarnsController = () => {
   const animalBarns = useSelector(animalBarnsSelector);
 
   useEffect(() => {
-    !animalBarns.length && dispatch(fetchAnimalBarns());
-  }, [dispatch, animalBarns]);
+    dispatch(fetchAnimalBarns());
+  }, [dispatch]);
 
   return {
     animalBarns,
