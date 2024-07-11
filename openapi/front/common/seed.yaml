@@ -1,8 +1,8 @@
 type: object
 description: Семя
 properties:
-  crop:
-    $ref: ./crop.yaml
-    description: Растение
+  type:
+    $ref: ./seed-type.yaml
+    description: Тип семечки
 
 additionalProperties: false

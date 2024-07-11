@@ -1,14 +1,14 @@
 description: >
   Тип животного
-  * Pig - Свинья
-  * Hen - Курица
-  * Sheep - Овца
-  * Cow - Корова
+  * PigAnimal - Свинья
+  * HenAnimal - Курица
+  * SheepAnimal - Овца
+  * CowAnimal - Корова
 type: string
 enum:
-  - Pig
-  - Hen
-  - Sheep
-  - Cow
-example: Pig
+  - PigAnimal
+  - HenAnimal
+  - SheepAnimal
+  - CowAnimal
+example: HenAnimal
 maxLength: 255

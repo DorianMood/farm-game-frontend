@@ -1,66 +1,104 @@
-import {CropEnum} from "entities/Bed/model/types";
-
 export interface Inventory {
-  items: InventoryItem[];
+  items: InventorySlot[];
 }
 
-export interface InventoryItem {
+export interface InventorySlot {
   amount: number;
-  farmProduct: FarmProduct;
+  inventoryItem: InventoryItem;
 }
 
-export interface FarmProductAnimal {
-  price: number;
-  sellMultiplier: number;
-  type: FarmProductEnum.Animal;
-  animal: Animal;
-}
-
-export interface FarmProductSeed {
-  price: number;
-  sellMultiplier: number;
-  type: FarmProductEnum.Seed;
-  seed: Seed;
-}
-
-export interface FarmProductCrop {
-  price: number;
-  sellMultiplier: number;
-  type: FarmProductEnum.Plant;
-  seed: Crop;
-}
-
-export type FarmProduct = FarmProductAnimal | FarmProductCrop | FarmProductSeed;
-
-export enum FarmProductEnum {
-  Plant = "Plant",
+export enum InventoryItemCategoryEnum {
   Seed = "Seed",
   Animal = "Animal",
+  SeedProduct = "SeedProduct",
+  AnimalProduct = "AnimalProduct",
 }
 
-export interface Animal {
-  type: AnimalEnum;
-  harvestTimeout: number;
-  name: string;
-  description: string;
+export enum SeedEnum {
+  CarrotSeed = "CarrotSeed",
+  BeetSeed = "BeetSeed",
+  FlowerSeed = "FlowerSeed",
+  PotatoSeed = "PotatoSeed",
+  WheatSeed = "WheatSeed",
 }
 
 export enum AnimalEnum {
+  PigAnimal = "PigAnimal",
+  CowAnimal = "CowAnimal",
+  SheepAnimal = "SheepAnimal",
+  HenAnimal = "HenAnimal",
+}
+
+export enum SeedProductEnum {
+  Carrot = "Carrot",
+  Flower = "Flower",
+  Potato = "Potato",
+  Wheat = "Wheat",
+  Beet = "Beet",
+}
+
+export enum AnimalProductEnum {
   Pig = "Pig",
   Cow = "Cow",
   Sheep = "Sheep",
   Hen = "Hen",
 }
 
-export interface Crop {
-  type: CropEnum;
+export interface AnimalProduct {
+  type: AnimalProductEnum;
+  // some other unique fields
+}
+
+export interface SeedProduct {
+  type: SeedProductEnum;
+  // some other unique fields
+}
+
+export interface Animal {
+  type: AnimalEnum;
   harvestTimeout: number;
-  name: string;
-  description: string;
+  // some other unique fields
 }
 
 export interface Seed {
-  crop: Crop;
+  type: SeedEnum;
+  harvestTimeout: number;
+  // some other unique fields
+}
+
+export type InventoryItem =
+    | InventoryItemSeed
+    | InventoryItemSeedProduct
+    | InventoryItemAnimal
+    | InventoryItemAnimalProduct;
+
+export interface InventoryItemBase {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  sellMultiplier: number;
+  category: InventoryItemCategoryEnum;
+}
+
+export interface InventoryItemAnimal extends InventoryItemBase {
+  category: InventoryItemCategoryEnum.Animal;
+  animal: Animal;
+}
+
+export interface InventoryItemAnimalProduct extends InventoryItemBase {
+  category: InventoryItemCategoryEnum.AnimalProduct;
+  animalProduct: AnimalProduct;
+}
+
+export interface InventoryItemSeed extends InventoryItemBase {
+  category: InventoryItemCategoryEnum.Seed;
+  seed: Seed;
+}
+
+export interface InventoryItemSeedProduct extends InventoryItemBase {
+  category: InventoryItemCategoryEnum.SeedProduct;
+  seedProduct: SeedProduct;
 }
 
 export interface InventorySchema {
@@ -70,5 +108,3 @@ export interface InventorySchema {
     inventory?: Inventory;
   };
 }
-
-export const InventoryEnums = {AnimalEnum, FarmProductEnum};

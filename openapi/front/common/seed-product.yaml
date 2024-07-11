@@ -1,0 +1,12 @@
+type: object
+description: Семя
+properties:
+  type:
+    $ref: ./seed-product-type.yaml
+    description: Тип семечки
+  harvestTimeout:
+    type: number
+    description: Время созревания в формате timestamp
+    example: 3600000
+
+additionalProperties: false

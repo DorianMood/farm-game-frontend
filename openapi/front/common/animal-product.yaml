@@ -1,0 +1,12 @@
+type: object
+description: Продукт жизнедеятельности животного
+properties:
+  type:
+    $ref: ./animal-product-type.yaml
+    description: Тип животного
+  harvestTimeout:
+    type: number
+    description: Время созревания в формате timestamp
+    example: 3600000
+
+additionalProperties: false

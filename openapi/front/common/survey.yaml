@@ -5,7 +5,7 @@ properties:
     type: string
     description: Идентификатор опроса
     example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
-    maxLength: 9
+    maxLength: 255
   task_id:
     type: string
     description: Идентификатор задания

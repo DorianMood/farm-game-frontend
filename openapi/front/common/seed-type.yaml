@@ -1,0 +1,16 @@
+description: >
+  Тип животного
+  * CarrotSeed - Семечко моркови
+  * BeetSeed - Семечко свекла
+  * FlowerSeed - Семечко тюльпана
+  * PotatoSeed - Семечко кортофеля
+  * WheatSeed - Семечко пшеницы
+type: string
+enum:
+  - CarrotSeed
+  - BeetSeed
+  - FlowerSeed
+  - PotatoSeed
+  - WheatSeed
+example: CarrotSeed
+maxLength: 255

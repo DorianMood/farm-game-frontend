@@ -13,6 +13,8 @@ import { productsIsLoadingSelector } from "entities/Products/model/selectors";
 import NotFound from "shared/assets/images/not-found.png";
 import { BuyProductModal } from "features/BuyProduct/BuyProductModal";
 import cls from "./ShopPage.module.scss";
+import {inventorySelector} from "entities/Inventory";
+import {InventoryCard} from "shared/ui/InventoryCard/InventoryCard.tsx";
 
 interface ShopPageProps {
   className?: string;
@@ -64,7 +66,22 @@ export const ShopPage = ({ className }: ShopPageProps) => {
     dispatch(fetchProductsData({ filter: activeTabName }));
   }, [dispatch, activeTabName]);
 
-  const itemsList = useMemo(
+  const inventory = useSelector(inventorySelector)
+
+  const inventoryList = useMemo(
+      () =>
+          inventory?.items?.map((item) => (
+              <InventoryCard
+                  key={`${item.inventoryItem.id}`}
+                  text={item?.inventoryItem.name}
+                  coinsCount={item.inventoryItem.price}
+                  itemsCount={item.amount}
+              />
+          )),
+      [inventory],
+  );
+
+  const productList = useMemo(
     () =>
       products?.map((item) => (
         <ShopCard
@@ -93,31 +110,39 @@ export const ShopPage = ({ className }: ShopPageProps) => {
         </Heading>
         <Tabs className={cls.tabs}>
           {tabs.map((tab, index) => (
-            <Tab
-              key={index}
-              title={tab.title.toUpperCase()}
-              active={tab.isActive}
-              onClick={() => handleChangeActiveTabByName(tab.name)}
-            >
-              {isProductsLoading ? (
-                <div className={cls.loader}>
-                  <Loader />
-                </div>
-              ) : (
-                <div className={cls.shopCardsList}>
-                  {itemsList?.length === 0 ? (
-                    <div className={cls["not-found"]}>
-                      <img src={NotFound} alt="not-found" className={cls.img} />
-                      <p>Ничего не найдено</p>
+              <Tab
+                  key={index}
+                  title={tab.title.toUpperCase()}
+                  active={tab.isActive}
+                  onClick={() => handleChangeActiveTabByName(tab.name)}
+              >
+                {isProductsLoading ? (
+                    <div className={cls.loader}>
+                      <Loader/>
                     </div>
-                  ) : (
-                    itemsList
-                  )}
-                </div>
-              )}
-            </Tab>
+                ) : (
+                    <div className={cls.shopCardsList}>
+                      {productList?.length === 0 ? (
+                          <div className={cls["not-found"]}>
+                            <img src={NotFound} alt="not-found" className={cls.img}/>
+                            <p>Ничего не найдено</p>
+                          </div>
+                      ) : (
+                          productList
+                      )}
+                    </div>
+                )}
+              </Tab>
           ))}
         </Tabs>
+        <div className={cls['inventory-container']}>
+          <Heading level={4}>
+            К ПРОДАЖЕ
+          </Heading>
+          <div className={cls['inventory']}>
+            {inventoryList}
+          </div>
+        </div>
       </div>
     </>
   );
