@@ -8,9 +8,12 @@ import { userSelector } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchUserData } from "entities/User/model/thunks";
 import {ResourcesCard} from "shared/ui/ResourcesCard/ResourcesCard";
-import {inventorySelector} from "entities/Inventory";
+import {InventoryItem, inventorySelector} from "entities/Inventory";
 import {fetchInventory} from "entities/Inventory/model/thunks";
-import {FarmProductSeed, InventoryEnums} from "entities/Inventory/model/types";
+import {
+  InventoryItemCategoryEnum,
+  InventoryItemSeed
+} from "entities/Inventory/model/types";
 
 export enum GameHeaderTheme {
   LIGHT = "light",
@@ -53,10 +56,15 @@ export const GameHeader = ({theme, className}: GameHeaderProps) => {
     }
   }, [dispatch, inventory]);
 
-  const seeds =
-    inventory?.items.filter(
-      (item) => item.farmProduct.type === InventoryEnums.FarmProductEnum.Seed
-    ) ?? [];
+  console.log()
+  const isSeed = (
+      inventoryItem: InventoryItem,
+  ): inventoryItem is InventoryItemSeed => {
+    return inventoryItem.category === InventoryItemCategoryEnum.Seed;
+  };
+
+  // @ts-ignore
+  const seeds: {amount: number, inventoryItem: InventoryItemSeed}[] = inventory?.items.filter((item) => isSeed(item.inventoryItem)) ?? [];
 
   return (
     <div className={classNames(cls.GameHeader, {}, [className])}>
@@ -64,7 +72,7 @@ export const GameHeader = ({theme, className}: GameHeaderProps) => {
         <ResourcesCard
           balance={balance}
           seeds={seeds.map((seed) => ({
-            type: (seed.farmProduct as FarmProductSeed).seed.crop.type,
+            type: seed.inventoryItem.seed.type,
             amount: seed.amount,
           }))}
         />

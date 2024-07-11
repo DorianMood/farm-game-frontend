@@ -9,26 +9,14 @@ import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import classNames from "classnames";
 import coinSound from "shared/assets/sounds/coins.mp3";
 import cls from "./PlantModal.module.scss";
-import { CropEnum } from "entities/Bed/model/types.ts";
 import { plants } from "../consts.ts";
-import { ActivePlant, ActivePlantType, Plant } from "./Plant.tsx";
+import { ActivePlant, Plant } from "./Plant.tsx";
 import { useSelector } from "react-redux";
-import { inventorySelector } from "entities/Inventory";
-import {
-  FarmProductAnimal,
-  FarmProductCrop,
-  FarmProductSeed,
-  InventoryEnums,
-} from "entities/Inventory/model/types.ts";
+import {InventoryItem, inventorySelector} from "entities/Inventory";
 import { AppLink } from "shared/ui/AppLink/AppLink.tsx";
 import { RoutePath } from "shared/config/routeConfig/routeConfig.tsx";
 import ShopIcon from "shared/assets/icons/shop-24-24.svg?react";
-
-function isSeed(
-  farmProduct: FarmProductAnimal | FarmProductSeed | FarmProductCrop,
-): farmProduct is FarmProductSeed {
-  return farmProduct.type === InventoryEnums.FarmProductEnum.Seed;
-}
+import {InventoryItemCategoryEnum, InventoryItemSeed, SeedEnum} from "entities/Inventory/model/types.ts";
 
 interface Props {
   onClose: () => void;
@@ -38,13 +26,19 @@ interface Props {
 }
 
 export interface BedPlant {
-  crop: CropEnum;
+  seed: SeedEnum;
   index: number;
 }
 
+const isSeed = (
+    inventoryItem: InventoryItem,
+): inventoryItem is InventoryItemSeed => {
+  return inventoryItem.category === InventoryItemCategoryEnum.Seed;
+};
+
 export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   const [paused, setPaused] = useState<boolean>(false);
-  const [plant, setPlant] = useState<CropEnum | null>();
+  const [plant, setPlant] = useState<SeedEnum | null>();
   const [dragged, setDragged] = useState<boolean>(false);
   const [hasDoneTask, setDoneTask] = useState<boolean>(false);
 
@@ -57,7 +51,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
     setTimeout(onClose, 2_000);
   };
 
-  const handleChangePlant = (item: CropEnum | null) => {
+  const handleChangePlant = (item: SeedEnum | null) => {
     setPlant(item);
   };
 
@@ -81,7 +75,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
       setDoneTask(true);
       play();
       handleSubmit({
-        crop: plant,
+        seed: plant,
         index: bedIndex,
       });
     }
@@ -109,20 +103,20 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   const activePlants = useMemo(() => {
     return inventory?.items.reduce(
       (acc, item) => {
-        if (isSeed(item.farmProduct)) {
+        if (isSeed(item.inventoryItem)) {
           return {
             ...acc,
-            [item.farmProduct.seed.crop.type]: {
+            [item.inventoryItem.seed.type]: {
               amount: item.amount,
-              description: item.farmProduct.seed.crop.description,
-              harvestTimeout: item.farmProduct.seed.crop.harvestTimeout,
+              description: item.inventoryItem.description,
+              harvestTimeout: item.inventoryItem.seed.harvestTimeout,
             },
           };
         }
 
         return acc;
       },
-      {} as Record<ActivePlantType, ActivePlant>,
+      {} as Record<SeedEnum, ActivePlant>,
     );
   }, [inventory]);
 

@@ -13,13 +13,13 @@ import Flower from "shared/assets/images/farm/flower-icon.svg?react";
 
 export const getAnimalImage = (animal: AnimalEnum) => {
   switch (animal) {
-    case AnimalEnum.Pig:
+    case AnimalEnum.PigAnimal:
       return <Pig />;
-    case AnimalEnum.Cow:
+    case AnimalEnum.CowAnimal:
       return <Cow />;
-    case AnimalEnum.Sheep:
+    case AnimalEnum.SheepAnimal:
       return <Sheep />;
-    case AnimalEnum.Hen:
+    case AnimalEnum.HenAnimal:
       return <Hen />;
   }
 };

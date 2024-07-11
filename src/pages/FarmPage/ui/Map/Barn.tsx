@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { FarmProductBadge } from "shared/ui/FarmProductBadge";
 
 import { AnimalBarn } from "entities/AnimalBarn";
-import { InventoryEnums } from "entities/Inventory/model/types";
+import {AnimalEnum} from "entities/Inventory/model/types";
 
 import { getAnimalImage } from "./utils";
 
@@ -22,16 +22,16 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
 
   const getAnimalBarnId = (animalBarn: AnimalBarn) => {
     switch (animalBarn.animal) {
-      case InventoryEnums.AnimalEnum.Cow: {
+      case AnimalEnum.CowAnimal: {
         return "cows";
       }
-      case InventoryEnums.AnimalEnum.Hen: {
+      case AnimalEnum.HenAnimal: {
         return "hen-house";
       }
-      case InventoryEnums.AnimalEnum.Sheep: {
+      case AnimalEnum.SheepAnimal: {
         return "sheeps";
       }
-      case InventoryEnums.AnimalEnum.Pig: {
+      case AnimalEnum.PigAnimal: {
         return "pigs";
       }
     }

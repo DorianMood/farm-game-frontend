@@ -1,0 +1,16 @@
+description: >
+  Тип растения из семечки
+  * Carrot - Морковь
+  * Beet - Свекла
+  * Flower - Тюльпан
+  * Potato - Картофель
+  * Wheat - Пшеница
+type: string
+enum:
+  - Carrot
+  - Beet
+  - Flower
+  - Potato
+  - Wheat
+example: Carrot
+maxLength: 255

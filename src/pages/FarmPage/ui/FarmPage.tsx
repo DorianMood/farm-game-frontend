@@ -5,16 +5,17 @@ import {fetchBedsData, plantBeds} from "entities/Bed/model/thunks";
 import {userSelector} from "entities/User";
 import {completeTask} from "entities/Task/model/thunks";
 import {PlantModal, SurveyModal} from "features/FarmGame";
-import {CropEnum} from "entities/Bed/model/types";
 import {fetchUserData} from "entities/User/model/thunks";
 import cls from "./FarmPage.module.scss";
 import {useTasksController} from "./Map/hooks";
 import {Map} from "./Map/Map";
 import {fetchInventory} from "entities/Inventory/model/thunks";
 import {bedsSelector} from "entities/Bed";
+import {SeedEnum} from "entities/Inventory/model/types.ts";
+import {mapSeedToCrop} from "./const.ts";
 
 interface BedPlant {
-  crop: CropEnum;
+  seed: SeedEnum;
   index: number;
 }
 
@@ -63,7 +64,7 @@ export const FarmPage = () => {
         plantBeds({
           bed: {
             ...plantedBed,
-            crop: bed.crop,
+            crop: mapSeedToCrop[bed.seed],
           },
         })
       ).then(() => {

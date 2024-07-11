@@ -1,0 +1,14 @@
+description: >
+  Тип продукта
+  * SeedProduct - Растение
+  * Seed - Семя
+  * Animal - Животное
+  * AnimalProduct - Продукт животного
+type: string
+enum:
+  - Seed
+  - SeedProduct
+  - Animal
+  - AnimalProduct
+example: Animal
+maxLength: 255

@@ -48,3 +48,14 @@
 .img {
   height: 100px;
 }
+
+.inventory-container {
+  margin: 30px 0;
+
+  .inventory {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-top: 16px;
+  }
+}

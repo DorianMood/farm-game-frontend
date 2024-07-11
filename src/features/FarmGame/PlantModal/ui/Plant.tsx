@@ -4,6 +4,7 @@ import { CropEnum } from "entities/Bed/model/types.ts";
 import { Text, TextTheme } from "shared/ui/Text/Text.tsx";
 import { ProductCard } from "shared/ui/ProductCard/ProductCard.tsx";
 import { useState } from "react";
+import {SeedEnum} from "entities/Inventory/model/types.ts";
 
 export type ActivePlantType = CropEnum;
 export type ActivePlant = {
@@ -14,15 +15,15 @@ export type ActivePlant = {
 
 interface Props {
   plant: {
-    type: CropEnum;
+    type: SeedEnum;
     icon: string;
     name: string;
     attributeName: string;
     genitiveСase: string;
   };
-  activePlants?: Record<ActivePlantType, ActivePlant>;
+  activePlants?: Record<SeedEnum, ActivePlant>;
   isDraggable: boolean;
-  handleDragStart: (bedPlants: CropEnum) => void;
+  handleDragStart: (bedPlants: SeedEnum) => void;
   handlePlantDragEnd: () => void;
 }
 
@@ -48,8 +49,6 @@ export const Plant = ({
     setShowProductInfo(false);
   };
 
-  console.log(isShowProductInfo);
-
   return (
     <div
       className={classNames(cls["plant"], { [cls["disabled"]]: isDisabled })}
@@ -62,7 +61,6 @@ export const Plant = ({
         })}
         draggable={isDraggable && !isDisabled}
         onDragStart={() => {
-          console.log("start");
           handleDragStart(plant.type);
           hideProductInfo();
         }}

@@ -1,66 +1,51 @@
 export const getInventory = () => {
     return {
-        "items": [
+        items: [
             {
-                "amount": 2,
-                "farmProduct": {
-                    "price": 2,
-                    "sellMultiplier": 0.8,
-                    "type": "Animal",
-                    "animal": {
-                        "type": "Pig",
-                        "harvestTimeout": 3600000,
-                        "name": "Свинья",
-                        "description": "Свинья это неприхотливое сельскохозяйственное животное. Чаще всего свиньи выращиваются для производства мяса, а также кожи."
-                    }
-                }
+                amount: 12,
+                inventoryItem: {
+                    id: '605d3dcb-b1b4-444e-aa55-405c0f12e5f4',
+                    name: "Морковь",
+                    description: "Морковь это сельскохозяйственное растение. Описание моркови.",
+                    price: 12,
+                    sellMultiplier: 0.8,
+                    category: "Seed",
+                    seed: {
+                        type: "CarrotSeed",
+                        harvestTimeout: 2,
+                    },
+                },
             },
             {
-                "amount": 5,
-                "farmProduct": {
-                    "price": 5,
-                    "sellMultiplier": 0.8,
-                    "type": "Seed",
-                    "seed": {
-                        "crop": {
-                            "type": "Carrot",
-                            "harvestTimeout": 3600000,
-                            "name": "Морковь",
-                            "description": "Морковь это сельскохозяйственное растение. Описание моркови."
-                        }
-                    }
-                }
+                amount: 2,
+                inventoryItem: {
+                    id: '805d3dcb-b1b4-444e-aa55-405c0f12e5f4',
+                    name: "Свекла",
+                    description: "Свекла это сельскохозяйственное растение. Описание свеклы.",
+                    price: 22,
+                    sellMultiplier: 0.8,
+                    category: "Seed",
+                    seed: {
+                        type: "BeetSeed",
+                        harvestTimeout: 22,
+                    },
+                },
             },
             {
-                "amount": 10,
-                "farmProduct": {
-                    "price": 10,
-                    "sellMultiplier": 0.8,
-                    "type": "Seed",
-                    "seed": {
-                        "crop": {
-                            "type": "Beet",
-                            "harvestTimeout": 3600000,
-                            "name": "Свекла",
-                            "description": "Свекла это сельскохозяйственное растение. Описание свеклы."
-                        }
-                    }
-                }
+                amount: 2,
+                inventoryItem: {
+                    id: '905d3dcb-b1b4-444e-aa55-405c0f12e5f4',
+                    name: "Свинья",
+                    description: "Свинья это неприхотливое сельскохозяйственное животное. Чаще всего свиньи выращиваются для производства мяса, а также кожи.",
+                    price: 10,
+                    sellMultiplier: 0.8,
+                    category: "Animal",
+                    animal: {
+                        type: "Pig",
+                        harvestTimeout: 36000000,
+                    },
+                },
             },
-            {
-                "amount": 10,
-                "farmProduct": {
-                    "price": 10,
-                    "sellMultiplier": 0.8,
-                    "type": "Crop",
-                    "crop": {
-                        "type": "Beet",
-                        "harvestTimeout": 3600000,
-                        "name": "Свекла",
-                        "description": "Свекла это сельскохозяйственное растение. Описание свеклы."
-                    }
-                }
-                }
-        ]
+        ],
     }
 }

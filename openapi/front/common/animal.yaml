@@ -4,19 +4,5 @@ properties:
   type:
     $ref: ./animal-type.yaml
     description: Тип животного
-  harvestTimeout:
-    type: number
-    description: Время созревания в формате timestamp
-    example: 3600000
-  name:
-    type: string
-    description: Наименование
-    example: Свинья
-    maxLength: 255
-  description:
-    type: string
-    description: Описание животного
-    example: Свинья это неприхотливое сельскохозяйственное животное. Чаще всего свиньи выращиваются для производства мяса, а также кожи.
-    maxLength: 255
 
 additionalProperties: false
