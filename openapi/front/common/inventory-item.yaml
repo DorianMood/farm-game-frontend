@@ -1,12 +1,39 @@
 type: object
 description: Элемент инвентаря
 properties:
-  amount:
-    type: number
-    description: Количество этого элемента в инвентаре
+  id:
+    type: string
+    description: Идентификатор инвентаря
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+  name:
+    type: string
+    description: Название
     example: 2
-  inventoryItem:
-    $ref: ./farm-product.yaml
-    description: Тип продукта который занимает этот слот инвентаря
+  description:
+    type: string
+    description: Описание
+    example: 2
+  price:
+    type: number
+    description: Стоимость продукта
+    example: 2
+  sellMultiplier:
+    type: number
+    description: Множитель при продаже
+    example: 0.8
+  category:
+    $ref: ./inventory-item-category.yaml
+    description: Тип продукта
+  animal:
+    $ref: ./animal.yaml
+  seed:
+    $ref: ./seed.yaml
+  animalProduct:
+    $ref: ./animal-product.yaml
+  seedProduct:
+    $ref: ./seed-product.yaml
+  promoCode:
+    $ref: ./promo-code.yaml
 
 additionalProperties: false

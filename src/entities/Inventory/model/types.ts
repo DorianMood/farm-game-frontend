@@ -12,6 +12,7 @@ export enum InventoryItemCategoryEnum {
   Animal = "Animal",
   SeedProduct = "SeedProduct",
   AnimalProduct = "AnimalProduct",
+  PromoCode = "PromoCode",
 }
 
 export enum SeedEnum {
@@ -70,7 +71,8 @@ export type InventoryItem =
     | InventoryItemSeed
     | InventoryItemSeedProduct
     | InventoryItemAnimal
-    | InventoryItemAnimalProduct;
+    | InventoryItemAnimalProduct
+    | InventoryItemPromoCode;
 
 export interface InventoryItemBase {
   id: string;
@@ -99,6 +101,11 @@ export interface InventoryItemSeed extends InventoryItemBase {
 export interface InventoryItemSeedProduct extends InventoryItemBase {
   category: InventoryItemCategoryEnum.SeedProduct;
   seedProduct: SeedProduct;
+}
+
+export interface InventoryItemPromoCode extends InventoryItemBase {
+  category: InventoryItemCategoryEnum.PromoCode;
+  link: string;
 }
 
 export interface InventorySchema {

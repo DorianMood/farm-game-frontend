@@ -83,13 +83,11 @@ export const ShopPage = ({ className }: ShopPageProps) => {
 
   const productList = useMemo(
     () =>
-      products?.map((item) => (
+      products?.items?.map((item) => (
         <ShopCard
-          key={`${item?.name}_${item?.price}`}
+          key={`${item?.id}`}
           text={item?.name}
           coinsCount={item.price}
-          href={item?.content}
-          img={item.picture}
           onClick={() => handleClickShopCard(item.id)}
         />
       )),
@@ -102,7 +100,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
         onClose={handleCloseBuyProductModal}
         onSubmit={handleSubmitBuyProduct}
         opened={!!productId}
-        product={products?.find((item) => item.id === productId)}
+        product={products?.items?.find((item) => item.id === productId)}
       />
       <div className={classNames(cls.Shop, {}, [className])}>
         <Heading level={1} className={cls.shopHeading}>

@@ -9,7 +9,6 @@ interface ShopCardProps {
   text?: string;
   coinsCount?: number;
   href?: string;
-  img: string;
   onClick: () => void;
 }
 

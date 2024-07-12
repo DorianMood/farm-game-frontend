@@ -1,3 +1,4 @@
-description: Массив инвентарей пользователя
-type: array
+type: object
+description: Получение данных инвентаря пользователя
+
 $ref: "../../common/inventory.yaml"

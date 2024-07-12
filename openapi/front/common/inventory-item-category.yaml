@@ -4,11 +4,13 @@ description: >
   * Seed - Семя
   * Animal - Животное
   * AnimalProduct - Продукт животного
+  * PromoCode - Продукт животного
 type: string
 enum:
   - Seed
   - SeedProduct
   - Animal
   - AnimalProduct
+  - PromoCode
 example: Animal
 maxLength: 255
