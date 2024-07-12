@@ -1,4 +1,3 @@
-description: Массив с продуктами
-type: array
-items:
-  $ref: "../../common/product.yaml"
+type: object
+description: Получение продуктов
+$ref: "../../common/products.yaml"

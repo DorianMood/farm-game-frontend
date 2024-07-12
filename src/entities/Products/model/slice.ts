@@ -3,7 +3,7 @@ import { fetchProductsData } from "./thunks";
 import { ProductsSchema, Products } from "./types";
 
 const initialState: ProductsSchema = {
-  data: [],
+  data: undefined,
   error: false,
   isLoading: false,
   isUpdating: false,

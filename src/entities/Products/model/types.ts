@@ -1,12 +1,10 @@
-export type Product = {
-  id: string;
-  price: number;
-  name: string;
-  picture: string;
-  content?: string;
-};
+import {InventoryItem} from "../../Inventory";
 
-export type Products = Product[];
+export type Product = InventoryItem;
+
+export type Products = {
+  items: Product[];
+}
 
 export interface ProductsSchema {
   data?: Products;

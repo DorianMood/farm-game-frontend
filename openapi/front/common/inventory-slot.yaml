@@ -1,0 +1,12 @@
+type: object
+description: Элемент инвентаря
+properties:
+  amount:
+    type: number
+    description: Количество этого элемента в инвентаре
+    example: 2
+  inventoryItem:
+    $ref: ./inventory-item.yaml
+    description: Тип продукта который занимает этот слот инвентаря
+
+additionalProperties: false

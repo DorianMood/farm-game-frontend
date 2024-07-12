@@ -1,0 +1,9 @@
+type: object
+description: Промокод
+properties:
+  link:
+    type: string
+    description: Ссылка на подробное описание
+    example: 'https://test.ru'
+
+additionalProperties: false

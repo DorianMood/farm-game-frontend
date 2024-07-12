@@ -1,0 +1,10 @@
+type: object
+description: Товары, доступные для покупки в магазине
+properties:
+  items:
+    type: array
+    description: Список товаров
+    items:
+      $ref: ./inventory-item.yaml
+
+additionalProperties: false
