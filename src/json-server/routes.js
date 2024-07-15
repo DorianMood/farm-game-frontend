@@ -1,6 +1,6 @@
 import {isAuthenticated, loginUser, logoutUser} from "./api/auth.js";
 import {getUser, postUser} from "./api/user.js";
-import {getInventory} from "./api/inventiry.js";
+import {getInventory} from "./api/inventory.js";
 import {getBeds, getBedsHarvest, postPlant} from "./api/beds.js";
 import {getAnimals, getAnimalsHarvest, postAnimal} from "./api/animals.js";
 import {getTasks, postTask} from "./api/tasks.js";
