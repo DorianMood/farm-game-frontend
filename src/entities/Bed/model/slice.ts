@@ -6,7 +6,7 @@ const initialState: BedsSchema = {
   isLoading: false,
   error: false,
   data: {
-    beds: [],
+    beds: undefined,
   },
 };
 

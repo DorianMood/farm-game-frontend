@@ -11,6 +11,6 @@ export interface AnimalBarnSchema {
   isLoading: boolean;
   error: boolean;
   data: {
-    animalBarns: AnimalBarn[];
+    animalBarns?: AnimalBarn[];
   };
 }

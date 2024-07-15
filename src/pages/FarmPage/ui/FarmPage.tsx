@@ -57,7 +57,7 @@ export const FarmPage = () => {
       return;
     }
 
-    const plantedBed = beds.find((item) => item.index === bed.index);
+    const plantedBed = beds?.find((item) => item.index === bed.index);
 
     if (plantedBed) {
       dispatch(
