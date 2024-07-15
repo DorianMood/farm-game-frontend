@@ -6,7 +6,7 @@ const initialState: AnimalBarnSchema = {
   isLoading: false,
   error: false,
   data: {
-    animalBarns: [],
+    animalBarns: undefined,
   },
 };
 

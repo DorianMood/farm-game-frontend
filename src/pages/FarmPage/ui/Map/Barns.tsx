@@ -15,7 +15,7 @@ export const Barns = ({ onHarvestClick }: BarnsProps) => {
 
   return (
     <>
-      {animalBarns.map((item) => (
+      {animalBarns?.map((item) => (
         <Barn barn={item} onHarvest={getHarvestHandler(item)} key={item.id} />
       ))}
     </>

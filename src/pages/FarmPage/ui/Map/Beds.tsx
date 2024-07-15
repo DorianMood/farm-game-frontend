@@ -20,7 +20,7 @@ export const Beds = ({ onHarvestClick, onPlantClick }: BedProps) => {
 
   return (
     <>
-      {beds.map((item) => (
+      {beds?.map((item) => (
         <Bed
           bed={item}
           onHarvest={getHarvestHandler(item)}
