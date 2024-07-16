@@ -70,12 +70,12 @@ export const useTasksController = () => {
   );
 
   const plantTask = useMemo(
-    () => tasks.find((task) => task.task.type === "Plant"),
+    () => tasks?.find((task) => task.task.type === "Plant"),
     [tasks],
   );
 
   const surveyTask = useMemo(
-    () => tasks.find((task) => task.task.type === "FinanceGenius"),
+    () => tasks?.find((task) => task.task.type === "FinanceGenius"),
     [tasks],
   );
 

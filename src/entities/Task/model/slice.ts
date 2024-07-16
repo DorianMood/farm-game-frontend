@@ -6,7 +6,7 @@ const initialState: TasksSchema = {
   isLoading: false,
   error: false,
   data: {
-    tasks: [],
+    tasks: undefined,
   },
 };
 

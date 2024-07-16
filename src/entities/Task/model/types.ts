@@ -14,6 +14,6 @@ export interface TasksSchema {
   isLoading: boolean;
   error: boolean;
   data: {
-    tasks: Task[];
+    tasks?: Task[];
   };
 }
