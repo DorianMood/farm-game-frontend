@@ -46,33 +46,37 @@ export enum AnimalProductEnum {
 }
 
 export interface AnimalProduct {
+  id: string;
   type: AnimalProductEnum;
   // some other unique fields
 }
 
 export interface SeedProduct {
+  id: string;
   type: SeedProductEnum;
   // some other unique fields
 }
 
 export interface Animal {
+  id: string;
   type: AnimalEnum;
   harvestTimeout: number;
   // some other unique fields
 }
 
 export interface Seed {
+  id: string;
   type: SeedEnum;
   harvestTimeout: number;
   // some other unique fields
 }
 
 export type InventoryItem =
-    | InventoryItemSeed
-    | InventoryItemSeedProduct
-    | InventoryItemAnimal
-    | InventoryItemAnimalProduct
-    | InventoryItemPromoCode;
+  | InventoryItemSeed
+  | InventoryItemSeedProduct
+  | InventoryItemAnimal
+  | InventoryItemAnimalProduct
+  | InventoryItemPromoCode;
 
 export interface InventoryItemBase {
   id: string;
@@ -115,3 +119,4 @@ export interface InventorySchema {
     inventory?: Inventory;
   };
 }
+

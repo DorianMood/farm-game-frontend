@@ -12,11 +12,15 @@ import cls from "./PlantModal.module.scss";
 import { plants } from "../consts.ts";
 import { ActivePlant, Plant } from "./Plant.tsx";
 import { useSelector } from "react-redux";
-import {InventoryItem, inventorySelector} from "entities/Inventory";
+import { InventoryItem, inventorySelector } from "entities/Inventory";
 import { AppLink } from "shared/ui/AppLink/AppLink.tsx";
 import { RoutePath } from "shared/config/routeConfig/routeConfig.tsx";
 import ShopIcon from "shared/assets/icons/shop-24-24.svg?react";
-import {InventoryItemCategoryEnum, InventoryItemSeed, SeedEnum} from "entities/Inventory/model/types.ts";
+import {
+  InventoryItemCategoryEnum,
+  InventoryItemSeed,
+  SeedEnum,
+} from "entities/Inventory/model/types.ts";
 
 interface Props {
   onClose: () => void;
@@ -31,7 +35,7 @@ export interface BedPlant {
 }
 
 const isSeed = (
-    inventoryItem: InventoryItem,
+  inventoryItem: InventoryItem,
 ): inventoryItem is InventoryItemSeed => {
   return inventoryItem.category === InventoryItemCategoryEnum.Seed;
 };
@@ -47,6 +51,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   const [play] = useSound(coinSound);
 
   const handleSubmit = (plant: BedPlant) => {
+    console.log(plant);
     onSubmit(plant);
     setTimeout(onClose, 2_000);
   };

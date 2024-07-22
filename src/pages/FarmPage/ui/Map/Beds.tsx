@@ -18,6 +18,8 @@ export const Beds = ({ onHarvestClick, onPlantClick }: BedProps) => {
     onPlantClick(item.index);
   };
 
+  console.log(beds);
+
   return (
     <>
       {beds?.map((item) => (
