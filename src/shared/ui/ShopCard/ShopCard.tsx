@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import cls from "./ShopCard.module.scss";
-import { useNavigate } from "react-router-dom";
 
 interface ShopCardProps {
+  image?: React.ReactNode;
   className?: string;
   text?: string;
   coinsCount?: number;
@@ -13,7 +14,7 @@ interface ShopCardProps {
 }
 
 export const ShopCard = memo((props: ShopCardProps) => {
-  const { text, coinsCount, href, onClick } = props;
+  const { text, coinsCount, href, image, onClick } = props;
 
   const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ export const ShopCard = memo((props: ShopCardProps) => {
       onClick={onClick}
     >
       <div className={cls.img}>
-        <img src={`https://placehold.co/600x400`} />
+        {image ?? <img src={`https://placehold.co/600x400`} />}
       </div>
       <div className={cls.info}>
         {text && <p className={cls.text}>{text}</p>}

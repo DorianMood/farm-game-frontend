@@ -2,7 +2,6 @@ import classNames from "classnames";
 import { memo } from "react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import cls from "./InventoryCard.module.scss";
-import { Button } from "../Button/Button";
 
 interface InventoryCardProps {
   className?: string;
@@ -11,17 +10,28 @@ interface InventoryCardProps {
   itemsCount?: number;
   onClick?: () => void;
   onSellClick?: () => void;
+  image?: React.ReactNode;
 }
 
 export const InventoryCard = memo((props: InventoryCardProps) => {
-  const { text, coinsCount, itemsCount = 1, onClick, onSellClick } = props;
+  const {
+    text,
+    coinsCount,
+    itemsCount = 1,
+    image,
+    onClick,
+    onSellClick,
+  } = props;
 
   const handleSellClick = () => {
     onSellClick?.();
   };
 
   return (
-    <div className={classNames(cls.InventoryCard)} onClick={onClick}>
+    <div className={classNames(cls.ShopCard)} onClick={onClick}>
+      <div className={cls.img}>
+        {image ?? <img src={`https://placehold.co/600x400`} />}
+      </div>
       <div className={cls.info}>
         {text && (
           <p className={cls.text}>
@@ -29,15 +39,13 @@ export const InventoryCard = memo((props: InventoryCardProps) => {
           </p>
         )}
         {coinsCount && (
-          <div className={cls.coinsCount}>
-            <p className={cls.text}>Цена за шт.</p>
-            <CoinIcon />
-            <p className={cls.coinsCountText}>{coinsCount}</p>
-          </div>
+          <p>
+            <CoinIcon /> {coinsCount}
+          </p>
         )}
-        <Button className={cls.button} onClick={handleSellClick}>
+        <button className={cls.link} onClick={handleSellClick}>
           Продать
-        </Button>
+        </button>
       </div>
     </div>
   );

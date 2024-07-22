@@ -11,6 +11,7 @@ import cls from "./ShopPage.module.scss";
 import { inventorySelector } from "entities/Inventory";
 import { InventoryCard } from "shared/ui/InventoryCard/InventoryCard.tsx";
 import { fetchInventory } from "entities/Inventory/model/thunks";
+import { getInventoryItemImage } from "./utils";
 
 interface ShopPageProps {
   className?: string;
@@ -47,6 +48,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
     () =>
       inventory?.items?.map((item) => (
         <InventoryCard
+          image={getInventoryItemImage(item.inventoryItem)}
           onSellClick={() => {
             dispatch(sellProduct({ slotId: item.id })).then(() => {
               dispatch(fetchProductsData({ filter: "all" }));
@@ -64,14 +66,17 @@ export const ShopPage = ({ className }: ShopPageProps) => {
 
   const productList = useMemo(
     () =>
-      products?.items?.map((item) => (
-        <ShopCard
-          key={`${item?.id}`}
-          text={item?.name}
-          coinsCount={item.price}
-          onClick={() => handleClickShopCard(item.id)}
-        />
-      )),
+      products?.items?.map((item) => {
+        return (
+          <ShopCard
+            image={getInventoryItemImage(item)}
+            key={`${item?.id}`}
+            text={item?.name}
+            coinsCount={item.price}
+            onClick={() => handleClickShopCard(item.id)}
+          />
+        );
+      }),
     [products],
   );
 
