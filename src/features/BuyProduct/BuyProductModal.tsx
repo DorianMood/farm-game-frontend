@@ -41,12 +41,6 @@ export const BuyProductModal = ({
   const onBuyProductsClick = async () => {
     await dispatch(purchaseProduct({ productId: product?.id || "" }));
 
-    // dispatch(
-    //   updateProductsData({
-    //     productId: product?.id || "",
-    //   }),
-    // );
-
     setSuccess(true);
     play();
 

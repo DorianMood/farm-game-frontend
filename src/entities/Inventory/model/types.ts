@@ -3,6 +3,7 @@ export interface Inventory {
 }
 
 export interface InventorySlot {
+  id: string;
   amount: number;
   inventoryItem: InventoryItem;
 }
@@ -119,4 +120,3 @@ export interface InventorySchema {
     inventory?: Inventory;
   };
 }
-
