@@ -16,7 +16,6 @@ import { Map } from "./Map/Map";
 import { fetchInventory } from "entities/Inventory/model/thunks";
 import { bedsSelector } from "entities/Bed";
 import { SeedEnum } from "entities/Inventory/model/types.ts";
-import { mapSeedToCrop } from "./const.ts";
 
 interface BedPlant {
   seed: SeedEnum;
