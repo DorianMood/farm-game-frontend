@@ -1,3 +1,5 @@
+import { Seed } from "entities/Inventory";
+
 export enum CropEnum {
   Carrot = "Carrot",
   Potato = "Potato",
@@ -10,7 +12,7 @@ export interface Bed {
   id: string;
   index: number;
   plantedAt: string;
-  crop: CropEnum;
+  crop: Seed;
 }
 
 export interface BedsSchema {

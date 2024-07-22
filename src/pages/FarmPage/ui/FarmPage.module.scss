@@ -9,7 +9,7 @@
 g[id="big_house"] {
   &:hover {
     filter: drop-shadow(2px 2px 0px #0dff11) drop-shadow(-2px 2px 0px #0dff11)
-    drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
+      drop-shadow(-2px -2px 0px #0dff11) drop-shadow(2px -2px 0px #0dff11);
     cursor: pointer;
   }
 }
@@ -68,7 +68,7 @@ g[id^="pigs"] {
   }
 
   &.piganimal {
-      display: unset;
+    display: unset;
   }
 
   &:hover {
@@ -84,7 +84,7 @@ g[id^="hen-house"] {
   }
 
   &.henanimal {
-      display: unset;
+    display: unset;
   }
 
   &:hover {
@@ -100,7 +100,7 @@ g[id^="sheeps"] {
   }
 
   &.sheepanimal {
-      display: unset;
+    display: unset;
   }
 
   &:hover {
@@ -116,7 +116,7 @@ g[id^="cows"] {
   }
 
   &.cowanimal {
-      display: unset;
+    display: unset;
   }
 
   &:hover {

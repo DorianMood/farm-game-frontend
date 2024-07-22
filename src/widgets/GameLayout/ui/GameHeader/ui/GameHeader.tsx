@@ -7,12 +7,12 @@ import { useSelector } from "react-redux";
 import { userSelector } from "entities/User";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchUserData } from "entities/User/model/thunks";
-import {ResourcesCard} from "shared/ui/ResourcesCard/ResourcesCard";
-import {InventoryItem, inventorySelector} from "entities/Inventory";
-import {fetchInventory} from "entities/Inventory/model/thunks";
+import { ResourcesCard } from "shared/ui/ResourcesCard/ResourcesCard";
+import { InventoryItem, inventorySelector } from "entities/Inventory";
+import { fetchInventory } from "entities/Inventory/model/thunks";
 import {
   InventoryItemCategoryEnum,
-  InventoryItemSeed
+  InventoryItemSeed,
 } from "entities/Inventory/model/types";
 
 export enum GameHeaderTheme {
@@ -26,7 +26,7 @@ interface GameHeaderProps {
 }
 
 // TODO: Добавить здесь вызовы, подцепить к беку
-export const GameHeader = ({theme, className}: GameHeaderProps) => {
+export const GameHeader = ({ theme, className }: GameHeaderProps) => {
   const dispatch = useAppDispatch();
   const user = useSelector(userSelector);
   const inventory = useSelector(inventorySelector);
@@ -38,10 +38,10 @@ export const GameHeader = ({theme, className}: GameHeaderProps) => {
       user?.createdAt
         ? Math.ceil(
             (new Date().valueOf() - new Date(user?.createdAt).valueOf()) /
-              (1000 * 60 * 60 * 24)
+              (1000 * 60 * 60 * 24),
           )
         : null,
-    [user?.createdAt]
+    [user?.createdAt],
   );
 
   useEffect(() => {
@@ -56,15 +56,15 @@ export const GameHeader = ({theme, className}: GameHeaderProps) => {
     }
   }, [dispatch, inventory]);
 
-  console.log()
   const isSeed = (
-      inventoryItem: InventoryItem,
+    inventoryItem: InventoryItem,
   ): inventoryItem is InventoryItemSeed => {
     return inventoryItem.category === InventoryItemCategoryEnum.Seed;
   };
 
   // @ts-ignore
-  const seeds: {amount: number, inventoryItem: InventoryItemSeed}[] = inventory?.items.filter((item) => isSeed(item.inventoryItem)) ?? [];
+  const seeds: { amount: number; inventoryItem: InventoryItemSeed }[] =
+    inventory?.items.filter((item) => isSeed(item.inventoryItem)) ?? [];
 
   return (
     <div className={classNames(cls.GameHeader, {}, [className])}>

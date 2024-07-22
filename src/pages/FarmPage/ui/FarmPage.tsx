@@ -1,18 +1,22 @@
-import {useSelector} from "react-redux";
-import {useState} from "react";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchBedsData, plantBeds} from "entities/Bed/model/thunks";
-import {userSelector} from "entities/User";
-import {completeTask} from "entities/Task/model/thunks";
-import {PlantModal, SurveyModal} from "features/FarmGame";
-import {fetchUserData} from "entities/User/model/thunks";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {
+  fetchBedsData,
+  harvestBeds,
+  plantBeds,
+} from "entities/Bed/model/thunks";
+import { userSelector } from "entities/User";
+import { completeTask } from "entities/Task/model/thunks";
+import { PlantModal, SurveyModal } from "features/FarmGame";
+import { fetchUserData } from "entities/User/model/thunks";
 import cls from "./FarmPage.module.scss";
-import {useTasksController} from "./Map/hooks";
-import {Map} from "./Map/Map";
-import {fetchInventory} from "entities/Inventory/model/thunks";
-import {bedsSelector} from "entities/Bed";
-import {SeedEnum} from "entities/Inventory/model/types.ts";
-import {mapSeedToCrop} from "./const.ts";
+import { useTasksController } from "./Map/hooks";
+import { Map } from "./Map/Map";
+import { fetchInventory } from "entities/Inventory/model/thunks";
+import { bedsSelector } from "entities/Bed";
+import { SeedEnum } from "entities/Inventory/model/types.ts";
+import { mapSeedToCrop } from "./const.ts";
 
 interface BedPlant {
   seed: SeedEnum;
@@ -24,7 +28,7 @@ export const FarmPage = () => {
   const user = useSelector(userSelector);
   const beds = useSelector(bedsSelector);
 
-  const {tasks, plantActivity, surveyActivity, surveyTask} =
+  const { tasks, plantActivity, surveyActivity, surveyTask } =
     useTasksController();
 
   const handleCompleteTask = (type: string) => {
@@ -62,11 +66,9 @@ export const FarmPage = () => {
     if (plantedBed) {
       dispatch(
         plantBeds({
-          bed: {
-            ...plantedBed,
-            crop: mapSeedToCrop[bed.seed],
-          },
-        })
+          index: bed.index,
+          crop: bed.seed,
+        }),
       ).then(() => {
         dispatch(fetchBedsData());
         dispatch(fetchInventory());
@@ -90,6 +92,10 @@ export const FarmPage = () => {
 
   const handleHarvestBed = (bedIndex: number) => {
     console.log(`Harvest ${bedIndex}`);
+    dispatch(harvestBeds({ index: bedIndex })).then(() => {
+      dispatch(fetchBedsData());
+      dispatch(fetchInventory());
+    });
   };
 
   const handleHarvestBarn = (barnIndex: number) => {

@@ -1,8 +1,17 @@
 type: object
 description: Семя
 properties:
+  id:
+    type: string
+    description: Идентификатор
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
   type:
     $ref: ./seed-type.yaml
     description: Тип семечки
+  harvestTimeout:
+    type: number
+    description: Время созревания в формате timestamp
+    example: 3600000
 
 additionalProperties: false

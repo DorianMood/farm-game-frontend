@@ -1,6 +1,13 @@
 type: object
 description: Грядка
 
-$ref: ../../common/bed.yaml
+properties:
+  index:
+    type: number
+    description: Индекс грядки
+    example: 1
+  crop:
+    $ref: "../../common/seed-type.yaml"
+    description: Тип семян
 
 additionalProperties: false

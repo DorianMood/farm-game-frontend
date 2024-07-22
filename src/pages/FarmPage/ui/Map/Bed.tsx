@@ -38,7 +38,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
       element?.classList.add(
         bed.crop !== null &&
           Date.now() - new Date(bed.plantedAt).getTime() > BED_TIMEOUT
-          ? cls[bed.crop.toLowerCase()]
+          ? cls[bed.crop?.type?.toLowerCase().replace("seed", "")]
           : cls.field,
       );
     } else {
@@ -55,7 +55,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     return {
       startTime: new Date(bed.plantedAt).getTime(),
       endTime: new Date(bed.plantedAt).getTime() + BED_TIMEOUT,
-      cropImage: getCropImage(bed.crop),
+      cropImage: getCropImage(bed.crop?.type),
     };
   }, [bed]);
 
@@ -73,7 +73,9 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
 
       if (progress > 100) {
         element?.setAttribute("class", "");
-        element?.classList.add(cls[bed.crop.toLowerCase()]);
+        element?.classList.add(
+          cls[bed.crop?.type?.toLowerCase().replace("seed", "")],
+        );
         clearInterval(t);
       }
     }, 1_000 / 60);
@@ -108,8 +110,6 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
       </div>
     );
   }
-
-  console.log("render bed");
 
   return (
     <div

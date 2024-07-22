@@ -1,79 +1,85 @@
 export const getBeds = () => {
-    return [
-        {
-            "id": "9638d24a-d489-4c82-b540-fdc17dedbb87",
-            "index": 1,
-            "plantedAt": null,
-            "crop": null
-        },
-        {
-            "id": "34928b35-5d7f-4a0d-b136-1856c37f470f",
-            "index": 2,
-            "plantedAt": new Date().toISOString(),
-            "crop": "Carrot"
-        },
-        {
-            "id": "b6d4ee17-9c4e-4625-a138-d9b4678d0972",
-            "index": 3,
-            "plantedAt": null,
-            "crop": null
-        },
-        {
-            "id": "c3dadcdf-99cf-4542-87ab-7863f0af4663",
-            "index": 6,
-            "plantedAt": null,
-            "crop": null
-        },
-        {
-            "id": "55f3bb5b-4fb8-4264-b53b-f013e2f69a24",
-            "index": 7,
-            "plantedAt": null,
-            "crop": null
-        },
-        {
-            "id": "5f02ab0c-c999-4c64-8536-b43e6d4a897f",
-            "index": 8,
-            "plantedAt": null,
-            "crop": null
-        },
-        {
-            "id": "171088db-fcc6-4c2e-b240-7ff200aae933",
-            "index": 9,
-            "plantedAt": null,
-            "crop": null
-        },
-        {
-            "id": "dc26b22e-4783-4f8d-8f9f-bb96171bac9c",
-            "index": 5,
-            "plantedAt": "2024-06-24T19:52:02.831Z",
-            "crop": "Flower"
-        },
-        {
-            "id": "d8994611-d444-4aa1-ada8-c5720358bb2f",
-            "index": 0,
-            "plantedAt": "2024-06-24T19:53:25.367Z",
-            "crop": "Potato"
-        },
-        {
-            "id": "4e165e89-406b-47d0-bcdd-a34c324ab679",
-            "index": 4,
-            "plantedAt": "2024-06-24T19:59:40.229Z",
-            "crop": "Flower"
-        }
-    ]
-}
+  return [
+    {
+      id: "1269f736-fedd-403e-b26e-09c5be8ff42c",
+      index: 4,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "384a6d8d-79fa-4b36-be7c-bfb40693274b",
+      index: 5,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "10a50b0c-1be7-4597-97be-27254275d02e",
+      index: 6,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "0b0c0d4e-d56a-49dc-b19c-07b7d4c895a0",
+      index: 7,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "e90131f6-6064-4537-b9d1-41905a5f7580",
+      index: 8,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "4dd797af-6dc9-46c3-82d5-245e961d34c1",
+      index: 9,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "70a51957-c9b5-40c0-87a3-9058657ad5c0",
+      index: 1,
+      plantedAt: null,
+      crop: null,
+    },
+    {
+      id: "da7b3b29-33e1-4df2-8d7c-2f0bd1901270",
+      index: 0,
+      plantedAt: "2024-07-22T11:52:15.948Z",
+      crop: {
+        id: "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+        type: "CarrotSeed",
+        harvestTimeout: 300,
+      },
+    },
+    {
+      id: "22365d55-1ec4-4ae1-8d84-b3087bf52697",
+      index: 3,
+      plantedAt: "2024-07-22T11:52:21.872Z",
+      crop: {
+        id: "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+        type: "CarrotSeed",
+        harvestTimeout: 300,
+      },
+    },
+    {
+      id: "2ba3939b-b92a-4a7d-8419-f738a1b37ca9",
+      index: 2,
+      plantedAt: "2024-07-22T11:52:43.046Z",
+      crop: {
+        id: "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+        type: "CarrotSeed",
+        harvestTimeout: 300,
+      },
+    },
+  ];
+};
 
-export const getBedsHarvest = () => {
-    return [
-        {
-            "id": "505d3dcb-b1b4-444e-aa55-405c0f12e5f4",
-            "index": 1,
-            "plantedAt": "2024-06-24T19:53:25.367Z",
-            "crop": "Carrot"
-        }
-    ]
-}
+export const postBedsHarvest = () => {
+  return "ok";
+};
 
 export const postPlant = () => {
-    return 'ok'
-}
+  return "ok";
+};
+

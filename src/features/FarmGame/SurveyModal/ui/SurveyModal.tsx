@@ -91,12 +91,11 @@ export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
 
     const index = event.currentTarget.getAttribute("data-index");
     if (index && selectedAnswerIndex === +index) {
-      setQuestions(
-        (questions) =>
-          questions?.map((question, i) => ({
-            ...question,
-            state: i === +index ? "correct" : question.state,
-          })),
+      setQuestions((questions) =>
+        questions?.map((question, i) => ({
+          ...question,
+          state: i === +index ? "correct" : question.state,
+        })),
       );
     } else {
     }
@@ -144,17 +143,16 @@ export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
 
     const index = event.currentTarget.getAttribute("data-index");
     if (index !== null) {
-      setQuestions(
-        (questions) =>
-          questions?.map((question, i) => ({
-            ...question,
-            state:
-              i === +index
-                ? selectedAnswerIndex === +index
-                  ? "correct"
-                  : "incorrect"
-                : question.state,
-          })),
+      setQuestions((questions) =>
+        questions?.map((question, i) => ({
+          ...question,
+          state:
+            i === +index
+              ? selectedAnswerIndex === +index
+                ? "correct"
+                : "incorrect"
+              : question.state,
+        })),
       );
     }
 
@@ -221,7 +219,7 @@ export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
                     })}
                     onClick={handleAnswerClick}
                     data-index={index}
-                    key={answer.answer}
+                    key={`${answer.answer}-${answer.index}`}
                     draggable
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}

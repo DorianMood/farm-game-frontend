@@ -1,5 +1,4 @@
-import {AnimalEnum} from "entities/Inventory/model/types";
-import {CropEnum} from "entities/Bed/model/types";
+import { AnimalEnum, SeedEnum } from "entities/Inventory/model/types";
 
 import Pig from "shared/assets/icons/pig.svg?react";
 import Cow from "shared/assets/icons/cow.svg?react";
@@ -23,17 +22,17 @@ export const getAnimalImage = (animal: AnimalEnum) => {
       return <Hen />;
   }
 };
-export const getCropImage = (crop: CropEnum) => {
+export const getCropImage = (crop: SeedEnum) => {
   switch (crop) {
-    case CropEnum.Carrot:
+    case SeedEnum.CarrotSeed:
       return <Carrot />;
-    case CropEnum.Wheat:
+    case SeedEnum.WheatSeed:
       return <Wheat />;
-    case CropEnum.Potato:
+    case SeedEnum.PotatoSeed:
       return <Potato />;
-    case CropEnum.Beet:
+    case SeedEnum.BeetSeed:
       return <Beet />;
-    case CropEnum.Flower:
+    case SeedEnum.FlowerSeed:
       return <Flower />;
   }
 };
