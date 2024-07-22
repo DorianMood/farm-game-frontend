@@ -1,11 +1,12 @@
 import {isAuthenticated, loginUser, logoutUser} from "./api/auth.js";
 import {getUser, postUser} from "./api/user.js";
 import {getInventory} from "./api/inventory.js";
-import {getBeds, getBedsHarvest, postPlant} from "./api/beds.js";
-import {getAnimals, getAnimalsHarvest, postAnimal} from "./api/animals.js";
+import {getBeds, postBedsHarvest, postPlant} from "./api/beds.js";
+import {getBarns, postBarnsHarvest, postStart} from "./api/barns.js";
+import {getAnimals} from "./api/animals.js";
 import {getTasks, postTask} from "./api/tasks.js";
 import {getSurveys} from "./api/surveys.js";
-import {getProducts, postProduct} from "./api/products.js";
+import {getProducts, postPurchaseProduct, postSellProduct} from "./api/products.js";
 
 export const routes = [
     {
@@ -47,7 +48,7 @@ export const routes = [
     {
         method: 'POST',
         url: '/beds/harvest',
-        handler: getBedsHarvest
+        handler: postBedsHarvest
     },
     {
         method: 'POST',
@@ -60,14 +61,19 @@ export const routes = [
         handler: getAnimals
     },
     {
+        method: 'GET',
+        url: '/barns',
+        handler: getBarns
+    },
+    {
         method: 'POST',
-        url: '/animals/harvest',
-        handler: getAnimalsHarvest
+        url: '/barns/harvest',
+        handler: postBarnsHarvest
     },
     {
         method: 'POST',
         url: '/animals/start',
-        handler: postAnimal
+        handler: postStart
     },
     {
         method: 'GET',
@@ -88,9 +94,15 @@ export const routes = [
         method: 'GET',
         url: '/products',
         handler: getProducts
-    }, {
+    },
+    {
         method: 'POST',
         url: '/products/purchase',
-        handler: postProduct
+        handler: postPurchaseProduct
+    },
+    {
+        method: 'POST',
+        url: '/products/sell',
+        handler: postSellProduct
     }
 ]

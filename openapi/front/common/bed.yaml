@@ -17,7 +17,8 @@ properties:
     example: "2024-06-24T19:53:25.367Z"
     maxLength: 255
   crop:
-    $ref: ./crop-type.yaml
-    description: Тип растения
+    type: object
+    $ref: ./seed.yaml
+    description: Семя растения
 
 additionalProperties: false
