@@ -6,7 +6,7 @@ import cls from "./MessageCard.module.scss";
 interface MessageCardProps {
   className?: string;
   text?: string;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export const MessageCard = memo((props: MessageCardProps) => {
@@ -15,7 +15,7 @@ export const MessageCard = memo((props: MessageCardProps) => {
   return (
     <div className={classNames(cls.MessageCard, {}, [className])}>
       {text && <p className={cls.text}>{text}</p>}
-      <CloseIcon className={cls["close-icon"]} onClick={onClose} />
+      {onClose && <CloseIcon className={cls["close-icon"]} onClick={onClose} />}
     </div>
   );
 });

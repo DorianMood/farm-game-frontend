@@ -11,6 +11,7 @@ import {inventoryReducer} from "entities/Inventory";
 import {StateSchema, ThunkExtraArg} from "./StateSchema";
 import {createReducerManager} from "./reducerManager";
 import {animalBarnsReducer} from "entities/AnimalBarn";
+import {tutorialReducer,} from "entities/Tutorial";
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -26,6 +27,7 @@ export function createReduxStore(
     survey: surveyReducer,
     products: productsReducer,
     inventory: inventoryReducer,
+    tutorial: tutorialReducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);

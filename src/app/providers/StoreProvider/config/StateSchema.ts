@@ -16,6 +16,7 @@ import { SurveysSchema } from "entities/Survey";
 import { ProductsSchema } from "entities/Products";
 import {InventorySchema} from "entities/Inventory";
 import {AnimalBarnSchema} from "entities/AnimalBarn";
+import {TutorialSchema} from "../../../../entities/Tutorial";
 
 export interface StateSchema {
   user: UserSchema;
@@ -25,6 +26,7 @@ export interface StateSchema {
   survey: SurveysSchema;
   products: ProductsSchema;
   inventory: InventorySchema;
+  tutorial: TutorialSchema;
 
   // Асинхронные редюсеры
   loginForm?: LoginSchema;

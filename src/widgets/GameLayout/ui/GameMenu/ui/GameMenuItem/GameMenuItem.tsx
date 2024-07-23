@@ -9,9 +9,10 @@ import {isAuthentificatedSelector} from "entities/User/model/selectors";
 interface GameMenuItemProps {
   item: SidebarItemType;
   isActive: boolean;
+  className?: string;
 }
 
-export const GameMenuItem = memo(({item, isActive}: GameMenuItemProps) => {
+export const GameMenuItem = memo(({item, isActive, className}: GameMenuItemProps) => {
   const isAuth = useSelector(isAuthentificatedSelector);
 
   if (item.authOnly && !isAuth) {
@@ -24,7 +25,7 @@ export const GameMenuItem = memo(({item, isActive}: GameMenuItemProps) => {
       to={item.path}
       className={classNames(cls.item, {
         [cls.active]: isActive,
-      })}
+      }, className)}
     >
       <item.Icon className={cls.icon} />
       <span className={cls.link}>{item.text}</span>
