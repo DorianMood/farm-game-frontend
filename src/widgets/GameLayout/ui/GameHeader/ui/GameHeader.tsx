@@ -28,7 +28,7 @@ interface GameHeaderProps {
 }
 
 // TODO: Добавить здесь вызовы, подцепить к беку
-export const GameHeader = ({theme, className}: GameHeaderProps) => {
+export const GameHeader = ({theme}: GameHeaderProps) => {
   const dispatch = useAppDispatch();
   const user = useSelector(userSelector);
   const inventory = useSelector(inventorySelector);

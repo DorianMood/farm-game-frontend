@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import classNames from "classnames";
-import {useClickAway, useLongPress} from "@uidotdev/usehooks";
+import {useLongPress} from "@uidotdev/usehooks";
 
 import cls from "./Plant.module.scss";
 import {CropEnum} from "entities/Bed/model/types.ts";
