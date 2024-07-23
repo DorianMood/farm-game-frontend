@@ -1,9 +1,11 @@
-import cls from "./Plant.module.scss";
+import {useEffect, useState} from "react";
 import classNames from "classnames";
-import { CropEnum } from "entities/Bed/model/types.ts";
-import { Text, TextTheme } from "shared/ui/Text/Text.tsx";
-import { ProductCard } from "shared/ui/ProductCard/ProductCard.tsx";
-import { useState } from "react";
+import {useClickAway, useLongPress} from "@uidotdev/usehooks";
+
+import cls from "./Plant.module.scss";
+import {CropEnum} from "entities/Bed/model/types.ts";
+import {Text, TextTheme} from "shared/ui/Text/Text.tsx";
+import {ProductCard} from "shared/ui/ProductCard/ProductCard.tsx";
 import {SeedEnum} from "entities/Inventory/model/types.ts";
 
 export type ActivePlantType = CropEnum;
@@ -41,17 +43,31 @@ export const Plant = ({
     ? `Время созревания: ${activePlants[plant.type]?.harvestTimeout}`
     : "";
 
-  const showProductInfo = () => {
-    setShowProductInfo(true);
-  };
+  const attrs = useLongPress(
+    () => {
+      setShowProductInfo(true);
+    },
+    {
+      threshold: 500,
+      onFinish: () => setShowProductInfo(false),
+      onCancel: () => setShowProductInfo(false),
+      onStart: () => !isDisabled && handleDragStart(plant.type),
+    }
+  );
 
-  const hideProductInfo = () => {
-    setShowProductInfo(false);
-  };
+  useEffect(() => {
+    const handleContextmenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+    document.addEventListener("contextmenu", handleContextmenu);
+    return function cleanup() {
+      document.removeEventListener("contextmenu", handleContextmenu);
+    };
+  }, []);
 
   return (
     <div
-      className={classNames(cls["plant"], { [cls["disabled"]]: isDisabled })}
+      className={classNames(cls["plant"], {[cls["disabled"]]: isDisabled})}
       data-plant={plant.attributeName}
     >
       <img
@@ -61,12 +77,18 @@ export const Plant = ({
         })}
         draggable={isDraggable && !isDisabled}
         onDragStart={() => {
-          handleDragStart(plant.type);
-          hideProductInfo();
+          if (!isDisabled) handleDragStart(plant.type);
+          setShowProductInfo(false);
         }}
+        onTouchStart={attrs.onTouchStart}
+        onTouchEnd={attrs.onTouchEnd}
         onDragEnd={handlePlantDragEnd}
-        onMouseEnter={showProductInfo}
-        onMouseLeave={hideProductInfo}
+        onMouseEnter={() => {
+          setShowProductInfo(true);
+        }}
+        onMouseLeave={() => {
+          setShowProductInfo(false);
+        }}
       />
       {!isDisabled && (
         <ProductCard
@@ -88,14 +110,11 @@ export const Plant = ({
           additionalInfo={`Перейдите в магазин, чтобы приобрести семена ${plant.genitiveСase}.`}
         />
       )}
-      {!isDisabled && (
-        <Text
-          className={cls.text}
-          text={activePlants[plant.type]?.amount.toString()}
-          theme={TextTheme.PRIMARY}
-        />
-      )}
+      <Text
+        className={cls.text}
+        text={activePlants?.[plant.type]?.amount.toString() ?? "0"}
+        theme={TextTheme.PRIMARY}
+      />
     </div>
   );
 };
-

@@ -51,7 +51,6 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   const [play] = useSound(coinSound);
 
   const handleSubmit = (plant: BedPlant) => {
-    console.log(plant);
     onSubmit(plant);
     setTimeout(onClose, 2_000);
   };
@@ -76,7 +75,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   };
 
   const handleBedDrop = () => {
-    if (taskAnswer === "success" && plant) {
+    if (plant) {
       setDoneTask(true);
       play();
       handleSubmit({
@@ -102,27 +101,24 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
       setPaused(false);
       setPlant(null);
     },
-    [opened],
+    [opened]
   );
 
   const activePlants = useMemo(() => {
-    return inventory?.items.reduce(
-      (acc, item) => {
-        if (isSeed(item.inventoryItem)) {
-          return {
-            ...acc,
-            [item.inventoryItem.seed.type]: {
-              amount: item.amount,
-              description: item.inventoryItem.description,
-              harvestTimeout: item.inventoryItem.seed.harvestTimeout,
-            },
-          };
-        }
+    return inventory?.items.reduce((acc, item) => {
+      if (isSeed(item.inventoryItem)) {
+        return {
+          ...acc,
+          [item.inventoryItem.seed.type]: {
+            amount: item.amount,
+            description: item.inventoryItem.description,
+            harvestTimeout: item.inventoryItem.seed.harvestTimeout,
+          },
+        };
+      }
 
-        return acc;
-      },
-      {} as Record<SeedEnum, ActivePlant>,
-    );
+      return acc;
+    }, {} as Record<SeedEnum, ActivePlant>);
   }, [inventory]);
 
   return (
@@ -144,6 +140,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
             onDrop={handleBedDrop}
             onDragOver={handleBedDragOver}
             onDragLeave={handleBedDragLeave}
+            onClick={handleBedDrop}
             className={classNames(cls.bed, {
               [cls.success]: dragged && taskAnswer === "success",
               [cls.sprouts]: hasDoneTask,

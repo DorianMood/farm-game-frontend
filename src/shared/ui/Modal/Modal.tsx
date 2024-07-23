@@ -10,6 +10,7 @@ import React, {
 import {Portal} from "shared/ui/Portal/Portal";
 import {useTheme} from "app/providers/ThemeProvider";
 import cls from "./Modal.module.scss";
+import {useLockBodyScroll} from "@uidotdev/usehooks";
 
 interface ModalProps {
   className?: string;
@@ -28,6 +29,7 @@ export const Modal = (props: ModalProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
   const {theme} = useTheme();
+  useLockBodyScroll();
 
   useEffect(() => {
     if (isOpen) {

@@ -9,7 +9,7 @@ interface ThemeProviderProps {
 const ThemeProvider = (props: ThemeProviderProps) => {
   const { children } = props;
 
-  const [theme, setTheme] = useState<Theme>(Theme.DARK);
+  const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
 
   const defaultProps = useMemo(
     () => ({
