@@ -48,7 +48,7 @@ export const bedsSlice = createSlice({
       })
       .addCase(
         harvestBeds.fulfilled,
-        (state, action: PayloadAction<undefined>) => {
+        (state) => {
           state.isLoading = false;
           state.error = false;
         },

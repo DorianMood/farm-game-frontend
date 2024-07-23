@@ -1,10 +1,14 @@
-import { Bed as BedType } from "entities/Bed";
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import {Bed as BedType} from "entities/Bed";
+import {useEffect, useLayoutEffect, useMemo, useState} from "react";
 
 import cls from "../FarmPage.module.scss";
-import { FarmProductBadge } from "shared/ui/FarmProductBadge";
-import { getCropImage } from "./utils";
-import { TaskCard } from "shared/ui/TaskCard/TaskCard";
+import {FarmProductBadge} from "shared/ui/FarmProductBadge";
+import {getCropImage} from "./utils";
+import {TaskCard} from "shared/ui/TaskCard/TaskCard";
+import classNames from "classnames";
+import {currentTutorialSelector} from "../../../../entities/Tutorial/model/selectors.ts";
+import {useSelector} from "react-redux";
+import {TutorialNameEnum} from "../../../../entities/Tutorial/model/types.ts";
 
 interface BedProps {
   bed: BedType;
@@ -15,6 +19,8 @@ interface BedProps {
 export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   const [id, setId] = useState<string>();
   const [element, setElement] = useState<HTMLElement | null>();
+
+  const currentTutorial = useSelector(currentTutorialSelector);
 
   useLayoutEffect(() => {
     if (!bed) return;
@@ -93,7 +99,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   if (!bed.crop) {
     return (
       <div
-        className={cls.task}
+          className={classNames(cls.task, {[cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_PLANT})}
         style={{
           top: position.top + position.height / 2 + window.scrollY,
           left: position.left + position.width / 2 + window.scrollX,
@@ -113,7 +119,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
 
   return (
     <div
-      className={cls.task}
+      className={classNames(cls.task, {[cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_HARVEST})}
       style={{
         top: position.top + position.height / 2 + window.scrollY,
         left: position.left + position.width / 2 + window.scrollX,
