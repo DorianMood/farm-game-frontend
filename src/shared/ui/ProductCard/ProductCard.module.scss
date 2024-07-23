@@ -1,37 +1,38 @@
 .ProductCard {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    font: var(--font-l);
-    color: var(--dark);
-    background: var(--light);
-    border-radius: 40px;
-    padding: 12px 16px 12px 16px;
-    width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  font: var(--font-l);
+  color: var(--dark);
+  background: var(--light);
+  border-radius: 40px;
+  padding: 16px 24px;
+  width: 300px;
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    .icon {
-        width: 40px;
-    }
+  .icon {
+    width: 40px;
+  }
 }
 
 .description-block {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    .text {
-        font: var(--font-m);
-        font-weight: var(--font-bold);
-    }
+  .text {
+    font-size: small;
+    line-height: 1.2rem;
+  }
 
-    .additionalInfo {
-        font: var(--font-m);
-        font-weight: var(--font-bold);
-    }
+  .additionalInfo {
+    font-weight: 600;
+    font-size: small;
+    line-height: 1.5rem;
+  }
 }

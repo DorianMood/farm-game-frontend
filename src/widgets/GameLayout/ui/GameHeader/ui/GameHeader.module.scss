@@ -1,19 +1,38 @@
 .GameHeader {
-    position: fixed;
-    top: 20px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 20px;
-    z-index: 1;
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.left {
+  position: fixed;
+  left: 10px;
+  z-index: 1;
+  top: 10px;
+}
+
+.right {
+  position: fixed;
+  right: 10px;
+  z-index: 1;
+  top: 10px;
 }
 
 .content {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 
 .tutorialMode {
@@ -21,5 +40,5 @@
 }
 
 .light {
-    background: var(--light);
+  background: var(--light);
 }

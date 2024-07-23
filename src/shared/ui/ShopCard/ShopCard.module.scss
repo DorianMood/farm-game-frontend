@@ -21,6 +21,7 @@
 .img {
   height: 50%;
   overflow: hidden;
+  padding: 16px;
 
   img {
     height: auto;
@@ -29,7 +30,7 @@
 
   svg {
     height: 100%;
-    width: auto;
+    width: 100%;
   }
 }
 

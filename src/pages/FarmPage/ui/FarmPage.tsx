@@ -90,8 +90,7 @@ export const FarmPage = () => {
   };
 
   const handleHarvestBed = (bedIndex: number) => {
-    console.log(`Harvest ${bedIndex}`);
-    dispatch(harvestBeds({ index: bedIndex })).then(() => {
+    dispatch(harvestBeds({index: bedIndex})).then(() => {
       dispatch(fetchBedsData());
       dispatch(fetchInventory());
     });

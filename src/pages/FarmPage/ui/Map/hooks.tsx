@@ -106,9 +106,8 @@ export const useCustomGameController = ({
   const [farmCardPosition, setFarmCardPosition] = useState<Position>({});
 
   const handleCloseCustomGameModal = (
-    actionName: "success" | "failed" | "close",
+    actionName: "success" | "failed" | "close"
   ) => {
-    console.log(actionName, actionName === "success");
     if (actionName === "success") {
       onCompleteTask("CustomGame");
     }

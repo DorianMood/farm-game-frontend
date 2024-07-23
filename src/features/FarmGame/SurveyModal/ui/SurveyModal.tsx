@@ -187,7 +187,9 @@ export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
               <div className={cls.questions}>
                 {questions?.map((question, index) => (
                   <div className={cls.item} key={question.question}>
-                    <span>{question.question}</span>
+                    <span className={cls["question-text"]}>
+                      {question.question}
+                    </span>
                     <span
                       className={classNames(cls["answers-badge"], {
                         [cls["answers-badge__green"]]:

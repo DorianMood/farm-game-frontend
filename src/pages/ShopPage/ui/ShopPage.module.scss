@@ -8,6 +8,7 @@
 
 .shopHeading {
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .shopCardsList {
@@ -52,9 +53,15 @@
 .inventory-container {
   margin: 30px 0;
 
+  h4 {
+    display: flex;
+    justify-content: center;
+  }
+
   .inventory {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
     margin-top: 16px;
