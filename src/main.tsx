@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import { ThemeProvider } from "app/providers/ThemeProvider";
 import { StoreProvider } from "app/providers/StoreProvider";
 import App from "./app/App";
@@ -18,7 +18,7 @@ if (!container) {
 const root = createRoot(container);
 
 root.render(
-  <BrowserRouter basename={import.meta.env.BASE_URL}>
+  <HashRouter basename={import.meta.env.BASE_URL}>
     <StoreProvider>
       <ErrorBoundary>
         <ThemeProvider>
@@ -28,5 +28,5 @@ root.render(
         </ThemeProvider>
       </ErrorBoundary>
     </StoreProvider>
-  </BrowserRouter>,
+  </HashRouter>
 );
