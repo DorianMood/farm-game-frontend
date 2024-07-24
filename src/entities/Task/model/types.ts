@@ -1,7 +1,7 @@
 export interface TaskDetails {
   id: string;
   cost: number;
-  type: "Plant" | "FinanceGenius";
+  type: "Plant" | "FinanceGenius" | "CustomGame";
 }
 
 export interface Task {

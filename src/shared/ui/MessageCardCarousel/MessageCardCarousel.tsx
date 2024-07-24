@@ -19,14 +19,17 @@ interface MessageCardCarouselProps {
 export const MessageCardCarousel = memo((props: MessageCardCarouselProps) => {
   const {className, tutorialSteps, currentStep, onChangeStep, onClose} = props;
 
+  const hasNextStep = currentStep < tutorialSteps.length - 1;
+  const hasPrevStep = currentStep > 0;
+
   return (
     <div className={classNames(cls.MessageCardCarousel, {}, [className])}>
       <MessageCard text={tutorialSteps[currentStep].text}/>
       <CloseIcon className={cls["close-icon"]} onClick={onClose} />
       <div className={cls['indicator']}>
-        <ArrowPrev className={cls.arrow} onClick={() => onChangeStep('prev')}/>
-        <Text  text={`${currentStep+1} / ${tutorialSteps.length}`}/>
-        <ArrowNext className={cls.arrow} onClick={() => onChangeStep('next')}/>
+        <ArrowPrev className={classNames(cls.arrow, {[cls.active]: hasPrevStep})} onClick={() => hasPrevStep && onChangeStep('prev')}/>
+        <Text text={`${currentStep+1} / ${tutorialSteps.length}`}/>
+        <ArrowNext className={classNames(cls.arrow, {[cls.active]: hasNextStep})} onClick={() => hasNextStep && onChangeStep('next')}/>
       </div>
     </div>
   );

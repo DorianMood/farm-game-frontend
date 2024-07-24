@@ -17,6 +17,9 @@ export const tasksSlice = createSlice({
     initTasksData: (state) => {
       state.data.tasks = [];
     },
+    resetFinanceGeniusData: (state) => {
+      state.data.tasks = state.data.tasks?.filter((task) => task?.task?.type !== "FinanceGenius")
+    },
     setTasksData: (state, action: PayloadAction<Task[]>) => {
       state.data.tasks = action.payload;
     },

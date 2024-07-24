@@ -7,6 +7,7 @@ const initialState: TutorialSchema = {
   steps: undefined,
   currentStepIndex: 0,
   currentStep: undefined,
+  currentPage: undefined,
 };
 
 export const tutorialSlice = createSlice({
@@ -14,9 +15,11 @@ export const tutorialSlice = createSlice({
   initialState,
   reducers: {
     setPageTutorial: (state, action: PayloadAction<AppRoutes>) => {
+      sessionStorage.setItem('activeTutorial', 'true')
       state.steps = TUTORIAL_STEPS[action.payload];
       state.currentStepIndex = 0;
       state.currentStep = TUTORIAL_STEPS?.[action.payload]?.[0].name;
+      state.currentPage = action.payload;
     },
     setCurrentStepIndex: (state, action: PayloadAction<number>) => {
       state.currentStepIndex = action.payload;
@@ -25,6 +28,7 @@ export const tutorialSlice = createSlice({
     closeTutorial: (state) => {
       state.currentStep = undefined;
       state.currentStepIndex = 0;
+      state.currentPage = undefined;
     },
   },
   extraReducers: () => {},

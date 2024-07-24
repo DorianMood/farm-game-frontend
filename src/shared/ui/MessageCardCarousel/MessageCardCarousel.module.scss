@@ -32,6 +32,14 @@
     border-radius: 40px;
 }
 
-.arrow {
+.arrow path {
+    stroke-opacity: 0.4;
+}
+
+.active {
     cursor: pointer;
+
+    path {
+        stroke-opacity: 1;
+    }
 }

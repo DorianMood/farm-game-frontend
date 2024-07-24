@@ -1,15 +1,17 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import {useEffect, useLayoutEffect, useMemo, useState} from "react";
+import {useSelector} from "react-redux";
 
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
-import { bedsSelector } from "entities/Bed";
-import { fetchBedsData } from "entities/Bed/model/thunks";
+import {bedsSelector} from "entities/Bed";
+import {fetchBedsData} from "entities/Bed/model/thunks";
 
-import { animalBarnsSelector } from "entities/AnimalBarn";
-import { fetchAnimalBarns } from "entities/AnimalBarn/model/thunks";
-import { fetchTasksData } from "entities/Task/model/thunks";
-import { tasksSelector } from "entities/Task";
+import {animalBarnsSelector} from "entities/AnimalBarn";
+import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks";
+import {fetchTasksData} from "entities/Task/model/thunks";
+import {tasksSelector} from "entities/Task";
+import {currentTutorialPageSelector} from "entities/Tutorial/model/selectors.ts";
+import {AppRoutes} from "shared/config/routeConfig/routeConfig.tsx";
 
 export const useBedsController = () => {
   const dispatch = useAppDispatch();
@@ -44,9 +46,10 @@ export const useTasksController = () => {
 
   const tasks = useSelector(tasksSelector);
   const beds = useSelector(bedsSelector);
+  const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
   useEffect(() => {
-    !tasks && dispatch(fetchTasksData());
+    !tasks && currentTutorialPage !== AppRoutes.MY_FARM && dispatch(fetchTasksData());
   }, [dispatch, tasks]);
 
   const plantActivity = useMemo(

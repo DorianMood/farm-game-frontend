@@ -82,7 +82,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
           }))}
           className={cn("", {
             [cls.tutorialMode]:
-              isActiveTutorial && currentTutorial !== TutorialNameEnum.BALANCE,
+              isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT),
           })}
         />
       </div>
