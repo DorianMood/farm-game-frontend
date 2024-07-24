@@ -9,6 +9,7 @@ import {
     currentTutorialStepIndexSelector
 } from "entities/Tutorial/model/selectors.ts";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import {useEffect} from "react";
 
 interface TutorialProps {
     className?: string;
@@ -19,6 +20,14 @@ export const Tutorial = ({className}: TutorialProps) => {
     const tutorialSteps = useSelector(tutorialSelector);
     const currentTutorialIndex = useSelector(currentTutorialStepIndexSelector);
     const currentTutorial = useSelector(currentTutorialSelector);
+    const currentPage = useSelector(currentTutorialSelector);
+
+    useEffect(() => {
+        if (currentPage === undefined) {
+            sessionStorage.removeItem('activeTutorial')
+        }
+    }, [currentPage]);
+
     const handleCloseClick = () => {
         dispatch(tutorialActions.closeTutorial())
     }

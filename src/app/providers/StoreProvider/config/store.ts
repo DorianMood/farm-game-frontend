@@ -1,7 +1,6 @@
 import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { userReducer } from "entities/User";
 import { $api } from "shared/api/api";
-import { NavigateOptions } from "react-router";
 import { CombinedState, Reducer } from "redux";
 import { bedsReducer } from "entities/Bed";
 import { tasksReducer } from "entities/Task";
@@ -14,9 +13,7 @@ import {animalBarnsReducer} from "entities/AnimalBarn";
 import {tutorialReducer,} from "entities/Tutorial";
 
 export function createReduxStore(
-  initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
-  navigate?: (to: any, options?: NavigateOptions) => void
 ) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
@@ -34,13 +31,11 @@ export function createReduxStore(
 
   const extraArg: ThunkExtraArg = {
     api: $api,
-    navigate,
   };
 
   const store = configureStore({
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
     devTools: import.meta.env.DEV,
-    preloadedState: initialState,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {

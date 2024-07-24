@@ -1,3 +1,4 @@
+import {AppRoutes} from "shared/config/routeConfig/routeConfig.tsx";
 
 export enum TutorialNameEnum {
   GREETING,
@@ -16,4 +17,5 @@ export interface TutorialSchema {
   steps?: Tutorial[],
   currentStep?: TutorialNameEnum;
   currentStepIndex: number;
+  currentPage?: AppRoutes;
 }

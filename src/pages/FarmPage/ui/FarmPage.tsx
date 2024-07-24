@@ -1,21 +1,20 @@
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {
-  fetchBedsData,
-  harvestBeds,
-  plantBeds,
-} from "entities/Bed/model/thunks";
-import { userSelector } from "entities/User";
-import { completeTask } from "entities/Task/model/thunks";
-import { PlantModal, SurveyModal } from "features/FarmGame";
-import { fetchUserData } from "entities/User/model/thunks";
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchBedsData, harvestBeds, plantBeds,} from "entities/Bed/model/thunks";
+import {userSelector} from "entities/User";
+import {completeTask, fetchTasksData} from "entities/Task/model/thunks";
+import {PlantModal, SurveyModal} from "features/FarmGame";
+import {fetchUserData} from "entities/User/model/thunks";
 import cls from "./FarmPage.module.scss";
-import { useTasksController } from "./Map/hooks";
-import { Map } from "./Map/Map";
-import { fetchInventory } from "entities/Inventory/model/thunks";
-import { bedsSelector } from "entities/Bed";
-import { SeedEnum } from "entities/Inventory/model/types.ts";
+import {useTasksController} from "./Map/hooks";
+import {Map} from "./Map/Map";
+import {fetchInventory} from "entities/Inventory/model/thunks";
+import {bedsSelector} from "entities/Bed";
+import {SeedEnum} from "entities/Inventory/model/types.ts";
+import {currentTutorialPageSelector} from "entities/Tutorial/model/selectors.ts";
+import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks.ts";
+import {tasksActions} from "entities/Task";
 
 interface BedPlant {
   seed: SeedEnum;
@@ -26,6 +25,15 @@ export const FarmPage = () => {
   const dispatch = useAppDispatch();
   const user = useSelector(userSelector);
   const beds = useSelector(bedsSelector);
+  const currentTutorialPage = useSelector(currentTutorialPageSelector);
+
+  useEffect(() => {
+    dispatch(fetchTasksData());
+    dispatch(fetchInventory());
+    dispatch(fetchBedsData());
+    dispatch(fetchUserData());
+    dispatch(fetchAnimalBarns());
+  }, [dispatch, currentTutorialPage])
 
   const { tasks, plantActivity, surveyActivity, surveyTask } =
     useTasksController();
@@ -80,6 +88,7 @@ export const FarmPage = () => {
 
   const handleCloseGeniusModal = () => {
     setOpenedGeniusModal(false);
+    dispatch(tasksActions.resetFinanceGeniusData())
   };
 
   const handleSubmitGeniusModal = (success: boolean) => {
@@ -87,6 +96,7 @@ export const FarmPage = () => {
       handleCompleteTask("FinanceGenius");
     }
     setOpenedGeniusModal(false);
+    dispatch(tasksActions.resetFinanceGeniusData())
   };
 
   const handleHarvestBed = (bedIndex: number) => {

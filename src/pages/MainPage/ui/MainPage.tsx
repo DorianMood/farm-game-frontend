@@ -4,12 +4,15 @@ import Farmer from "shared/assets/images/farmer.png";
 import { MainPageHeader } from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
 import { AuthModal } from "features/AuthUser";
 import { useNavigate } from "react-router-dom";
-import { RoutePath } from "shared/config/routeConfig/routeConfig";
+import {AppRoutes, RoutePath} from "shared/config/routeConfig/routeConfig";
 import Rays from "shared/assets/images/rays.png";
 import cls from "./MainPage.module.scss";
+import {useAppDispatch} from "../../../shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import {tutorialActions} from "../../../entities/Tutorial";
 
 export const MainPage = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [isAuthModal, setIsAuthModal] = useState(false);
 
   const onCloseModal = useCallback(() => {
@@ -23,6 +26,11 @@ export const MainPage = () => {
   const onSuccess = useCallback(() => {
     navigate(RoutePath.farm);
   }, [navigate]);
+
+  const onOpenTutorial = useCallback(() => {
+      dispatch(tutorialActions.setPageTutorial(AppRoutes.MY_FARM));
+      navigate(RoutePath.farm);
+  }, [dispatch, navigate]);
 
   return (
     <div className={cls.MainPage}>
@@ -38,7 +46,7 @@ export const MainPage = () => {
         <Button theme={ButtonTheme.BACKGROUND} onClick={onShowModal}>
           {"Войти на ферму"}
         </Button>
-        <Button theme={ButtonTheme.OUTLINE} onClick={onShowModal}>
+        <Button theme={ButtonTheme.OUTLINE} onClick={onOpenTutorial}>
           {"Как играть"}
         </Button>
       </div>

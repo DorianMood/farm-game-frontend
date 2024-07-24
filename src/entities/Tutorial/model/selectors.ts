@@ -17,3 +17,8 @@ export const currentTutorialStepIndexSelector = createSelector(
     [rootSelector],
     (tasks) => tasks.currentStepIndex,
 );
+
+export const currentTutorialPageSelector = createSelector(
+    [rootSelector],
+    (tasks) => tasks.currentPage,
+);

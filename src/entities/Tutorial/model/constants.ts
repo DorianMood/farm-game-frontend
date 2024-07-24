@@ -1,13 +1,20 @@
-import {AppRoutes} from "../../../shared/config/routeConfig/routeConfig.tsx";
 import {Tutorial, TutorialNameEnum} from "./types.ts";
 
+enum AppRoutes {
+    MAIN = "main",
+    ABOUT = "about",
+    PROFILE = "profile",
+    MY_FARM = "farm",
+    RATING = "rating",
+    SHOP = "shop",
+    // last
+    NOT_FOUND = "not_found",
+}
+
 export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
-    [AppRoutes.MAIN]: undefined,
-    [AppRoutes.ABOUT]: undefined,
-    [AppRoutes.PROFILE]: undefined,
     [AppRoutes.MY_FARM]: [
         {
-            text: 'Добро пожаловать в нашу игру!',
+            text: 'Добро пожаловать в игру "Свой Фермер"!',
             name: TutorialNameEnum.GREETING
         },
         {
@@ -15,23 +22,26 @@ export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
             name: TutorialNameEnum.DAYS
         },
         {
-            text: 'За выполнение заданий получаем монетки',
+            text: 'За выполнение заданий получайте монетки!',
             name: TutorialNameEnum.BALANCE
         },
         {
-            text: 'За выполнение заданий улучшаем рейтинг',
+            text: 'Чем больше монет, тем выше Ваш рейтинг в игре!',
             name: TutorialNameEnum.RATING
         },
         {
-            text: 'Сейте урожай!',
+            text: 'Чтобы получить монетки Вы также можете засеять грядки!',
             name: TutorialNameEnum.ON_PLANT
         },
         {
-            text: 'Собирайте урожай',
+            text: 'Собирая урожай, получайте новые семена и монетки!',
             name: TutorialNameEnum.ON_HARVEST
         },
     ],
-    [AppRoutes.RATING]: undefined,
-    [AppRoutes.SHOP]: undefined,
-    [AppRoutes.NOT_FOUND]: undefined,
+    [AppRoutes.MAIN]: [],
+    [AppRoutes.ABOUT]: [],
+    [AppRoutes.PROFILE]: [],
+    [AppRoutes.RATING]: [],
+    [AppRoutes.SHOP]: [],
+    [AppRoutes.NOT_FOUND]: [],
 }

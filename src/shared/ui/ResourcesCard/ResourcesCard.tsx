@@ -4,6 +4,10 @@ import CoinsIcon from "shared/assets/icons/coins-20-20.svg?react";
 import cls from "./ResourcesCard.module.scss";
 import {cropIconMapper} from "./utils";
 import {SeedEnum} from "entities/Inventory/model/types.ts";
+import cn from "classnames";
+import {TutorialNameEnum} from "../../../entities/Tutorial/model/types.ts";
+import {useSelector} from "react-redux";
+import {currentTutorialSelector} from "../../../entities/Tutorial/model/selectors.ts";
 
 interface Seed {
   type: SeedEnum;
@@ -18,19 +22,27 @@ interface ResourcesCardProps {
 
 export const ResourcesCard = memo((props: ResourcesCardProps) => {
   const {className, seeds, balance} = props;
+  const currentTutorial = useSelector(currentTutorialSelector);
+  const isActiveTutorial = currentTutorial !== undefined;
 
   return (
-    <div className={classNames(cls.Card, {}, [className])}>
-      <div className={cls.Item}>
-        <CoinsIcon />
-        <p className={cls.text}>{balance}</p>
-      </div>
-      {seeds.map((item) => (
-        <div className={cls.Item} key={item.type}>
-          {cropIconMapper[item.type]}
-          <p className={cls.text}>{item.amount}</p>
+      <div className={classNames(cls.Card, {}, [className])}>
+        <div className={cn(cls.Item, {
+          [cls.tutorialMode]:
+          isActiveTutorial && currentTutorial !== TutorialNameEnum.BALANCE,
+        })} >
+          <CoinsIcon/>
+          <p className={cls.text}>{balance}</p>
         </div>
-      ))}
-    </div>
+        {seeds.map((item) => (
+            <div className={cn(cls.Item, {
+              [cls.tutorialMode]:
+              isActiveTutorial && currentTutorial !== TutorialNameEnum.ON_PLANT,
+            })} key={item.type}>
+              {cropIconMapper[item.type]}
+              <p className={cls.text}>{item.amount}</p>
+            </div>
+        ))}
+      </div>
   );
 });
