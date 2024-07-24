@@ -1,17 +1,29 @@
 .TaskCard {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    font: var(--font-l);
+    font: var(--font-s);
     color: var(--dark);
     background: var(--light);
-    border-radius: 4px;
-    padding: 4px 16px 4px 16px;
-    opacity: 0.8;
+    border-radius: 16px;
+    padding: 6px 12px 6px 12px;
+    gap: 8px;
+
+    &::after {
+        content: '';
+        position: absolute;
+        height: 22px;
+        width: 22px;
+        background: var(--light);
+        bottom: -10px;
+        border-radius: 3px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+    }
 }
 
 .text {
-    font: var(--font-m);
+    font: var(--font-s);
 }
 
 .coinsCount {
@@ -19,6 +31,9 @@
     flex-direction: row;
     align-items: center;
     gap: 4px;
+    background: #FFF1C1;
+    padding: 6px;
+    border-radius: 16px;
 }
 
 .coinsCountText {
