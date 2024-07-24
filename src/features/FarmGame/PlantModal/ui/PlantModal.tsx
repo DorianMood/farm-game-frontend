@@ -128,7 +128,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
           <div onClick={onClose}>
             <Back />
           </div>
-          <span>Засеивание</span>
+          <p className={cls.title}>Засеивание</p>
           <div onClick={() => setPaused((state) => !state)}>
             {paused ? <Play /> : <Pause />}
           </div>

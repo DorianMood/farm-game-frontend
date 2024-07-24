@@ -7,6 +7,11 @@
     text-decoration: none;
 }
 
+.link {
+    font-size: var(--font-size-xs);
+    line-height: var(--font-line-xs);
+}
+
 .active {
     opacity: 1 !important;
     color: var(--green-light);
@@ -15,6 +20,6 @@
 
 .active:after {
     position: absolute;
-    bottom: -10px;
+    bottom: -12px;
     content: "•"
 }
