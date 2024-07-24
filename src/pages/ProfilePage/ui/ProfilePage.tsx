@@ -7,9 +7,11 @@ import {AppRoutes, RoutePath} from "shared/config/routeConfig/routeConfig";
 import {LogoutModal} from "features/LogoutUser/ui/LogoutModal/LogoutModal";
 import {Avatar} from "shared/ui/Avatar/Avatar";
 import {Text, TextTheme} from "shared/ui/Text/Text";
-import Cat from "shared/assets/images/cat.jpg";
+import Farmer from "shared/assets/images/farmer.png";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import {tutorialActions} from "entities/Tutorial";
+import {useSelector} from "react-redux";
+import {userSelector} from "entities/User";
 
 interface ProfilePageProps {
   className?: string;
@@ -18,6 +20,8 @@ interface ProfilePageProps {
 export const ProfilePage = ({className}: ProfilePageProps) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+
+    const user = useSelector(userSelector);
 
     const [isAuthModal, setIsAuthModal] = useState(false);
 
@@ -40,11 +44,15 @@ export const ProfilePage = ({className}: ProfilePageProps) => {
 
   return (
     <div className={classNames(cls.Profile, {}, [className])}>
-        <Avatar src={Cat}/>
+        <Avatar src={Farmer}/>
         <Text
-            text={"Иван Иванов"}
+            text={user?.name ?? user?.username}
             theme={TextTheme.PRIMARY}
         />
+        {user?.city && <Text
+            text={`г. ${user.city}`}
+            theme={TextTheme.PRIMARY}
+        />}
         <Button theme={ButtonTheme.OUTLINE} onClick={onActiveTutorial}>
             {"Как играть?"}
         </Button>

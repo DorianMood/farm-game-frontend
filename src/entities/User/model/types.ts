@@ -3,6 +3,8 @@ export interface User {
   username: string;
   ballance?: number;
   createdAt?: string;
+  name?: string;
+  city?: string;
 }
 
 export interface UserSchema {
@@ -21,4 +23,6 @@ export interface NewUser {
   username: string;
   email: string;
   password: string;
+  name: string;
+  city: string;
 }

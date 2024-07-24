@@ -166,7 +166,7 @@ export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
           <div onClick={onClose}>
             <Back />
           </div>
-          <span>Я финансовый гений!</span>
+          <p className={cls.title}>Я финансовый гений!</p>
           <div
             onClick={() => (isRunning ? handlePause() : handleStart())}
             style={{
@@ -180,7 +180,7 @@ export const SurveyModal = ({ onClose, opened, taskId, onSubmit }: Props) => {
         </div>
 
         <div className={cls.content}>
-          <span>Соедини термины с их правильными определениями:</span>
+          <p className={cls.description}>Соедини термины с их правильными определениями:</p>
 
           {survey?.questions && (
             <>

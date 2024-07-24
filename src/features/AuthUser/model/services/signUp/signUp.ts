@@ -7,6 +7,8 @@ interface SignUpProps {
   email: string;
   username: string;
   password: string;
+  city: string;
+  name: string;
 }
 
 export interface SignUpError {

@@ -29,11 +29,11 @@ export const SignUpForm = memo(({className, onSuccess}: SignUpFormProps) => {
     //TODO: Добавить синхронную с бэком валидацию
     const error = useSelector(getSignUpError);
 
-    const {fields: {username, email, password}, setters: {onChangeUsername, onChangeEmail, onChangePassword}} = useForm();
+    const {fields: {username, name, email, password, city}, setters: {onChangeUsername, onChangeName, onChangeEmail, onChangePassword, onChangeCity}} = useForm();
 
     const onRegisterClick = async () => {
         const result = await dispatch(
-            signUp({username, email, password})
+            signUp({username, email, password, city, name })
         );
         if (result.meta.requestStatus === "fulfilled") {
             onSuccess();
@@ -52,11 +52,29 @@ export const SignUpForm = memo(({className, onSuccess}: SignUpFormProps) => {
                 <LoginInput
                     type="text"
                     className={cls.input}
-                    label={"Введите имя"}
+                    label={"Введите имя пользователя"}
+                    value={name}
+                    onChange={onChangeName}
+                    error={!!error?.fields?.name}
+                    hint={error?.fields?.name}
+                />
+                <LoginInput
+                    type="text"
+                    className={cls.input}
+                    label={"Введите ник пользователя"}
                     value={username}
                     onChange={onChangeUsername}
                     error={!!error?.fields?.username}
                     hint={error?.fields?.username}
+                />
+                <LoginInput
+                    type="text"
+                    className={cls.input}
+                    label={"Введите город"}
+                    value={city}
+                    onChange={onChangeCity}
+                    error={!!error?.fields?.city}
+                    hint={error?.fields?.city}
                 />
                 <LoginInput
                     type="email"

@@ -33,6 +33,11 @@
       }
     }
 
+    .title {
+      font-size: var(--font-size-l);
+      color: var(--text-primary-color)
+    }
+
     .content {
       height: 100%;
       display: grid;
@@ -40,6 +45,10 @@
       align-items: center;
       justify-items: center;
       gap: 10px;
+
+      .description {
+        color: var(--text-primary-color)
+      }
 
       .questions {
         width: 100%;
@@ -84,12 +93,13 @@
           justify-content: center;
           align-items: center;
           gap: 12px;
-          padding: 12px;
+          padding: 8px;
           border-radius: 16px;
           background: linear-gradient(180deg, #7289ad 0%, #5b7091 100%), #5b7091;
           color: white;
           cursor: pointer;
           transform: translate(0, 0);
+          font-size: var(--font-size-s);
 
           &__green {
             background: linear-gradient(180deg, #5db476 0%, #4d9160 100%),

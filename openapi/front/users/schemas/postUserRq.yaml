@@ -9,7 +9,16 @@ properties:
     maxLength: 255
   username:
     $ref: ../../common/username.yaml
+    description: Ник пользователя
+  name:
+    type: string
     description: Имя пользователя
+    example: Иван
+    maxLength: 255
+  city:
+    type: string
+    description: Город пользователя
+    example: Москва
   password:
     $ref: ../../common/password.yaml
     description: Пароль пользователя

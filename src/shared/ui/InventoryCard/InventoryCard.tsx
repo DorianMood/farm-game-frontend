@@ -39,7 +39,7 @@ export const InventoryCard = memo((props: InventoryCardProps) => {
           </p>
         )}
         {coinsCount && (
-          <p>
+          <p className={cls.text}>
             <CoinIcon /> {coinsCount}
           </p>
         )}
