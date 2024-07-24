@@ -15,7 +15,7 @@
 
 .title {
   text-align: center;
-  color: var(--light) !important;
+  color: var(--text-primary-color) !important;
   margin-bottom: 20px;
 }
 
@@ -28,11 +28,11 @@
 }
 
 .no-account {
-  color: #FFFFFF;
+  color: var(--text-primary-color);
 }
 
 .link {
-  color: #FFFFFF;
+  color: var(--text-primary-color);
   cursor: pointer;
 
   &:hover {
