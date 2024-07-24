@@ -5,10 +5,20 @@ properties:
     type: string
     description: Идентификатор пользователя
     example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
-    maxLength: 9
+    maxLength: 255
   username:
     $ref: ./username.yaml
+    description: Ник пользователя
+  name:
+    type: string
     description: Имя пользователя
+    example: Иван
+    maxLength: 255
+  city:
+    type: string
+    description: Город пользователя
+    example: Москва
+    maxLength: 255
   ballance:
     type: number
     description: Количество монет на баллансе пользователя

@@ -3,6 +3,8 @@ export interface User {
   username: string;
   ballance?: number;
   createdAt?: string;
+  name?: string;
+  city?: string;
 }
 
 export interface UserSchema {

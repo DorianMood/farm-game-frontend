@@ -9,7 +9,17 @@ properties:
     maxLength: 9
   username:
     $ref: ../../common/username.yaml
+    description: Ник пользователя
+  name:
+    type: string
     description: Имя пользователя
+    example: Иван
+    maxLength: 255
+  city:
+    type: string
+    description: Город пользователя
+    example: Москва
+    maxLength: 255
   ballance:
     type: number
     description: Количество монет
