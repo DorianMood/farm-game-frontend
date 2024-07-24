@@ -1,9 +1,4 @@
 .modal {
-  div[class*="content"] {
-    background-color: #182d31;
-    color: white;
-  }
-
   .root {
     position: relative;
     width: 450px;
@@ -38,16 +33,33 @@
         font-weight: var(--font-bold);
       }
 
+      .price {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-radius: 60px;
+        padding: 12px 16px;
+        background-color: var(--yellow-light);
+
+        font-size: 24px;
+      }
+
     }
 
     .footer {
       position: absolute;
       bottom: 20px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-flow: row-reverse;
       gap: 20px;
       left: 50%;
       transform: translateX(-50%);
+      width: 100%;
+
+      button {
+        flex: 0 1 100%;
+      }
     }
   }
 }
