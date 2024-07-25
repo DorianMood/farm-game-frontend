@@ -7,6 +7,7 @@ export enum TutorialNameEnum {
   DAYS,
   RATING,
   ON_PLANT,
+  ON_ANIMAL_HARVEST
 }
 export interface Tutorial {
   name: TutorialNameEnum;

@@ -9,7 +9,6 @@ interface InventoryCardProps {
   coinsCount?: number;
   itemsCount?: number;
   onClick?: () => void;
-  onSellClick?: () => void;
   image?: React.ReactNode;
 }
 
@@ -20,15 +19,14 @@ export const InventoryCard = memo((props: InventoryCardProps) => {
     itemsCount = 1,
     image,
     onClick,
-    onSellClick,
   } = props;
 
   const handleSellClick = () => {
-    onSellClick?.();
+    onClick?.();
   };
 
   return (
-    <div className={classNames(cls.ShopCard)} onClick={onClick}>
+    <div className={classNames(cls.ShopCard)}>
       <div className={cls.img}>
         {image ?? <img src={`https://placehold.co/600x400`} />}
       </div>

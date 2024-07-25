@@ -30,13 +30,17 @@ export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
             name: TutorialNameEnum.RATING
         },
         {
-            text: 'Чтобы получить монетки Вы также можете засеять грядки!',
+            text: 'Чтобы получить монетки Вы также можете засеять грядки! Приобресети семена можно в магазине',
             name: TutorialNameEnum.ON_PLANT
         },
         {
             text: 'Собирая урожай, получайте новые семена и монетки!',
             name: TutorialNameEnum.ON_HARVEST
         },
+        {
+            text: "Собирайте продукты с животных! Приобрести животных можно в магазине",
+            name: TutorialNameEnum.ON_ANIMAL_HARVEST
+        }
     ],
     [AppRoutes.MAIN]: [],
     [AppRoutes.ABOUT]: [],

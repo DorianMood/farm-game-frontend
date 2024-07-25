@@ -126,43 +126,45 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
       <div className={cls.root}>
         <div className={cls.header}>
           <div onClick={onClose}>
-            <Back />
+            <Back/>
           </div>
           <p className={cls.title}>Засеивание</p>
           <div onClick={() => setPaused((state) => !state)}>
-            {paused ? <Play /> : <Pause />}
+            {paused ? <Play/> : <Pause/>}
           </div>
         </div>
-        {hasDoneTask && <CoinIcon className={cls.coin} />}
+        <p className={cls.description}>Выбери нужный сорт и перенеси на поле:</p>
+
+        {hasDoneTask && <CoinIcon className={cls.coin}/>}
 
         <div className={cls.content}>
           <Bed
-            onDrop={handleBedDrop}
-            onDragOver={handleBedDragOver}
-            onDragLeave={handleBedDragLeave}
-            onClick={handleBedDrop}
-            className={classNames(cls.bed, {
-              [cls.success]: dragged && taskAnswer === "success",
-              [cls.sprouts]: hasDoneTask,
-            })}
+              onDrop={handleBedDrop}
+              onDragOver={handleBedDragOver}
+              onDragLeave={handleBedDragLeave}
+              onClick={handleBedDrop}
+              className={classNames(cls.bed, {
+                [cls.success]: dragged && taskAnswer === "success",
+                [cls.sprouts]: hasDoneTask,
+              })}
           />
         </div>
 
         <div className={cls.footer}>
           <div className={cls.plants}>
             {plants.map((plant) => (
-              <Plant
-                key={plant.type}
-                plant={plant}
-                activePlants={activePlants}
-                isDraggable={!hasDoneTask}
-                handleDragStart={handleChangePlant}
-                handlePlantDragEnd={handlePlantDragEnd}
-              />
+                <Plant
+                    key={plant.type}
+                    plant={plant}
+                    activePlants={activePlants}
+                    isDraggable={!hasDoneTask}
+                    handleDragStart={handleChangePlant}
+                    handlePlantDragEnd={handlePlantDragEnd}
+                />
             ))}
           </div>
           <AppLink to={RoutePath.shop} className={cls.link}>
-            <ShopIcon className={cls["shop-icon"]} /> Магазин{" "}
+            <ShopIcon className={cls["shop-icon"]}/> Магазин{" "}
           </AppLink>
         </div>
       </div>
