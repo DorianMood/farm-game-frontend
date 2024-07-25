@@ -162,7 +162,7 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
     };
 
     if (isLoadingSurvey || !questions?.length || !answers?.length) {
-        null
+        return null
     }
 
     return (
