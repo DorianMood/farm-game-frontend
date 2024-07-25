@@ -16,7 +16,7 @@ interface Seed {
 
 interface ResourcesCardProps {
   className?: string;
-  balance: number;
+  balance?: number;
   seeds: Seed[];
 }
 
@@ -32,7 +32,7 @@ export const ResourcesCard = memo((props: ResourcesCardProps) => {
           isActiveTutorial && currentTutorial !== TutorialNameEnum.BALANCE,
         })} >
           <CoinsIcon/>
-          <p className={cls.text}>{balance}</p>
+            {balance && <p className={cls.text}>{balance}</p>}
         </div>
         {seeds.map((item) => (
             <div className={cn(cls.Item, {
