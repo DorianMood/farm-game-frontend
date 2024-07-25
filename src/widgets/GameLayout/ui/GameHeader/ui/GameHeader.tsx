@@ -14,8 +14,8 @@ import {
   InventoryItemCategoryEnum,
   InventoryItemSeed,
 } from "entities/Inventory/model/types";
-import {currentTutorialSelector} from "../../../../../entities/Tutorial/model/selectors.ts";
-import {TutorialNameEnum} from "../../../../../entities/Tutorial/model/types.ts";
+import {currentTutorialSelector} from "entities/Tutorial/model/selectors.ts";
+import {TutorialNameEnum} from "entities/Tutorial/model/types.ts";
 
 export enum GameHeaderTheme {
   LIGHT = "light",
@@ -34,7 +34,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
   const inventory = useSelector(inventorySelector);
   const currentTutorial = useSelector(currentTutorialSelector);
 
-  const balance = user?.ballance ?? 0;
+  const balance = user?.ballance;
 
   const isActiveTutorial = currentTutorial !== undefined;
 

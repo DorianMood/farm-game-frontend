@@ -10,7 +10,7 @@ import {inventoryReducer} from "entities/Inventory";
 import {StateSchema, ThunkExtraArg} from "./StateSchema";
 import {createReducerManager} from "./reducerManager";
 import {animalBarnsReducer} from "entities/AnimalBarn";
-import {tutorialReducer,} from "entities/Tutorial";
+import {tutorialReducer} from "entities/Tutorial";
 
 export function createReduxStore(
   asyncReducers?: ReducersMapObject<StateSchema>,

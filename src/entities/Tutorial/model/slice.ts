@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {TutorialSchema} from "./types";
 import {TUTORIAL_STEPS} from "./constants.ts";
-import {AppRoutes} from "../../../shared/config/routeConfig/routeConfig.tsx";
+import {AppRoutes} from "shared/config/routeConfig/routeConfig.tsx";
 
 const initialState: TutorialSchema = {
   steps: undefined,

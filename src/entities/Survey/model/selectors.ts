@@ -7,3 +7,8 @@ export const surveySelector = createSelector(
   [rootSelector],
   (survey) => survey.data.survey,
 );
+
+export const surveyIsLoadingSelector = createSelector(
+    [rootSelector],
+    (survey) => survey.isLoading,
+);
