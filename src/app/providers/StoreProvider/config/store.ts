@@ -11,6 +11,7 @@ import {StateSchema, ThunkExtraArg} from "./StateSchema";
 import {createReducerManager} from "./reducerManager";
 import {animalBarnsReducer} from "entities/AnimalBarn";
 import {tutorialReducer} from "entities/Tutorial";
+import {ratingReducer} from "entities/Rating";
 
 export function createReduxStore(
   asyncReducers?: ReducersMapObject<StateSchema>,
@@ -25,6 +26,7 @@ export function createReduxStore(
     products: productsReducer,
     inventory: inventoryReducer,
     tutorial: tutorialReducer,
+    rating: ratingReducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);
