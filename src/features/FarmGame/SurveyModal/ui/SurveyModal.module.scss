@@ -1,4 +1,8 @@
-.modal {
+.survey-modal > div > div:first-child {
+  margin: 20px;
+}
+
+.survey-modal {
   div[class*="content"] {
     background-color: var(--bg-color);
     color: white;
