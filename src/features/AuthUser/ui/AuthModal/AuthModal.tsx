@@ -39,7 +39,6 @@ export const AuthModal = ({
           className={classNames("", {}, [className])}
           isOpen={isOpen}
           onClose={handleCloseModal}
-          lazy
       >
         <div className={classNames(cls.AuthModal, {}, [className])}>
           <Text className={cls.title} title={isRegistration ? "Регистрация" : "Вход в игру"}/>

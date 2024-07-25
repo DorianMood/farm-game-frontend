@@ -20,7 +20,6 @@ export const LogoutModal = ({
     className={classNames("", {}, [className])}
     isOpen={isOpen}
     onClose={onClose}
-    lazy
   >
     <div className={classNames(cls.LogoutModal, {}, [className])}>
       <LogoutForm onSuccess={onSuccess} />
