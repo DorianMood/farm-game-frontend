@@ -8,6 +8,10 @@ import {AnimalEnum} from "entities/Inventory/model/types";
 import { getAnimalImage } from "./utils";
 
 import cls from "../FarmPage.module.scss";
+import {useSelector} from "react-redux";
+import {currentTutorialSelector} from "../../../../entities/Tutorial/model/selectors.ts";
+import classNames from "classnames";
+import {TutorialNameEnum} from "../../../../entities/Tutorial/model/types.ts";
 
 interface BarnProps {
   barn: AnimalBarn;
@@ -17,6 +21,8 @@ interface BarnProps {
 export const Barn = ({barn, onHarvest}: BarnProps) => {
   const [element, setElement] = useState<HTMLElement | null>();
   const [id, setId] = useState<string | null>();
+
+  const currentTutorial = useSelector(currentTutorialSelector);
 
   const getAnimalBarnId = (animalBarn: AnimalBarn) => {
     switch (animalBarn.animal?.type) {
@@ -80,7 +86,7 @@ export const Barn = ({barn, onHarvest}: BarnProps) => {
 
   return (
     <div
-      className={cls.task}
+      className={classNames(cls.task, {[cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_ANIMAL_HARVEST})}
       style={{
         top: position.top + position.height / 2 + window.scrollY,
         left: position.left + position.width / 2 + window.scrollX,
