@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useEffect, useMemo, useState } from "react";
 import { ShopCard } from "shared/ui/ShopCard/ShopCard";
 import { Heading } from "shared/ui/Heading/Heading";
-import { fetchProductsData, sellProduct } from "entities/Products/model/thunks";
+import { fetchProductsData } from "entities/Products/model/thunks";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { productsSelector } from "entities/Products";
@@ -22,17 +22,19 @@ export const ShopPage = ({ className }: ShopPageProps) => {
 
   const [activeTabName, setActiveTabName] = useState("all");
   const [productId, setProductId] = useState("");
+  const [isForSell, setForSell] = useState(false);
 
   const products = useSelector(productsSelector);
 
-  const handleClickShopCard = (productId: string) => {
+  const handleClickShopCard = (productId: string, isForSell: boolean) => {
     setProductId(productId);
+      setForSell(isForSell)
   };
   const handleCloseBuyProductModal = () => {
     setProductId("");
   };
 
-  const handleSubmitBuyProduct = () => {
+  const handleSubmitClickProduct = () => {
     dispatch(fetchProductsData({ filter: "all" }));
     dispatch(fetchInventory());
     setActiveTabName("all");
@@ -49,16 +51,11 @@ export const ShopPage = ({ className }: ShopPageProps) => {
       inventory?.items?.map((item) => (
         <InventoryCard
           image={getInventoryItemImage(item.inventoryItem)}
-          onSellClick={() => {
-            dispatch(sellProduct({ slotId: item.id })).then(() => {
-              dispatch(fetchProductsData({ filter: "all" }));
-              dispatch(fetchInventory());
-            });
-          }}
           key={`${item.inventoryItem.id}`}
           text={item?.inventoryItem.name}
           coinsCount={item.inventoryItem.price}
           itemsCount={item.amount}
+          onClick={() => handleClickShopCard(item.inventoryItem.id, true)}
         />
       )),
     [dispatch, inventory],
@@ -73,7 +70,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
             key={`${item?.id}`}
             text={item?.name}
             coinsCount={item.price}
-            onClick={() => handleClickShopCard(item.id)}
+            onClick={() => handleClickShopCard(item.id, false)}
           />
         );
       }),
@@ -83,8 +80,9 @@ export const ShopPage = ({ className }: ShopPageProps) => {
   return (
     <>
       <BuyProductModal
+        isForSell={isForSell}
         onClose={handleCloseBuyProductModal}
-        onSubmit={handleSubmitBuyProduct}
+        onSubmit={handleSubmitClickProduct}
         opened={!!productId}
         product={products?.items?.find((item) => item.id === productId)}
       />
