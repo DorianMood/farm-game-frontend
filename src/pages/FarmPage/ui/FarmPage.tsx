@@ -11,9 +11,12 @@ import {useTasksController} from "./Map/hooks";
 import {Map} from "./Map/Map";
 import {fetchInventory} from "entities/Inventory/model/thunks";
 import {bedsSelector} from "entities/Bed";
-import {SeedEnum} from "entities/Inventory/model/types.ts";
+import {AnimalEnum, SeedEnum} from "entities/Inventory/model/types.ts";
 import {currentTutorialPageSelector} from "entities/Tutorial/model/selectors.ts";
-import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks.ts";
+import {
+  fetchAnimalBarns,
+  harvestAnimals,
+} from "entities/AnimalBarn/model/thunks.ts";
 import {tasksActions} from "entities/Task";
 
 interface BedPlant {
@@ -33,9 +36,9 @@ export const FarmPage = () => {
     dispatch(fetchBedsData());
     dispatch(fetchUserData());
     dispatch(fetchAnimalBarns());
-  }, [dispatch, currentTutorialPage])
+  }, [dispatch, currentTutorialPage]);
 
-  const { tasks, plantActivity, surveyActivity, surveyTask } =
+  const {tasks, plantActivity, surveyActivity, surveyTask} =
     useTasksController();
 
   const handleCompleteTask = (type: string) => {
@@ -75,7 +78,7 @@ export const FarmPage = () => {
         plantBeds({
           index: bed.index,
           crop: bed.seed,
-        }),
+        })
       ).then(() => {
         dispatch(fetchBedsData());
         dispatch(fetchInventory());
@@ -88,7 +91,7 @@ export const FarmPage = () => {
 
   const handleCloseGeniusModal = () => {
     setOpenedGeniusModal(false);
-    dispatch(tasksActions.resetFinanceGeniusData())
+    dispatch(tasksActions.resetFinanceGeniusData());
   };
 
   const handleSubmitGeniusModal = (success: boolean) => {
@@ -96,7 +99,7 @@ export const FarmPage = () => {
       handleCompleteTask("FinanceGenius");
     }
     setOpenedGeniusModal(false);
-    dispatch(tasksActions.resetFinanceGeniusData())
+    dispatch(tasksActions.resetFinanceGeniusData());
   };
 
   const handleHarvestBed = (bedIndex: number) => {
@@ -106,8 +109,11 @@ export const FarmPage = () => {
     });
   };
 
-  const handleHarvestBarn = (barnIndex: number) => {
-    console.log(`Harvest ${barnIndex}`);
+  const handleHarvestBarn = (animal: AnimalEnum) => {
+    dispatch(harvestAnimals({animal})).then(() => {
+      dispatch(fetchAnimalBarns());
+      dispatch(fetchInventory());
+    });
   };
 
   return (

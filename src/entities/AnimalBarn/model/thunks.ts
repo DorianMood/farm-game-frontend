@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/StoreProvider";
 import {AnimalBarn} from "./types";
+import {AnimalEnum} from "entities/Inventory";
 
 export const fetchAnimalBarns = createAsyncThunk<
   AnimalBarn[],
@@ -10,7 +11,7 @@ export const fetchAnimalBarns = createAsyncThunk<
   const {extra, rejectWithValue} = thunkApi;
 
   try {
-    const response = await extra.api.get<AnimalBarn[]>(`/animals`);
+    const response = await extra.api.get<AnimalBarn[]>(`/barns`);
 
     return response.data;
   } catch (e) {
@@ -20,15 +21,15 @@ export const fetchAnimalBarns = createAsyncThunk<
 });
 
 export const harvestAnimals = createAsyncThunk<
-  AnimalBarn[],
-  {index: number},
+  string,
+  {animal: AnimalEnum},
   ThunkConfig<string>
->("animalBarns/harvestAnimals", async ({index}, thunkApi) => {
+>("animalBarns/harvestAnimals", async ({animal}, thunkApi) => {
   const {extra, rejectWithValue} = thunkApi;
 
   try {
-    const response = await extra.api.post<AnimalBarn[]>("/animals/harvest", {
-      index,
+    const response = await extra.api.post<string>("/barns/harvest", {
+      animal,
     });
 
     return response.data;

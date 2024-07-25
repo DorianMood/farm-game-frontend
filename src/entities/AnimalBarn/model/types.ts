@@ -1,10 +1,10 @@
-import {AnimalEnum} from "entities/Inventory";
+import {Animal} from "entities/Inventory";
 
 export interface AnimalBarn {
   id: string;
   index: number;
-  startTime: string;
-  animal: AnimalEnum;
+  startedAt: string;
+  animal: Animal;
 }
 
 export interface AnimalBarnSchema {

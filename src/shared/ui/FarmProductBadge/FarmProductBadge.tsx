@@ -40,6 +40,8 @@ export const FarmProductBadge = ({
       if (progress > 100) {
         setIsHarvestAvailable(true);
         clearInterval(t);
+      } else {
+        setIsHarvestAvailable(false);
       }
     }, 1_000 / 60);
 

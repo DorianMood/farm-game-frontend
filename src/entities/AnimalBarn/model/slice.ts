@@ -41,34 +41,6 @@ export const animalBarnsSlice = createSlice({
       .addCase(fetchAnimalBarns.rejected, (state) => {
         state.isLoading = false;
         state.error = true;
-      })
-      .addCase(harvestAnimals.pending, (state) => {
-        state.error = false;
-        state.isLoading = true;
-      })
-      .addCase(
-        harvestAnimals.fulfilled,
-        (state, action: PayloadAction<AnimalBarn[]>) => {
-          state.isLoading = false;
-          state.error = false;
-          state.data.animalBarns = action.payload;
-        }
-      )
-      .addCase(harvestAnimals.rejected, (state) => {
-        state.isLoading = false;
-        state.error = true;
-      })
-      .addCase(startAnimals.pending, (state) => {
-        state.error = false;
-        state.isLoading = true;
-      })
-      .addCase(startAnimals.fulfilled, (state) => {
-        state.error = false;
-        state.isLoading = false;
-      })
-      .addCase(startAnimals.rejected, (state) => {
-        state.isLoading = false;
-        state.error = true;
       });
   },
 });

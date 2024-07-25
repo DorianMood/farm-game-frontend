@@ -1,16 +1,17 @@
 import { useBarnsController } from "./hooks";
 import { Barn } from "./Barn";
 import { AnimalBarn } from "entities/AnimalBarn";
+import {AnimalEnum} from "entities/Inventory";
 
 interface BarnsProps {
-  onHarvestClick: (id: number) => void;
+  onHarvestClick: (id: AnimalEnum) => void;
 }
 
-export const Barns = ({ onHarvestClick }: BarnsProps) => {
-  const { animalBarns } = useBarnsController();
+export const Barns = ({onHarvestClick}: BarnsProps) => {
+  const {animalBarns} = useBarnsController();
 
   const getHarvestHandler = (item: AnimalBarn) => () => {
-    onHarvestClick(item.index);
+    onHarvestClick(item.animal?.type);
   };
 
   return (

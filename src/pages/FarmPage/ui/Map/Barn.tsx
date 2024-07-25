@@ -14,14 +14,12 @@ interface BarnProps {
   onHarvest: () => void;
 }
 
-const ANIMAL_TIMEOUT = 10_000;
-
-export const Barn = ({ barn, onHarvest }: BarnProps) => {
+export const Barn = ({barn, onHarvest}: BarnProps) => {
   const [element, setElement] = useState<HTMLElement | null>();
   const [id, setId] = useState<string | null>();
 
   const getAnimalBarnId = (animalBarn: AnimalBarn) => {
-    switch (animalBarn.animal) {
+    switch (animalBarn.animal?.type) {
       case AnimalEnum.CowAnimal: {
         return "cows";
       }
@@ -50,8 +48,8 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     setId(element?.getAttribute("id"));
 
     // If has crop, then display it
-    if (barn.animal) {
-      element?.classList.add(cls[barn.animal.toLowerCase()]);
+    if (barn.animal?.type) {
+      element?.classList.add(cls[barn.animal.type.toLowerCase()]);
     }
 
     return () => {
@@ -59,11 +57,11 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     };
   }, [barn]);
 
-  const { startTime, endTime, animalImage } = useMemo(() => {
+  const {startTime, endTime, animalImage} = useMemo(() => {
     return {
-      startTime: new Date(barn.startTime).getTime(),
-      endTime: new Date(barn.startTime).getTime() + ANIMAL_TIMEOUT,
-      animalImage: getAnimalImage(barn.animal),
+      startTime: new Date(barn.startedAt).getTime(),
+      endTime: new Date(barn.startedAt).getTime() + barn.animal?.harvestTimeout,
+      animalImage: getAnimalImage(barn.animal?.type),
     };
   }, [barn]);
 

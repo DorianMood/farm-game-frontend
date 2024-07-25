@@ -9,11 +9,12 @@ import {
   PLANTS_VS_ZOMBIES_URL,
 } from "shared/const/games";
 import cls from "../FarmPage.module.scss";
+import {AnimalEnum} from "entities/Inventory";
 
 interface MapProps {
   onPlantBed: (bedIndex: number) => void;
   onHarvestBed: (bedIndex: number) => void;
-  onHarvestAnimal: (animalIndex: number) => void;
+  onHarvestAnimal: (animal: AnimalEnum) => void;
   onCompleteTask: (type: string) => void;
 }
 
