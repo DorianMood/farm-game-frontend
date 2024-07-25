@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AnimalBarnSchema, AnimalBarn} from "./types";
-import {fetchAnimalBarns, harvestAnimals, startAnimals} from "./thunks";
+import {fetchAnimalBarns} from "./thunks";
 
 const initialState: AnimalBarnSchema = {
   isLoading: false,

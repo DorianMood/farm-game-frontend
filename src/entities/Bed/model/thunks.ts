@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "app/providers/StoreProvider";
 import { Bed } from "./types";
-import { SeedEnum } from "entities/Inventory";
+import {SeedEnum} from "../../Inventory/model/types.ts";
 
 export const fetchBedsData = createAsyncThunk<
   Bed[],

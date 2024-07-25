@@ -7,6 +7,7 @@ import {getAnimals} from "./api/animals.js";
 import {getTasks, postTask} from "./api/tasks.js";
 import {getSurveys} from "./api/surveys.js";
 import {getProducts, postPurchaseProduct, postSellProduct} from "./api/products.js";
+import {getRating} from "./api/rating.js";
 
 export const routes = [
     {
@@ -104,5 +105,10 @@ export const routes = [
         method: 'POST',
         url: '/products/sell',
         handler: postSellProduct
+    },
+    {
+        method: 'GET',
+        url: '/users/rating',
+        handler: getRating
     }
 ]

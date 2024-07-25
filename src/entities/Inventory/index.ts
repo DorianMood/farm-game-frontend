@@ -6,8 +6,6 @@ export type {
   Inventory,
   InventoryItem,
   InventorySlot,
-  InventoryItemCategoryEnum,
-  SeedEnum,
   SeedProductEnum,
   AnimalProductEnum,
   AnimalProduct,
