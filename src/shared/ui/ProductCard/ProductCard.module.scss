@@ -6,33 +6,33 @@
   font: var(--font-l);
   color: var(--dark);
   background: var(--light);
-  border-radius: 40px;
+  border-radius: 32px;
   padding: 16px 24px;
-  width: 300px;
+  width: 320px;
+  overflow: hidden;
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .icon {
-    width: 40px;
-  }
+.icon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .description-block {
   display: flex;
   flex-direction: column;
+  margin-right: 80px;
+  z-index: 1;
 
   .text {
-    font-size: small;
-    line-height: 1.2rem;
+    font-size: 12px;
+    line-height: 1rem;
+    margin-top: 8px;
   }
 
   .additionalInfo {
     font-weight: 600;
-    font-size: small;
-    line-height: 1.5rem;
+    line-height: 1rem;
+    font-size: 12px;
   }
 }

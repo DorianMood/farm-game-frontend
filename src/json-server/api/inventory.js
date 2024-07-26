@@ -64,13 +64,13 @@ export const getInventory = () => {
             "Обычно в быту под словом «морковь» подразумевается широко распространённый корнеплод именно этого растения, который обычно относят к овощам.",
           price: 12,
           sellMultiplier: 1,
-          category: "SeedProduct",
+          category: "Seed",
           animal: null,
-          seed: null,
+          seedProduct: null,
           animalProduct: null,
-          seedProduct: {
+          seed: {
             id: "630d14a5-1dfd-4652-b954-67261db7490d",
-            type: "Carrot",
+            type: "CarrotSeed",
           },
           promoCode: null,
         },

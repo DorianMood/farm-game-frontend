@@ -7,24 +7,24 @@ interface ProductCardProps {
   title?: string;
   description: string;
   additionalInfo?: string;
+  background?: string;
+  image?: string;
   icon?: string;
 }
 
 export const ProductCard = memo((props: ProductCardProps) => {
-  const {className, title, description, additionalInfo, icon} = props;
+  const {className, title, background, description, additionalInfo, image} = props;
 
   return (
-    <div className={classNames(cls.ProductCard, {}, [className])}>
+    <div style={{background: background}} className={classNames(cls.ProductCard, {}, [className])}>
       <div className={cls["description-block"]}>
-        {title && <h5>{title}</h5>}
+        {title && <h3>{title}</h3>}
         {description && <p className={cls.text}>{description}</p>}
         {!!additionalInfo && (
           <p className={cls.additionalInfo}>{additionalInfo}</p>
         )}
       </div>
-      <div className={cls.header}>
-        {icon && <img className={cls.icon} src={icon} />}
-      </div>
+        {image && <img className={cls.icon} src={image} />}
     </div>
   );
 });
