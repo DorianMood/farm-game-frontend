@@ -1,19 +1,20 @@
-import {Modal} from "shared/ui/Modal/Modal";
+import {Modal} from "shared/ui/Modal/Modal.tsx";
 import coinSound from "shared/assets/sounds/coins.mp3";
 import useSound from "use-sound";
 import CoinIcon from "shared/assets/icons/coins-32-32.svg?react";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {purchaseProduct, sellProduct,} from "entities/Products/model/thunks";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import {purchaseProduct, sellProduct,} from "entities/Products/model/thunks.ts";
 import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {productsIsUpdatingSelector} from "entities/Products/model/selectors";
-import {Product} from "entities/Products/model/types";
+import {useEffect, useMemo, useState} from "react";
+import {productsIsUpdatingSelector} from "entities/Products/model/selectors.ts";
+import {Product} from "entities/Products/model/types.ts";
 import BuyImage from "shared/assets/images/buy.png";
 import cls from "./BuyProductModal.module.scss";
 import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
 import {ModalButton, ModalButtonTheme} from "shared/ui/ModalButton/ModalButton.tsx";
+import {getProductData} from "../utils.ts";
 
-interface Props {
+interface BuyProductModalProps {
   onClose: () => void;
   onSubmit: () => void;
   opened: boolean;
@@ -27,7 +28,7 @@ export const BuyProductModal = ({
   isForSell = false,
   opened,
   product,
-}: Props) => {
+}: BuyProductModalProps) => {
   const dispatch = useAppDispatch();
 
   const isUpdating = useSelector(productsIsUpdatingSelector);
@@ -61,6 +62,10 @@ export const BuyProductModal = ({
     }, 2_000);
   };
 
+  const productData = useMemo(() => {
+    return getProductData(product)
+  }, [product]);
+
   return (
     <Modal isOpen={opened} className={cls.modal}>
       <div className={cls.root}>
@@ -70,11 +75,11 @@ export const BuyProductModal = ({
         </div>
 
         <div className={cls.content}>
-          <div className={cls['image-container']}>
-            <img src={BuyImage} alt="buy" className={cls.img}/>
+          <div className={cls['image-container']} style={{background: productData?.background ?? ""}}>
+            <img src={productData?.image ?? BuyImage} alt="buy" className={cls.img}/>
           </div>
           <p className={cls['main-text']}>
-            {isForSell ? 'Вы продаете': 'Вы покупаете'} Луковицы цветов
+            {isForSell ? 'Вы продаете': 'Вы покупаете'} {productData?.nameForBuyOrSell}
           </p>
           <p className={cls.text}>
             {isForSell ? 'После продажи ваш баланс пополнится на:' : `После покупки с вашего балланса будет списано:`}

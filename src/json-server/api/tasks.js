@@ -9,15 +9,15 @@ export const getTasks = () => {
                 "cost": 1
             }
         },
-        {
-            "id": "b47fa065-0f7c-4d96-ab19-a95372818a17",
-            "completedAt": null,
-            "task": {
-                "id": "9af63796-0eea-4280-9290-521adf54b5b9",
-                "type": "FinanceGenius",
-                "cost": 10
-            }
-        },
+        // {
+        //     "id": "b47fa065-0f7c-4d96-ab19-a95372818a17",
+        //     "completedAt": null,
+        //     "task": {
+        //         "id": "9af63796-0eea-4280-9290-521adf54b5b9",
+        //         "type": "FinanceGenius",
+        //         "cost": 10
+        //     }
+        // },
         {
             "id": "938b9dd9-399f-45e9-8890-5104b9984a9a",
             "completedAt": null,

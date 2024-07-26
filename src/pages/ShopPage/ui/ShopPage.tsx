@@ -6,7 +6,7 @@ import { fetchProductsData } from "entities/Products/model/thunks";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import { productsSelector } from "entities/Products";
-import { BuyProductModal } from "features/BuyProduct/BuyProductModal";
+import { BuyProductModal } from "features/BuyProduct";
 import cls from "./ShopPage.module.scss";
 import { inventorySelector } from "entities/Inventory";
 import { InventoryCard } from "shared/ui/InventoryCard/InventoryCard.tsx";

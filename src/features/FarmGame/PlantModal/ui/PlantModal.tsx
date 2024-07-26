@@ -21,6 +21,7 @@ import {
   InventoryItemSeed,
   SeedEnum,
 } from "entities/Inventory/model/types.ts";
+import {seedToImageAndBackgroundMapper} from "../../../../shared/const/pictureAndColorMapping.ts";
 
 interface Props {
   onClose: () => void;
@@ -113,6 +114,8 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
             amount: item.amount,
             description: item.inventoryItem.description,
             harvestTimeout: item.inventoryItem.seed.harvestTimeout,
+            background: seedToImageAndBackgroundMapper[item.inventoryItem.seed.type].background,
+            image: seedToImageAndBackgroundMapper[item.inventoryItem.seed.type].image,
           },
         };
       }
