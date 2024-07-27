@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { FarmProductBadge } from "shared/ui/FarmProductBadge";
 
 import { AnimalBarn } from "entities/AnimalBarn";
-import {AnimalEnum} from "entities/Inventory/model/types";
+import { AnimalEnum } from "entities/Inventory/model/types";
 
 import { getAnimalImage } from "./utils";
 
@@ -18,7 +18,7 @@ interface BarnProps {
   onHarvest: () => void;
 }
 
-export const Barn = ({barn, onHarvest}: BarnProps) => {
+export const Barn = ({ barn, onHarvest }: BarnProps) => {
   const [element, setElement] = useState<HTMLElement | null>();
   const [id, setId] = useState<string | null>();
 
@@ -63,7 +63,7 @@ export const Barn = ({barn, onHarvest}: BarnProps) => {
     };
   }, [barn]);
 
-  const {startTime, endTime, animalImage} = useMemo(() => {
+  const { startTime, endTime, animalImage } = useMemo(() => {
     return {
       startTime: new Date(barn.startedAt).getTime(),
       endTime: new Date(barn.startedAt).getTime() + barn.animal?.harvestTimeout,
