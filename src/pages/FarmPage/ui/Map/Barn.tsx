@@ -8,10 +8,10 @@ import { AnimalEnum } from "entities/Inventory/model/types";
 import { getAnimalImage } from "./utils";
 
 import cls from "../FarmPage.module.scss";
-import {useSelector} from "react-redux";
-import {currentTutorialSelector} from "../../../../entities/Tutorial/model/selectors.ts";
+import { useSelector } from "react-redux";
+import { currentTutorialSelector } from "../../../../entities/Tutorial/model/selectors.ts";
 import classNames from "classnames";
-import {TutorialNameEnum} from "../../../../entities/Tutorial/model/types.ts";
+import { TutorialNameEnum } from "../../../../entities/Tutorial/model/types.ts";
 
 interface BarnProps {
   barn: AnimalBarn;
@@ -54,7 +54,7 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     setId(element?.getAttribute("id"));
 
     // If has crop, then display it
-    if (barn.animal?.type) {
+    if (barn.animal?.type && barn.startedAt) {
       element?.classList.add(cls[barn.animal.type.toLowerCase()]);
     }
 
@@ -86,7 +86,10 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
 
   return (
     <div
-      className={classNames(cls.task, {[cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_ANIMAL_HARVEST})}
+      className={classNames(cls.task, {
+        [cls.tutorialMode]:
+          currentTutorial === TutorialNameEnum.ON_ANIMAL_HARVEST,
+      })}
       style={{
         top: position.top + position.height / 2 + window.scrollY,
         left: position.left + position.width / 2 + window.scrollX,
