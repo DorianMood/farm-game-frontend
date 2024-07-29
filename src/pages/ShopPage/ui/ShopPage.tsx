@@ -22,16 +22,19 @@ export const ShopPage = ({ className }: ShopPageProps) => {
 
   const [activeTabName, setActiveTabName] = useState("all");
   const [productId, setProductId] = useState("");
+  const [slotId, setSlotId] = useState("");
   const [isForSell, setForSell] = useState(false);
 
   const products = useSelector(productsSelector);
 
   const handleClickShopCard = (productId: string, isForSell: boolean) => {
     setProductId(productId);
-      setForSell(isForSell)
+    setForSell(isForSell);
   };
+
   const handleCloseBuyProductModal = () => {
     setProductId("");
+    setSlotId("");
   };
 
   const handleSubmitClickProduct = () => {
@@ -55,10 +58,13 @@ export const ShopPage = ({ className }: ShopPageProps) => {
           text={item?.inventoryItem.name}
           coinsCount={item.inventoryItem.price}
           itemsCount={item.amount}
-          onClick={() => handleClickShopCard(item.inventoryItem.id, true)}
+          onClick={() => {
+            handleClickShopCard(item.inventoryItem.id, true);
+            setSlotId(item.id);
+          }}
         />
       )),
-    [dispatch, inventory],
+    [inventory],
   );
 
   const productList = useMemo(
@@ -84,6 +90,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
         onClose={handleCloseBuyProductModal}
         onSubmit={handleSubmitClickProduct}
         opened={!!productId}
+        slotId={slotId}
         product={products?.items?.find((item) => item.id === productId)}
       />
       <div className={classNames(cls.Shop, {}, [className])}>
