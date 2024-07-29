@@ -166,7 +166,7 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
     }
 
     return (
-        <Modal isOpen={opened} className={cls['survey-modal']}>
+        <Modal isOpen={opened} className={cls['survey-modal']} disableScroll={true}>
             <div className={cls.root}>
                 <div className={cls.header}>
                     <div onClick={onClose}>

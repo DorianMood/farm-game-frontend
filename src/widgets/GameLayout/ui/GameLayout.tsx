@@ -29,12 +29,12 @@ export const GameLayout = memo(({children, className}: GameHeaderProps) => {
     // Устанавливаем признак просмотренности туториала при первом заходе пользователя
     useEffect(() => {
         const hasShownTutorial = localStorage.getItem('hasShownFirstTutorial');
-        if (!hasShownTutorial) {
+        if (!hasShownTutorial && isAuthentificated) {
             dispatch(tutorialActions.setPageTutorial(AppRoutes.MY_FARM));
             localStorage.setItem('hasShownFirstTutorial', 'true');
             navigate(RoutePath.farm);
         }
-    }, []);
+    }, [isAuthentificated]);
 
     return (
         <div className={classNames(cls.GameLayout, {}, [className])}>

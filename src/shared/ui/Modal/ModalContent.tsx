@@ -13,6 +13,7 @@ import cls from "./Modal.module.scss";
 
 interface ModalProps {
     className?: string;
+    disableScroll?: boolean;
     children?: ReactNode;
     onClose?: () => void;
 }
@@ -20,7 +21,7 @@ interface ModalProps {
 const ANIMATION_DELAY = 300;
 
 export const ModalContent = (props: ModalProps) => {
-    const {className, children, onClose} = props;
+    const {className, children, disableScroll = false, onClose} = props;
 
     const [isClosing, setIsClosing] = useState(false);
     const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
@@ -31,8 +32,9 @@ export const ModalContent = (props: ModalProps) => {
         //let posX = window.scrollX;
         //document.body.style.top = -pos + 'px';
         //document.body.style.left = -posX + 'px';
-
-        document.body.style.position = 'fixed';
+        if (disableScroll) {
+            document.body.style.position = 'fixed';
+        }
         return () => {
             document.body.removeAttribute('style')
             //window.scroll({top: pos, left: posX})

@@ -1,14 +1,14 @@
 .ShopCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   font: var(--font-l);
   color: var(--dark);
   background: var(--light);
-  border-radius: 40px;
-  height: 300px;
-  width: 300px;
-  cursor: pointer;
+  border-radius: 32px;
+  height: 270px;
+  width: 270px;
   overflow: hidden;
 
   &.active {
@@ -19,25 +19,18 @@
 }
 
 .img {
-  height: 50%;
-  overflow: hidden;
-  padding: 30px 16px 16px 16px;
-
-  img {
-    height: auto;
-    max-width: 100%;
-  }
-
-  svg {
-    height: 100%;
-    width: 100%;
-  }
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .info {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
   padding: 20px;
 }
 
@@ -52,10 +45,10 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-}
-
-.coinsCountText {
-  font-weight: var(--font-bold);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  margin: 8px 0;
 }
 
 .link {
@@ -67,4 +60,23 @@
   cursor: pointer;
   font-weight: var(--font-bold);
   font-size: 20px;
+}
+
+.button {
+  position: absolute;
+  bottom: 20px;
+  width: 117px !important;
+}
+
+.title {
+  font-size: var(--font-size-l);
+  line-height: var(--font-line-l);
+}
+
+.description {
+  font-size: 12px;
+  line-height: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 100px;
 }

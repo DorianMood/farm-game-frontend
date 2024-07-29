@@ -1,50 +1,47 @@
 import classNames from "classnames";
 import { memo } from "react";
-import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import cls from "./InventoryCard.module.scss";
+import {ModalButton, ModalButtonTheme} from "../ModalButton/ModalButton.tsx";
 
 interface InventoryCardProps {
+  image?: string;
   className?: string;
-  text?: string;
+  title?: string;
+  description?: string;
+  background?: string;
   coinsCount?: number;
   itemsCount?: number;
-  onClick?: () => void;
-  image?: React.ReactNode;
+  href?: string;
+  onClick: () => void;
 }
 
 export const InventoryCard = memo((props: InventoryCardProps) => {
-  const {
-    text,
-    coinsCount,
-    itemsCount = 1,
-    image,
-    onClick,
-  } = props;
-
-  const handleSellClick = () => {
-    onClick?.();
-  };
+  const { title, description, itemsCount, background, coinsCount, href, image, onClick } = props;
 
   return (
-    <div className={classNames(cls.ShopCard)}>
-      <div className={cls.img}>
-        {image ?? <img src={`https://placehold.co/600x400`} />}
+      <div
+          className={classNames(cls.InventoryCardProps, { [cls.active]: !!href })}
+          onClick={onClick}
+          style={{background: background}}
+      >
+        <div className={cls.info}>
+          {title && <h3 className={cls.title}>{title}</h3>}
+          {description && <p className={cls.description}>{description}</p>}
+          {coinsCount && (
+              <div className={cls.coinsCount}>
+                <p className={cls.coinsCountText}>Цена {coinsCount} монет</p>
+                <p>Доступно к продаже {itemsCount} шт.</p>
+              </div>
+          )}
+          <ModalButton
+              theme={ModalButtonTheme.BACKGROUND}
+              onClick={onClick}
+              className={cls.button}
+          >
+            Продать
+          </ModalButton>
+          <img className={cls.img} src={image ?? 'https://placehold.co/600x400'}/>
+        </div>
       </div>
-      <div className={cls.info}>
-        {text && (
-          <p className={cls.text}>
-            {text} {itemsCount} шт.
-          </p>
-        )}
-        {coinsCount && (
-          <p className={cls.text}>
-            <CoinIcon /> {coinsCount}
-          </p>
-        )}
-        <button className={cls.link} onClick={handleSellClick}>
-          Продать
-        </button>
-      </div>
-    </div>
   );
 });

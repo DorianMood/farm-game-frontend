@@ -32,7 +32,7 @@ export const CustomGameModal = ({ onClose, opened, url, origin }: Props) => {
   }, [onClose, origin]);
 
   return (
-    <Modal isOpen={opened} className={cls.modal}>
+    <Modal isOpen={opened} className={cls.modal} disableScroll={true}>
       <div className={cls.root}>
         <CloseIcon
           className={cls["close-icon"]}

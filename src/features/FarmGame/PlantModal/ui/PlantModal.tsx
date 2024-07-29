@@ -116,6 +116,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
             harvestTimeout: item.inventoryItem.seed.harvestTimeout,
             background: seedToImageAndBackgroundMapper[item.inventoryItem.seed.type].background,
             image: seedToImageAndBackgroundMapper[item.inventoryItem.seed.type].image,
+            smallImage: seedToImageAndBackgroundMapper[item.inventoryItem.seed.type].smallImage,
           },
         };
       }
@@ -125,7 +126,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   }, [inventory]);
 
   return (
-    <Modal isOpen={opened} className={cls.modal}>
+    <Modal isOpen={opened} className={cls.modal} disableScroll={true}>
       <div className={cls.root}>
         <div className={cls.header}>
           <div onClick={onClose}>
