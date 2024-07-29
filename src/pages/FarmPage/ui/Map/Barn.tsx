@@ -42,7 +42,7 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
   };
 
   useLayoutEffect(() => {
-    if (!barn) return;
+    if (!barn.startedAt) return;
 
     // Search element in the map
     const element = document.getElementById(getAnimalBarnId(barn));
