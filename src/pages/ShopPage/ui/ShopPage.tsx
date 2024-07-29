@@ -11,7 +11,7 @@ import cls from "./ShopPage.module.scss";
 import { inventorySelector } from "entities/Inventory";
 import { InventoryCard } from "shared/ui/InventoryCard/InventoryCard.tsx";
 import { fetchInventory } from "entities/Inventory/model/thunks";
-import { getInventoryItemImage } from "./utils";
+import {getProductData} from "features/BuyProduct/utils.ts";
 
 interface ShopPageProps {
   className?: string;
@@ -53,9 +53,10 @@ export const ShopPage = ({ className }: ShopPageProps) => {
     () =>
       inventory?.items?.map((item) => (
         <InventoryCard
-          image={getInventoryItemImage(item.inventoryItem)}
+          image={getProductData(item?.inventoryItem)?.smallImage}
           key={`${item.inventoryItem.id}`}
-          text={item?.inventoryItem.name}
+          title={item?.inventoryItem.name}
+          description={item?.inventoryItem?.description}
           coinsCount={item.inventoryItem.price}
           itemsCount={item.amount}
           onClick={() => {
@@ -72,9 +73,11 @@ export const ShopPage = ({ className }: ShopPageProps) => {
       products?.items?.map((item) => {
         return (
           <ShopCard
-            image={getInventoryItemImage(item)}
+            image={getProductData(item)?.smallImage}
             key={`${item?.id}`}
-            text={item?.name}
+            title={item.name}
+            background={getProductData(item)?.background}
+            description={item.description}
             coinsCount={item.price}
             onClick={() => handleClickShopCard(item.id, false)}
           />
@@ -97,14 +100,14 @@ export const ShopPage = ({ className }: ShopPageProps) => {
         <Heading level={1} className={cls.shopHeading}>
           Магазин
         </Heading>
-        <div className={cls["inventory-container"]}>
-          <Heading level={4}>К ПОКУПКЕ</Heading>
+          {!!productList?.length && <div className={cls["inventory-container"]}>
+          <Heading level={4}>Можно купить</Heading>
           <div className={cls["inventory"]}>{productList}</div>
-        </div>
-        <div className={cls["inventory-container"]}>
-          <Heading level={4}>К ПРОДАЖЕ</Heading>
+        </div>}
+          {!!inventoryList?.length && <div className={cls["inventory-container"]}>
+          <Heading level={4}>Можно продать</Heading>
           <div className={cls["inventory"]}>{inventoryList}</div>
-        </div>
+        </div>}
       </div>
     </>
   );

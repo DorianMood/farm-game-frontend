@@ -44,6 +44,7 @@ export const getProductData = (product?: Product) => {
             background: '',
             image: '',
             nameForBuyOrSell: '',
+            smallImage: '',
         }
     }
 
@@ -52,6 +53,7 @@ export const getProductData = (product?: Product) => {
             background: seedToImageAndBackgroundMapper[product.seed.type].background,
             image: seedToImageAndBackgroundMapper[product.seed.type].image,
             nameForBuyOrSell: seedToImageAndBackgroundMapper[product.seed.type].nameForBuyOrSell,
+            smallImage: seedToImageAndBackgroundMapper[product.seed.type].smallImage,
         }
     }
     if (isSeedProduct(product)) {
@@ -59,6 +61,7 @@ export const getProductData = (product?: Product) => {
             background: seedProductToImageAndBackgroundMapper[product.seedProduct.type].background,
             image: seedProductToImageAndBackgroundMapper[product.seedProduct.type].image,
             nameForBuyOrSell: seedProductToImageAndBackgroundMapper[product.seedProduct.type].nameForBuyOrSell,
+            smallImage: seedProductToImageAndBackgroundMapper[product.seedProduct.type].smallImage,
         }
     }
 
@@ -67,6 +70,7 @@ export const getProductData = (product?: Product) => {
             background: animalToImageAndBackgroundMapper[product.animal.type].background,
             image: animalToImageAndBackgroundMapper[product.animal.type].image,
             nameForBuyOrSell: animalToImageAndBackgroundMapper[product.animal.type].nameForBuyOrSell,
+            smallImage: animalToImageAndBackgroundMapper[product.animal.type].smallImage,
         }
     }
 
@@ -75,6 +79,7 @@ export const getProductData = (product?: Product) => {
             background: animalProductToImageAndBackgroundMapper[product.animalProduct.type].background,
             image: animalProductToImageAndBackgroundMapper[product.animalProduct.type].image,
             nameForBuyOrSell: animalProductToImageAndBackgroundMapper[product.animalProduct.type].nameForBuyOrSell,
+            smallImage: animalProductToImageAndBackgroundMapper[product.animalProduct.type].smallImage,
         }
     }
 }

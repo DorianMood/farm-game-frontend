@@ -15,6 +15,7 @@ export type ActivePlant = {
   harvestTimeout: number;
   background: string;
   image: string;
+  smallImage: string;
 };
 
 interface Props {
@@ -101,7 +102,7 @@ export const Plant = ({
           icon={plant.icon}
           description={activePlants[plant.type]?.description}
           additionalInfo={additionalInfo}
-          image={activePlants[plant.type]?.image}
+          image={activePlants[plant.type]?.smallImage}
           background={activePlants[plant.type]?.background}
         />
       )}
