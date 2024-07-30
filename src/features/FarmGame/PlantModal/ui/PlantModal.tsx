@@ -1,9 +1,6 @@
 import useSound from "use-sound";
 import { useMemo, useState, DragEvent, useEffect } from "react";
 import { Modal } from "shared/ui/Modal/Modal.tsx";
-import Back from "shared/assets/images/farm/back.svg?react";
-import Pause from "shared/assets/images/farm/pause.svg?react";
-import Play from "shared/assets/images/farm/play.svg?react";
 import Bed from "shared/assets/images/game-1/bed.svg?react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import classNames from "classnames";
@@ -21,7 +18,8 @@ import {
   InventoryItemSeed,
   SeedEnum,
 } from "entities/Inventory/model/types.ts";
-import {seedToImageAndBackgroundMapper} from "../../../../shared/const/pictureAndColorMapping.ts";
+import {seedToImageAndBackgroundMapper} from "shared/const/pictureAndColorMapping.ts";
+import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
 
 interface Props {
   onClose: () => void;
@@ -42,7 +40,6 @@ const isSeed = (
 };
 
 export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
-  const [paused, setPaused] = useState<boolean>(false);
   const [plant, setPlant] = useState<SeedEnum | null>();
   const [dragged, setDragged] = useState<boolean>(false);
   const [hasDoneTask, setDoneTask] = useState<boolean>(false);
@@ -99,7 +96,6 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
     () => () => {
       setDoneTask(false);
       setDragged(false);
-      setPaused(false);
       setPlant(null);
     },
     [opened]
@@ -129,13 +125,8 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
     <Modal isOpen={opened} className={cls.modal} disableScroll={true}>
       <div className={cls.root}>
         <div className={cls.header}>
-          <div onClick={onClose}>
-            <Back/>
-          </div>
+          <BackButton className={cls['back-button']} onClick={onClose}/>
           <p className={cls.title}>Засеивание</p>
-          <div onClick={() => setPaused((state) => !state)}>
-            {paused ? <Play/> : <Pause/>}
-          </div>
         </div>
         <p className={cls.description}>Выбери нужный сорт и перенеси на поле:</p>
 

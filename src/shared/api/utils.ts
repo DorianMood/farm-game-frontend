@@ -206,7 +206,7 @@ export const mockRest = (response: AxiosResponse) => {
             "deletedAt": null,
             "username": "admin",
             "email": "admin@mail.ru",
-            "ballance": 810,
+            "ballance": 100,
             "beds": [
                 {
                     "id": "9cd1519e-dd8a-4b76-8e84-8160da88eaa7",
