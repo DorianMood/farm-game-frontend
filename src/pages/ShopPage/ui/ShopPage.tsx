@@ -59,6 +59,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
           description={item?.inventoryItem?.description}
           coinsCount={item.inventoryItem.price}
           itemsCount={item.amount}
+          background={getProductData(item?.inventoryItem)?.background}
           onClick={() => {
             handleClickShopCard(item.inventoryItem.id, true);
             setSlotId(item.id);
