@@ -102,11 +102,11 @@ export const ShopPage = ({ className }: ShopPageProps) => {
           Магазин
         </Heading>
           {!!productList?.length && <div className={cls["inventory-container"]}>
-          <Heading level={4}>Можно купить</Heading>
+          <Heading level={3}>Можно купить</Heading>
           <div className={cls["inventory"]}>{productList}</div>
         </div>}
           {!!inventoryList?.length && <div className={cls["inventory-container"]}>
-          <Heading level={4}>Можно продать</Heading>
+          <Heading level={3}>Можно продать</Heading>
           <div className={cls["inventory"]}>{inventoryList}</div>
         </div>}
       </div>

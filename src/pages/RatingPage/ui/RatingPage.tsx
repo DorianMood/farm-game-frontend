@@ -54,7 +54,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
     );
 
     if (isLoadingRating) {
-        return <div className={classNames(cls.Rating, {}, [className])}><Loader/></div>
+        return <div className={classNames(cls.RatingLoader, {}, [className])}><Loader/></div>
     }
 
     return (

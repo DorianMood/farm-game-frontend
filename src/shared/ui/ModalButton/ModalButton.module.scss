@@ -17,9 +17,15 @@
 }
 
 .background {
-    background: var(--dark);
+    background-color: var(--dark);
     color: var(--light);
     border: none;
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+
+    &:hover {
+        background-color: rgba(44, 3, 3, 0.15);
+        color: var(--dark);
+    }
 }
 
 .square {
