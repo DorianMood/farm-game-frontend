@@ -10,10 +10,11 @@ interface RatingCardProps {
   city?: string;
   coinsCount: number;
   isCurrent?: boolean;
+  rank?: number;
 }
 
 export const RatingCard = memo((props: RatingCardProps) => {
-  const {className, name, city, coinsCount, isCurrent} = props;
+  const {className, name, city, rank, coinsCount, isCurrent} = props;
 
 
   return (
@@ -27,6 +28,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
       )}
     >
       <div className={cls.info}>
+        {rank && <p className={cls.rank}>{rank}</p>}
         <ProfileIcon />
         <div>
           <p className={cls.text}>{name}</p>

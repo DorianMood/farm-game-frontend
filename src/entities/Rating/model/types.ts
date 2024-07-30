@@ -1,9 +1,10 @@
 export interface RatingItem {
-    "id": string,
-    "username": string,
-    "name": string,
-    "city"?: string,
-    "ballance": number
+    id: string,
+    username: string,
+    name: string,
+    city?: string,
+    ballance: number,
+    rank?: number,
 }
 
 export interface RatingResponse {
@@ -15,6 +16,7 @@ export interface RatingResponse {
         createdAt?: string;
         name?: string;
         city?: string;
+        rank?: number;
     },
     below: RatingItem[];
 }

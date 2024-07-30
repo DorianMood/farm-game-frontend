@@ -32,6 +32,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
                     name={item.name ?? item.username}
                     city={item.city}
                     isCurrent={false}
+                    rank={item?.rank}
                 />
             )),
         [rating]
@@ -46,6 +47,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
                     name={item.name ?? item.username}
                     city={item.city}
                     isCurrent={false}
+                    rank={item?.rank}
                 />
             )),
         [rating]
@@ -72,6 +74,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
                     name={rating?.user?.name ?? rating?.user?.username ?? ""}
                     city={rating?.user?.city}
                     isCurrent={true}
+                    rank={rating?.user?.rank}
                 />
                 {!!itemsListBelow?.length && (
                     <>
