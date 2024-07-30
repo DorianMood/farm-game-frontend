@@ -1,16 +1,14 @@
 import {Modal} from "shared/ui/Modal/Modal.tsx";
 import Back from "shared/assets/images/farm/back.svg?react";
-import Pause from "shared/assets/images/farm/pause.svg?react";
-import Play from "shared/assets/images/farm/play.svg?react";
-import {DragEvent, MouseEvent, useEffect, useMemo, useState} from "react";
+import {DragEvent, MouseEvent, useEffect, useState} from "react";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import {fetchSurveyData} from "entities/Survey/model/thunks.ts";
 import {useSelector} from "react-redux";
 import {surveySelector} from "entities/Survey";
 import classNames from "classnames";
 import cls from "./SurveyModal.module.scss";
-import {useTimer} from "../useTimer.ts";
 import {surveyIsLoadingSelector} from "entities/Survey/model/selectors.ts";
+import {TimerButton} from "shared/ui/TimerButton/TimerButton.tsx";
 
 interface Props {
     opened: boolean;
@@ -31,31 +29,10 @@ interface InnerAnswer {
     index: number;
 }
 
-const TIMEOUT = 60_000; // minute
-
 export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
     const dispatch = useAppDispatch();
     const survey = useSelector(surveySelector);
     const isLoadingSurvey = useSelector(surveyIsLoadingSelector);
-
-    const {elapsedTime, isRunning, handlePause, handleReset, handleStart} =
-        useTimer();
-
-    const progress = Math.min(
-        Math.round((elapsedTime / TIMEOUT) * 10000) / 100,
-        100,
-    );
-
-    const isOver = useMemo(() => progress === 100, [progress]);
-
-    useEffect(() => {
-        handleReset();
-        if (opened) {
-            handleStart();
-        } else {
-            handlePause();
-        }
-    }, [opened]);
 
     useEffect(() => {
         dispatch(fetchSurveyData(taskId));
@@ -120,11 +97,7 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
             onSubmit(true);
             return;
         }
-
-        if (isOver) {
-            onSubmit(false);
-        }
-    }, [isOver, questions]);
+    }, [questions]);
 
     const handleDragStart = (event: DragEvent<HTMLSpanElement>) => {
         const index = event.currentTarget.getAttribute("data-index");
@@ -173,16 +146,10 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
                         <Back/>
                     </div>
                     <p className={cls.title}>Я финансовый гений!</p>
-                    <div
-                        onClick={() => (isRunning ? handlePause() : handleStart())}
-                        style={{
-                            background: `linear-gradient(#2a5259, #2a5259) content-box no-repeat, conic-gradient(#FF9595 ${progress}%, 0, #99EB8C ) border-box`,
-                            border: "4px solid transparent",
-                            borderRadius: "50%",
-                        }}
-                    >
-                        {isRunning ? <Pause/> : <Play/>}
-                    </div>
+                    <TimerButton
+                        opened={opened}
+                        onSubmit={onSubmit}
+                    />
                 </div>
 
                 <div className={cls.content}>

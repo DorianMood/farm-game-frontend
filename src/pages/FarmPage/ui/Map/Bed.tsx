@@ -1,14 +1,13 @@
 import {Bed as BedType} from "entities/Bed";
 import {useEffect, useLayoutEffect, useMemo, useState} from "react";
-
 import cls from "../FarmPage.module.scss";
 import {FarmProductBadge} from "shared/ui/FarmProductBadge";
 import {getCropImage} from "./utils";
 import {TaskCard} from "shared/ui/TaskCard/TaskCard";
 import classNames from "classnames";
-import {currentTutorialSelector} from "../../../../entities/Tutorial/model/selectors.ts";
+import {currentTutorialSelector} from "entities/Tutorial/model/selectors.ts";
 import {useSelector} from "react-redux";
-import {TutorialNameEnum} from "../../../../entities/Tutorial/model/types.ts";
+import {TutorialNameEnum} from "entities/Tutorial/model/types.ts";
 
 interface BedProps {
   bed: BedType;

@@ -28,6 +28,7 @@ export const FarmPage = () => {
   const dispatch = useAppDispatch();
   const user = useSelector(userSelector);
   const beds = useSelector(bedsSelector);
+
   const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
   useEffect(() => {
@@ -37,6 +38,18 @@ export const FarmPage = () => {
     dispatch(fetchUserData());
     dispatch(fetchAnimalBarns());
   }, [dispatch, currentTutorialPage]);
+
+
+  const [isShowingTutorial, setShowingTutorial] = useState(true);
+
+  useEffect(() => {
+    const hasShownTutorial = localStorage.getItem('hasShownFirstTutorial');
+    if (!(hasShownTutorial === user?.id)) {
+      setShowingTutorial(true)
+    } else {
+      setShowingTutorial(false)
+    }
+  }, []);
 
   const {tasks, plantActivity, surveyActivity, surveyTask} =
     useTasksController();
@@ -126,7 +139,7 @@ export const FarmPage = () => {
           bedIndex={bedIndex!}
         />
       )}
-      {surveyActivity && surveyTask && (
+      {!isShowingTutorial && surveyActivity && surveyTask && (
         <SurveyModal
           opened={openedGeniusModal}
           taskId={surveyTask?.task.id}
