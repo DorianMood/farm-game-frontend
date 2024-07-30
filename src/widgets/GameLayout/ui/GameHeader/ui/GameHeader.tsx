@@ -102,7 +102,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
               isActiveTutorial && currentTutorial !== TutorialNameEnum.RATING,
           })}
           cardType={StatisticsCardType.RATING}
-          text="10"
+          text={`${user?.rank ?? ""}`}
         />
       </div>
     </>

@@ -10,7 +10,8 @@ export const getRating = () => {
             "email": "admin@mail.ru",
             "name": "Евгений",
             "city": "Москва",
-            "ballance": 996800
+            "ballance": 996800,
+            "rank": 1,
         },
         "below": [
             {
@@ -18,21 +19,24 @@ export const getRating = () => {
                 "username": "admin1",
                 "name": "Егор",
                 "city": null,
-                "ballance": 1000
+                "ballance": 1000,
+                "rank": 3,
             },
             {
                 "id": "2aaafea7-bc72-4bac-b6ea-4768316d2c84",
                 "username": "admin2",
                 "name": "Маша",
                 "city": null,
-                "ballance": 500
+                "ballance": 500,
+                "rank": 4,
             },
             {
                 "id": "f22eda95-c388-4e64-978a-02c094deb29a",
                 "username": "admin3",
                 "name": "Леонид",
                 "city": null,
-                "ballance": 400
+                "ballance": 400,
+                "rank": 5,
             }
         ]
     }

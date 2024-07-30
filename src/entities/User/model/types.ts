@@ -5,6 +5,7 @@ export interface User {
   createdAt?: string;
   name?: string;
   city?: string;
+  rank?: number;
 }
 
 export interface UserSchema {
