@@ -2,6 +2,8 @@ import classNames from "classnames";
 import { memo } from "react";
 import cls from "./ShopCard.module.scss";
 import {ModalButton, ModalButtonTheme} from "../ModalButton/ModalButton.tsx";
+import {useSelector} from "react-redux";
+import {userSelector} from "entities/User";
 
 interface ShopCardProps {
   image?: string;
@@ -16,6 +18,9 @@ interface ShopCardProps {
 
 export const ShopCard = memo((props: ShopCardProps) => {
   const { title, description, background, coinsCount, href, image, onClick } = props;
+  const user = useSelector(userSelector);
+
+  const isButtonDisabled = (user?.ballance ?? 0) < (coinsCount ?? 0)
 
   return (
     <div
@@ -35,6 +40,7 @@ export const ShopCard = memo((props: ShopCardProps) => {
             theme={ModalButtonTheme.BACKGROUND}
             onClick={onClick}
             className={cls.button}
+            disabled={isButtonDisabled}
         >
           Купить
         </ModalButton>

@@ -3,13 +3,13 @@ import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import Farmer from "shared/assets/images/farmer.png";
 import { MainPageHeader } from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
 import { AuthModal } from "features/AuthUser";
-import { useNavigate } from "react-router-dom";
-import { RoutePath} from "shared/config/routeConfig/routeConfig";
 import Rays from "shared/assets/images/rays.png";
 import cls from "./MainPage.module.scss";
+import {isAuthentificatedThunk} from "entities/User/model/thunks.ts";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 
 export const MainPage = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch()
   const [isAuthModal, setIsAuthModal] = useState(false);
 
   const onCloseModal = useCallback(() => {
@@ -21,8 +21,8 @@ export const MainPage = () => {
   }, []);
 
   const onSuccess = useCallback(() => {
-    navigate(RoutePath.farm);
-  }, [navigate]);
+      dispatch(isAuthentificatedThunk())
+  }, [dispatch]);
 
   return (
     <div className={cls.MainPage}>

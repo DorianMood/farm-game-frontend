@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import {Heading} from "shared/ui/Heading/Heading";
-import {useEffect, useMemo} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {RatingCard} from "shared/ui/RatingCard/RatingCard";
 import cls from "./RatingPage.module.scss";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
@@ -19,28 +19,44 @@ export const RatingPage = ({className}: RatingPageProps) => {
     const rating = useSelector(ratingSelector);
     const isLoadingRating = useSelector(isRatingLoadingSelector);
 
+    const [isVisibleAboveDots, setVisibleAboveDots] = useState(false);
+    const [isVisibleBelowDots, setVisibleBelowDots] = useState(false);
+
+
     useEffect(() => {
         dispatch(fetchRatingData());
     }, []);
 
     const itemsListAbove = useMemo(
         () =>
-            rating?.above?.map((item) => (
-                <RatingCard
-                    key={item.id}
-                    coinsCount={item.ballance}
-                    name={item.name ?? item.username}
-                    city={item.city}
-                    isCurrent={false}
-                    rank={item?.rank}
-                />
-            )),
+            rating?.above?.map((item, index) => {
+                    if (index === rating?.above.length - 1) {
+                        setVisibleBelowDots(((rating?.user?.rank ?? 0) - (item?.rank ?? 0)) !== 1)
+                    }
+
+                return (
+                    <RatingCard
+                        key={item.id}
+                        coinsCount={item.ballance}
+                        name={item.name ?? item.username}
+                        city={item.city}
+                        isCurrent={false}
+                        rank={item?.rank}
+                    />
+                )
+            }),
         [rating]
     );
 
     const itemsListBelow = useMemo(
         () =>
-            rating?.below?.map((item) => (
+            rating?.below?.map((item, index) => {
+
+                if (index === rating?.above.length - 1) {
+                    setVisibleAboveDots(((item?.rank ?? 0) - (rating?.user?.rank ?? 0)) !== 1)
+                }
+
+                return (
                 <RatingCard
                     key={item.id}
                     coinsCount={item.ballance}
@@ -49,7 +65,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
                     isCurrent={false}
                     rank={item?.rank}
                 />
-            )),
+            )}),
         [rating]
     );
 
@@ -65,7 +81,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
             <div className={cls.ratingCardsList}>
                 {!!itemsListAbove?.length && (
                     <> {itemsListAbove}
-                        <div className={cls.dots}>...</div>
+                       {isVisibleAboveDots && <div className={cls.dots}>...</div>}
                     </>
                 )}
                 <RatingCard
@@ -78,7 +94,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
                 />
                 {!!itemsListBelow?.length && (
                     <>
-                        <div className={cls.dots}>...</div>
+                        {isVisibleBelowDots && <div className={cls.dots}>...</div>}
                         {itemsListBelow}
                     </>
                 )}

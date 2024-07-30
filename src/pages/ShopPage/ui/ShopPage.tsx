@@ -12,6 +12,7 @@ import { inventorySelector } from "entities/Inventory";
 import { InventoryCard } from "shared/ui/InventoryCard/InventoryCard.tsx";
 import { fetchInventory } from "entities/Inventory/model/thunks";
 import {getProductData} from "features/BuyProduct/utils.ts";
+import {fetchUserData} from "entities/User/model/thunks.ts";
 
 interface ShopPageProps {
   className?: string;
@@ -30,6 +31,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
   const handleClickShopCard = (productId: string, isForSell: boolean) => {
     setProductId(productId);
     setForSell(isForSell);
+    dispatch(fetchUserData())
   };
 
   const handleCloseBuyProductModal = () => {

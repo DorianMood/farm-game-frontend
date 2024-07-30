@@ -12,6 +12,7 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts"
 import {tutorialActions} from "entities/Tutorial";
 import {useSelector} from "react-redux";
 import {userSelector} from "entities/User";
+import {isAuthentificatedThunk} from "entities/User/model/thunks.ts";
 
 interface ProfilePageProps {
   className?: string;
@@ -34,7 +35,7 @@ export const ProfilePage = ({className}: ProfilePageProps) => {
     }, []);
 
     const onSuccess = useCallback(() => {
-        navigate(RoutePath.main);
+        dispatch(isAuthentificatedThunk());
     }, [navigate]);
 
     const onActiveTutorial = () => {
