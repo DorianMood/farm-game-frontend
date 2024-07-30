@@ -1,3 +1,9 @@
+.Tutorial {
+  position: fixed;
+  bottom: -7px;
+  right: 70px;
+}
+
 .tutorial {
   position: fixed;
   z-index: 1;
@@ -5,10 +11,4 @@
   height: 100%;
   width: 100%;
   background: rgb(0%, 0%, 0%, 0.8);
-}
-
-.Tutorial {
-  position: fixed;
-  bottom: -7px;
-  right: 70px;
 }

@@ -9,9 +9,9 @@ import { getAnimalImage } from "./utils";
 
 import cls from "../FarmPage.module.scss";
 import { useSelector } from "react-redux";
-import { currentTutorialSelector } from "../../../../entities/Tutorial/model/selectors.ts";
+import { currentTutorialSelector } from "entities/Tutorial/model/selectors.ts";
 import classNames from "classnames";
-import { TutorialNameEnum } from "../../../../entities/Tutorial/model/types.ts";
+import { TutorialNameEnum } from "entities/Tutorial/model/types.ts";
 
 interface BarnProps {
   barn: AnimalBarn;
