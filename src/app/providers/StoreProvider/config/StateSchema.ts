@@ -17,7 +17,7 @@ import { ProductsSchema } from "entities/Products";
 import {InventorySchema} from "entities/Inventory";
 import {AnimalBarnSchema} from "entities/AnimalBarn";
 import {TutorialSchema} from "entities/Tutorial";
-import {RatingSchema} from "../../../../entities/Rating";
+import {RatingSchema} from "entities/Rating";
 
 export interface StateSchema {
   user: UserSchema;
