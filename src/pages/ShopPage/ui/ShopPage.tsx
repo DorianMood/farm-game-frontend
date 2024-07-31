@@ -24,14 +24,16 @@ interface ShopPageProps {
 
 const getFilter = (tabName: string, item: InventoryItem) => {
     if (tabName === 'all') {
-        return (item.category === InventoryItemCategoryEnum.Animal) || (item.category === InventoryItemCategoryEnum.Seed)
+        return (item.category === InventoryItemCategoryEnum.Animal) || (item.category === InventoryItemCategoryEnum.Seed) || (item.category === InventoryItemCategoryEnum.Fertilizer)
     }
-    console.log(tabName)
     if (tabName === 'animals') {
         return item.category === InventoryItemCategoryEnum.Animal
     }
     if (tabName === 'plants') {
         return item.category === InventoryItemCategoryEnum.Seed
+    }
+    if (tabName === 'others') {
+        return item.category === InventoryItemCategoryEnum.Fertilizer
     }
 }
 
@@ -140,6 +142,10 @@ export const ShopPage = ({className}: ShopPageProps) => {
                             </Tab>
                             <Tab title={'Животные'} active={activeTabName === 'animals'}
                                  onClick={() => handleChangeActiveTab('animals')}>
+                                <ShopCarousel>{productList}</ShopCarousel>
+                            </Tab>
+                            <Tab title={'Прочее'} active={activeTabName === 'others'}
+                                 onClick={() => handleChangeActiveTab('others')}>
                                 <ShopCarousel>{productList}</ShopCarousel>
                             </Tab>
                         </Tabs>

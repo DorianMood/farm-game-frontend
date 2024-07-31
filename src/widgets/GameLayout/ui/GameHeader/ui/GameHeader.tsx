@@ -75,7 +75,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
     inventory?.items.filter((item) => isSeed(item.inventoryItem)) ?? [];
 
   // @ts-ignore
-  const fertilizer: {amount: number; inventoryItem: InventoryItemFertilizer} = inventory?.items.find((item) => isFertilizer(item.inventoryItem)) ?? [];
+  const fertilizer: {amount: number; inventoryItem: InventoryItemFertilizer} = inventory?.items.find((item) => isFertilizer(item.inventoryItem)) ?? {};
 
   const handleFertilizerClick = () => {
     dispatch(activateInventory({id: fertilizer?.inventoryItem?.fertilizer?.id}))
@@ -92,7 +92,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
             type: seed.inventoryItem.seed.type,
             amount: seed.amount,
           }))}
-          hasFertilizer={!!fertilizer}
+          hasFertilizer={!!fertilizer?.inventoryItem}
           onClickFertilizer={handleFertilizerClick}
           className={cn("", {
             [cls.tutorialMode]:
