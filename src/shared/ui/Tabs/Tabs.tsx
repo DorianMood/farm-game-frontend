@@ -19,7 +19,7 @@ export interface TabsProps {
     size?: TabSize;
     children: ReactElement<TabProps> | Array<ReactElement<TabProps>>;
     dataTestId?: string;
-    className: string;
+    className?: string;
 }
 
 export const Tabs = ({

@@ -2876,6 +2876,11 @@ react-router@6.20.0:
   dependencies:
     "@remix-run/router" "1.13.0"
 
+react-simply-carousel@^9.1.4:
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/react-simply-carousel/-/react-simply-carousel-9.1.4.tgz#8067198a057526af9763c403a9ed7151358b322e"
+  integrity sha512-jeOzIwy9jCQKDoxs4Ld4dMyOikyCDvowgP+t5wSX85npa5eGSmcjpJ12f4YabzDR6BEHQ18+5k3/7MwFOyeFkA==
+
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"

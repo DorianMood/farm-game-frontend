@@ -1,8 +1,6 @@
-import {
-    useRef, useState, useEffect, MouseEvent, useMemo,
+import {MouseEvent, useMemo,
 } from 'react';
 import classNames from "classnames";
-import { setSlideline } from './utils';
 import { HeaderProps } from './types';
 import styles from './styles.module.scss';
 
@@ -13,39 +11,7 @@ export const Header = ({
     activeTabIndex,
     dataTestId,
 }: HeaderProps) => {
-    const [mounted, setMounted] = useState(false);
-    const innerRef = useRef<HTMLDivElement>(null);
-
     const headerDataTestId = `${dataTestId}-header`;
-
-    // Применяем анимацию slideline после монтирования
-    useEffect(() => {
-        setMounted(() => {
-            setSlideline(innerRef.current, activeTabIndex);
-
-            return true;
-        });
-    }, []);
-
-    // При изменении активной вкладки перемещаем линию
-    useEffect(() => {
-        setSlideline(innerRef.current, activeTabIndex);
-    }, [activeTabIndex]);
-
-    // При изменении размера вкладок адаптируем ширину линии
-    useEffect(() => {
-        const headerElement = innerRef.current;
-
-        const resizeObserver = new ResizeObserver(() => {
-            setSlideline(headerElement, activeTabIndex);
-        });
-
-        if (headerElement) {
-            resizeObserver.observe(headerElement);
-        }
-
-        return () => resizeObserver.disconnect();
-    }, [activeTabIndex]);
 
     const tabItems = useMemo(
         () => tabs.map(
@@ -84,15 +50,7 @@ export const Header = ({
 
     return (
         <header className={styles.header} data-test-id={headerDataTestId}>
-            <div
-                ref={innerRef}
-                className={classNames(styles.inner, {
-                    [styles.transitioned]: mounted,
-                })}
-                data-test-id={`${headerDataTestId}-inner`}
-            >
                 {tabItems}
-            </div>
         </header>
     );
 };
