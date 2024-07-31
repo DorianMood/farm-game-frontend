@@ -351,6 +351,25 @@ export const getProducts = () => {
                     "type": "Carrot"
                 },
                 "promoCode": null
+            },
+            {
+                "id": "87c22aae-9b68-4301-a7aa-b27e598a0d6d",
+                "createdAt": "2024-07-31T16:51:43.244Z",
+                "updatedAt": "2024-07-31T16:51:43.244Z",
+                "deletedAt": null,
+                "name": "Удобрение",
+                "description": "Удобрения используются для ускорения созревания растений. Купите и примените его для того чтобы удобрение возымело эффект.",
+                "price": 200,
+                "sellMultiplier": 1,
+                "category": "Fertilizer",
+                "animal": null,
+                "seed": null,
+                "animalProduct": null,
+                "seedProduct": null,
+                "promoCode": null,
+                "fertilizer": {
+                    "id": "de265c3e-b9b6-4169-9008-78c165e161c4"
+                }
             }
         ]
     }
