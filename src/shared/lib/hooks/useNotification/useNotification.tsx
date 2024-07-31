@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Notification} from "../../../ui/Notification/Notification";
 
-const ANIMATION_DELAY = 5000;
+const ANIMATION_DELAY = 3000;
 
 export const useNotification = (text: string) => {
     const [isOpenedNotification, setOpenedNotification] = useState(false);
