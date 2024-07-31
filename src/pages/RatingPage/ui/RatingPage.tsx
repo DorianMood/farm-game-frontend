@@ -53,7 +53,6 @@ export const RatingPage = ({className}: RatingPageProps) => {
             rating?.below?.map((item, index) => {
 
                 if (index === 0) {
-                    console.log(item?.rank, rating?.user?.rank, ((item?.rank ?? 0) - (rating?.user?.rank ?? 0)) !== 1)
                     setVisibleBelowDots(((item?.rank ?? 0) - (rating?.user?.rank ?? 0)) !== 1)
                 }
 
