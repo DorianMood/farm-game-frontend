@@ -4,6 +4,7 @@ import cls from "./ShopCard.module.scss";
 import {ModalButton, ModalButtonTheme} from "../ModalButton/ModalButton.tsx";
 import {useSelector} from "react-redux";
 import {userSelector} from "entities/User";
+import {formatDate} from "features/FarmGame/PlantModal/utilts.ts";
 
 interface ShopCardProps {
   image?: string;
@@ -13,11 +14,12 @@ interface ShopCardProps {
   background?: string;
   coinsCount?: number;
   href?: string;
+  harvestTimeout?: number;
   onClick: () => void;
 }
 
 export const ShopCard = memo((props: ShopCardProps) => {
-  const { title, description, background, coinsCount, href, image, onClick } = props;
+  const { title, description, background, coinsCount,harvestTimeout,  href, image, onClick } = props;
   const user = useSelector(userSelector);
 
   const isButtonDisabled = (user?.ballance ?? 0) < (coinsCount ?? 0)
@@ -25,7 +27,6 @@ export const ShopCard = memo((props: ShopCardProps) => {
   return (
     <div
       className={classNames(cls.ShopCard, { [cls.active]: !!href })}
-      onClick={onClick}
       style={{background: background}}
     >
       <div className={cls.info}>
@@ -36,7 +37,12 @@ export const ShopCard = memo((props: ShopCardProps) => {
               <p className={cls.coinsCountText}>Цена {coinsCount} монет</p>
             </div>
         )}
-        <ModalButton
+        {harvestTimeout && (
+            <div className={cls.coinsCount}>
+              <p className={cls.coinsCountText}>Время созревания {formatDate(harvestTimeout)}</p>
+            </div>
+      )}
+      <ModalButton
             theme={ModalButtonTheme.BACKGROUND}
             onClick={onClick}
             className={cls.button}
@@ -44,7 +50,7 @@ export const ShopCard = memo((props: ShopCardProps) => {
         >
           Купить
         </ModalButton>
-          <img className={cls.img} src={image ?? 'https://placehold.co/600x400'}/>
+        <img className={cls.img} src={image ?? 'https://placehold.co/600x400'}/>
       </div>
     </div>
   );

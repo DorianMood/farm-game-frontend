@@ -19,14 +19,19 @@ export interface SignUpError {
 }
 
 const ERRORS_MAPPING: Record<string, Exclude<SignUpError, 'common'>> = {
+    'Name required': {
+        fields: {
+            'name': 'Введите имя пользователя'
+        }
+    },
     'Username required': {
         fields: {
-            'username': 'Введите имя пользователя'
+            'username': 'Введите ник пользователя'
         }
     },
     'Username must contain at least 5 characters': {
         fields: {
-            'username': 'В имени пользователя должно быть минимум 5 символов'
+            'username': 'В нике пользователя должно быть минимум 5 символов'
         }
     },
     'Email required': {
@@ -37,6 +42,11 @@ const ERRORS_MAPPING: Record<string, Exclude<SignUpError, 'common'>> = {
     'Email is invalid': {
         fields: {
             'email': 'Введите корректный email'
+        }
+    },
+    "Email already exists": {
+        fields: {
+            'email': 'Данный email уже зарегистрирован'
         }
     },
     'Password required': {
@@ -60,19 +70,16 @@ export const signUp = createAsyncThunk<
 
   try {
     const response = await extra.api.post<NewUser>("/users", authData);
-
-    if (!response.data) {
-      throw new Error();
+    if (response instanceof AxiosError) {
+        throw response
     }
-
     return response.data;
   } catch (e: unknown) {
       let error: SignUpError = {
           common: 'Произошла ошибка'
       };
-
       if (e instanceof AxiosError) {
-          if ((e?.response?.status === 400) && (e.response.data.message in ERRORS_MAPPING)) {
+          if ((e?.response?.status.toString().startsWith('4')) && (e.response.data.message in ERRORS_MAPPING)) {
               error = ERRORS_MAPPING?.[e.response.data.message];
           }
       }

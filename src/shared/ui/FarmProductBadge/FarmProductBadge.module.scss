@@ -1,17 +1,13 @@
 .root {
-  --progress: 0%;
+  position: relative;
 
   cursor: pointer;
 
   height: 48px;
   width: 48px;
 
-  background:
-    linear-gradient(#2a5259, #2a5259) content-box no-repeat,
-    conic-gradient(#ffd600 var(--progress), 0, #99eb8c) border-box;
-  border: 4px solid transparent;
+  border: 4px solid #78c92d;
   border-radius: 50%;
-  filter: drop-shadow(0px 1px 16px rgba(55, 255, 59, 0.3));
   background-color: #2a5259;
 
   display: flex;
@@ -21,6 +17,34 @@
     width: 120%;
     height: 120%;
     aspect-ratio: auto;
+  }
+}
+
+
+.progress-bar {
+  position: absolute;
+  bottom: 55px;
+  right: -35px;
+  width: 110px;
+  height: 12px;
+  border: 2px solid #78c92d;
+  border-radius: 32px;
+  filter: drop-shadow(0px 1px 16px rgba(55, 255, 59, 0.3));
+  background-color: #2a5259;
+
+  &-fill {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+
+    --progress: 0%;
+
+    background-color: #78c92d;
+
+    width: var(--progress);
+    height: 4px;
+
+    border-radius: 32px;
   }
 }
 

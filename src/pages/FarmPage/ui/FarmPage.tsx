@@ -18,6 +18,7 @@ import {
   harvestAnimals,
 } from "entities/AnimalBarn/model/thunks.ts";
 import {tasksActions} from "entities/Task";
+import {useNotification} from "shared/lib/hooks/useNotification/useNotification.tsx";
 
 interface BedPlant {
   seed: SeedEnum;
@@ -31,6 +32,9 @@ export const FarmPage = () => {
 
   const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
+  const {openNotification: openHarvestNotification, notificationComponent: notificationHarvestComponent} = useNotification('Собранный урожай можно продать в магазине!');
+  const {openNotification: openHarvestBarnNotification, notificationComponent: notificationAnimalComponent} = useNotification('Собранный ресурс можно продать в магазине!');
+
   useEffect(() => {
     dispatch(fetchTasksData());
     dispatch(fetchInventory());
@@ -43,13 +47,13 @@ export const FarmPage = () => {
   const [isShowingTutorial, setShowingTutorial] = useState(true);
 
   useEffect(() => {
-    const hasShownTutorial = localStorage.getItem('hasShownFirstTutorial');
-    if (!(hasShownTutorial === user?.id)) {
+    const hasShownFirstTutorial = user?.id ? localStorage.getItem(user?.id) : '';
+    if (hasShownFirstTutorial !== 'hasShownFirstTutorial') {
       setShowingTutorial(true)
     } else {
       setShowingTutorial(false)
     }
-  }, []);
+  }, [user?.id]);
 
   const {tasks, plantActivity, surveyActivity, surveyTask} =
     useTasksController();
@@ -117,6 +121,7 @@ export const FarmPage = () => {
 
   const handleHarvestBed = (bedIndex: number) => {
     dispatch(harvestBeds({index: bedIndex})).then(() => {
+      openHarvestNotification();
       dispatch(fetchBedsData());
       dispatch(fetchInventory());
     });
@@ -124,6 +129,7 @@ export const FarmPage = () => {
 
   const handleHarvestBarn = (animal: AnimalEnum) => {
     dispatch(harvestAnimals({animal})).then(() => {
+      openHarvestBarnNotification();
       dispatch(fetchAnimalBarns());
       dispatch(fetchInventory());
     });
@@ -153,6 +159,8 @@ export const FarmPage = () => {
         onHarvestAnimal={handleHarvestBarn}
         onCompleteTask={handleCompleteTask}
       />
+      {notificationHarvestComponent}
+      {notificationAnimalComponent}
     </div>
   );
 };

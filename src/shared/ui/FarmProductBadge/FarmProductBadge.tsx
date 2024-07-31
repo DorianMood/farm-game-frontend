@@ -24,9 +24,9 @@ export const FarmProductBadge = ({
   onHarvest,
   className,
 }: FarmProductBadgeProps) => {
-  const [isHarvestAvailable, setIsHarvestAvailable] = useState(false);
+  const [isHarvestAvailable, setIsHarvestAvailable] = useState(endTime - Date.now() < 0);
 
-  const rootRef = useRef<HTMLButtonElement | null>(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -37,7 +37,7 @@ export const FarmProductBadge = ({
 
       rootRef.current?.style.setProperty("--progress", `${progress}%`);
 
-      if (progress > 100) {
+      if (progress > 99) {
         setIsHarvestAvailable(true);
         clearInterval(t);
       } else {
@@ -63,9 +63,11 @@ export const FarmProductBadge = ({
       className={cn(styles.root, className, {
         [styles.bounce]: isHarvestAvailable,
       })}
-      ref={rootRef}
     >
       {icon}
+      {!isHarvestAvailable && <div className={styles['progress-bar']}>
+        <div ref={rootRef} className={styles['progress-bar-fill']}></div>
+      </div>}
     </button>
   );
 };

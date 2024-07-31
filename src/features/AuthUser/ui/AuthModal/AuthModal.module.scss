@@ -1,4 +1,5 @@
 .AuthModal {
+  position: relative;
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -28,4 +29,9 @@
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 10px;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
 }

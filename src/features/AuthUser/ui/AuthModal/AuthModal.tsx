@@ -6,6 +6,7 @@ import {useNotification} from "shared/lib/hooks/useNotification/useNotification"
 import {LoginForm} from "../LoginForm/LoginForm";
 import {SignUpForm} from "../SignUpForm/SignUpForm";
 import cls from "./AuthModal.module.scss";
+import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
 
 interface AuthModalProps {
   className?: string;
@@ -38,9 +39,9 @@ export const AuthModal = ({
       <Modal
           className={classNames("", {}, [className])}
           isOpen={isOpen}
-          onClose={handleCloseModal}
       >
         <div className={classNames(cls.AuthModal, {}, [className])}>
+          <BackButton onClick={handleCloseModal} className={cls['back-button']}/>
           <Text className={cls.title} title={isRegistration ? "Регистрация" : "Вход в игру"}/>
           <div className={cls.registration}>
             <Text textClassName={cls['no-account']} text={isRegistration ? "Есть аккаунт?" : "Нет аккаунта?"}/>

@@ -109,8 +109,8 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
       >
         <TaskCard
           text="Посеять растение"
-          coinsCount={`10`}
           className={cls.card}
+          isPlantCard={true}
         />
       </div>
     );

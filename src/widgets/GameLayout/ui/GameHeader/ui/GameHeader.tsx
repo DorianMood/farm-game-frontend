@@ -16,6 +16,8 @@ import {
 } from "entities/Inventory/model/types";
 import {currentTutorialSelector} from "entities/Tutorial/model/selectors.ts";
 import {TutorialNameEnum} from "entities/Tutorial/model/types.ts";
+import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
+import {useNavigate} from "react-router-dom";
 
 export enum GameHeaderTheme {
   LIGHT = "light",
@@ -27,9 +29,17 @@ interface GameHeaderProps {
   className?: string;
 }
 
+const isSeed = (
+    inventoryItem: InventoryItem
+): inventoryItem is InventoryItemSeed => {
+  return inventoryItem.category === InventoryItemCategoryEnum.Seed;
+};
+
+
 // TODO: Добавить здесь вызовы, подцепить к беку
 export const GameHeader = ({theme}: GameHeaderProps) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const user = useSelector(userSelector);
   const inventory = useSelector(inventorySelector);
   const currentTutorial = useSelector(currentTutorialSelector);
@@ -61,11 +71,9 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
     }
   }, [dispatch, inventory]);
 
-  const isSeed = (
-    inventoryItem: InventoryItem
-  ): inventoryItem is InventoryItemSeed => {
-    return inventoryItem.category === InventoryItemCategoryEnum.Seed;
-  };
+  const handleRatingClick = () => {
+    navigate(RoutePath.rating);
+  }
 
   // @ts-ignore
   const seeds: {amount: number; inventoryItem: InventoryItemSeed}[] =
@@ -103,6 +111,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
           })}
           cardType={StatisticsCardType.RATING}
           text={`${user?.rank ?? ""}`}
+          onClick={handleRatingClick}
         />
       </div>
     </>

@@ -21,7 +21,6 @@ export const InventoryCard = memo((props: InventoryCardProps) => {
   return (
       <div
           className={classNames(cls.InventoryCard, { [cls.active]: !!href })}
-          onClick={onClick}
           style={{background: background}}
       >
         <div className={cls.info}>
