@@ -56,7 +56,7 @@ export const BuyProductModal = ({
     setTimeout(() => {
       onClose();
       onSubmit();
-    }, 2_000);
+    }, 1_000);
   };
 
   const onSellProductsClick = async () => {
@@ -67,7 +67,7 @@ export const BuyProductModal = ({
     setTimeout(() => {
       onClose();
       onSubmit();
-    }, 2_000);
+    }, 1_000);
   };
 
   const productData = useMemo(() => {
