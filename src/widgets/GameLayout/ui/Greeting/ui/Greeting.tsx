@@ -20,14 +20,20 @@ export const Greeting = () => {
 
     // Устанавливаем признак просмотренности туториала при первом заходе пользователя
     useEffect(() => {
-        const hasShownTutorial = localStorage.getItem('hasShownFirstTutorial');
-        if (!hasShownTutorial && isAuthentificated) {
-            setOpen(true);
-            localStorage.setItem('hasShownFirstTutorial', user?.id ?? "1");
+        if (!user?.id) {
+            return
         }
-    }, [isAuthentificated]);
+        const hasShownFirstTutorial = localStorage.getItem(user?.id);
+
+        if ((hasShownFirstTutorial !== 'hasShownFirstTutorial') && isAuthentificated) {
+            setOpen(true);
+        }
+    }, [isAuthentificated, user?.id]);
 
     const handleBeginButtonClick = () => {
+        if (user?.id) {
+            localStorage.setItem(user?.id, 'hasShownFirstTutorial');
+        }
         dispatch(tutorialActions.setPageTutorial(AppRoutes.MY_FARM));
         setOpen(false);
     }
