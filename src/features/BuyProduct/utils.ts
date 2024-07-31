@@ -4,37 +4,43 @@ import {
     InventoryItemSeed,
     InventoryItemSeedProduct
 } from "../../entities/Inventory";
-import {InventoryItemCategoryEnum} from "../../entities/Inventory/model/types.ts";
+import {InventoryItemCategoryEnum, InventoryItemFertilizer} from "entities/Inventory/model/types.ts";
 import {Product} from "../../entities/Products/model/types.ts";
 import {
     animalProductToImageAndBackgroundMapper,
-    animalToImageAndBackgroundMapper,
+    animalToImageAndBackgroundMapper, fertilizerToImageAndBackgroundMapper,
     seedProductToImageAndBackgroundMapper,
     seedToImageAndBackgroundMapper
 } from "../../shared/const/pictureAndColorMapping.ts";
 
-const isSeed = (
+export const isSeed = (
     inventoryItem: InventoryItem,
 ): inventoryItem is InventoryItemSeed => {
     return inventoryItem.category === InventoryItemCategoryEnum.Seed;
 };
 
-const isSeedProduct = (
+export const isSeedProduct = (
     inventoryItem: InventoryItem,
 ): inventoryItem is InventoryItemSeedProduct => {
     return inventoryItem.category === InventoryItemCategoryEnum.SeedProduct;
 };
 
-const isAnimal = (
+export const isAnimal = (
     inventoryItem: InventoryItem,
 ): inventoryItem is InventoryItemAnimal => {
     return inventoryItem.category === InventoryItemCategoryEnum.Animal;
 };
 
-const isAnimalProduct = (
+export const isAnimalProduct = (
     inventoryItem: InventoryItem,
 ): inventoryItem is InventoryItemAnimalProduct => {
     return inventoryItem.category === InventoryItemCategoryEnum.AnimalProduct;
+};
+
+export const isFertilizer = (
+    inventoryItem: InventoryItem,
+): inventoryItem is InventoryItemFertilizer => {
+    return inventoryItem.category === InventoryItemCategoryEnum.Fertilizer;
 };
 
 
@@ -83,6 +89,15 @@ export const getProductData = (product?: Product) => {
             image: animalProductToImageAndBackgroundMapper[product.animalProduct.type].image,
             nameForBuyOrSell: animalProductToImageAndBackgroundMapper[product.animalProduct.type].nameForBuyOrSell,
             smallImage: animalProductToImageAndBackgroundMapper[product.animalProduct.type].smallImage,
+        }
+    }
+
+    if (isFertilizer(product)) {
+        return {
+            background: fertilizerToImageAndBackgroundMapper.background,
+            image: fertilizerToImageAndBackgroundMapper.image,
+            nameForBuyOrSell: fertilizerToImageAndBackgroundMapper.nameForBuyOrSell,
+            smallImage: fertilizerToImageAndBackgroundMapper.smallImage,
         }
     }
 }

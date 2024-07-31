@@ -18,3 +18,21 @@ export const fetchInventory = createAsyncThunk<
     return rejectWithValue("error");
   }
 });
+
+export const activateInventory = createAsyncThunk<
+    undefined,
+    { id: string },
+    ThunkConfig<string>
+>("inventory/activateInventory", async ({ id }, thunkApi) => {
+  const { extra, rejectWithValue } = thunkApi;
+
+  try {
+    const response = await extra.api.post<undefined>("/inventory/activate", {
+      id,
+    });
+
+    return response.data;
+  } catch (e) {
+    return rejectWithValue("error");
+  }
+});
