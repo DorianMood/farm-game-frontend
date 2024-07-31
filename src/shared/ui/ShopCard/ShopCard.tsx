@@ -25,7 +25,6 @@ export const ShopCard = memo((props: ShopCardProps) => {
   return (
     <div
       className={classNames(cls.ShopCard, { [cls.active]: !!href })}
-      onClick={onClick}
       style={{background: background}}
     >
       <div className={cls.info}>

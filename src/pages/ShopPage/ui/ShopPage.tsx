@@ -31,7 +31,6 @@ export const ShopPage = ({ className }: ShopPageProps) => {
   const handleClickShopCard = (productId: string, isForSell: boolean) => {
     setProductId(productId);
     setForSell(isForSell);
-    dispatch(fetchUserData())
   };
 
   const handleCloseBuyProductModal = () => {
@@ -42,6 +41,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
   const handleSubmitClickProduct = () => {
     dispatch(fetchProductsData({ filter: "all" }));
     dispatch(fetchInventory());
+    dispatch(fetchUserData());
     setActiveTabName("all");
   };
 
@@ -59,7 +59,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
           key={`${item.inventoryItem.id}`}
           title={item?.inventoryItem.name}
           description={item?.inventoryItem?.description}
-          coinsCount={item.inventoryItem.price}
+          coinsCount={item.inventoryItem.price * item.inventoryItem.sellMultiplier}
           itemsCount={item.amount}
           background={getProductData(item?.inventoryItem)?.background}
           onClick={() => {

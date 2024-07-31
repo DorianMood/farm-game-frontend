@@ -7,6 +7,7 @@ import {CropEnum} from "entities/Bed/model/types.ts";
 import {Text, TextTheme} from "shared/ui/Text/Text.tsx";
 import {ProductCard} from "shared/ui/ProductCard/ProductCard.tsx";
 import {SeedEnum} from "entities/Inventory/model/types.ts";
+import {formatDate} from "../utilts.ts";
 
 export type ActivePlantType = CropEnum;
 export type ActivePlant = {
@@ -43,7 +44,7 @@ export const Plant = ({
 
   const isDisabled = !activePlants || !activePlants[plant.type];
   const additionalInfo = !isDisabled
-    ? `Время созревания: ${activePlants[plant.type]?.harvestTimeout}`
+    ? `Время созревания: ${formatDate(activePlants[plant.type]?.harvestTimeout)}`
     : "";
 
   const attrs = useLongPress(
