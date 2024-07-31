@@ -103,7 +103,7 @@ export const BuyProductModal = ({
               : `После покупки с вашего балланса будет списано:`}
           </p>
           <div className={cls.price}>
-            <CoinIcon className={cls["text-coin"]} /> {product?.price}
+            <CoinIcon className={cls["text-coin"]} /> {isForSell ? ((product?.price ?? 0) * (product?.sellMultiplier ?? 0)) : product?.price}
           </div>
         </div>
 
