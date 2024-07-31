@@ -96,7 +96,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
           onClickFertilizer={handleFertilizerClick}
           className={cn("", {
             [cls.tutorialMode]:
-              isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT),
+              isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT && currentTutorial !== TutorialNameEnum.ON_FERTILIZE),
           })}
         />
       </div>
