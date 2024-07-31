@@ -6,7 +6,7 @@ export const fetchRatingData = createAsyncThunk<
   RatingResponse,
   undefined,
   ThunkConfig<string>
->("user/fetchUserData", async (_, thunkApi) => {
+>("user/fetchRatingData", async (_, thunkApi) => {
   const { extra, rejectWithValue } = thunkApi;
 
   try {
