@@ -128,7 +128,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
           <BackButton className={cls['back-button']} onClick={onClose}/>
           <p className={cls.title}>Засеивание</p>
         </div>
-        <p className={cls.description}>Выбери нужный сорт и перенеси на поле:</p>
+        <p className={cls.description}>Выберите нужный сорт и перенесите на поле:</p>
 
         {hasDoneTask && <CoinIcon className={cls.coin}/>}
 
