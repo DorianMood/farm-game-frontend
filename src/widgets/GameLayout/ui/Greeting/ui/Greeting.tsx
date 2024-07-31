@@ -3,7 +3,7 @@ import FarmerBoy from "shared/assets/images/farmer.png";
 import cls from "./Greeting.module.scss";
 import {ModalButton, ModalButtonTheme} from "shared/ui/ModalButton/ModalButton.tsx";
 import {useSelector} from "react-redux";
-import {isAuthentificatedSelector, userSelector} from "entities/User";
+import {isAuthentificatedSelector} from "entities/User";
 import {useEffect, useState} from "react";
 import {tutorialActions} from "entities/Tutorial";
 import {AppRoutes} from "shared/config/routeConfig/routeConfig.tsx";
@@ -16,24 +16,17 @@ export const Greeting = () => {
     const [isOpen, setOpen] = useState(false);
 
     const isAuthentificated = useSelector(isAuthentificatedSelector);
-    const user = useSelector(userSelector);
 
     // Устанавливаем признак просмотренности туториала при первом заходе пользователя
     useEffect(() => {
-        if (!user?.id) {
-            return
-        }
-        const hasShownFirstTutorial = localStorage.getItem(user?.id);
-
-        if ((hasShownFirstTutorial !== 'hasShownFirstTutorial') && isAuthentificated) {
+        const hasShownTutorial = localStorage.getItem('hasShownFirstTutorial');
+        if (!hasShownTutorial && isAuthentificated) {
             setOpen(true);
         }
-    }, [isAuthentificated, user?.id]);
+    }, [isAuthentificated]);
 
     const handleBeginButtonClick = () => {
-        if (user?.id) {
-            localStorage.setItem(user?.id, 'hasShownFirstTutorial');
-        }
+        localStorage.setItem('hasShownFirstTutorial', 'true');
         dispatch(tutorialActions.setPageTutorial(AppRoutes.MY_FARM));
         setOpen(false);
     }

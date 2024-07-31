@@ -47,13 +47,13 @@ export const FarmPage = () => {
   const [isShowingTutorial, setShowingTutorial] = useState(true);
 
   useEffect(() => {
-    const hasShownFirstTutorial = user?.id ? localStorage.getItem(user?.id) : '';
-    if (hasShownFirstTutorial !== 'hasShownFirstTutorial') {
+    const hasShownFirstTutorial = localStorage.getItem('hasShownFirstTutorial');
+    if (hasShownFirstTutorial) {
       setShowingTutorial(true)
     } else {
       setShowingTutorial(false)
     }
-  }, [user?.id]);
+  }, []);
 
   const {tasks, plantActivity, surveyActivity, surveyTask} =
     useTasksController();
