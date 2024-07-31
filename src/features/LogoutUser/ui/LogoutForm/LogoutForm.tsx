@@ -35,15 +35,17 @@ export const LogoutForm = memo(({onSuccess}: LogoutFormProps) => {
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <Text className={cls.title} title={"Вы уверены, что хотите выйти из игры?"}/>
-            <Button
-                theme={ButtonTheme.BACKGROUND_INVERTED}
-                className={cls.logoutBtn}
-                onClick={onLogoutClick}
-                disabled={isLoading}
-            >
-                Выйти
-            </Button>
+            <div className={cls.LogoutForm}>
+                <Text className={cls.title} text={"Вы уверены, что хотите выйти из игры?"}/>
+                <Button
+                    theme={ButtonTheme.BACKGROUND_INVERTED}
+                    className={cls.logoutBtn}
+                    onClick={onLogoutClick}
+                    disabled={isLoading}
+                >
+                    Выйти
+                </Button>
+            </div>
         </DynamicModuleLoader>
     );
 });
