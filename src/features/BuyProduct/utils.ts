@@ -45,6 +45,7 @@ export const getProductData = (product?: Product) => {
             image: '',
             nameForBuyOrSell: '',
             smallImage: '',
+            harvestTimeout: 0,
         }
     }
 
@@ -54,6 +55,7 @@ export const getProductData = (product?: Product) => {
             image: seedToImageAndBackgroundMapper[product.seed.type].image,
             nameForBuyOrSell: seedToImageAndBackgroundMapper[product.seed.type].nameForBuyOrSell,
             smallImage: seedToImageAndBackgroundMapper[product.seed.type].smallImage,
+            harvestTimeout: product.seed.harvestTimeout
         }
     }
     if (isSeedProduct(product)) {
@@ -71,6 +73,7 @@ export const getProductData = (product?: Product) => {
             image: animalToImageAndBackgroundMapper[product.animal.type].image,
             nameForBuyOrSell: animalToImageAndBackgroundMapper[product.animal.type].nameForBuyOrSell,
             smallImage: animalToImageAndBackgroundMapper[product.animal.type].smallImage,
+            harvestTimeout: product.animal.harvestTimeout
         }
     }
 

@@ -81,6 +81,7 @@ export const ShopPage = ({ className }: ShopPageProps) => {
             title={item.name}
             background={getProductData(item)?.background}
             description={item.description}
+            harvestTimeout={getProductData(item)?.harvestTimeout}
             coinsCount={item.price}
             onClick={() => handleClickShopCard(item.id, false)}
           />
