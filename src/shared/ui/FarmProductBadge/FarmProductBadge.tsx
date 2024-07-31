@@ -24,7 +24,7 @@ export const FarmProductBadge = ({
   onHarvest,
   className,
 }: FarmProductBadgeProps) => {
-  const [isHarvestAvailable, setIsHarvestAvailable] = useState(false);
+  const [isHarvestAvailable, setIsHarvestAvailable] = useState(endTime - Date.now() < 0);
 
   const rootRef = useRef<HTMLDivElement | null>(null);
 
