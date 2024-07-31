@@ -40,6 +40,10 @@ export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
         {
             text: "Собирайте продукты с животных! Приобрести животных можно в магазине",
             name: TutorialNameEnum.ON_ANIMAL_HARVEST
+        },
+        {
+            text: "Приобретайте удобрение в магазине и ускоряйте процесс созревания растительных культур!",
+            name: TutorialNameEnum.ON_FERTILIZE
         }
     ],
     [AppRoutes.MAIN]: [],

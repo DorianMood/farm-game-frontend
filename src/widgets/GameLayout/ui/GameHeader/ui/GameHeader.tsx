@@ -8,16 +8,18 @@ import {userSelector} from "entities/User";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchUserData} from "entities/User/model/thunks";
 import {ResourcesCard} from "shared/ui/ResourcesCard/ResourcesCard";
-import {InventoryItem, inventorySelector} from "entities/Inventory";
-import {fetchInventory} from "entities/Inventory/model/thunks";
+import {inventorySelector} from "entities/Inventory";
+import {activateInventory, fetchInventory} from "entities/Inventory/model/thunks";
 import {
-  InventoryItemCategoryEnum,
+  InventoryItemFertilizer,
   InventoryItemSeed,
 } from "entities/Inventory/model/types";
 import {currentTutorialSelector} from "entities/Tutorial/model/selectors.ts";
 import {TutorialNameEnum} from "entities/Tutorial/model/types.ts";
 import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
 import {useNavigate} from "react-router-dom";
+import {isFertilizer, isSeed} from "features/BuyProduct/utils";
+import {fetchBedsData} from "entities/Bed/model/thunks.ts";
 
 export enum GameHeaderTheme {
   LIGHT = "light",
@@ -28,13 +30,6 @@ interface GameHeaderProps {
   theme: GameHeaderTheme;
   className?: string;
 }
-
-const isSeed = (
-    inventoryItem: InventoryItem
-): inventoryItem is InventoryItemSeed => {
-  return inventoryItem.category === InventoryItemCategoryEnum.Seed;
-};
-
 
 // TODO: Добавить здесь вызовы, подцепить к беку
 export const GameHeader = ({theme}: GameHeaderProps) => {
@@ -79,6 +74,15 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
   const seeds: {amount: number; inventoryItem: InventoryItemSeed}[] =
     inventory?.items.filter((item) => isSeed(item.inventoryItem)) ?? [];
 
+  // @ts-ignore
+  const fertilizer: {amount: number; inventoryItem: InventoryItemFertilizer} = inventory?.items.find((item) => isFertilizer(item.inventoryItem)) ?? [];
+
+  const handleFertilizerClick = () => {
+    dispatch(activateInventory({id: fertilizer?.inventoryItem?.fertilizer?.id}))
+    dispatch(fetchInventory());
+    dispatch(fetchBedsData());
+  }
+
   return (
     <>
       <div className={cn(cls.content, cls.left)}>
@@ -88,6 +92,8 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
             type: seed.inventoryItem.seed.type,
             amount: seed.amount,
           }))}
+          hasFertilizer={!!fertilizer}
+          onClickFertilizer={handleFertilizerClick}
           className={cn("", {
             [cls.tutorialMode]:
               isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT),

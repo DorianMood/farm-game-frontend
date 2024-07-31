@@ -34,6 +34,8 @@ import SmallHenImage from "shared/assets/images/inventory/small-hen.png";
 import SmallPigImage from "shared/assets/images/inventory/small-pig.png";
 import SmallSheepImage from "shared/assets/images/inventory/small-sheep.png";
 import SmallCowImage from "shared/assets/images/inventory/small-cow.png";
+import FertilizedImage from "shared/assets/images/inventory/fertilized.png";
+import FertilizedSmallImage from "shared/assets/images/inventory/fertilized-small.png";
 
 import {
     AnimalEnum, AnimalProductEnum,
@@ -168,3 +170,10 @@ export const animalProductToImageAndBackgroundMapper: Record<AnimalProductEnum, 
         nameForBuyOrSell: 'молоко коровы'
     },
 }
+
+export const fertilizerToImageAndBackgroundMapper: ImageAndBackground= {
+    image: FertilizedImage,
+    smallImage: FertilizedSmallImage,
+    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
+    nameForBuyOrSell: 'удобрения'
+};

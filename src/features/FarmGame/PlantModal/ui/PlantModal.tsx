@@ -9,17 +9,16 @@ import cls from "./PlantModal.module.scss";
 import { plants } from "../consts.ts";
 import { ActivePlant, Plant } from "./Plant.tsx";
 import { useSelector } from "react-redux";
-import { InventoryItem, inventorySelector } from "entities/Inventory";
+import { inventorySelector } from "entities/Inventory";
 import { AppLink } from "shared/ui/AppLink/AppLink.tsx";
 import { RoutePath } from "shared/config/routeConfig/routeConfig.tsx";
 import ShopIcon from "shared/assets/icons/shop-24-24.svg?react";
 import {
-  InventoryItemCategoryEnum,
-  InventoryItemSeed,
   SeedEnum,
 } from "entities/Inventory/model/types.ts";
 import {seedToImageAndBackgroundMapper} from "shared/const/pictureAndColorMapping.ts";
 import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
+import {isSeed} from "../../../BuyProduct/utils.ts";
 
 interface Props {
   onClose: () => void;
@@ -32,12 +31,6 @@ export interface BedPlant {
   seed: SeedEnum;
   index: number;
 }
-
-const isSeed = (
-  inventoryItem: InventoryItem,
-): inventoryItem is InventoryItemSeed => {
-  return inventoryItem.category === InventoryItemCategoryEnum.Seed;
-};
 
 export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
   const [plant, setPlant] = useState<SeedEnum | null>();

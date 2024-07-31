@@ -75,6 +75,30 @@ export const getInventory = () => {
           promoCode: null,
         },
       },
+      {
+        id: "01c402ed-3367-4f05-8e04-8c0534ea6999",
+        amount: 1,
+        inventoryItem: {
+          id: "01c402ed-3367-4f05-8e04-8c0534ea6990",
+          createdAt: "2024-07-19T13:36:07.352Z",
+          updatedAt: "2024-07-19T13:36:07.352Z",
+          deletedAt: null,
+          name: "Удобрение",
+          description:
+              "Обычно в быту под неплод",
+          price: 12,
+          sellMultiplier: 1,
+          category: "Fertilizer",
+          animal: null,
+          seedProduct: null,
+          animalProduct: null,
+          seed: null,
+          fertilizer: {
+            id: "01c402ed-3367-4f05-8e04-8c0534ea6988",
+          },
+          promoCode: null,
+        },
+      },
     ],
   };
 };
