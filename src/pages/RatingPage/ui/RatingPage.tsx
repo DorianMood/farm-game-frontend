@@ -30,9 +30,9 @@ export const RatingPage = ({className}: RatingPageProps) => {
     const itemsListAbove = useMemo(
         () =>
             rating?.above?.map((item, index) => {
-                    if (index === rating?.above.length - 1) {
-                        setVisibleBelowDots(((rating?.user?.rank ?? 0) - (item?.rank ?? 0)) !== 1)
-                    }
+                if (index === rating?.above.length - 1) {
+                    setVisibleAboveDots(((rating?.user?.rank ?? 0) - (item?.rank ?? 0)) !== 1)
+                }
 
                 return (
                     <RatingCard
@@ -52,20 +52,22 @@ export const RatingPage = ({className}: RatingPageProps) => {
         () =>
             rating?.below?.map((item, index) => {
 
-                if (index === rating?.above.length - 1) {
-                    setVisibleAboveDots(((item?.rank ?? 0) - (rating?.user?.rank ?? 0)) !== 1)
+                if (index === 0) {
+                    console.log(item?.rank, rating?.user?.rank, ((item?.rank ?? 0) - (rating?.user?.rank ?? 0)) !== 1)
+                    setVisibleBelowDots(((item?.rank ?? 0) - (rating?.user?.rank ?? 0)) !== 1)
                 }
 
                 return (
-                <RatingCard
-                    key={item.id}
-                    coinsCount={item.ballance}
-                    name={item.name ?? item.username}
-                    city={item.city}
-                    isCurrent={false}
-                    rank={item?.rank}
-                />
-            )}),
+                    <RatingCard
+                        key={item.id}
+                        coinsCount={item.ballance}
+                        name={item.name ?? item.username}
+                        city={item.city}
+                        isCurrent={false}
+                        rank={item?.rank}
+                    />
+                )
+            }),
         [rating]
     );
 
@@ -81,7 +83,7 @@ export const RatingPage = ({className}: RatingPageProps) => {
             <div className={cls.ratingCardsList}>
                 {!!itemsListAbove?.length && (
                     <> {itemsListAbove}
-                       {isVisibleAboveDots && <div className={cls.dots}>...</div>}
+                        {isVisibleAboveDots && <div className={cls.dots}>...</div>}
                     </>
                 )}
                 <RatingCard

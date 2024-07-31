@@ -14,6 +14,7 @@ export interface RatingResponse {
         username: string;
         ballance?: number;
         createdAt?: string;
+        deletedAt?: string;
         name?: string;
         city?: string;
         rank?: number;
