@@ -23,6 +23,9 @@ paths:
   /inventory:
     $ref: "./inventory/inventory.yaml#/paths/~1inventory"
 
+  /inventory/activate:
+    $ref: "./inventory/inventoryActivate.yaml#/paths/~1inventory~1activate"
+
   /beds:
     $ref: "./beds/beds.yaml#/paths/~1beds"
 

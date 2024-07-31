@@ -1,0 +1,22 @@
+openapi: "3.0.0"
+info:
+  title: Активация элемента инвентаря
+  version: 01.001.00
+
+paths:
+  /inventory/activate:
+    post:
+      tags: [Инвентарь]
+      summary: Активировать элемент инвентаря
+      operationId: inventoryActivate
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/postActivateInventoryItemRq.yaml
+
+      responses:
+        200:
+          $ref: "../common/components.yaml#/components/responses/default"

@@ -79,3 +79,6 @@ export const getInventory = () => {
   };
 };
 
+export const activateInventoryItem = () => {
+  return "OK";
+};

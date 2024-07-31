@@ -1,0 +1,10 @@
+type: object
+description: Активация элемента инвентаря
+
+properties:
+  id:
+    type: string
+    description: Идентификатор элемента инвентаря
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+
+additionalProperties: false
