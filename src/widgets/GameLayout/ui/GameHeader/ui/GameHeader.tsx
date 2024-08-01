@@ -21,6 +21,7 @@ import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
 import {useNavigate} from "react-router-dom";
 import {isFertilizer, isSeed, isVitamin} from "features/BuyProduct/utils";
 import {fetchBedsData} from "entities/Bed/model/thunks.ts";
+import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks.ts";
 
 export enum GameHeaderTheme {
     LIGHT = "light",
@@ -89,11 +90,12 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
         inventoryItem: InventoryItemVitamin
     } = inventory?.items.find((item) => isVitamin(item.inventoryItem)) ?? {};
 
-    const handleFertilizerClick = (category: InventoryItemCategoryEnum.Vitamin | InventoryItemCategoryEnum.Fertilizer) => {
+    const handleFertilizerOrVitaminClick = (category: InventoryItemCategoryEnum.Vitamin | InventoryItemCategoryEnum.Fertilizer) => {
         const data = category === InventoryItemCategoryEnum.Fertilizer ? {id: fertilizer?.id} : {id: vitamin?.id}
         dispatch(activateInventory(data))
         dispatch(fetchInventory());
         dispatch(fetchBedsData());
+        dispatch(fetchAnimalBarns());
     }
 
     return (
@@ -106,9 +108,9 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
                         amount: seed.amount,
                     }))}
                     hasFertilizer={!!fertilizer?.inventoryItem}
-                    onClickFertilizer={() => handleFertilizerClick(InventoryItemCategoryEnum.Fertilizer)}
+                    onClickFertilizer={() => handleFertilizerOrVitaminClick(InventoryItemCategoryEnum.Fertilizer)}
                     hasVitamin={!!vitamin?.inventoryItem}
-                    onClickVitamin={() => handleFertilizerClick(InventoryItemCategoryEnum.Vitamin)}
+                    onClickVitamin={() => handleFertilizerOrVitaminClick(InventoryItemCategoryEnum.Vitamin)}
                     className={cn("", {
                         [cls.tutorialMode]:
                         isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT && currentTutorial !== TutorialNameEnum.ON_FERTILIZE && currentTutorial !== TutorialNameEnum.ON_VITAMIN),
