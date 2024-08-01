@@ -24,7 +24,7 @@ interface ShopPageProps {
 
 const getFilter = (tabName: string, item: InventoryItem) => {
     if (tabName === 'all') {
-        return (item.category === InventoryItemCategoryEnum.Animal) || (item.category === InventoryItemCategoryEnum.Seed) || (item.category === InventoryItemCategoryEnum.Fertilizer)
+        return (item.category === InventoryItemCategoryEnum.Animal) || (item.category === InventoryItemCategoryEnum.Seed) || (item.category === InventoryItemCategoryEnum.Fertilizer) || (item.category === InventoryItemCategoryEnum.Vitamin)
     }
     if (tabName === 'animals') {
         return item.category === InventoryItemCategoryEnum.Animal
@@ -33,7 +33,7 @@ const getFilter = (tabName: string, item: InventoryItem) => {
         return item.category === InventoryItemCategoryEnum.Seed
     }
     if (tabName === 'others') {
-        return item.category === InventoryItemCategoryEnum.Fertilizer
+        return (item.category === InventoryItemCategoryEnum.Fertilizer) || (item.category === InventoryItemCategoryEnum.Vitamin)
     }
 }
 

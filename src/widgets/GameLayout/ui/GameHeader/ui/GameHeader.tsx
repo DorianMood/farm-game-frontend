@@ -11,14 +11,15 @@ import {ResourcesCard} from "shared/ui/ResourcesCard/ResourcesCard";
 import {inventorySelector} from "entities/Inventory";
 import {activateInventory, fetchInventory} from "entities/Inventory/model/thunks";
 import {
+  InventoryItemCategoryEnum,
   InventoryItemFertilizer,
-  InventoryItemSeed,
+  InventoryItemSeed, InventoryItemVitamin,
 } from "entities/Inventory/model/types";
 import {currentTutorialSelector} from "entities/Tutorial/model/selectors.ts";
 import {TutorialNameEnum} from "entities/Tutorial/model/types.ts";
 import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
 import {useNavigate} from "react-router-dom";
-import {isFertilizer, isSeed} from "features/BuyProduct/utils";
+import {isFertilizer, isSeed, isVitamin} from "features/BuyProduct/utils";
 import {fetchBedsData} from "entities/Bed/model/thunks.ts";
 
 export enum GameHeaderTheme {
@@ -77,8 +78,12 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
   // @ts-ignore
   const fertilizer: {amount: number; inventoryItem: InventoryItemFertilizer} = inventory?.items.find((item) => isFertilizer(item.inventoryItem)) ?? {};
 
-  const handleFertilizerClick = () => {
-    dispatch(activateInventory({id: fertilizer?.inventoryItem?.fertilizer?.id}))
+  // @ts-ignore
+  const vitamin: {amount: number; inventoryItem: InventoryItemVitamin} = inventory?.items.find((item) => isVitamin(item.inventoryItem)) ?? {};
+
+  const handleFertilizerClick = (category: InventoryItemCategoryEnum.Vitamin | InventoryItemCategoryEnum.Fertilizer) => {
+    const data = category === InventoryItemCategoryEnum.Fertilizer ? {id: fertilizer?.inventoryItem?.fertilizer?.id} : {id: vitamin?.inventoryItem?.vitamin?.id}
+    dispatch(activateInventory(data))
     dispatch(fetchInventory());
     dispatch(fetchBedsData());
   }
@@ -93,10 +98,12 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
             amount: seed.amount,
           }))}
           hasFertilizer={!!fertilizer?.inventoryItem}
-          onClickFertilizer={handleFertilizerClick}
+          onClickFertilizer={() => handleFertilizerClick(InventoryItemCategoryEnum.Fertilizer)}
+          hasVitamin={!!vitamin?.inventoryItem}
+          onClickVitamin={() => handleFertilizerClick(InventoryItemCategoryEnum.Vitamin)}
           className={cn("", {
             [cls.tutorialMode]:
-              isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT && currentTutorial !== TutorialNameEnum.ON_FERTILIZE),
+              isActiveTutorial && (currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT && currentTutorial !== TutorialNameEnum.ON_FERTILIZE && currentTutorial !== TutorialNameEnum.ON_VITAMIN),
           })}
         />
       </div>

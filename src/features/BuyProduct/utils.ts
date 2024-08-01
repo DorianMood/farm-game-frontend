@@ -4,13 +4,17 @@ import {
     InventoryItemSeed,
     InventoryItemSeedProduct
 } from "../../entities/Inventory";
-import {InventoryItemCategoryEnum, InventoryItemFertilizer} from "entities/Inventory/model/types.ts";
+import {
+    InventoryItemCategoryEnum,
+    InventoryItemFertilizer,
+    InventoryItemVitamin
+} from "entities/Inventory/model/types.ts";
 import {Product} from "../../entities/Products/model/types.ts";
 import {
     animalProductToImageAndBackgroundMapper,
     animalToImageAndBackgroundMapper, fertilizerToImageAndBackgroundMapper,
     seedProductToImageAndBackgroundMapper,
-    seedToImageAndBackgroundMapper
+    seedToImageAndBackgroundMapper, vitaminToImageAndBackgroundMapper
 } from "../../shared/const/pictureAndColorMapping.ts";
 
 export const isSeed = (
@@ -43,6 +47,11 @@ export const isFertilizer = (
     return inventoryItem.category === InventoryItemCategoryEnum.Fertilizer;
 };
 
+export const isVitamin = (
+    inventoryItem: InventoryItem,
+): inventoryItem is InventoryItemVitamin => {
+    return inventoryItem.category === InventoryItemCategoryEnum.Vitamin;
+};
 
 export const getProductData = (product?: Product) => {
     if (!product) {
@@ -98,6 +107,15 @@ export const getProductData = (product?: Product) => {
             image: fertilizerToImageAndBackgroundMapper.image,
             nameForBuyOrSell: fertilizerToImageAndBackgroundMapper.nameForBuyOrSell,
             smallImage: fertilizerToImageAndBackgroundMapper.smallImage,
+        }
+    }
+
+    if (isVitamin(product)) {
+        return {
+            background: vitaminToImageAndBackgroundMapper.background,
+            image: vitaminToImageAndBackgroundMapper.image,
+            nameForBuyOrSell: vitaminToImageAndBackgroundMapper.nameForBuyOrSell,
+            smallImage: vitaminToImageAndBackgroundMapper.smallImage,
         }
     }
 }
