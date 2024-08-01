@@ -8,7 +8,8 @@ export enum TutorialNameEnum {
   RATING,
   ON_PLANT,
   ON_ANIMAL_HARVEST,
-  ON_FERTILIZE
+  ON_FERTILIZE,
+  ON_VITAMIN
 }
 export interface Tutorial {
   name: TutorialNameEnum;

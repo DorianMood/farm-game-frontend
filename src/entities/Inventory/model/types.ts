@@ -14,7 +14,8 @@ export enum InventoryItemCategoryEnum {
   SeedProduct = "SeedProduct",
   AnimalProduct = "AnimalProduct",
   PromoCode = "PromoCode",
-  Fertilizer = "Fertilizer"
+  Fertilizer = "Fertilizer",
+  Vitamin = "Vitamin",
 }
 
 export enum SeedEnum {
@@ -79,7 +80,8 @@ export type InventoryItem =
   | InventoryItemAnimal
   | InventoryItemAnimalProduct
   | InventoryItemPromoCode
-  | InventoryItemFertilizer;
+  | InventoryItemFertilizer
+  | InventoryItemVitamin;
 
 export interface InventoryItemBase {
   id: string;
@@ -118,6 +120,11 @@ export interface InventoryItemPromoCode extends InventoryItemBase {
 export interface InventoryItemFertilizer extends InventoryItemBase {
   category: InventoryItemCategoryEnum.Fertilizer;
   fertilizer: { id: string };
+}
+
+export interface InventoryItemVitamin extends InventoryItemBase {
+  category: InventoryItemCategoryEnum.Vitamin;
+  vitamin: { id: string };
 }
 
 export interface InventorySchema {

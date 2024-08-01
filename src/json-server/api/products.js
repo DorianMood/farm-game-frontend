@@ -370,6 +370,26 @@ export const getProducts = () => {
                 "fertilizer": {
                     "id": "de265c3e-b9b6-4169-9008-78c165e161c4"
                 }
+            },
+            {
+                "id": "07fd1ecb-6e88-4c91-bef8-0eadf169a05d",
+                "createdAt": "2024-07-31T22:00:04.880Z",
+                "updatedAt": "2024-07-31T22:00:04.880Z",
+                "deletedAt": null,
+                "name": "Витамины",
+                "description": "Витамины используются для ускорения созревания животных. Купите и примените его для того чтобы витамины возымели эффект.",
+                "price": 200,
+                "sellMultiplier": 1,
+                "category": "Vitamin",
+                "animal": null,
+                "seed": null,
+                "animalProduct": null,
+                "seedProduct": null,
+                "promoCode": null,
+                "fertilizer": null,
+                "vitamin": {
+                    "id": "d0ea06f2-1525-4d7b-bbd2-0aa342ee9944"
+                }
             }
         ]
     }

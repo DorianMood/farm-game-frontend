@@ -36,6 +36,8 @@ import SmallSheepImage from "shared/assets/images/inventory/small-sheep.png";
 import SmallCowImage from "shared/assets/images/inventory/small-cow.png";
 import FertilizedImage from "shared/assets/images/inventory/fertilized.png";
 import FertilizedSmallImage from "shared/assets/images/inventory/fertilized-small.png";
+import VitaminImage from "shared/assets/images/inventory/vitamin.png";
+import VitaminSmallImage from "shared/assets/images/inventory/vitamin-small.png";
 
 import {
     AnimalEnum, AnimalProductEnum,
@@ -176,4 +178,11 @@ export const fertilizerToImageAndBackgroundMapper: ImageAndBackground= {
     smallImage: FertilizedSmallImage,
     background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
     nameForBuyOrSell: 'удобрения'
+};
+
+export const vitaminToImageAndBackgroundMapper: ImageAndBackground= {
+    image: VitaminImage,
+    smallImage: VitaminSmallImage,
+    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
+    nameForBuyOrSell: 'витамины'
 };
