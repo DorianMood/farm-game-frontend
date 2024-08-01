@@ -67,6 +67,7 @@ export const FarmPage = () => {
         .then(() => {
           // Fetch balance
           dispatch(fetchUserData());
+          dispatch(fetchTasksData());
         });
     }
   };

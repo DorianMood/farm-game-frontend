@@ -73,6 +73,8 @@ export const signUp = createAsyncThunk<
     if (response instanceof AxiosError) {
         throw response
     }
+    localStorage.removeItem('hasShownFirstTutorial');
+
     return response.data;
   } catch (e: unknown) {
       let error: SignUpError = {

@@ -246,6 +246,50 @@ export const mockRest = (response: AxiosResponse) => {
     if (response.config.url === '/auth/authenticated') {
         response.data = true
     }
+    if (response.config.url === '/barns') {
+        response.data = [
+            {
+                "id": "bfac6cf1-b0ef-44c2-bd12-d12028bdec12",
+                "index": 1,
+                "startedAt": null,
+                "animal": {
+                    "id": "ee805a5f-7641-4c2a-bb27-2fba7b3ea881",
+                    "type": "SheepAnimal",
+                    "harvestTimeout": 43200000
+                }
+            },
+            {
+                "id": "1f740db1-e6e1-46b2-bc1b-3f61cb94e4b0",
+                "index": 3,
+                "startedAt": null,
+                "animal": {
+                    "id": "8694b4a8-ae80-4f29-931c-e4fb103cb64d",
+                    "type": "PigAnimal",
+                    "harvestTimeout": 86400000
+                }
+            },
+            {
+                "id": "122d9a3b-c21c-4b6e-bf8f-dd6cd48ece0a",
+                "index": 2,
+                "startedAt": "2024-08-01T08:37:55.509Z",
+                "animal": {
+                    "id": "ebdb43fe-63a0-41c1-8f59-c2f7ce989655",
+                    "type": "CowAnimal",
+                    "harvestTimeout": 64800000
+                }
+            },
+            {
+                "id": "45d04c1e-298b-47e9-a204-540f0979df09",
+                "index": 0,
+                "startedAt": "2024-08-01T08:45:56.788Z",
+                "animal": {
+                    "id": "b440a12f-9ad2-4983-b81f-ab8a06d8c8b6",
+                    "type": "HenAnimal",
+                    "harvestTimeout": 21600000
+                }
+            }
+        ]
+    }
     if (response.config.url === '/users') {
         response.data = {
             "id": "44ba5f13-89ec-4e02-8c56-f2a1355ca226",
@@ -255,6 +299,7 @@ export const mockRest = (response: AxiosResponse) => {
             "username": "admin",
             "email": "admin@mail.ru",
             "ballance": 100,
+            "rank": 1,
             "beds": [
                 {
                     "id": "9cd1519e-dd8a-4b76-8e84-8160da88eaa7",
