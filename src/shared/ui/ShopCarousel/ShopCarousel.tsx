@@ -1,15 +1,20 @@
-import {memo, ReactNode, useState} from "react";
+import {memo, ReactNode, useEffect, useState} from "react";
 import NextArrowIcon from "shared/assets/icons/next-carousel-button.svg?react";
 import PrevArrowIcon from "shared/assets/icons/prev-carousel-button.svg?react";
 import ReactSimplyCarousel from "react-simply-carousel";
 import cls from "./ShopCarousel.module.scss";
 
 interface ShopCardProps {
+    resetActiveIndex?: number;
     children: ReactNode[];
 }
 
-export const ShopCarousel = memo(({children}: ShopCardProps) => {
+export const ShopCarousel = memo(({resetActiveIndex, children}: ShopCardProps) => {
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+    useEffect(() => {
+        setActiveSlideIndex(0);
+    }, [resetActiveIndex]);
 
     return (
         <div className={cls.ShopCarousel}>
@@ -19,9 +24,11 @@ export const ShopCarousel = memo(({children}: ShopCardProps) => {
                         justifyContent: "space-between",
                     }
                 }}
+                disableSwipeByTouch={false}
                 swipeTreshold={60}
                 activeSlideIndex={activeSlideIndex}
                 onRequestChange={setActiveSlideIndex}
+                preventScrollOnSwipe={false}
                 itemsToScroll={1}
                 hideNavIfAllVisible={true}
                 forwardBtnProps={{

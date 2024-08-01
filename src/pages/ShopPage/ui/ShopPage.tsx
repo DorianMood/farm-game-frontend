@@ -134,25 +134,25 @@ export const ShopPage = ({className}: ShopPageProps) => {
                         <Tabs>
                             <Tab title={'Все'} active={activeTabName === 'all'}
                                  onClick={() => handleChangeActiveTab('all')}>
-                                <ShopCarousel>{productList}</ShopCarousel>
+                                <ShopCarousel resetActiveIndex={2}>{productList}</ShopCarousel>
                             </Tab>
                             <Tab title={'Агро-культуры'} active={activeTabName === 'plants'}
                                  onClick={() => handleChangeActiveTab('plants')}>
-                                <ShopCarousel>{productList}</ShopCarousel>
+                                <ShopCarousel resetActiveIndex={3}>{productList}</ShopCarousel>
                             </Tab>
                             <Tab title={'Животные'} active={activeTabName === 'animals'}
                                  onClick={() => handleChangeActiveTab('animals')}>
-                                <ShopCarousel>{productList}</ShopCarousel>
+                                <ShopCarousel resetActiveIndex={4}>{productList}</ShopCarousel>
                             </Tab>
                             <Tab title={'Прочее'} active={activeTabName === 'others'}
                                  onClick={() => handleChangeActiveTab('others')}>
-                                <ShopCarousel>{productList}</ShopCarousel>
+                                <ShopCarousel resetActiveIndex={5}>{productList}</ShopCarousel>
                             </Tab>
                         </Tabs>
                     </div>}
                     {!!inventoryList?.length && <div className={cls["inventory-container"]}>
                         <Heading level={2}>Можно продать</Heading>
-                        <ShopCarousel>{inventoryList}</ShopCarousel>
+                        <ShopCarousel resetActiveIndex={1}>{inventoryList}</ShopCarousel>
                     </div>}
                 </div>
             </div>

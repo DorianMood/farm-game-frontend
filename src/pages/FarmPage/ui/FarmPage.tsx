@@ -48,7 +48,7 @@ export const FarmPage = () => {
 
   useEffect(() => {
     const hasShownFirstTutorial = localStorage.getItem('hasShownFirstTutorial');
-    if (hasShownFirstTutorial) {
+    if (!hasShownFirstTutorial) {
       setShowingTutorial(true)
     } else {
       setShowingTutorial(false)
