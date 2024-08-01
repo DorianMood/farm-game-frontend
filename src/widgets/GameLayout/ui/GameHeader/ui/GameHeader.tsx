@@ -90,12 +90,15 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
         inventoryItem: InventoryItemVitamin
     } = inventory?.items.find((item) => isVitamin(item.inventoryItem)) ?? {};
 
-    const handleFertilizerOrVitaminClick = (category: InventoryItemCategoryEnum.Vitamin | InventoryItemCategoryEnum.Fertilizer) => {
+    const handleFertilizerOrVitaminClick = async (category: InventoryItemCategoryEnum.Vitamin | InventoryItemCategoryEnum.Fertilizer) => {
         const data = category === InventoryItemCategoryEnum.Fertilizer ? {id: fertilizer?.id} : {id: vitamin?.id}
         dispatch(activateInventory(data))
-        dispatch(fetchInventory());
-        dispatch(fetchBedsData());
-        dispatch(fetchAnimalBarns());
+            .unwrap()
+            .then(() => {
+                dispatch(fetchInventory());
+                dispatch(fetchBedsData());
+                dispatch(fetchAnimalBarns());
+            });
     }
 
     return (
