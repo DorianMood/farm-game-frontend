@@ -201,6 +201,30 @@ export const mockRest = (response: AxiosResponse) => {
                         promoCode: null,
                     },
                 },
+                {
+                    id: "01c402ed-3367-4f05-8e04-8c0534ea7999",
+                    amount: 1,
+                    inventoryItem: {
+                        id: "01c402ed-3367-4f05-8e04-8c0534ea7690",
+                        createdAt: "2024-07-19T13:36:07.352Z",
+                        updatedAt: "2024-07-19T13:36:07.352Z",
+                        deletedAt: null,
+                        name: "Витамины",
+                        description:
+                            "Для животных",
+                        price: 12,
+                        sellMultiplier: 1,
+                        category: "Vitamin",
+                        animal: null,
+                        seedProduct: null,
+                        animalProduct: null,
+                        seed: null,
+                        vitamin: {
+                            id: "01c402ed-3367-4f05-8e04-8c0534ea6588",
+                        },
+                        promoCode: null,
+                    },
+                },
             ]
         }
     }
