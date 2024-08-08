@@ -21,6 +21,9 @@ body {
     display: none; /* Chrome, Safari and Opera */
   }
   background: var(--game-bg);
+
+  // INFO: to enable overflow scroll on top level
+  overflow: auto;
 }
 
 .app,
@@ -30,14 +33,14 @@ body {
 }
 
 .app {
-  min-height: 100vh;
+  //min-height: 100vh;
 }
 
 .content-page {
-  position: relative;
-  display: flex;
+  // position: relative;
+  // display: flex;
 }
 
 .page-wrapper {
-  flex-grow: 1;
+  //flex-grow: 1;
 }

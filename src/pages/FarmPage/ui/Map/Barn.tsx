@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { FarmProductBadge } from "shared/ui/FarmProductBadge";
 
@@ -41,7 +41,7 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!barn.startedAt) return;
 
     // Search element in the map
@@ -83,6 +83,7 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
   }
 
   const position = element?.getBoundingClientRect();
+  const rootPosition = document.getElementById("root")?.getBoundingClientRect();
 
   return (
     <div
@@ -91,8 +92,8 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
           currentTutorial === TutorialNameEnum.ON_ANIMAL_HARVEST,
       })}
       style={{
-        top: position.top + position.height / 2 + window.scrollY,
-        left: position.left + position.width / 2 + window.scrollX,
+        top: position.top + position.height / 2 - (rootPosition?.y ?? 0),
+        left: position.left + position.width / 2 - (rootPosition?.x ?? 0),
         transform: "translateX(-50%) translateY(-100%)",
       }}
       key={id}
