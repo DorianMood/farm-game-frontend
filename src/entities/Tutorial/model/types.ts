@@ -9,7 +9,8 @@ export enum TutorialNameEnum {
   ON_PLANT,
   ON_ANIMAL_HARVEST,
   ON_FERTILIZE,
-  ON_VITAMIN
+  ON_VITAMIN,
+  TASK
 }
 export interface Tutorial {
   name: TutorialNameEnum;

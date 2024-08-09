@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import cn from "classnames";
 
 import styles from "./FarmProductBadge.module.scss";
+import {formatDate} from "../../../features/FarmGame/PlantModal/utilts.ts";
 
 interface FarmProductBadgeProps {
   icon: ReactNode;
@@ -66,7 +67,9 @@ export const FarmProductBadge = ({
     >
       {icon}
       {!isHarvestAvailable && <div className={styles['progress-bar']}>
-        <div ref={rootRef} className={styles['progress-bar-fill']}></div>
+        <div ref={rootRef} className={styles['progress-bar-fill']}>
+        </div>
+        <p className={styles['text']}>Время созревания <b>{formatDate(endTime - startTime)}</b></p>
       </div>}
     </button>
   );

@@ -1,4 +1,5 @@
 .Card {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,10 +19,16 @@
   }
 
   .Item {
+    height: 24px;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
+
+    @media (max-width: 768px) {
+      height: auto;
+    }
   }
 }
 
@@ -37,5 +44,24 @@
 .fertilizer {
   height: 32px;
   cursor: pointer;
+}
+
+.product-card {
+  z-index: 100;
+  position: absolute;
+  top: 55px;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.9s opacity;
+
+  @media (max-width: 768px) {
+    top: 0;
+    left: 55px;
+  }
+
+  &--show {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 

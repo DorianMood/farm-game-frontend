@@ -234,14 +234,15 @@ export const mockRest = (response: AxiosResponse) => {
     if (response.config.url === '/tasks') {
         response.data = [
             {
-                "id": "505d3dcb-b1b4-444e-aa55-405c0f12e5f4",
-                "completedAt": "2024-06-24T19:52:02.807Z",
+                "id": "b47fa065-0f7c-4d96-ab19-a95372818a17",
+                "completedAt": null,
                 "task": {
-                    "id": "4c517928-fc81-482d-8e07-f869d338d4de",
-                    "type": "Plant",
-                    "cost": 1
+                    "id": "9af63796-0eea-4280-9290-521adf54b5b9",
+                    "type": "FinanceGenius",
+                    "cost": 10
                 }
-            }]
+            },
+            ]
     }
     if (response.config.url === '/auth/authenticated') {
         response.data = true
@@ -329,7 +330,7 @@ export const mockRest = (response: AxiosResponse) => {
                 {
                     "id": "24a24a7f-afe9-4646-8e00-1445d9be6959",
                     "index": 8,
-                    "plantedAt": null
+                    "plantedAt": "2024-07-23T18:05:49.355Z"
                 },
                 {
                     "id": "9902b97c-fbd2-47bf-9fe4-e1d17769577a",
@@ -344,7 +345,7 @@ export const mockRest = (response: AxiosResponse) => {
                 {
                     "id": "3b695acb-54d9-451e-9826-f5a9586e77f7",
                     "index": 2,
-                    "plantedAt": "2024-07-23T18:05:49.355Z"
+                    "plantedAt": null,
                 },
                 {
                     "id": "c67394ec-f02e-406a-86ef-3a29d305272c",

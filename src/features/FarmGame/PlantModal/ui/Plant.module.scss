@@ -51,10 +51,30 @@
 .product-card {
   position: absolute;
   bottom: 60px;
-  left: -40px;
   opacity: 0;
   visibility: hidden;
   transition: 0.9s opacity;
+  filter: grayscale(0);
+
+  &--disabled {
+    img {
+      right: 11px;
+      bottom: -14px;
+      width: 97px;
+    }
+  }
+
+  &.position--left {
+    right: -30px;
+  }
+
+  &.position--center {
+    left: -120px;
+  }
+
+  &.position--right {
+    left: -40px;
+  }
 
   &--show {
     opacity: 1;

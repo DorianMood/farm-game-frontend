@@ -2,6 +2,7 @@ import { memo } from 'react';
 import classNames from "classnames";
 import cls from "./ProductCard.module.scss";
 
+
 interface ProductCardProps {
   className?: string;
   title?: string;

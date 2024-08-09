@@ -39,7 +39,7 @@ export const getBeds = () => {
     {
       id: "70a51957-c9b5-40c0-87a3-9058657ad5c0",
       index: 1,
-      plantedAt: null,
+      plantedAt: new Date(),
       crop: null,
     },
     {
@@ -63,15 +63,15 @@ export const getBeds = () => {
       },
     },
     {
-      id: "2ba3939b-b92a-4a7d-8419-f738a1b37ca9",
-      index: 2,
-      plantedAt: "2024-07-22T11:52:43.046Z",
-      crop: {
-        id: "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
-        type: "CarrotSeed",
-        harvestTimeout: 300,
-      },
-    },
+      "id": "e8ffb4d8-b034-4cc3-87a9-678adaec27b2",
+      "index": 2,
+      "plantedAt": new Date(),
+      "crop": {
+        "id": "d26781e9-8904-4465-b4ac-90729d66c755",
+        "type": "BeetSeed",
+        "harvestTimeout": 600000
+      }
+    }
   ];
 };
 

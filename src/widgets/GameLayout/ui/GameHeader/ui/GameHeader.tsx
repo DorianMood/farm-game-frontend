@@ -22,6 +22,7 @@ import {useNavigate} from "react-router-dom";
 import {isFertilizer, isSeed, isVitamin} from "features/BuyProduct/utils";
 import {fetchBedsData} from "entities/Bed/model/thunks.ts";
 import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks.ts";
+import {tasksActions, tasksSelector} from "entities/Task";
 
 export enum GameHeaderTheme {
     LIGHT = "light",
@@ -39,6 +40,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
     const navigate = useNavigate();
     const user = useSelector(userSelector);
     const inventory = useSelector(inventorySelector);
+    const tasks = useSelector(tasksSelector);
     const currentTutorial = useSelector(currentTutorialSelector);
 
     const balance = user?.ballance;
@@ -56,6 +58,11 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
         [user?.createdAt]
     );
 
+    const surveyTask = useMemo(
+        () => tasks?.find((task) => task.task.type === "FinanceGenius"),
+        [tasks],
+    );
+
     useEffect(() => {
         if (!user) {
             dispatch(fetchUserData());
@@ -70,6 +77,10 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
 
     const handleRatingClick = () => {
         navigate(RoutePath.rating);
+    }
+
+    const handleTaskClick = () => {
+        dispatch(tasksActions.setOpenTaskModal(true));
     }
 
     // @ts-ignore
@@ -122,6 +133,15 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
             </div>
 
             <div className={cn(cls.content, cls.right)}>
+                {surveyTask && <StatisticsCard
+                    className={cn(cls[theme], {
+                        [cls.tutorialMode]:
+                        isActiveTutorial && currentTutorial !== TutorialNameEnum.TASK,
+                    })}
+                    cardType={StatisticsCardType.TASK}
+                    text={"1 задание"}
+                    onClick={handleTaskClick}
+                />}
                 <StatisticsCard
                     className={cn(cls[theme], {
                         [cls.tutorialMode]:

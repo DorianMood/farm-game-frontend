@@ -12,3 +12,8 @@ export const tasksIsLoadingSelector = createSelector(
   [rootSelector],
   (tasks) => tasks.isLoading,
 );
+
+export const isOpenTaskModalSelector = createSelector(
+    [rootSelector],
+    (tasks) => tasks.isOpenTaskModal,
+);
