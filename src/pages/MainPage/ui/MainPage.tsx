@@ -1,15 +1,17 @@
 import { useCallback, useState } from "react";
-import { Button, ButtonTheme } from "shared/ui/Button/Button";
-import Farmer from "shared/assets/images/farmer.png";
-import { MainPageHeader } from "pages/MainPage/ui/MainPageHeader/MainPageHeader";
+import Farmer from "shared/assets/images/farmer-new.png";
+import Image from "shared/assets/images/mask.svg";
+import Hen from "shared/assets/images/inventory/small-hen-animal.png";
+import Products from "shared/assets/images/products.png";
+import Beet from "shared/assets/images/inventory/small-beet.png";
 import { AuthModal } from "features/AuthUser";
-import Rays from "shared/assets/images/rays.png";
 import cls from "./MainPage.module.scss";
-import {isAuthentificatedThunk} from "entities/User/model/thunks.ts";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import { isAuthentificatedThunk } from "entities/User/model/thunks.ts";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import LogoIcon from "shared/assets/icons/logo-47-47.svg?react";
 
 export const MainPage = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const [isAuthModal, setIsAuthModal] = useState(false);
 
   const onCloseModal = useCallback(() => {
@@ -21,25 +23,66 @@ export const MainPage = () => {
   }, []);
 
   const onSuccess = useCallback(() => {
-      dispatch(isAuthentificatedThunk())
+    dispatch(isAuthentificatedThunk());
   }, [dispatch]);
 
   return (
-    <div className={cls.MainPage}>
-      <MainPageHeader />
-      <div className={cls["game-logo"]}>
-        <div className={cls.rays} style={{ backgroundImage: `url(${Rays})` }} />
-        <h1 className={cls["game-logo-title"]} translate="no">
-          <span data-text="Финансовый">Финансовый</span>
-          <span data-text="фермер">фермер</span>
-        </h1>
+    <div className={cls.root}>
+      <img src={Image} alt="mask" className={cls.mask} />
+
+      <div className={cls.screen}>
+        <header className={cls.header}>
+          <img src={Image} alt="mask" className={cls.mask} />
+          <img src={Farmer} className={cls.character} alt="Фермер логотип" />
+          <div className={cls["logo-badge"]}>
+            <LogoIcon className={cls.image} />
+            <div className={cls["logo-text"]}>
+              <p className={cls.main}>Я в агро</p>
+              <p className={cls.minor}>От Россельхозбанка</p>
+            </div>
+          </div>
+          <h1 className={cls.heading}>Финансовый фермер</h1>
+        </header>
+
+        <div className={cls.new}>
+          <h3>Научись новому</h3>
+          <div className={cls.grid}>
+            <div className={cls.farmer}>
+              <img
+                src={Products}
+                className={cls.illustration}
+                alt="Продукты фермы"
+              />
+              <p>Что делают фермеры</p>
+            </div>
+            <div className={cls.crops}>
+              <img src={Image} alt="mask" className={cls.mask} />
+              <img
+                src={Beet}
+                className={cls.illustration}
+                alt="Растения фермы"
+              />
+              <p>Какие бывают агрокультуры</p>
+            </div>
+            <div className={cls.animals}>
+              <img
+                src={Hen}
+                className={cls.illustration}
+                alt="Животные фермы"
+              />
+              <p>Кто живет на ферме</p>
+            </div>
+          </div>
+        </div>
+
+        <form className={cls.form}>
+          <button className={cls.play} onClick={onShowModal} type="button">
+            Играть
+          </button>
+          <button type="button">Правила игры</button>
+        </form>
       </div>
-      <div className={cls.buttons}>
-        <Button theme={ButtonTheme.BACKGROUND} onClick={onShowModal}>
-          {"Войти на ферму"}
-        </Button>
-      </div>
-      <img src={Farmer} alt="farmer-logo" />
+
       <AuthModal
         isOpen={isAuthModal}
         onClose={onCloseModal}
