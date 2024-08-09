@@ -19,6 +19,7 @@ import {
 } from "entities/AnimalBarn/model/thunks.ts";
 import {tasksActions} from "entities/Task";
 import {useNotification} from "shared/lib/hooks/useNotification/useNotification.tsx";
+import {isOpenTaskModalSelector} from "entities/Task/model/selectors.ts";
 
 interface BedPlant {
   seed: SeedEnum;
@@ -31,6 +32,8 @@ export const FarmPage = () => {
   const beds = useSelector(bedsSelector);
 
   const currentTutorialPage = useSelector(currentTutorialPageSelector);
+
+  const isOpenTaskModal = useSelector(isOpenTaskModalSelector);
 
   const {openNotification: openHarvestNotification, notificationComponent: notificationHarvestComponent} = useNotification('Собранный урожай можно продать в магазине!');
   const {openNotification: openHarvestBarnNotification, notificationComponent: notificationAnimalComponent} = useNotification('Собранный ресурс можно продать в магазине!');
@@ -110,6 +113,7 @@ export const FarmPage = () => {
   const handleCloseGeniusModal = () => {
     setOpenedGeniusModal(false);
     dispatch(tasksActions.resetFinanceGeniusData());
+    dispatch(tasksActions.setOpenTaskModal(false));
   };
 
   const handleSubmitGeniusModal = (success: boolean) => {
@@ -118,6 +122,7 @@ export const FarmPage = () => {
     }
     setOpenedGeniusModal(false);
     dispatch(tasksActions.resetFinanceGeniusData());
+    dispatch(tasksActions.setOpenTaskModal(false));
   };
 
   const handleHarvestBed = (bedIndex: number) => {
@@ -146,7 +151,7 @@ export const FarmPage = () => {
           bedIndex={bedIndex!}
         />
       )}
-      {!isShowingTutorial && surveyActivity && surveyTask && (
+      {!isShowingTutorial && surveyActivity && surveyTask && isOpenTaskModal && (
         <SurveyModal
           opened={openedGeniusModal}
           taskId={surveyTask?.task.id}

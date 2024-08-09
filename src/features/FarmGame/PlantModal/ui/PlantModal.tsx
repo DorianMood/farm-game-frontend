@@ -1,24 +1,23 @@
 import useSound from "use-sound";
-import { useMemo, useState, DragEvent, useEffect } from "react";
-import { Modal } from "shared/ui/Modal/Modal.tsx";
+import {DragEvent, useEffect, useMemo, useState} from "react";
+import {Modal} from "shared/ui/Modal/Modal.tsx";
 import Bed from "shared/assets/images/game-1/bed.svg?react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
 import classNames from "classnames";
 import coinSound from "shared/assets/sounds/coins.mp3";
 import cls from "./PlantModal.module.scss";
-import { plants } from "../consts.ts";
-import { ActivePlant, Plant } from "./Plant.tsx";
-import { useSelector } from "react-redux";
-import { inventorySelector } from "entities/Inventory";
-import { AppLink } from "shared/ui/AppLink/AppLink.tsx";
-import { RoutePath } from "shared/config/routeConfig/routeConfig.tsx";
+import {plants} from "../consts.ts";
+import {ActivePlant, Plant} from "./Plant.tsx";
+import {useSelector} from "react-redux";
+import {inventorySelector} from "entities/Inventory";
+import {AppLink} from "shared/ui/AppLink/AppLink.tsx";
+import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
 import ShopIcon from "shared/assets/icons/shop-24-24.svg?react";
-import {
-  SeedEnum,
-} from "entities/Inventory/model/types.ts";
+import {SeedEnum,} from "entities/Inventory/model/types.ts";
 import {seedToImageAndBackgroundMapper} from "shared/const/pictureAndColorMapping.ts";
 import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
 import {isSeed} from "../../../BuyProduct/utils.ts";
+import {CARD_POSITION} from "../types.ts";
 
 interface Props {
   onClose: () => void;
@@ -140,7 +139,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
 
         <div className={cls.footer}>
           <div className={cls.plants}>
-            {plants.map((plant) => (
+            {plants.map((plant, index) => (
                 <Plant
                     key={plant.type}
                     plant={plant}
@@ -148,6 +147,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
                     isDraggable={!hasDoneTask}
                     handleDragStart={handleChangePlant}
                     handlePlantDragEnd={handlePlantDragEnd}
+                    cardPosition={index >  plants.length/2 ? CARD_POSITION.LEFT : (index === Math.floor(plants.length/2) ? CARD_POSITION.CENTER : CARD_POSITION.RIGHT)}
                 />
             ))}
           </div>

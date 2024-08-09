@@ -16,4 +16,5 @@ export interface TasksSchema {
   data: {
     tasks?: Task[];
   };
+  isOpenTaskModal: boolean;
 }

@@ -22,6 +22,10 @@ export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
             name: TutorialNameEnum.DAYS
         },
         {
+            text: "Выполняйте ежедневные задания и зарабатывайте монеты!",
+            name: TutorialNameEnum.TASK
+        },
+        {
             text: 'За выполнение заданий получайте монетки!',
             name: TutorialNameEnum.BALANCE
         },
@@ -48,7 +52,7 @@ export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
         {
             text: "Приобретайте витамины для животных в магазине и ускоряйте процесс получения животных ресурсов!",
             name: TutorialNameEnum.ON_VITAMIN
-        }
+        },
     ],
     [AppRoutes.MAIN]: [],
     [AppRoutes.ABOUT]: [],

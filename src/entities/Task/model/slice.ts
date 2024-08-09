@@ -8,6 +8,7 @@ const initialState: TasksSchema = {
   data: {
     tasks: undefined,
   },
+  isOpenTaskModal: false,
 };
 
 export const tasksSlice = createSlice({
@@ -25,6 +26,9 @@ export const tasksSlice = createSlice({
     },
     resetTasksDate: (state) => {
       state.data.tasks = [];
+    },
+    setOpenTaskModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenTaskModal = action.payload
     },
   },
   extraReducers: (builder) => {

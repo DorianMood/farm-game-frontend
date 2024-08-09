@@ -150,10 +150,13 @@ export const ShopPage = ({className}: ShopPageProps) => {
                             </Tab>
                         </Tabs>
                     </div>}
-                    {!!inventoryList?.length && <div className={cls["inventory-container"]}>
+                    <div className={cls["inventory-container"]}>
                         <Heading level={2}>Можно продать</Heading>
-                        <ShopCarousel resetActiveIndex={1}>{inventoryList}</ShopCarousel>
-                    </div>}
+                        {!!inventoryList?.length ? (
+                                <ShopCarousel resetActiveIndex={1}>{inventoryList}</ShopCarousel>
+                            ) :
+                            <p className={cls['no-data-text']}>Урожай и прочие товары можно будет продать здесь...</p>}
+                    </div>
                 </div>
             </div>
         </>
