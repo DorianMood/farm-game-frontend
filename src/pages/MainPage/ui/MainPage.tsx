@@ -79,7 +79,6 @@ export const MainPage = () => {
           <button className={cls.play} onClick={onShowModal} type="button">
             Играть
           </button>
-          <button type="button">Правила игры</button>
         </form>
       </div>
 
