@@ -6,38 +6,62 @@ export const mockRest = (response: AxiosResponse) => {
             {
                 "id": "1269f736-fedd-403e-b26e-09c5be8ff42c",
                 "index": 4,
-                "plantedAt": null,
-                "crop": null
+                "plantedAt": "2024-07-22T11:52:15.948Z",
+                "crop": {
+                    "id": "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+                    "type": "BeetSeed",
+                    "harvestTimeout": 300
+                }
             },
             {
                 "id": "384a6d8d-79fa-4b36-be7c-bfb40693274b",
                 "index": 5,
-                "plantedAt": null,
-                "crop": null
+                "plantedAt": "2024-07-22T11:52:15.948Z",
+                "crop": {
+                    "id": "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+                    "type": "FlowerSeed",
+                    "harvestTimeout": 300
+                }
             },
             {
                 "id": "10a50b0c-1be7-4597-97be-27254275d02e",
                 "index": 6,
-                "plantedAt": null,
-                "crop": null
+                "plantedAt": "2024-07-22T11:52:15.948Z",
+                "crop": {
+                    "id": "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+                    "type": "CarrotSeed",
+                    "harvestTimeout": 300
+                }
             },
             {
                 "id": "0b0c0d4e-d56a-49dc-b19c-07b7d4c895a0",
                 "index": 7,
-                "plantedAt": null,
-                "crop": null
+                "plantedAt": "2024-07-22T11:52:15.948Z",
+                "crop": {
+                    "id": "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+                    "type": "FlowerSeed",
+                    "harvestTimeout": 300
+                }
             },
             {
                 "id": "e90131f6-6064-4537-b9d1-41905a5f7580",
                 "index": 8,
-                "plantedAt": null,
-                "crop": null
+                "plantedAt": "2024-07-22T11:52:15.948Z",
+                "crop": {
+                    "id": "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+                    "type": "PotatoSeed",
+                    "harvestTimeout": 300
+                }
             },
             {
                 "id": "4dd797af-6dc9-46c3-82d5-245e961d34c1",
                 "index": 9,
-                "plantedAt": null,
-                "crop": null
+                "plantedAt": "2024-07-22T11:52:15.948Z",
+                "crop": {
+                    "id": "706bdb08-1ab8-4d62-b570-6acbc6cacddc",
+                    "type": "PotatoSeed",
+                    "harvestTimeout": 300
+                }
             },
             {
                 "id": "70a51957-c9b5-40c0-87a3-9058657ad5c0",

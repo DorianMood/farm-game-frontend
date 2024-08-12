@@ -104,7 +104,7 @@
           color: white;
           cursor: pointer;
           transform: translate(0, 0);
-          font-size: var(--font-size-s);
+          font-size: 12px;
 
           &__green {
             background: linear-gradient(180deg, #5db476 0%, #4d9160 100%),
@@ -129,6 +129,7 @@
           }
 
           &__empty {
+            min-width: 130px;
             background: rgba(28, 40, 58, 0.4);
             color: transparent; /* make the text invisible */
             user-select: none; /* prevent selection of the text */
