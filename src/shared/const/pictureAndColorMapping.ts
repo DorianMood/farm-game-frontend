@@ -56,13 +56,13 @@ export const seedToImageAndBackgroundMapper: Record<SeedEnum, ImageAndBackground
     [SeedEnum.BeetSeed]: {
         image: BeetSeedImage,
         smallImage: SmallBeetSeedImage,
-        background: 'linear-gradient(135deg, rgba(220, 180, 255, 0.1) 0%, #DDB5FF 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, #DDB5FF 100%)',
         nameForBuyOrSell: 'cемена свеклы'
     },
     [SeedEnum.PotatoSeed]: {
         image: PotatoSeedImage,
         smallImage: SmallPotatoSeedImage,
-        background: 'linear-gradient(135deg, rgba(255, 203, 142, 0.1) 0%, #FFCB8F 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, #FFCB8F 100%)',
         nameForBuyOrSell: 'клубни картофеля'
     },
     [SeedEnum.FlowerSeed]: {
@@ -95,7 +95,7 @@ export const seedProductToImageAndBackgroundMapper: Record<SeedProductEnum, Imag
     [SeedProductEnum.Potato]: {
         image: PotatoImage,
         smallImage: SmallPotatoImage,
-        background: 'linear-gradient(135deg, rgba(255, 203, 142, 0.1) 0%, #FFCB8F 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, #FFCB8F 100%)',
         nameForBuyOrSell: 'картофель'
 
     },
@@ -114,7 +114,7 @@ export const seedProductToImageAndBackgroundMapper: Record<SeedProductEnum, Imag
     [SeedProductEnum.Beet]: {
         image: BeetImage,
         smallImage: SmallBeetImage,
-        background: 'linear-gradient(135deg, rgba(220, 180, 255, 0.1) 0%, #DDB5FF 100%)',
+        background: 'linear-gradient(135deg, rgba(220, 255, 255, 1) 0%, #DDB5FF 100%)',
         nameForBuyOrSell: 'свеклу'
     }
 }
@@ -135,7 +135,7 @@ export const animalToImageAndBackgroundMapper: Record<AnimalEnum, ImageAndBackgr
     [AnimalEnum.PigAnimal]: {
         image: PigAnimalImage,
         smallImage: SmallPigAnimalImage,
-        background: 'linear-gradient(135deg, rgba(255, 199, 174, 0.1) 0%, #FFB5B7 100%)',
+        background: 'linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, #FFB5B7 100%)',
         nameForBuyOrSell: 'свинью'
     },
     [AnimalEnum.CowAnimal]: {
