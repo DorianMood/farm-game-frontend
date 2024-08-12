@@ -1,9 +1,135 @@
 .Profile {
+   width: 100vw;
+   height: 100vh;
+   position: relative;
+   background: linear-gradient(241.24deg, #ffd458 0.88%, #26d20f 67.72%);
+   overflow: hidden;
+}
+
+.screen {
+   width: 375px;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translateX(-50%) translateY(-50%);
+   border-radius: 32px;
    display: flex;
    flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   gap: 10px;
-   height: 100vh;
-   padding: 100px 20px;
+   gap: 8px;
+   background: #f5f5f5;
+
+   @media (max-width: 412px) {
+      width: 100%;
+      min-height: 100vh;
+      border-radius: unset;
+   }
+}
+
+.header {
+   min-height: 250px;
+   border-radius: 32px;
+   padding: 24px 16px;
+   background: linear-gradient(162.03deg, #7b64f1 0%, #efebff 96.62%);
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: flex-start;
+   overflow: hidden;
+
+   img.mask {
+      position: absolute;
+      height: 240%;
+      left: -93px;
+      transform: rotate(210deg);
+      bottom: -121px;
+
+      @media (max-width: 412px) {
+         display: unset;
+      }
+   }
+
+   @media (max-width: 412px) {
+      border-radius: 0 0 32px 32px;
+   }
+
+   .logo-badge {
+      background: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px 8px 8px;
+      border-radius: 32px;
+      box-shadow: 0px 4px 10px 0px #101e2c0d;
+
+      .image {
+         height: 32px;
+         width: 32px;
+      }
+
+      .logo-text {
+         font-size: 14px;
+         font-weight: 600;
+         line-height: 18px;
+         text-align: left;
+
+         .minor {
+            font-size: 7px;
+            line-height: 8px;
+            text-align: left;
+         }
+      }
+   }
+
+   .heading {
+      color: white;
+      font-size: 22px;
+      line-height: 26px;
+      width: 200px;
+   }
+}
+
+.profile-info {
+   display: flex;
+   flex-direction: row;
+   gap: 16px;
+   padding: 24px;
+   background: #FFFFFF;
+   border-radius: 32px;
+
+   .name {
+      line-height: 22px;
+      font-size: 26px;
+   }
+
+   .city {
+      margin-top: 2px;
+      line-height: 26px;
+      font-size: 16px;
+      color: grey;
+   }
+}
+
+.avatar {
+   height: 64px;
+   width: 64px;
+   background: rgba(236, 236, 236, 1);
+   border-radius: 50%;
+   overflow: hidden;
+
+   img {
+      position: relative;
+      right: 10px;
+      height: 100%;
+   }
+}
+
+.button {
+   padding: 22px;
+   background: #ffffff;
+   color: rgba(28, 203, 1, 1);
+   font-size: 16px;
+   border-radius: 32px;
+   border: none;
+   cursor: pointer;
 }
