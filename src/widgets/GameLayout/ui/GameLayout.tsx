@@ -21,12 +21,12 @@ export const GameLayout = memo(({children, className}: GameHeaderProps) => {
     const isAuthentificated = useSelector(isAuthentificatedSelector);
 
     const showHeaderAndMenu = isAuthentificated && Object.keys(gameRoutes).includes(location.pathname);
-
+    const showHeader = gameRoutes[location.pathname]?.isVisibleHeader;
 
     return (
         <div className={classNames(cls.GameLayout, {}, [className])}>
             <Tutorial/>
-            {showHeaderAndMenu && <GameHeader theme={gameRoutes[location.pathname]?.headerTheme}/>}
+            {showHeaderAndMenu && showHeader && <GameHeader theme={gameRoutes[location.pathname]?.headerTheme}/>}
             {children}
             {showHeaderAndMenu && <GameMenu/>}
             <Greeting />

@@ -100,7 +100,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     return (
       <div
         className={classNames(cls.task, {
-          [cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_PLANT,
+          [cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_PLANT && bed.index < 4,
         })}
         style={{
           top: position.top + position.height / 2 - (rootPosition?.y ?? 0),
@@ -122,7 +122,7 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   return (
     <div
       className={classNames(cls.task, {
-        [cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_HARVEST,
+        [cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_HARVEST && bed.index < 4,
       })}
       style={{
         top: position.top + position.height / 2 - (rootPosition?.y ?? 0),

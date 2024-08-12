@@ -2,20 +2,20 @@ import {useCallback, useState} from "react";
 import {useNavigate} from "react-router";
 import classNames from "classnames";
 import cls from "./ProfilePage.module.scss";
-import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import {AppRoutes, RoutePath} from "shared/config/routeConfig/routeConfig";
 import {LogoutModal} from "features/LogoutUser/ui/LogoutModal/LogoutModal";
-import {Avatar} from "shared/ui/Avatar/Avatar";
-import {Text, TextTheme} from "shared/ui/Text/Text";
-import Farmer from "shared/assets/images/farmer.png";
+import LogoIcon from "shared/assets/icons/logo-47-47.svg?react";
+import Farmer from "shared/assets/images/farmer-new.png";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import {tutorialActions} from "entities/Tutorial";
 import {useSelector} from "react-redux";
 import {userSelector} from "entities/User";
 import {isAuthentificatedThunk} from "entities/User/model/thunks.ts";
+import MaskImage from "shared/assets/images/mask.svg";
+import Image from "shared/assets/images/mask.svg";
 
 interface ProfilePageProps {
-  className?: string;
+    className?: string;
 }
 
 export const ProfilePage = ({className}: ProfilePageProps) => {
@@ -43,28 +43,47 @@ export const ProfilePage = ({className}: ProfilePageProps) => {
         navigate(RoutePath.farm);
     }
 
-  return (
-    <div className={classNames(cls.Profile, {}, [className])}>
-        <Avatar src={Farmer}/>
-        <Text
-            text={user?.name ?? user?.username}
-            theme={TextTheme.PRIMARY}
-        />
-        {user?.city && <Text
-            text={`г. ${user.city}`}
-            theme={TextTheme.PRIMARY}
-        />}
-        <Button theme={ButtonTheme.OUTLINE} onClick={onActiveTutorial}>
-            {"Как играть?"}
-        </Button>
-        <Button theme={ButtonTheme.OUTLINE} onClick={onShowModal}>
-            {"Выйти"}
-        </Button>
-        <LogoutModal
-            isOpen={isAuthModal}
-            onClose={onCloseModal}
-            onSuccess={onSuccess}
-        />
-    </div>
-  );
+    return (
+        <div className={classNames(cls.Profile, {}, [className])}>
+            <img src={MaskImage} alt="mask" className={cls.mask}/>
+
+            <div className={cls.screen}>
+                <header className={cls.header}>
+                    <img src={Image} alt="mask" className={cls.mask}/>
+                    <div className={cls["logo-badge"]}>
+                        <LogoIcon className={cls.image}/>
+                        <div className={cls["logo-text"]}>
+                            <p className={cls.main}>Я в агро</p>
+                            <p className={cls.minor}>От Россельхозбанка</p>
+                        </div>
+                    </div>
+                    <h1 className={cls.heading}>Профиль</h1>
+                </header>
+                <div className={cls['profile-info']}>
+                    <div className={cls.avatar}>
+                        <img src={Farmer} className={cls.character} alt="Фермер логотип"/>
+                    </div>
+                    <div className={cls.text}>
+                        <p className={cls.name}>
+                            {user?.name ?? user?.username}
+                        </p>
+                        {user?.city && <p className={cls.city}>
+                            г. {user.city}
+                        </p>}
+                    </div>
+                </div>
+                <button className={cls.button} onClick={onActiveTutorial}>
+                    Как играть?
+                </button>
+                <button className={cls.button} onClick={onShowModal}>
+                    Выйти из аккаунта
+                </button>
+                <LogoutModal
+                    isOpen={isAuthModal}
+                    onClose={onCloseModal}
+                    onSuccess={onSuccess}
+                />
+            </div>
+        </div>
+    );
 };

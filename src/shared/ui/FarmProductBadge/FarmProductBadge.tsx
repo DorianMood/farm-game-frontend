@@ -69,7 +69,7 @@ export const FarmProductBadge = ({
       {!isHarvestAvailable && <div className={styles['progress-bar']}>
         <div ref={rootRef} className={styles['progress-bar-fill']}>
         </div>
-        <p className={styles['text']}>Время созревания <b>{formatDate(endTime - startTime)}</b></p>
+        <p className={styles['text']}>Общее время: <b>{formatDate(endTime - startTime)}</b></p>
       </div>}
     </button>
   );
