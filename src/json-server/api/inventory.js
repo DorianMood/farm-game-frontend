@@ -70,7 +70,7 @@ export const getInventory = () => {
           animalProduct: null,
           seed: {
             id: "630d14a5-1dfd-4652-b954-67261db7490d",
-            type: "CarrotSeed",
+            type: "PotatoSeed",
           },
           promoCode: null,
         },

@@ -11,24 +11,19 @@
   position: fixed;
   left: 0;
   bottom: 0;
+
+  @media (max-width: 768px) {
+    height: 135px;
+  }
 }
 
 .GreetingGirl {
   position: fixed;
   right: 0;
   bottom: 0;
-}
-
-.images {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
 
   @media (max-width: 768px) {
-    height: 180px;
+    height: 135px;
   }
 }
 
@@ -49,7 +44,7 @@
   }
 
   .title {
-    text-align: center;
+    justify-content: center;
     line-height: 30px;
 
     @media (max-width: 768px) {
