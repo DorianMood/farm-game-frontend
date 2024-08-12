@@ -18,7 +18,7 @@ import {
 import {currentTutorialSelector} from "entities/Tutorial/model/selectors.ts";
 import {TutorialNameEnum} from "entities/Tutorial/model/types.ts";
 import {RoutePath} from "shared/config/routeConfig/routeConfig.tsx";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {isFertilizer, isSeed, isVitamin} from "features/BuyProduct/utils";
 import {fetchBedsData} from "entities/Bed/model/thunks.ts";
 import {fetchAnimalBarns} from "entities/AnimalBarn/model/thunks.ts";
@@ -37,7 +37,10 @@ interface GameHeaderProps {
 // TODO: Добавить здесь вызовы, подцепить к беку
 export const GameHeader = ({theme}: GameHeaderProps) => {
     const dispatch = useAppDispatch();
+
     const navigate = useNavigate();
+    const location = useLocation();
+
     const user = useSelector(userSelector);
     const inventory = useSelector(inventorySelector);
     const tasks = useSelector(tasksSelector);
@@ -81,6 +84,9 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
 
     const handleTaskClick = () => {
         dispatch(tasksActions.setOpenTaskModal(true));
+        if (location.pathname !== RoutePath.farm) {
+            navigate(RoutePath.farm);
+        }
     }
 
     // @ts-ignore

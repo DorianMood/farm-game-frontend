@@ -112,7 +112,7 @@ export const FarmPage = () => {
 
   const handleCloseGeniusModal = () => {
     setOpenedGeniusModal(false);
-    dispatch(tasksActions.resetFinanceGeniusData());
+    //dispatch(tasksActions.resetFinanceGeniusData());
     dispatch(tasksActions.setOpenTaskModal(false));
   };
 
