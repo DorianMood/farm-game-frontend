@@ -19,7 +19,7 @@ import CowImage from "shared/assets/images/inventory/cow.png";
 import SmallPotatoSeedImage from "shared/assets/images/inventory/small-potato-seed.png";
 import SmallBeetSeedImage from  "shared/assets/images/inventory/small-beet-seed.png";
 import SmallCarrotSeedImage from "shared/assets/images/inventory/small-carrot-seed.png";
-import SmallWheatSeedImage from "shared/assets/images/inventory/small-wheat.png";
+import SmallWheatSeedImage from "shared/assets/images/inventory/small-wheat-seed.png";
 import SmallFlowerSeedImage from "shared/assets/images/inventory/small-flower-seed.png";
 import SmallPotatoImage from "shared/assets/images/inventory/small-potato.png";
 import SmallBeetImage from "shared/assets/images/inventory/small-beet.png";
@@ -56,31 +56,31 @@ export const seedToImageAndBackgroundMapper: Record<SeedEnum, ImageAndBackground
     [SeedEnum.BeetSeed]: {
         image: BeetSeedImage,
         smallImage: SmallBeetSeedImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(214,182,255,1) 180%)',
+        background: 'linear-gradient(135deg, rgba(220, 180, 255, 0.1) 0%, #DDB5FF 100%)',
         nameForBuyOrSell: 'cемена свеклы'
     },
     [SeedEnum.PotatoSeed]: {
         image: PotatoSeedImage,
         smallImage: SmallPotatoSeedImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,217,142,1) 180%)',
+        background: 'linear-gradient(135deg, rgba(255, 203, 142, 0.1) 0%, #FFCB8F 100%)',
         nameForBuyOrSell: 'клубни картофеля'
     },
     [SeedEnum.FlowerSeed]: {
         image: FlowerSeedImage,
         smallImage: SmallFlowerSeedImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(219,173,255,1) 180%)',
+        background: 'linear-gradient(135deg, #FAEEFF 45%, #E4ABFF 100%)',
         nameForBuyOrSell: 'луковицы цветов',
     },
     [SeedEnum.CarrotSeed]: {
         image: CarrotSeedImage,
         smallImage: SmallCarrotSeedImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,213,151,1) 180%)',
+        background: 'linear-gradient(135deg, #FFF8E5 0%, #57FF55 100%)',
         nameForBuyOrSell: 'семена моркови',
     },
     [SeedEnum.WheatSeed]: {
         image: WheetSeedImage,
         smallImage: SmallWheatSeedImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(177,74,0,1) 180%)',
+        background: 'linear-gradient(135deg, #FFF7E5 45%, #FFCB8F 100%)',
         nameForBuyOrSell: 'семена пшеницы'
     }
 }
@@ -89,32 +89,32 @@ export const seedProductToImageAndBackgroundMapper: Record<SeedProductEnum, Imag
     [SeedProductEnum.Carrot]: {
         image: CarrotImage,
         smallImage: SmallCarrotImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(140,255,111,1) 180%)',
+        background: 'linear-gradient(135deg, #FFF8E5 0%, #57FF55 100%)',
         nameForBuyOrSell: 'морковь'
     },
     [SeedProductEnum.Potato]: {
         image: PotatoImage,
         smallImage: SmallPotatoImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,205,151,1) 180%)',
+        background: 'linear-gradient(135deg, rgba(255, 203, 142, 0.1) 0%, #FFCB8F 100%)',
         nameForBuyOrSell: 'картофель'
 
     },
     [SeedProductEnum.Flower]: {
         image: FlowerImage,
         smallImage: SmallFlowerImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,36,15,1) 180%)',
+        background: 'linear-gradient(135deg, #FAEEFF 45%, #E4ABFF 100%)',
         nameForBuyOrSell: 'цветы'
     },
     [SeedProductEnum.Wheat]: {
         image: WheetImage,
         smallImage: SmallWheatImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(177,74,0,1) 180%)',
+        background: 'linear-gradient(135deg, #FFF7E5 45%, #FFCB8F 100%)',
         nameForBuyOrSell: 'пшеницу'
     },
     [SeedProductEnum.Beet]: {
         image: BeetImage,
         smallImage: SmallBeetImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(214,182,255,1) 180%)',
+        background: 'linear-gradient(135deg, rgba(220, 180, 255, 0.1) 0%, #DDB5FF 100%)',
         nameForBuyOrSell: 'свеклу'
     }
 }
@@ -123,25 +123,25 @@ export const animalToImageAndBackgroundMapper: Record<AnimalEnum, ImageAndBackgr
     [AnimalEnum.HenAnimal]: {
         image: HenAnimalImage,
         smallImage: SmallHenAnimalImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(151,236,255,1) 180%)',
+        background: 'linear-gradient(135deg, #E2FEFF 45%, #79EFFF 100%)',
         nameForBuyOrSell: 'курицу'
     },
     [AnimalEnum.SheepAnimal]: {
         image: SheepAnimalImage,
         smallImage: SmallSheepAnimalImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(222,255,151,1) 180%)',
+        background: 'linear-gradient(135deg, #EDFFE5 45%, #D5FF88 100%)',
         nameForBuyOrSell: 'овцу'
     },
     [AnimalEnum.PigAnimal]: {
         image: PigAnimalImage,
         smallImage: SmallPigAnimalImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,185,185,1) 180%)',
+        background: 'linear-gradient(135deg, rgba(255, 199, 174, 0.1) 0%, #FFB5B7 100%)',
         nameForBuyOrSell: 'свинью'
     },
     [AnimalEnum.CowAnimal]: {
         image: CowAnimalImage,
         smallImage: SmallCowAnimalImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,205,151,1) 180%)',
+        background: 'linear-gradient(135deg, #FFF7E5 45%, #FFCB8F 100%)',
         nameForBuyOrSell: 'корову'
     },
 }
@@ -150,25 +150,25 @@ export const animalProductToImageAndBackgroundMapper: Record<AnimalProductEnum, 
     [AnimalProductEnum.Hen]: {
         image: HenImage,
         smallImage: SmallHenImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
+        background: 'linear-gradient(135deg, #F7FAFF 45%, #96C4CC 100%)',
         nameForBuyOrSell: 'куриные яйца'
     },
     [AnimalProductEnum.Sheep]: {
         image: SheepImage,
         smallImage: SmallSheepImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(222,255,151,1) 180%)',
+        background: 'linear-gradient(135deg, #EBE7FF 45%, #89C9FF 100%)',
         nameForBuyOrSell: 'овечью шерсть'
     },
     [AnimalProductEnum.Pig]: {
         image: PigImage,
         smallImage: SmallPigImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,164,151,1) 180%)',
+        background: 'linear-gradient(135deg, #FFE6E6 45%, #FF9E93 100%)',
         nameForBuyOrSell: 'свинину'
     },
     [AnimalProductEnum.Cow]: {
         image: CowImage,
         smallImage: SmallCowImage,
-        background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
+        background: 'linear-gradient(135deg, #E8F0FF 45%, #96C4CC 100%)',
         nameForBuyOrSell: 'молоко коровы'
     },
 }
@@ -176,13 +176,13 @@ export const animalProductToImageAndBackgroundMapper: Record<AnimalProductEnum, 
 export const fertilizerToImageAndBackgroundMapper: ImageAndBackground= {
     image: FertilizedImage,
     smallImage: FertilizedSmallImage,
-    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
+    background: 'linear-gradient(135deg, #EDFFE5 45%, #D5FF88 100%)',
     nameForBuyOrSell: 'удобрения'
 };
 
 export const vitaminToImageAndBackgroundMapper: ImageAndBackground= {
     image: VitaminImage,
     smallImage: VitaminSmallImage,
-    background: 'linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(159,195,202,1) 180%)',
+    background: 'linear-gradient(135deg, #E2FEFF 45%, #79EFFF 100%)',
     nameForBuyOrSell: 'витамины'
 };
