@@ -42,7 +42,7 @@ export const TUTORIAL_STEPS: Record<AppRoutes, Tutorial[] | undefined> = {
             name: TutorialNameEnum.ON_HARVEST
         },
         {
-            text: "Собирайте продукты с животных! Приобрести животных можно в магазине",
+            text: "Собирайте ресурсы с животных! Приобрести животных можно в магазине",
             name: TutorialNameEnum.ON_ANIMAL_HARVEST
         },
         {
