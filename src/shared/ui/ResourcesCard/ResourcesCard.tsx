@@ -40,6 +40,8 @@ export const ResourcesCard = memo((props: ResourcesCardProps) => {
     const currentTutorial = useSelector(currentTutorialSelector);
     const isActiveTutorial = currentTutorial !== undefined;
 
+    const isTutorialResourceCard = currentTutorial !== TutorialNameEnum.BALANCE && currentTutorial !== TutorialNameEnum.ON_PLANT && currentTutorial !== TutorialNameEnum.ON_FERTILIZE && currentTutorial !== TutorialNameEnum.ON_VITAMIN
+
     return (
         <div className={classNames(cls.Card, {}, [className])}>
             <div className={cn(cls.Item, {
@@ -76,7 +78,7 @@ export const ResourcesCard = memo((props: ResourcesCardProps) => {
                     <p className={cls.text}>1</p>
                     <ProductCard
                         className={classNames(cls["product-card"], {
-                            [cls["product-card--show"]]: isShowFertilizerCardInfo && currentTutorial !== TutorialNameEnum.ON_FERTILIZE,
+                            [cls["product-card--show"]]: isShowFertilizerCardInfo && isTutorialResourceCard,
                         })}
                         title={"Удобрения"}
                         description={`Нажмите, чтобы ускорить сбор урожая со всех грядок`}
@@ -103,7 +105,7 @@ export const ResourcesCard = memo((props: ResourcesCardProps) => {
                     <p className={cls.text}>1</p>
                     <ProductCard
                         className={classNames(cls["product-card"], {
-                            [cls["product-card--show"]]: isShowVitaminCardInfo && currentTutorial !== TutorialNameEnum.ON_VITAMIN,
+                            [cls["product-card--show"]]: isShowVitaminCardInfo && isTutorialResourceCard,
                         })}
                         title={"Витамины"}
                         description={`Нажмите, чтобы ускорить сбор ресурсов со всех животных`}

@@ -1,10 +1,6 @@
 import FarmerGirl from "shared/assets/images/farmer-girl.png";
 import FarmerBoy from "shared/assets/images/farmer.png";
 import cls from "./Greeting.module.scss";
-import {
-  ModalButton,
-  ModalButtonTheme,
-} from "shared/ui/ModalButton/ModalButton.tsx";
 import { useSelector } from "react-redux";
 import { isAuthentificatedSelector } from "entities/User";
 import { useEffect, useState } from "react";
@@ -40,41 +36,48 @@ export const Greeting = () => {
   return (
     <div className={cls.Greeting}>
       <div className={cls.main}>
-        <h2 className={cls.title}>
-          Добро пожаловать в игру <br /> «Финансовый Фермер»!{" "}
-        </h2>
-        <p className={cls.text}>
-          Игра поможет улучшить финансовую грамотность и научиться принимать
-          взвешенные решения, связанные с управлением хозяйством и
-          распределением ресурсов.
-        </p>
-        <p className={cls.text}>
-          Вы начинаете с небольшого участка земли, на котором можно засаживать
-          грядки и получать урожай. Выращивайте культуры, продавайте их в
-          магазине, чтобы заработать деньги.
-        </p>
-        <p className={cls.text}>
-          Ваш богатый дядюшка дал вам стартовый капитал в количестве{" "}
-          <b>100 монет</b>, чтобы вы освоили искусство ведения хозяйства. Он верит в вас и знает, что вы добьётесь успеха в
-          этой игре!
-        </p>
-        <ModalButton
-          theme={ModalButtonTheme.BACKGROUND}
-          onClick={handleBeginButtonClick}
-          className={cls.button}
-        >
-          Начать
-        </ModalButton>
+        <div className={cls.header}>
+          <h2 className={cls.title}>
+            Добро пожаловать!
+          </h2>
+        </div>
+        <div className={cls.body}>
+          <ul className={cls.advantages}>
+            <li className={cls['advantages-item']}>
+              <p className={cls.text}>
+                Игра поможет улучшить финансовую грамотность и научиться принимать взвешенные решения, связанные с управлением хозяйством и распределением ресурсов.
+              </p>
+            </li>
+            <li className={cls['advantages-item']}>
+              <p className={cls.text}>
+                Вы начинаете с небольшого участка земли, на котором можно засаживать
+                грядки и получать урожай. Выращивайте культуры, продавайте их в
+                магазине, чтобы заработать деньги.
+              </p>
+            </li>
+            <li className={cls['advantages-item']}>
+              <p className={cls.text}>
+                Ваш богатый дядюшка дал вам стартовый капитал в количестве{" "}
+                <b>100 монет</b>, чтобы вы освоили искусство ведения хозяйства. Он верит в вас и знает, что вы добьётесь
+                успеха в
+                этой игре!
+              </p>
+            </li>
+          </ul>
+          <button className={cls.play} onClick={handleBeginButtonClick} type="button">
+            Играть
+          </button>
+        </div>
       </div>
       <img
-        className={cls.GreetingBoy}
-        src={FarmerBoy}
-        alt="farmer-boy-helper"
+          className={cls.GreetingBoy}
+          src={FarmerBoy}
+          alt="farmer-boy-helper"
       />
       <img
-        className={cls.GreetingGirl}
-        src={FarmerGirl}
-        alt="farmer-girl-helper"
+          className={cls.GreetingGirl}
+          src={FarmerGirl}
+          alt="farmer-girl-helper"
       />
     </div>
   );

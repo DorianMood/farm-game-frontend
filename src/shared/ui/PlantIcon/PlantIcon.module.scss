@@ -1,4 +1,6 @@
+
 $icon-size: 36px;
+$small-icon-size: 25px;
 
 .root {
   height: $icon-size;
@@ -9,6 +11,11 @@ $icon-size: 36px;
   align-items: end;
   filter: drop-shadow(0px 1px 16px rgba(55, 255, 59, 0.3));
   background-color: #2a5259;
+
+  @media (max-width: 768px) {
+    height: $small-icon-size;
+    width: $small-icon-size;
+  }
 
   svg {
     width: 120%;
