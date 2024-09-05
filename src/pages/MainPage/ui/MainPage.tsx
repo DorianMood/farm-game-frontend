@@ -3,12 +3,13 @@ import Farmer from "shared/assets/images/farmer-new.png";
 import Image from "shared/assets/images/mask.svg";
 import Hen from "shared/assets/images/inventory/small-hen-animal.png";
 import Products from "shared/assets/images/products.png";
-import Beet from "shared/assets/images/inventory/small-beet.png";
+import Beet from "shared/assets/images/beet.png";
 import { AuthModal } from "features/AuthUser";
 import cls from "./MainPage.module.scss";
 import { isAuthentificatedThunk } from "entities/User/model/thunks.ts";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import LogoIcon from "shared/assets/icons/logo-47-47.svg?react";
+import cn from "classnames";
 
 export const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ export const MainPage = () => {
 
   return (
     <div className={cls.root}>
-      <img src={Image} alt="mask" className={cls.mask} />
+      {/*<img src={Image} alt="mask" className={cls.mask} />*/}
 
       <div className={cls.screen}>
         <header className={cls.header}>
@@ -59,7 +60,7 @@ export const MainPage = () => {
               <img src={Image} alt="mask" className={cls.mask} />
               <img
                 src={Beet}
-                className={cls.illustration}
+                className={cn(cls.illustration, cls.beet)}
                 alt="Растения фермы"
               />
               <p>Какие бывают агрокультуры</p>

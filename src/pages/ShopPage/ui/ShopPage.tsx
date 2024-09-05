@@ -61,7 +61,6 @@ export const ShopPage = ({className}: ShopPageProps) => {
         dispatch(fetchProductsData({filter: "all"}));
         dispatch(fetchInventory());
         dispatch(fetchUserData());
-        setActiveTabName("all");
     };
 
     const handleChangeActiveTab = (name: string) => {

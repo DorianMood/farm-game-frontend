@@ -13,7 +13,8 @@
   bottom: 0;
 
   @media (max-width: 768px) {
-    height: 135px;
+    //height: 135px;
+    display: none;
   }
 }
 
@@ -23,7 +24,8 @@
   bottom: 0;
 
   @media (max-width: 768px) {
-    height: 135px;
+    //height: 135px;
+    display: none;
   }
 }
 
@@ -31,41 +33,79 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  padding: 20px;
   transform: translate(-50%, -60%);
   background: #ffffff;
-  width: 550px;
-  height: 500px;
   border-radius: 32px;
+  max-width: 360px;
 
   @media (max-width: 768px) {
     width: auto;
     min-width: 320px;
   }
 
-  .title {
-    justify-content: center;
-    line-height: 30px;
+  .header {
+    border-radius: 32px;
+    background: linear-gradient(162.03deg, #7B64F1 0%, #EFEBFF 96.62%);
+    padding: 24px;
+  }
 
-    @media (max-width: 768px) {
-      font-size: 20px;
+  .title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+    color: #FFFFFF;
+    margin-bottom: 0;
+  }
+
+  .body {
+    border-radius: 32px;
+    padding: 24px;
+    background: #FFFFFF;
+  }
+
+  .advantages {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    gap: 8px;
+
+    &-item {
+      position: relative;
+      background: #F6F7F8;
+      border-radius: 16px;
+      padding: 16px;
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        content: url("src/shared/assets/icons/checkmark-24-24.svg");
+        height: 24px;
+        width: 24px;
+      }
     }
   }
 
   .text {
-    margin-top: 16px;
-
-    @media (max-width: 768px) {
-      font-size: 14px;
-      line-height: 16px;
-      margin-top: 8px;
-    }
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 40px
   }
 
-  .button {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+  button {
+    display: block;
+    border-radius: 16px;
+    border: none;
+    height: 48px;
+    background: white;
+    color: #1ccb01;
+    cursor: pointer;
+
+    &.play {
+      margin-top: 16px;
+      background: #1ccb01;
+      color: white;
+      width: 100%;
+    }
   }
 }

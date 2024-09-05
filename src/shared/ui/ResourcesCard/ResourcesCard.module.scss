@@ -44,6 +44,10 @@
 .fertilizer {
   height: 32px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    height: 25px;
+  }
 }
 
 .product-card {
