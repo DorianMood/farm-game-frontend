@@ -32,8 +32,9 @@ export const CustomGameModal = ({ onClose, opened, url, origin }: Props) => {
   }, [onClose, origin]);
 
   return (
-    <Modal isOpen={opened} className={cls.modal} disableScroll={true}>
+    <Modal isOpen={opened} disableScroll={true}>
       <div className={cls.root}>
+        <p className={cls.text}>Переверните устройство</p>
         <CloseIcon
           className={cls["close-icon"]}
           onClick={() => {
