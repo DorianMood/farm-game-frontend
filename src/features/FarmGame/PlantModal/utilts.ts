@@ -22,16 +22,16 @@ export const formatDate = (duration?: number) => {
         return `${months} ${numstr(months, ['месяц', 'месяца', 'месяцев'])}`
     }
     if (days) {
-        return `${days} ${numstr(months, ['день', 'дня', 'дней'])}`
+        return `${days} ${numstr(days, ['день', 'дня', 'дней'])}`
     }
     if (hours) {
-        return `${hours} ${numstr(months, ['час', 'часа', 'часов'])}`
+        return `${hours} ${numstr(hours, ['час', 'часа', 'часов'])}`
     }
     if (minutes) {
-        return `${minutes} ${numstr(months, ['минута', 'минуты', 'минут'])}`
+        return `${minutes} ${numstr(minutes, ['минута', 'минуты', 'минут'])}`
     }
     if (seconds) {
-        return `${seconds} ${numstr(months, ['секунда', 'секунды', 'секунд'])}`
+        return `${seconds} ${numstr(seconds, ['секунда', 'секунды', 'секунд'])}`
     }
 
     return `${duration} мс`
