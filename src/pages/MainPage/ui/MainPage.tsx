@@ -29,7 +29,7 @@ export const MainPage = () => {
 
   return (
     <div className={cls.root}>
-      {/*<img src={Image} alt="mask" className={cls.mask} />*/}
+      <img src={Image} alt="mask" className={cls.mask} />
 
       <div className={cls.screen}>
         <header className={cls.header}>

@@ -16,6 +16,7 @@
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
+    padding: 10px;
   }
 
   .Item {
@@ -35,37 +36,20 @@
 .text {
   font: var(--font-m);
   font-weight: var(--font-bold);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 }
 
 .tutorialMode {
   opacity: 0.2;
 }
 
-.fertilizer {
-  height: 32px;
+.more {
   cursor: pointer;
-
-  @media (max-width: 768px) {
-    height: 25px;
-  }
-}
-
-.product-card {
-  z-index: 100;
-  position: absolute;
-  top: 55px;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.9s opacity;
-
-  @media (max-width: 768px) {
-    top: 0;
-    left: 55px;
-  }
-
-  &--show {
-    opacity: 1;
-    visibility: visible;
-  }
+  font-size: 14px;
+  line-height: 18px;
+  color: #1CCB01;
 }
 

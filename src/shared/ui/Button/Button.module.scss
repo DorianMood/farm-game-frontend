@@ -1,8 +1,8 @@
 .Button {
     cursor: pointer;
-    color: var(--green-light);
-    padding: 20px 0;
-    border-radius: 40px;
+    color: #1CCB01;
+    height: 48px;
+    border-radius: 16px;
     width: 343px;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .backgroundInverted {
-    background: var(--green-light);
+    background: #1CCB01;
     color: var(--light);
     border-color: transparent;
 }

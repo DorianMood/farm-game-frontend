@@ -12,6 +12,10 @@
     0px 1px 1px 0px #0000001a,
     0px 2px 6px 0px #00000033;
 
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+
   svg {
     height: 20px;
     width: 20px;
