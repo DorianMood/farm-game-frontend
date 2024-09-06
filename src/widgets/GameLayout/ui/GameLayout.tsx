@@ -20,6 +20,7 @@ export const GameLayout = memo(({children, className}: GameHeaderProps) => {
 
     const isAuthentificated = useSelector(isAuthentificatedSelector);
 
+
     const showHeaderAndMenu = isAuthentificated && Object.keys(gameRoutes).includes(location.pathname);
     const showHeader = gameRoutes[location.pathname]?.isVisibleHeader;
 
