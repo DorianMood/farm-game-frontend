@@ -1,5 +1,10 @@
 [[redirects]]
-    from = "/api"
-    to = "https://93.93.207.63:444/api"
-    status = 200
-    force = true                    # COMMENT: ensure that we always redirect
+  from = "/search"
+  to = "https://api.mysearch.com"
+  status = 200
+  force = true                    # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
