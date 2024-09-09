@@ -48,7 +48,7 @@ export const LoginForm = memo(( {onSuccess }: LoginFormProps) => {
         <LoginInput
           type="text"
           className={cls.input}
-          label={"Введите ник пользвателя"}
+          label={"Введите email пользвателя"}
           value={username}
           onChange={onChangeUsername}
           error={!!error}
