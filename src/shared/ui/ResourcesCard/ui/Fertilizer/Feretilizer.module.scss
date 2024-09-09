@@ -13,7 +13,7 @@
 
 .text {
   font: var(--font-m);
-  font-weight: var(--font-bold);
+  font-weight: 500;
 
   @media (max-width: 768px) {
     font-size: 14px;

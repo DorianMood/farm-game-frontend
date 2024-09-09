@@ -19,7 +19,7 @@ export const ProductCard = memo((props: ProductCardProps) => {
   return (
     <div style={{background: background}} className={classNames(cls.ProductCard, {}, [className])}>
       <div className={cls["description-block"]}>
-        {title && <h3>{title}</h3>}
+        {title && <h3 className={cls.title}>{title}</h3>}
         {description && <p className={cls.text}>{description}</p>}
         {!!additionalInfo && (
           <p className={cls.additionalInfo}>{additionalInfo}</p>
