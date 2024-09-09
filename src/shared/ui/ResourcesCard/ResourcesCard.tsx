@@ -60,7 +60,7 @@ export const ResourcesCard = memo((props: ResourcesCardProps) => {
                             <p className={cls.text}>{seeds[0].amount}</p>
                         </div>
                         : <>
-                            {hasFertilizer && !hasVitamin && (
+                            {hasFertilizer && (
                                 <Fertilizer
                                     isTutorialResourceCard={isTutorialResourceCard}
                                     isActiveTutorial={isActiveTutorial}
