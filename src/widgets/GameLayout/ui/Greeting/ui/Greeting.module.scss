@@ -75,11 +75,10 @@
       border-radius: 16px;
       padding: 16px;
 
-      &::before {
+      &-icon {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        content: url("src/shared/assets/icons/checkmark-24-24.svg");
         height: 24px;
         width: 24px;
       }

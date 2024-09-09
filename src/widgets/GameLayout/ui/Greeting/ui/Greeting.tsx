@@ -1,5 +1,6 @@
 import FarmerGirl from "shared/assets/images/farmer-girl.png";
 import FarmerBoy from "shared/assets/images/farmer.png";
+import CheckMarkIcon from "shared/assets/icons/checkmark-24-24.svg?react";
 import cls from "./Greeting.module.scss";
 import { useSelector } from "react-redux";
 import { isAuthentificatedSelector } from "entities/User";
@@ -44,11 +45,13 @@ export const Greeting = () => {
         <div className={cls.body}>
           <ul className={cls.advantages}>
             <li className={cls['advantages-item']}>
+              <CheckMarkIcon  className={cls['advantages-item-icon']}/>
               <p className={cls.text}>
                 Игра поможет улучшить финансовую грамотность и научиться принимать взвешенные решения, связанные с управлением хозяйством и распределением ресурсов.
               </p>
             </li>
             <li className={cls['advantages-item']}>
+              <CheckMarkIcon  className={cls['advantages-item-icon']}/>
               <p className={cls.text}>
                 Вы начинаете с небольшого участка земли, на котором можно засаживать
                 грядки и получать урожай. Выращивайте культуры, продавайте их в
@@ -56,6 +59,7 @@ export const Greeting = () => {
               </p>
             </li>
             <li className={cls['advantages-item']}>
+              <CheckMarkIcon  className={cls['advantages-item-icon']}/>
               <p className={cls.text}>
                 Ваш богатый дядюшка дал вам стартовый капитал в количестве{" "}
                 <b>100 монет</b>, чтобы вы освоили искусство ведения хозяйства. Он верит в вас и знает, что вы добьётесь
