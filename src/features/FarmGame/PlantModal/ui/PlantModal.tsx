@@ -18,6 +18,7 @@ import {seedToImageAndBackgroundMapper} from "shared/const/pictureAndColorMappin
 import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
 import {isSeed} from "../../../BuyProduct/utils.ts";
 import {CARD_POSITION} from "../types.ts";
+import {useMediaQuery} from "../../../../shared/hooks";
 
 interface Props {
   onClose: () => void;
@@ -93,6 +94,8 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
     [opened]
   );
 
+  const isMobile = useMediaQuery('mobile');
+
   const activePlants = useMemo(() => {
     return inventory?.items.reduce((acc, item) => {
       if (isSeed(item.inventoryItem)) {
@@ -120,7 +123,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
           <BackButton className={cls['back-button']} onClick={onClose}/>
           <p className={cls.title}>Засеивание</p>
         </div>
-        <p className={cls.description}>Выберите нужный сорт и перенесите на поле:</p>
+        <p className={cls.description}>{isMobile ? "Выберите нужный сорт и кликните на грядку" : "Выберите нужный сорт и перенесите на поле:"}</p>
 
         {hasDoneTask && <CoinIcon className={cls.coin}/>}
 
