@@ -1,39 +1,38 @@
-$font-family: "Ubuntu", sans-serif;
+$font-family: "Onest", sans-serif;
 
 $weight-regular: 400;
 $weight-medium: 500;
+$weight-semiBold: 600;
 $weight-bold: 700;
 
 @font-face {
-  font-family: "Ubuntu";
-  src:
-    url("assets/fonts/ubuntu-regular.woff2") format("woff2"),
-    url("assets/fonts/ubuntu-regular.woff") format("woff");
+  font-family: "Onest";
+  src: url("src/shared/assets/fonts/onest-regular.woff2") format("woff2"),
+  url("src/shared/assets/fonts/onest-regular.woff") format("woff");
   font-weight: $weight-regular;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ubuntu";
-  src:
-    url("assets/fonts/ubuntu-medium.woff2") format("woff2"),
-    url("assets/fonts/ubuntu-medium.woff") format("woff");
+  font-family: "Onest";
+  src: url("src/shared/assets/fonts/onest-medium.woff2") format("woff2"),
+  url("src/shared/assets/fonts/onest-medium.woff") format("woff");
   font-weight: $weight-medium;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Ubuntu";
-  src:
-    url("assets/fonts/ubuntu-bold.woff2") format("woff2"),
-    url("assets/fonts/ubuntu-bold.woff") format("woff");
+  font-family: "Onest";
+  src: url("src/shared/assets/fonts/onest-bold.woff2") format("woff2"),
+  url("src/shared/assets/fonts/onest-bold.woff") format("woff");
   font-weight: $weight-bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Pacifico";
-  src: url("assets/fonts/Pacificio-Regular.ttf");
-  font-weight: $weight-bold;
+  font-family: "Onest";
+  src: url("src/shared/assets/fonts/onest-semiBold.woff2") format("woff2"),
+  url("src/shared/assets/fonts/onest-semiBold.woff") format("woff");
+  font-weight: $weight-semiBold;
   font-style: normal;
 }
