@@ -162,7 +162,7 @@ export const GameHeader = ({theme}: GameHeaderProps) => {
                         isActiveTutorial && currentTutorial !== TutorialNameEnum.RATING,
                     })}
                     cardType={StatisticsCardType.RATING}
-                    text={`${user?.rank ?? ""}`}
+                    text={`${user?.rank ?? ""} место`}
                     onClick={handleRatingClick}
                 />
             </div>

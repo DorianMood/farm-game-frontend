@@ -27,6 +27,7 @@ export const ModalButton = memo((props: ModalButtonProps) => {
   const {
     className,
     children,
+    onClick,
     theme = ModalButtonTheme.BACKGROUND,
     square,
     disabled,
@@ -48,6 +49,7 @@ export const ModalButton = memo((props: ModalButtonProps) => {
         [className]
       )}
       disabled={disabled}
+      onClick={onClick}
       {...otherProps}
     >
       {children}
