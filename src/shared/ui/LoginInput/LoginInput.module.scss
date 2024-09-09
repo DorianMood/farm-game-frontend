@@ -1,7 +1,7 @@
 .container {
   position: relative;
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .label {
@@ -133,7 +133,7 @@
 
 .hint {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 0;
   transform: translateY(calc(100% + 2px));
   font-size: 12px;
