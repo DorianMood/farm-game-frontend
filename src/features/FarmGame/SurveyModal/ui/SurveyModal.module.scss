@@ -19,6 +19,10 @@
     gap: 20px;
     overflow-y: auto;
 
+    @media (max-width: 768px) {
+      gap: 12px;
+    }
+
     .header {
       display: flex;
       gap: 20px;
@@ -27,8 +31,8 @@
       width: 100%;
 
       div {
-        width: 48px;
-        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
         border-radius: 24px;
         display: flex;
         justify-content: center;
@@ -40,7 +44,11 @@
 
     .title {
       font-size: var(--font-size-l);
-      color: var(--text-primary-color)
+      color: var(--text-primary-color);
+
+      @media (max-width: 768px) {
+        font-size: var(--font-size-m);
+      }
     }
 
     .content {
@@ -52,7 +60,12 @@
       gap: 10px;
 
       .description {
-        color: var(--text-primary-color)
+        color: var(--text-primary-color);
+
+        @media (max-width: 768px) {
+          font-size: 14px;
+          line-height: 16px;
+        }
       }
 
       .questions {
@@ -73,10 +86,16 @@
           border-radius: 24px;
           background: var(--bg-dark-color);
 
+          @media (max-width: 768px) {
+            padding: 8px;
+          }
+
           .question-text {
-
-
             color: var(--text-primary-color);
+
+            @media (max-width: 768px) {
+              font-size: 12px;
+            }
           }
         }
       }
@@ -133,6 +152,10 @@
             background: rgba(28, 40, 58, 0.4);
             color: transparent; /* make the text invisible */
             user-select: none; /* prevent selection of the text */
+
+            @media (max-width: 768px) {
+              min-width: 100px;
+            }
           }
         }
       }

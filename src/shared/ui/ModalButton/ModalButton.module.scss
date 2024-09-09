@@ -23,8 +23,10 @@
     transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
 
     &:hover {
-        background-color: rgba(44, 3, 3, 0.15);
-        color: var(--dark);
+        @media (min-width: 769px) {
+            background-color: rgba(44, 3, 3, 0.15);
+            color: var(--dark);
+        }
     }
 }
 
