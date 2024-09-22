@@ -82,8 +82,23 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
     return null;
   }
 
-  const position = element?.getBoundingClientRect();
-  const rootPosition = document.getElementById("root")?.getBoundingClientRect();
+  const barnPosition = element?.getBoundingClientRect();
+  const mapRootPosition = document
+    .getElementById("map-container")
+    ?.getBoundingClientRect();
+
+  const positionOffsets = {
+    top: `${
+      ((barnPosition.top + barnPosition.height / 2) / mapRootPosition?.height! -
+        mapRootPosition?.y! / mapRootPosition?.height!) *
+      100
+    }%`,
+    left: `${
+      ((barnPosition.left + barnPosition.width / 2) / mapRootPosition?.width! -
+        mapRootPosition?.x! / mapRootPosition?.width!) *
+      100
+    }%`,
+  };
 
   return (
     <div
@@ -92,8 +107,8 @@ export const Barn = ({ barn, onHarvest }: BarnProps) => {
           currentTutorial === TutorialNameEnum.ON_ANIMAL_HARVEST,
       })}
       style={{
-        top: position.top + position.height / 2 - (rootPosition?.y ?? 0),
-        left: position.left + position.width / 2 - (rootPosition?.x ?? 0),
+        position: "absolute",
+        ...positionOffsets,
         transform: "translateX(-50%) translateY(-100%)",
       }}
       key={id}

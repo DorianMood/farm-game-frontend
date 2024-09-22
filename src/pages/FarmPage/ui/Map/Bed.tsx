@@ -92,19 +92,41 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     return null;
   }
 
-  const position = element?.getBoundingClientRect();
-  const rootPosition = document.getElementById("root")?.getBoundingClientRect();
+  // TODO: избавиться от работы с этим элементом напрямую, использовать ref
+  const bedPosition = element?.getBoundingClientRect();
+  const mapRootPosition = document
+    .getElementById("map-container")
+    ?.getBoundingClientRect();
+
+  // INFO: используем позиционирование в процентах потому что
+  // transform применяется после позиционирования, а getBoundingClientRect
+  // дает результат уже после transform.
+  const positionOffsets = {
+    top: `${
+      ((bedPosition.top + bedPosition.height / 2) / mapRootPosition?.height! -
+        mapRootPosition?.y! / mapRootPosition?.height!) *
+      100
+    }%`,
+    left: `${
+      ((bedPosition.left + bedPosition.width / 2) / mapRootPosition?.width! -
+        mapRootPosition?.x! / mapRootPosition?.width!) *
+      100
+    }%`,
+  };
+
+  console.log("BED", bed.index, bedPosition, mapRootPosition);
 
   // Empty bed
   if (!bed.crop) {
     return (
       <div
         className={classNames(cls.task, {
-          [cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_PLANT && bed.index < 4,
+          [cls.tutorialMode]:
+            currentTutorial === TutorialNameEnum.ON_PLANT && bed.index < 4,
         })}
         style={{
-          top: position.top + position.height / 2 - (rootPosition?.y ?? 0),
-          left: position.left + position.width / 2 - (rootPosition?.x ?? 0),
+          position: "absolute",
+          ...positionOffsets,
           transform: "translateX(-50%) translateY(-100%)",
         }}
         onClick={onPlant}
@@ -122,11 +144,12 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
   return (
     <div
       className={classNames(cls.task, {
-        [cls.tutorialMode]: currentTutorial === TutorialNameEnum.ON_HARVEST && bed.index < 4,
+        [cls.tutorialMode]:
+          currentTutorial === TutorialNameEnum.ON_HARVEST && bed.index < 4,
       })}
       style={{
-        top: position.top + position.height / 2 - (rootPosition?.y ?? 0),
-        left: position.left + position.width / 2 - (rootPosition?.x ?? 0),
+        position: "absolute",
+        ...positionOffsets,
         transform: "translateX(-50%) translateY(-100%)",
       }}
       key={id}
