@@ -1,17 +1,17 @@
 import { useCallback, useState } from "react";
+import cn from "classnames";
 import Farmer from "shared/assets/images/farmer-new.png";
 import Image from "shared/assets/images/mask.svg";
 import Hen from "shared/assets/images/inventory/small-hen-animal.png";
 import Products from "shared/assets/images/products.png";
 import Beet from "shared/assets/images/beet.png";
-import { AuthModal } from "features/AuthUser";
-import cls from "./MainPage.module.scss";
-import { isAuthentificatedThunk } from "entities/User/model/thunks.ts";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import LogoIcon from "shared/assets/icons/logo-47-47.svg?react";
-import cn from "classnames";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
+import { AuthModal } from "features/AuthUser";
+import { isAuthentificatedThunk } from "entities/User/model/thunks.ts";
+import cls from "./LoginPage.module.scss";
 
-export const MainPage = () => {
+export const LoginPage = () => {
   const dispatch = useAppDispatch();
   const [isAuthModal, setIsAuthModal] = useState(false);
 
