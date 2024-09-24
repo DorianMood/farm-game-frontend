@@ -179,10 +179,10 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
 
     let origin: Point;
     let initial_ctm = new DOMMatrix();
-    let el = ref.current;
-    el.style.transformOrigin = "0 0";
+    let target = ref.current;
+    target.style.transformOrigin = "0 0";
 
-    const rect = el.getBoundingClientRect();
+    const rect = target.getBoundingClientRect();
 
     const maxScale = Math.min(
       rect.height / window.innerHeight,
@@ -246,10 +246,11 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
         y: gesture.translation.y + t.y,
       };
 
-      const rect = el.getBoundingClientRect();
+      const rect = target.getBoundingClientRect();
 
-      const maxXOffset = window.innerWidth - (rect?.width ?? 0);
-      const maxYOffset = window.innerHeight - (rect?.height ?? 0);
+      // TODO: нужно переписать
+      const maxXOffset = window.innerWidth - rect.width;
+      const maxYOffset = window.innerHeight - rect.height;
 
       return {
         ...gesture,
@@ -270,7 +271,9 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
       };
     }
 
-    okzoomer(ref.current, {
+    const container = document.getElementById("farm-page-container");
+
+    okzoomer(container!, {
       startGesture: (gesture) => {
         /*
 						Clear the element's transform so we can 
@@ -279,7 +282,7 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
 						(We don't need to restore it because it gets 
 						overwritten by `applyMatrix()` anyways.)
 					 */
-        el.style.transform = "";
+        target.style.transform = "";
         gesture = clampScale(gesture, initial_ctm);
         // origin = getOrigin(el, gesture);
         // const scaled_ctm = gestureToMatrix(gesture, origin).multiply(
@@ -287,9 +290,9 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
         // );
         //console.log(scaled_ctm);
         gesture = clampTranslation(gesture, initial_ctm);
-        origin = getOrigin(el, gesture);
+        origin = getOrigin(target, gesture);
         const ctm = gestureToMatrix(gesture, origin).multiply(initial_ctm);
-        applyMatrix(el, ctm);
+        applyMatrix(target, ctm);
       },
       doGesture: (gesture) => {
         gesture = clampScale(gesture, initial_ctm);
@@ -306,7 +309,7 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
         //   translated_ctm.multiply(initial_ctm),
         // );
         const ctm = gestureToMatrix(gesture, origin).multiply(initial_ctm);
-        applyMatrix(el, ctm);
+        applyMatrix(target, ctm);
       },
       endGesture: (gesture) => {
         gesture = clampScale(gesture, initial_ctm);
@@ -317,7 +320,7 @@ export const useMapZoom = (ref: React.RefObject<HTMLDivElement>) => {
         gesture = clampTranslation(gesture, initial_ctm);
         initial_ctm = gestureToMatrix(gesture, origin).multiply(initial_ctm);
         // console.log(initial_ctm, initial_ctm.toString());
-        applyMatrix(el, initial_ctm);
+        applyMatrix(target, initial_ctm);
       },
     });
   }, []);

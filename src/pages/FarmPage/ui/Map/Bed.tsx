@@ -114,8 +114,6 @@ export const Bed = ({ bed, onHarvest, onPlant }: BedProps) => {
     }%`,
   };
 
-  console.log("BED", bed.index, bedPosition, mapRootPosition);
-
   // Empty bed
   if (!bed.crop) {
     return (
