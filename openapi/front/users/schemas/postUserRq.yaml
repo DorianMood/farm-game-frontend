@@ -19,6 +19,10 @@ properties:
     type: string
     description: Город пользователя
     example: Москва
+  character:
+    $ref: ../../common/user-character-type.yaml
+    description: Персонаж пользователя
+    required: false
   password:
     $ref: ../../common/password.yaml
     description: Пароль пользователя

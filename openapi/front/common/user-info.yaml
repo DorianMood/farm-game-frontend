@@ -5,10 +5,15 @@ properties:
     type: string
     description: Идентификатор пользователя
     example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
-    maxLength: 255
+    maxLength: 9
   username:
     $ref: ./username.yaml
     description: Ник пользователя
+  email:
+    type: string
+    description: Email пользователя
+    example: example@example.com
+    maxLength: 255
   name:
     type: string
     description: Имя пользователя
@@ -21,13 +26,21 @@ properties:
     maxLength: 255
   ballance:
     type: number
-    description: Количество монет на баллансе пользователя
+    description: Количество монет
     example: 1000
     maxLength: 255
+  rank:
+    type: number
+    description: Рейтинг пользователя
+    example: 1000
+    maxLength: 255
+  character:
+    $ref: ./user-character-type.yaml
+    description: Персонаж пользователя
   createdAt:
     type: string
-    description: Дата создания аккаунта пользователя
-    example: "2024-06-24T19:53:25.367Z"
+    description: Дата создания
+    example: 2024-06-24T19:53:25.367Z
     maxLength: 255
 
 additionalProperties: false

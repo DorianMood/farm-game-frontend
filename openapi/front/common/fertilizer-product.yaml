@@ -1,0 +1,10 @@
+type: object
+description: Удобрение для буста грядок
+properties:
+  id:
+    type: string
+    description: Идентификатор продукта
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
+
+additionalProperties: false

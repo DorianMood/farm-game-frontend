@@ -1,0 +1,11 @@
+description: >
+  Персонаж пользователя
+  * Male - Мужчина
+  * Female - Женщина
+type: string
+enum:
+  - Male
+  - Female
+example: Male
+maxLength: 255
+

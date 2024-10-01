@@ -1,6 +1,11 @@
 type: object
 description: Элемент инвентаря
 properties:
+  id:
+    type: string
+    description: Идентификатор слота инвентаря
+    example: 505d3dcb-b1b4-444e-aa55-405c0f12e5f4
+    maxLength: 255
   amount:
     type: number
     description: Количество этого элемента в инвентаре
