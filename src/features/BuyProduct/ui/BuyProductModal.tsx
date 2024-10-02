@@ -113,14 +113,14 @@ export const BuyProductModal = ({
           <ModalButton
             theme={ModalButtonTheme.OUTLINE}
             onClick={onClose}
-            disabled={isUpdating}
+            disabled={isUpdating || isSuccess}
           >
             Отмена
           </ModalButton>
           <ModalButton
             theme={ModalButtonTheme.BACKGROUND}
             onClick={isForSell ? onSellProductsClick : onBuyProductsClick}
-            disabled={isUpdating}
+            disabled={isUpdating || isSuccess}
           >
             {isForSell ? "Продать" : "Купить"}
           </ModalButton>
