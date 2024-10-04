@@ -6,7 +6,7 @@ export const useForm = () => {
     const [username, setUsername] = useState('');
     const [name, setName] = useState('');
     const [city, setCity] = useState('');
-
+    const [character, setCharacter] = useState('Male');
     const onChangeUsername = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
     };
@@ -27,9 +27,12 @@ export const useForm = () => {
         setCity(event.target.value);
     };
 
+    const onChangeCharacter=  (value: string) => {
+        setCharacter(value);
+    };
 
     return {
-        fields: {password, email, username, name, city},
-        setters: {onChangeUsername, onChangeName, onChangeEmail, onChangePassword, onChangeCity},
+        fields: {password, email, username, name, city, character},
+        setters: {onChangeUsername, onChangeName, onChangeEmail, onChangePassword, onChangeCity, onChangeCharacter},
     }
 };

@@ -1,0 +1,46 @@
+.RadioButtons {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.label {
+  color: gray;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+}
+
+.radio-items {
+  display: flex;
+  flex-direction: row;
+}
+
+.radio-item {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  padding: 15px 10px;
+
+  font-size: 14px;
+
+  border: 1px solid #000000;
+  cursor: pointer;
+
+  &.checked {
+    color: #fffffb;
+    background: #101E2C;
+  }
+}
+
+.first-element {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.last-element {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-left: -1px;
+}

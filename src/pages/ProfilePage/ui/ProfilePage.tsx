@@ -6,6 +6,7 @@ import {AppRoutes, RoutePath} from "shared/config/routeConfig/routeConfig";
 import {LogoutModal} from "features/LogoutUser/ui/LogoutModal/LogoutModal";
 import LogoIcon from "shared/assets/icons/logo-47-47.svg?react";
 import Farmer from "shared/assets/images/farmer-new.png";
+import FarmerGirl from "shared/assets/images/farmer-girl.png";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import {tutorialActions} from "entities/Tutorial";
 import {useSelector} from "react-redux";
@@ -61,7 +62,10 @@ export const ProfilePage = ({className}: ProfilePageProps) => {
                 </header>
                 <div className={cls['profile-info']}>
                     <div className={cls.avatar}>
-                        <img src={Farmer} className={cls.character} alt="Фермер логотип"/>
+                        {user?.character === 'Female' ?
+                            <img src={FarmerGirl} alt="Фермер логотип"/> :
+                            <img src={Farmer} className={cls['character-boy']} alt="Фермер логотип"/>
+                        }
                     </div>
                     <div className={cls.text}>
                         <p className={cls.name}>
