@@ -6,6 +6,7 @@ export interface User {
   name?: string;
   city?: string;
   rank?: number;
+  character?: string;
 }
 
 export interface UserSchema {

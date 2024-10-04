@@ -12,6 +12,7 @@ import {getSignUpError} from "../../model/selectors/getSignUpError/getSignUpErro
 import {signUpReducer} from "../../model/slice/signUpSlice";
 import cls from "./SignUpForm.module.scss";
 import {Text, TextTheme} from "../../../../shared/ui/Text/Text";
+import {CharacterRadioButton} from "./ui/CharacterRadioButton.tsx";
 
 export interface SignUpFormProps {
     className?: string;
@@ -29,11 +30,11 @@ export const SignUpForm = memo(({className, onSuccess}: SignUpFormProps) => {
     //TODO: Добавить синхронную с бэком валидацию
     const error = useSelector(getSignUpError);
 
-    const {fields: {username, name, email, password, city}, setters: {onChangeUsername, onChangeName, onChangeEmail, onChangePassword, onChangeCity}} = useForm();
+    const {fields: {username, name, email, password, city, character}, setters: {onChangeUsername, onChangeName, onChangeEmail, onChangePassword, onChangeCity, onChangeCharacter}} = useForm();
 
     const onRegisterClick = async () => {
         const result = await dispatch(
-            signUp({username, email, password, city, name })
+            signUp({username, email, password, city, name, character })
         );
         if (result.meta.requestStatus === "fulfilled") {
             onSuccess();
@@ -49,6 +50,7 @@ export const SignUpForm = memo(({className, onSuccess}: SignUpFormProps) => {
                         theme={TextTheme.ERROR}
                     />
                 )}
+                <CharacterRadioButton onChange={onChangeCharacter}/>
                 <LoginInput
                     type="text"
                     className={cls.input}

@@ -9,6 +9,7 @@ interface SignUpProps {
   password: string;
   city: string;
   name: string;
+  character: string;
 }
 
 export interface SignUpError {
@@ -24,6 +25,11 @@ const ERRORS_MAPPING: Record<string, Exclude<SignUpError, 'common'>> = {
             'name': 'Введите имя пользователя'
         }
     },
+    'Character required': {
+        fields: {
+            'character': 'Выберите пол пользователя'
+        }
+    },
     'Username required': {
         fields: {
             'username': 'Введите ник пользователя'
@@ -32,6 +38,11 @@ const ERRORS_MAPPING: Record<string, Exclude<SignUpError, 'common'>> = {
     'Username must contain at least 5 characters': {
         fields: {
             'username': 'В нике пользователя должно быть минимум 5 символов'
+        }
+    },
+    'Username already exists': {
+        fields: {
+            'username': 'Такой ник уже существует'
         }
     },
     'Email required': {
