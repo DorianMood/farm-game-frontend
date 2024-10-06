@@ -23,14 +23,15 @@ export const fetchProductsData = createAsyncThunk<
 
 export const purchaseProduct = createAsyncThunk<
   Products,
-  { productId: string },
+  { productId: string, amount: number },
   ThunkConfig<string>
->("user/updateProductsData", async ({ productId }, thunkApi) => {
+>("user/updateProductsData", async ({ productId, amount }, thunkApi) => {
   const { extra, rejectWithValue } = thunkApi;
 
   try {
     const response = await extra.api.post<Products>("/products/purchase", {
       id: productId,
+      amount,
     });
 
     return response.data;
@@ -42,14 +43,15 @@ export const purchaseProduct = createAsyncThunk<
 
 export const sellProduct = createAsyncThunk<
   Products,
-  { slotId: string },
+  { slotId: string, amount: number  },
   ThunkConfig<string>
->("shop/sellProducts", async ({ slotId }, thunkApi) => {
+>("shop/sellProducts", async ({ slotId, amount }, thunkApi) => {
   const { extra, rejectWithValue } = thunkApi;
 
   try {
     const response = await extra.api.post<Products>("/products/sell", {
       id: slotId,
+      amount
     });
 
     return response.data;
