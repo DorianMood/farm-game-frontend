@@ -19,6 +19,8 @@ import {
   ModalButtonTheme,
 } from "shared/ui/ModalButton/ModalButton.tsx";
 import { getProductData } from "../utils.ts";
+import {ProductsCounter} from "../../../shared/ui/ProductsCounter/ProductsCounter.tsx";
+import {userSelector} from "../../../entities/User";
 
 interface BuyProductModalProps {
   onClose: () => void;
@@ -27,6 +29,7 @@ interface BuyProductModalProps {
   isForSell?: boolean;
   product?: Product;
   slotId?: string;
+  inventoryItemsCount: number;
 }
 
 export const BuyProductModal = ({
@@ -36,8 +39,13 @@ export const BuyProductModal = ({
   opened,
   product,
   slotId,
+  inventoryItemsCount,
 }: BuyProductModalProps) => {
   const dispatch = useAppDispatch();
+
+  const [productsCounter, setProductsCounter] = useState(1);
+
+  const user = useSelector(userSelector);
 
   const isUpdating = useSelector(productsIsUpdatingSelector);
   const [isSuccess, setSuccess] = useState(false);
@@ -48,7 +56,7 @@ export const BuyProductModal = ({
   }, [opened]);
 
   const onBuyProductsClick = async () => {
-    await dispatch(purchaseProduct({ productId: product?.id || "" }));
+    await dispatch(purchaseProduct({ productId: product?.id || "", amount: productsCounter }));
 
     setSuccess(true);
     play();
@@ -60,7 +68,7 @@ export const BuyProductModal = ({
   };
 
   const onSellProductsClick = async () => {
-    await dispatch(sellProduct({ slotId: slotId || "" }));
+    await dispatch(sellProduct({ slotId: slotId || "", amount: productsCounter }));
     setSuccess(true);
     play();
 
@@ -73,6 +81,14 @@ export const BuyProductModal = ({
   const productData = useMemo(() => {
     return getProductData(product);
   }, [product]);
+
+  const maxProductCount = useMemo(() => {
+    if (isForSell) {
+      return inventoryItemsCount
+    }
+
+    return Math.floor((user?.ballance ?? 0) / (product?.price ?? 1));
+  }, [isForSell, user?.ballance, product?.price, inventoryItemsCount])
 
   return (
     <Modal isOpen={opened} className={cls.modal}>
@@ -97,13 +113,21 @@ export const BuyProductModal = ({
             {isForSell ? "Вы продаете" : "Вы покупаете"}{" "}
             {productData?.nameForBuyOrSell}
           </p>
+          <ProductsCounter
+              maxProductCount={maxProductCount}
+              onChange={(value) => setProductsCounter(value)}
+          />
           <p className={cls.text}>
             {isForSell
               ? "После продажи ваш баланс пополнится на:"
               : `После покупки с вашего балланса будет списано:`}
           </p>
           <div className={cls.price}>
-            <CoinIcon className={cls["text-coin"]} /> {isForSell ? ((product?.price ?? 0) * (product?.sellMultiplier ?? 0)) : product?.price}
+            <CoinIcon className={cls["text-coin"]} /> {
+            isForSell
+              ? ((product?.price ?? 0) * (product?.sellMultiplier ?? 0) * productsCounter)
+              : (product?.price ?? 0) * productsCounter
+          }
           </div>
         </div>
 

@@ -43,6 +43,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
     const [activeTabName, setActiveTabName] = useState("all");
     const [productId, setProductId] = useState("");
     const [slotId, setSlotId] = useState("");
+    const [inventoryItemsCount, setInventoryItemsCount] = useState(1);
     const [isForSell, setForSell] = useState(false);
 
     const products = useSelector(productsSelector);
@@ -87,6 +88,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
                     onClick={() => {
                         handleClickShopCard(item.inventoryItem.id, true);
                         setSlotId(item.id);
+                        setInventoryItemsCount(item.amount)
                     }}
                 />
             )),
@@ -121,6 +123,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
                 onSubmit={handleSubmitClickProduct}
                 opened={!!productId}
                 slotId={slotId}
+                inventoryItemsCount={inventoryItemsCount}
                 product={products?.items?.find((item) => item.id === productId)}
             />
             <div className={classNames(cls.Shop, {}, [className])}>

@@ -1,0 +1,47 @@
+.ProductsCounter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.button {
+  height: 40px;
+  width: 40px;
+  background: #1CCB01;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+
+  &.disabled {
+    background: #747f7361;
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  padding: 10px;
+  max-width: 40px;
+  text-align: center;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+}
+
+.input:focus {
+  border: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; // Yeah, yeah everybody write about it
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
