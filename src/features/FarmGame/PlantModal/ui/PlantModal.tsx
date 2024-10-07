@@ -1,5 +1,5 @@
 import useSound from "use-sound";
-import {DragEvent, useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {Modal} from "shared/ui/Modal/Modal.tsx";
 import Bed from "shared/assets/images/game-1/bed.svg?react";
 import CoinIcon from "shared/assets/icons/coin-16-16.svg?react";
@@ -33,8 +33,6 @@ export interface BedPlant {
 }
 
 export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
-  const [plant, setPlant] = useState<SeedEnum | null>();
-  const [dragged, setDragged] = useState<boolean>(false);
   const [hasDoneTask, setDoneTask] = useState<boolean>(false);
 
   const inventory = useSelector(inventorySelector);
@@ -46,26 +44,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
     setTimeout(onClose, 2_000);
   };
 
-  const handleChangePlant = (item: SeedEnum | null) => {
-    setPlant(item);
-  };
-
-  const handlePlantDragEnd = () => {
-    handleChangePlant(null);
-    setDragged(false);
-  };
-
-  const handleBedDragOver = (event: DragEvent<SVGSVGElement>) => {
-    event.preventDefault();
-    setDragged(true);
-  };
-
-  const handleBedDragLeave = (event: DragEvent<SVGSVGElement>) => {
-    event.preventDefault();
-    setDragged(false);
-  };
-
-  const handleBedDrop = () => {
+  const handleClickPlant = (plant: SeedEnum | null) => {
     if (plant) {
       setDoneTask(true);
       play();
@@ -74,22 +53,19 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
         index: bedIndex,
       });
     }
-
-    setPlant(null);
   };
 
   const taskAnswer = useMemo(() => {
-    if (!plant || !dragged) {
-      return null;
+    if (hasDoneTask) {
+      return "success";
     }
-    return "success";
-  }, [plant, dragged]);
+
+    return null;
+  }, [hasDoneTask]);
 
   useEffect(
     () => () => {
       setDoneTask(false);
-      setDragged(false);
-      setPlant(null);
     },
     [opened]
   );
@@ -123,18 +99,16 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
           <BackButton className={cls['back-button']} onClick={onClose}/>
           <p className={cls.title}>Засеивание</p>
         </div>
-        <p className={cls.description}>{isMobile ? "Выберите нужный сорт и кликните на грядку" : "Выберите нужный сорт и перенесите на поле:"}</p>
+        <p className={cls.description}>Кликните на иконку нужного растения, чтобы засадить грядку <br /> <span
+          className={cls['additional-text']}>{`При ${isMobile ? 'долгом нажатии' : 'наведении на иконку'} появится информация о культуре`}</span></p>
 
-        {hasDoneTask && <CoinIcon className={cls.coin}/>}
 
-        <div className={cls.content}>
+      {hasDoneTask && <CoinIcon className={cls.coin}/>}
+
+      <div className={cls.content}>
           <Bed
-              onDrop={handleBedDrop}
-              onDragOver={handleBedDragOver}
-              onDragLeave={handleBedDragLeave}
-              onClick={handleBedDrop}
               className={classNames(cls.bed, {
-                [cls.success]: dragged && taskAnswer === "success",
+                [cls.success]: taskAnswer === "success",
                 [cls.sprouts]: hasDoneTask,
               })}
           />
@@ -147,10 +121,8 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
                     key={plant.type}
                     plant={plant}
                     activePlants={activePlants}
-                    isDraggable={!hasDoneTask}
-                    handleDragStart={handleChangePlant}
-                    handlePlantDragEnd={handlePlantDragEnd}
-                    cardPosition={index >  plants.length/2 ? CARD_POSITION.LEFT : (index === Math.floor(plants.length/2) ? CARD_POSITION.CENTER : CARD_POSITION.RIGHT)}
+                    onClick={handleClickPlant}
+                    cardPosition={index > plants.length / 2 ? CARD_POSITION.LEFT : (index === Math.floor(plants.length / 2) ? CARD_POSITION.CENTER : CARD_POSITION.RIGHT)}
                 />
             ))}
           </div>

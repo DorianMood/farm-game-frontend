@@ -27,16 +27,12 @@ interface Props {
         genitiveСase: string;
     };
     activePlants?: Record<SeedEnum, ActivePlant>;
-    isDraggable: boolean;
-    handleDragStart: (bedPlants: SeedEnum) => void;
-    handlePlantDragEnd: () => void;
+    onClick: (plant: SeedEnum | null) => void;
     cardPosition?: CARD_POSITION;
 }
 
 export const Plant = ({
-                          isDraggable,
-                          handleDragStart,
-                          handlePlantDragEnd,
+                          onClick,
                           plant,
                           activePlants,
                           cardPosition = CARD_POSITION.RIGHT
@@ -56,7 +52,6 @@ export const Plant = ({
             threshold: 500,
             onFinish: () => setShowProductInfo(false),
             onCancel: () => setShowProductInfo(false),
-            onStart: () => !isDisabled && handleDragStart(plant.type),
         }
     );
 
@@ -81,14 +76,9 @@ export const Plant = ({
                 className={classNames(cls["plant-image"], {
                     [cls["disabled"]]: isDisabled,
                 })}
-                draggable={isDraggable && !isDisabled}
-                onDragStart={() => {
-                    if (!isDisabled) handleDragStart(plant.type);
-                    setShowProductInfo(false);
-                }}
                 onTouchStart={attrs.onTouchStart}
                 onTouchEnd={attrs.onTouchEnd}
-                onDragEnd={handlePlantDragEnd}
+                onClick={() => onClick(plant.type)}
                 onMouseEnter={() => {
                     setShowProductInfo(true);
                 }}

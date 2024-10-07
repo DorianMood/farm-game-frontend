@@ -159,5 +159,22 @@
 }
 
 .description {
-  color: var(--text-primary-color)
+  color: var(--text-primary-color);
+  max-width: 400px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
+}
+
+.additional-text {
+  color: var(--text-primary-color);
+  font-size: 12px;
+  line-height: 15px;
+  max-width: 400px;
+
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
 }
