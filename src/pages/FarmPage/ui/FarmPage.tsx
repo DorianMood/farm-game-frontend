@@ -40,11 +40,13 @@ export const FarmPage = () => {
   const {openNotification: openSurveyNotification, notificationComponent: notificationSurveyComponent} = useNotification('Вы успешно прошли викторину! Новые вопросы будут ждать завтра!');
 
   useEffect(() => {
-    dispatch(fetchTasksData());
-    dispatch(fetchInventory());
-    dispatch(fetchBedsData());
-    dispatch(fetchUserData());
-    dispatch(fetchAnimalBarns());
+    if (currentTutorialPage) {
+      dispatch(fetchTasksData());
+      dispatch(fetchInventory());
+      dispatch(fetchBedsData());
+      dispatch(fetchUserData());
+      dispatch(fetchAnimalBarns());
+    }
   }, [dispatch, currentTutorialPage]);
 
 
