@@ -37,6 +37,7 @@ export const FarmPage = () => {
 
   const {openNotification: openHarvestNotification, notificationComponent: notificationHarvestComponent} = useNotification('Собранный урожай можно продать в магазине!');
   const {openNotification: openHarvestBarnNotification, notificationComponent: notificationAnimalComponent} = useNotification('Собранный ресурс можно продать в магазине!');
+  const {openNotification: openSurveyNotification, notificationComponent: notificationSurveyComponent} = useNotification('Вы успешно прошли викторину! Новые вопросы будут ждать завтра!');
 
   useEffect(() => {
     dispatch(fetchTasksData());
@@ -108,10 +109,7 @@ export const FarmPage = () => {
     }
   };
 
-  const [openedGeniusModal, setOpenedGeniusModal] = useState(true);
-
   const handleCloseGeniusModal = () => {
-    setOpenedGeniusModal(false);
     //dispatch(tasksActions.resetFinanceGeniusData());
     dispatch(tasksActions.setOpenTaskModal(false));
   };
@@ -119,9 +117,9 @@ export const FarmPage = () => {
   const handleSubmitGeniusModal = (success: boolean) => {
     if (success) {
       handleCompleteTask("FinanceGenius");
+      dispatch(tasksActions.resetFinanceGeniusData());
+      openSurveyNotification();
     }
-    setOpenedGeniusModal(false);
-    dispatch(tasksActions.resetFinanceGeniusData());
     dispatch(tasksActions.setOpenTaskModal(false));
   };
 
@@ -151,9 +149,9 @@ export const FarmPage = () => {
           bedIndex={bedIndex!}
         />
       )}
-      {!isShowingTutorial && surveyActivity && surveyTask && isOpenTaskModal && (
+      {!isShowingTutorial && surveyActivity && surveyTask && (
         <SurveyModal
-          opened={openedGeniusModal}
+          opened={isOpenTaskModal}
           taskId={surveyTask?.task.id}
           onClose={handleCloseGeniusModal}
           onSubmit={handleSubmitGeniusModal}
@@ -167,6 +165,7 @@ export const FarmPage = () => {
       />
       {notificationHarvestComponent}
       {notificationAnimalComponent}
+      {notificationSurveyComponent}
     </div>
   );
 };

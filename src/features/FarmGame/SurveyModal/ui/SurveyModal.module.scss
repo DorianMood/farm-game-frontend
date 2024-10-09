@@ -16,7 +16,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: 12px;
     overflow-y: auto;
 
     @media (max-width: 768px) {
@@ -57,7 +57,7 @@
       grid-template-columns: 1fr;
       align-items: center;
       justify-items: center;
-      gap: 10px;
+      gap: 12px;
 
       .description {
         color: var(--text-primary-color);
@@ -78,7 +78,7 @@
         .item {
           display: flex;
           width: 100%;
-          padding: 16px 20px;
+          padding: 14px 18px;
           align-items: center;
           justify-content: space-between;
           gap: 12px;
@@ -87,10 +87,12 @@
           background: var(--bg-dark-color);
 
           @media (max-width: 768px) {
-            padding: 8px;
+            padding: 10px;
           }
 
           .question-text {
+            font-size: var(--font-size-s);
+            line-height: var(--font-line-s);
             color: var(--text-primary-color);
 
             @media (max-width: 768px) {
@@ -125,6 +127,16 @@
           cursor: pointer;
           transform: translate(0, 0);
           font-size: 12px;
+          height: 40px;
+          min-width: 130px;
+          line-height: var(--font-line-s);
+          text-align: center;
+
+          @media (max-width: 768px) {
+            min-width: 100px;
+            line-height: 12px;
+            font-size: 10px;
+          }
 
           &__green {
             background: linear-gradient(180deg, #5db476 0%, #4d9160 100%),
