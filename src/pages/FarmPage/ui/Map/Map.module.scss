@@ -1,3 +1,9 @@
 .root {
   position: relative;
 }
+
+.map {
+  background: linear-gradient(0deg, #5abf5c 0%, #5abf5c 100%),
+    linear-gradient(0deg, var(--White, #fff) 0%, var(--White, #fff) 100%),
+    linear-gradient(180deg, #c7eac7 0%, #4cb24e 100%);
+}

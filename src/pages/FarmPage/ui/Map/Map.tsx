@@ -26,7 +26,7 @@ export const Map = ({
 
   return (
     <div ref={ref} id="map-container" className={styles.root}>
-      <FarmMap />
+      <FarmMap className={styles.map} />
       <Beds onHarvestClick={onHarvestBed} onPlantClick={onPlantBed} />
       <Barns onHarvestClick={onHarvestAnimal} />
       <CustomGame onCompleteTask={onCompleteTask} />
