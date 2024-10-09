@@ -43,6 +43,19 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState<number>();
 
     useEffect(() => {
+        if (!opened) {
+            setSelectedAnswerIndex(undefined);
+            setQuestions(questions => questions?.map((item) => {
+                return {
+                    ...item,
+                    state: 'empty'
+                }
+            }));
+
+        }
+    }, [opened]);
+
+    useEffect(() => {
         const questions = survey?.questions.map((question) => question.question);
         const answers = survey?.questions.map((question) => question.answer);
 
