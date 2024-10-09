@@ -7,3 +7,8 @@ export const bedsSelector = createSelector(
   [rootSelector],
   (beds) => beds.data.beds,
 );
+
+export const isLoadingBedsSelector = createSelector(
+    [rootSelector],
+    (beds) => beds.isLoading,
+);

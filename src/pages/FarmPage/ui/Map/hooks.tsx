@@ -22,15 +22,19 @@ import { fetchTasksData } from "entities/Task/model/thunks";
 import { tasksSelector } from "entities/Task";
 import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
 import { AppRoutes } from "shared/config/routeConfig/routeConfig.tsx";
+import {isLoadingAnimalBarnsSelector} from "../../../../entities/AnimalBarn/model/selectors.ts";
+import {isLoadingBedsSelector} from "../../../../entities/Bed/model/selectors.ts";
+import {tasksIsLoadingSelector} from "../../../../entities/Task/model/selectors.ts";
 
 export const useBedsController = () => {
   const dispatch = useAppDispatch();
 
   const beds = useSelector(bedsSelector);
+  const isLoadingBeds = useSelector(isLoadingBedsSelector);
 
   useEffect(() => {
-    !beds && dispatch(fetchBedsData());
-  }, [dispatch, beds]);
+    !beds && !isLoadingBeds && dispatch(fetchBedsData());
+  }, [dispatch, beds, isLoadingBeds]);
 
   return {
     beds,
@@ -41,10 +45,11 @@ export const useBarnsController = () => {
   const dispatch = useAppDispatch();
 
   const animalBarns = useSelector(animalBarnsSelector);
+  const isLoadingAnimalBarns = useSelector(isLoadingAnimalBarnsSelector);
 
   useEffect(() => {
-    !animalBarns && dispatch(fetchAnimalBarns());
-  }, [dispatch, animalBarns]);
+    !animalBarns && !isLoadingAnimalBarns && dispatch(fetchAnimalBarns());
+  }, [dispatch, animalBarns, isLoadingAnimalBarns]);
 
   return {
     animalBarns,
@@ -55,14 +60,15 @@ export const useTasksController = () => {
   const dispatch = useAppDispatch();
 
   const tasks = useSelector(tasksSelector);
+  const isLoadingTasks = useSelector(tasksIsLoadingSelector);
   const beds = useSelector(bedsSelector);
   const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
   useEffect(() => {
-    !tasks &&
+    !tasks && !isLoadingTasks &&
       currentTutorialPage !== AppRoutes.MY_FARM &&
       dispatch(fetchTasksData());
-  }, [dispatch, tasks]);
+  }, [dispatch, tasks, isLoadingTasks]);
 
   const plantActivity = useMemo(
     () =>

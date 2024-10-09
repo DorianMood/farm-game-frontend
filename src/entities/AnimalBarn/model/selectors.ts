@@ -7,3 +7,8 @@ export const animalBarnsSelector = createSelector(
   [rootSelector],
   (animalBarns) => animalBarns.data.animalBarns
 );
+
+export const isLoadingAnimalBarnsSelector = createSelector(
+    [rootSelector],
+    (animalBarns) => animalBarns.isLoading
+);
