@@ -34,7 +34,7 @@ export const LoginInput = ({
   clearable = true,
   isClearIconVisible,
   dataTestId = "input",
-  autoCapitalize = "on",
+  autoCapitalize = "none",
   readOnly,
   onHover,
   onFocus,
