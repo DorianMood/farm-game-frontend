@@ -1,25 +1,29 @@
-import {useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchBedsData, harvestBeds, plantBeds,} from "entities/Bed/model/thunks";
-import {userSelector} from "entities/User";
-import {completeTask, fetchTasksData} from "entities/Task/model/thunks";
-import {PlantModal, SurveyModal} from "features/FarmGame";
-import {fetchUserData} from "entities/User/model/thunks";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {
+  fetchBedsData,
+  harvestBeds,
+  plantBeds,
+} from "entities/Bed/model/thunks";
+import { userSelector } from "entities/User";
+import { completeTask, fetchTasksData } from "entities/Task/model/thunks";
+import { PlantModal, SurveyModal } from "features/FarmGame";
+import { fetchUserData } from "entities/User/model/thunks";
 import cls from "./FarmPage.module.scss";
-import {useTasksController} from "./Map/hooks";
-import {Map} from "./Map/Map";
-import {fetchInventory} from "entities/Inventory/model/thunks";
-import {bedsSelector} from "entities/Bed";
-import {AnimalEnum, SeedEnum} from "entities/Inventory/model/types.ts";
-import {currentTutorialPageSelector} from "entities/Tutorial/model/selectors.ts";
+import { useTasksController } from "./Map/hooks";
+import { Map } from "./Map/Map";
+import { fetchInventory } from "entities/Inventory/model/thunks";
+import { bedsSelector } from "entities/Bed";
+import { AnimalEnum, SeedEnum } from "entities/Inventory/model/types.ts";
+import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
 import {
   fetchAnimalBarns,
   harvestAnimals,
 } from "entities/AnimalBarn/model/thunks.ts";
-import {tasksActions} from "entities/Task";
-import {useNotification} from "shared/lib/hooks/useNotification/useNotification.tsx";
-import {isOpenTaskModalSelector} from "entities/Task/model/selectors.ts";
+import { tasksActions } from "entities/Task";
+import { useNotification } from "shared/lib/hooks/useNotification/useNotification.tsx";
+import { isOpenTaskModalSelector } from "entities/Task/model/selectors.ts";
 
 interface BedPlant {
   seed: SeedEnum;
@@ -31,37 +35,47 @@ export const FarmPage = () => {
   const user = useSelector(userSelector);
   const beds = useSelector(bedsSelector);
 
-  const currentTutorialPage = useSelector(currentTutorialPageSelector);
+  //const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
   const isOpenTaskModal = useSelector(isOpenTaskModalSelector);
 
-  const {openNotification: openHarvestNotification, notificationComponent: notificationHarvestComponent} = useNotification('Собранный урожай можно продать в магазине!');
-  const {openNotification: openHarvestBarnNotification, notificationComponent: notificationAnimalComponent} = useNotification('Собранный ресурс можно продать в магазине!');
-  const {openNotification: openSurveyNotification, notificationComponent: notificationSurveyComponent} = useNotification('Вы успешно прошли викторину! Новые вопросы будут ждать завтра!');
+  const {
+    openNotification: openHarvestNotification,
+    notificationComponent: notificationHarvestComponent,
+  } = useNotification("Собранный урожай можно продать в магазине!");
+  const {
+    openNotification: openHarvestBarnNotification,
+    notificationComponent: notificationAnimalComponent,
+  } = useNotification("Собранный ресурс можно продать в магазине!");
+  const {
+    openNotification: openSurveyNotification,
+    notificationComponent: notificationSurveyComponent,
+  } = useNotification(
+    "Вы успешно прошли викторину! Новые вопросы будут ждать завтра!",
+  );
 
   useEffect(() => {
-    if (currentTutorialPage) {
-      dispatch(fetchTasksData());
-      dispatch(fetchInventory());
-      dispatch(fetchBedsData());
-      dispatch(fetchUserData());
-      dispatch(fetchAnimalBarns());
-    }
-  }, [dispatch, currentTutorialPage]);
-
+    //if (currentTutorialPage) {
+    dispatch(fetchTasksData());
+    dispatch(fetchInventory());
+    dispatch(fetchBedsData());
+    dispatch(fetchUserData());
+    dispatch(fetchAnimalBarns());
+    //}
+  }, [dispatch /*, currentTutorialPage*/]);
 
   const [isShowingTutorial, setShowingTutorial] = useState(true);
 
   useEffect(() => {
-    const hasShownFirstTutorial = localStorage.getItem('hasShownFirstTutorial');
+    const hasShownFirstTutorial = localStorage.getItem("hasShownFirstTutorial");
     if (!hasShownFirstTutorial) {
-      setShowingTutorial(true)
+      setShowingTutorial(true);
     } else {
-      setShowingTutorial(false)
+      setShowingTutorial(false);
     }
   }, []);
 
-  const {tasks, plantActivity, surveyActivity, surveyTask} =
+  const { tasks, plantActivity, surveyActivity, surveyTask } =
     useTasksController();
 
   const handleCompleteTask = (type: string) => {
@@ -102,7 +116,7 @@ export const FarmPage = () => {
         plantBeds({
           index: bed.index,
           crop: bed.seed,
-        })
+        }),
       ).then(() => {
         dispatch(fetchBedsData());
         dispatch(fetchInventory());
@@ -126,7 +140,7 @@ export const FarmPage = () => {
   };
 
   const handleHarvestBed = (bedIndex: number) => {
-    dispatch(harvestBeds({index: bedIndex})).then(() => {
+    dispatch(harvestBeds({ index: bedIndex })).then(() => {
       openHarvestNotification();
       dispatch(fetchBedsData());
       dispatch(fetchInventory());
@@ -134,7 +148,7 @@ export const FarmPage = () => {
   };
 
   const handleHarvestBarn = (animal: AnimalEnum) => {
-    dispatch(harvestAnimals({animal})).then(() => {
+    dispatch(harvestAnimals({ animal })).then(() => {
       openHarvestBarnNotification();
       dispatch(fetchAnimalBarns());
       dispatch(fetchInventory());
