@@ -22,19 +22,19 @@ import { fetchTasksData } from "entities/Task/model/thunks";
 import { tasksSelector } from "entities/Task";
 import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
 import { AppRoutes } from "shared/config/routeConfig/routeConfig.tsx";
-import {isLoadingAnimalBarnsSelector} from "../../../../entities/AnimalBarn/model/selectors.ts";
-import {isLoadingBedsSelector} from "../../../../entities/Bed/model/selectors.ts";
-import {tasksIsLoadingSelector} from "../../../../entities/Task/model/selectors.ts";
+//import {isLoadingAnimalBarnsSelector} from "../../../../entities/AnimalBarn/model/selectors.ts";
+//import {isLoadingBedsSelector} from "../../../../entities/Bed/model/selectors.ts";
+import { tasksIsLoadingSelector } from "../../../../entities/Task/model/selectors.ts";
 
 export const useBedsController = () => {
   const dispatch = useAppDispatch();
 
   const beds = useSelector(bedsSelector);
-  const isLoadingBeds = useSelector(isLoadingBedsSelector);
+  //const isLoadingBeds = useSelector(isLoadingBedsSelector);
 
   useEffect(() => {
-    !beds && !isLoadingBeds && dispatch(fetchBedsData());
-  }, [dispatch, beds, isLoadingBeds]);
+    !beds && /*!isLoadingBeds &&*/ dispatch(fetchBedsData());
+  }, [dispatch, beds /*, isLoadingBeds*/]);
 
   return {
     beds,
@@ -45,11 +45,11 @@ export const useBarnsController = () => {
   const dispatch = useAppDispatch();
 
   const animalBarns = useSelector(animalBarnsSelector);
-  const isLoadingAnimalBarns = useSelector(isLoadingAnimalBarnsSelector);
+  //const isLoadingAnimalBarns = useSelector(isLoadingAnimalBarnsSelector);
 
   useEffect(() => {
-    !animalBarns && !isLoadingAnimalBarns && dispatch(fetchAnimalBarns());
-  }, [dispatch, animalBarns, isLoadingAnimalBarns]);
+    !animalBarns && /*!isLoadingAnimalBarns &&*/ dispatch(fetchAnimalBarns());
+  }, [dispatch, animalBarns /*, isLoadingAnimalBarns*/]);
 
   return {
     animalBarns,
@@ -65,7 +65,8 @@ export const useTasksController = () => {
   const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
   useEffect(() => {
-    !tasks && !isLoadingTasks &&
+    !tasks &&
+      !isLoadingTasks &&
       currentTutorialPage !== AppRoutes.MY_FARM &&
       dispatch(fetchTasksData());
   }, [dispatch, tasks, isLoadingTasks]);
