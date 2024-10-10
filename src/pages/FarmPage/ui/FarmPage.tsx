@@ -16,7 +16,7 @@ import { Map } from "./Map/Map";
 import { fetchInventory } from "entities/Inventory/model/thunks";
 import { bedsSelector } from "entities/Bed";
 import { AnimalEnum, SeedEnum } from "entities/Inventory/model/types.ts";
-import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
+//import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
 import {
   fetchAnimalBarns,
   harvestAnimals,
