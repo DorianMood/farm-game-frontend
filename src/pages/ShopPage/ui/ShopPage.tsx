@@ -45,6 +45,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
     const [slotId, setSlotId] = useState("");
     const [inventoryItemsCount, setInventoryItemsCount] = useState(1);
     const [isForSell, setForSell] = useState(false);
+    const [isProductsCounterDisabled, setProductsCounterDisabled] = useState(false);
 
     const products = useSelector(productsSelector);
 
@@ -89,6 +90,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
                         handleClickShopCard(item.inventoryItem.id, true);
                         setSlotId(item.id);
                         setInventoryItemsCount(item.amount)
+                        setProductsCounterDisabled(item.inventoryItem.category === InventoryItemCategoryEnum.Animal)
                     }}
                 />
             )),
@@ -107,7 +109,10 @@ export const ShopPage = ({className}: ShopPageProps) => {
                         description={item.description}
                         harvestTimeout={getProductData(item)?.harvestTimeout}
                         coinsCount={item.price}
-                        onClick={() => handleClickShopCard(item.id, false)}
+                        onClick={() => {
+                            handleClickShopCard(item.id, false)
+                            setProductsCounterDisabled(item.category === InventoryItemCategoryEnum.Animal)
+                        }}
                     />
                 );
             })
@@ -125,6 +130,7 @@ export const ShopPage = ({className}: ShopPageProps) => {
                 slotId={slotId}
                 inventoryItemsCount={inventoryItemsCount}
                 product={products?.items?.find((item) => item.id === productId)}
+                isProductsCounterDisabled={isProductsCounterDisabled}
             />
             <div className={classNames(cls.Shop, {}, [className])}>
                 <Heading level={1} className={cls.shopHeading}>

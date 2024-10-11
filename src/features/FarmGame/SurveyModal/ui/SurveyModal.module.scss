@@ -106,14 +106,12 @@
       .answers {
         display: flex;
         align-items: flex-start;
-        align-content: flex-start;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 8px;
-        padding: 8px;
         width: 100%;
 
         border-radius: 22px;
-        background: var(--bg-dark-color);
 
         &-badge {
           display: flex;
