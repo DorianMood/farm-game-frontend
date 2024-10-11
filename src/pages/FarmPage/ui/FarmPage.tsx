@@ -16,7 +16,7 @@ import { Map } from "./Map/Map";
 import { fetchInventory } from "entities/Inventory/model/thunks";
 import { bedsSelector } from "entities/Bed";
 import { AnimalEnum, SeedEnum } from "entities/Inventory/model/types.ts";
-//import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
+import { currentTutorialPageSelector } from "entities/Tutorial/model/selectors.ts";
 import {
   fetchAnimalBarns,
   harvestAnimals,
@@ -35,7 +35,7 @@ export const FarmPage = () => {
   const user = useSelector(userSelector);
   const beds = useSelector(bedsSelector);
 
-  //const currentTutorialPage = useSelector(currentTutorialPageSelector);
+  const currentTutorialPage = useSelector(currentTutorialPageSelector);
 
   const isOpenTaskModal = useSelector(isOpenTaskModalSelector);
 
@@ -55,14 +55,12 @@ export const FarmPage = () => {
   );
 
   useEffect(() => {
-    //if (currentTutorialPage) {
     dispatch(fetchTasksData());
     dispatch(fetchInventory());
     dispatch(fetchBedsData());
     dispatch(fetchUserData());
     dispatch(fetchAnimalBarns());
-    //}
-  }, [dispatch /*, currentTutorialPage*/]);
+  }, [dispatch, currentTutorialPage]);
 
   const [isShowingTutorial, setShowingTutorial] = useState(true);
 
