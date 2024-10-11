@@ -170,6 +170,26 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
 
                     {survey?.questions && (
                         <>
+                            <div className={cls.answers}>
+                                {answers?.map((answer, index) => (
+                                    <span
+                                        className={classNames(cls["answers-badge"], {
+                                            [cls["answers-badge__light-green"]]:
+                                            questions?.[index].state === "correct",
+                                            [cls["answers-badge__light-red"]]:
+                                            questions?.[index].state === "incorrect",
+                                        })}
+                                        onClick={handleAnswerClick}
+                                        data-index={index}
+                                        key={`${answer.answer}-${answer.index}`}
+                                        draggable
+                                        onDragStart={handleDragStart}
+                                        onDragEnd={handleDragEnd}
+                                    >
+                    {answer.answer}
+                  </span>
+                                ))}
+                            </div>
                             <div className={cls.questions}>
                                 {questions?.map((question, index) => (
                                     <div className={cls.item} key={question.question}>
@@ -193,27 +213,6 @@ export const SurveyModal = ({onClose, opened, taskId, onSubmit}: Props) => {
                       {question.answer}
                     </span>
                                     </div>
-                                ))}
-                            </div>
-
-                            <div className={cls.answers}>
-                                {answers?.map((answer, index) => (
-                                    <span
-                                        className={classNames(cls["answers-badge"], {
-                                            [cls["answers-badge__light-green"]]:
-                                            questions?.[index].state === "correct",
-                                            [cls["answers-badge__light-red"]]:
-                                            questions?.[index].state === "incorrect",
-                                        })}
-                                        onClick={handleAnswerClick}
-                                        data-index={index}
-                                        key={`${answer.answer}-${answer.index}`}
-                                        draggable
-                                        onDragStart={handleDragStart}
-                                        onDragEnd={handleDragEnd}
-                                    >
-                    {answer.answer}
-                  </span>
                                 ))}
                             </div>
                         </>
