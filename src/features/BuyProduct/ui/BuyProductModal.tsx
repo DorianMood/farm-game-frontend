@@ -29,6 +29,7 @@ interface BuyProductModalProps {
   isForSell?: boolean;
   product?: Product;
   slotId?: string;
+  isProductsCounterDisabled: boolean;
   inventoryItemsCount: number;
 }
 
@@ -39,6 +40,7 @@ export const BuyProductModal = ({
   opened,
   product,
   slotId,
+  isProductsCounterDisabled,
   inventoryItemsCount,
 }: BuyProductModalProps) => {
   const dispatch = useAppDispatch();
@@ -113,10 +115,12 @@ export const BuyProductModal = ({
             {isForSell ? "Вы продаете" : "Вы покупаете"}{" "}
             {productData?.nameForBuyOrSell}
           </p>
-          <ProductsCounter
-              maxProductCount={maxProductCount}
-              onChange={(value) => setProductsCounter(value)}
-          />
+          {!isProductsCounterDisabled && (
+              <ProductsCounter
+                  maxProductCount={maxProductCount}
+                  onChange={(value) => setProductsCounter(value)}
+              />
+          )}
           <p className={cls.text}>
             {isForSell
               ? "После продажи ваш баланс пополнится на:"
