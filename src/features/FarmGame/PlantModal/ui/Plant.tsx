@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { useLongPress } from "@uidotdev/usehooks";
 import cls from "./Plant.module.scss";
 import { Text, TextTheme } from "shared/ui/Text/Text.tsx";
 import { ProductCard } from "shared/ui/ProductCard/ProductCard.tsx";
@@ -8,6 +7,7 @@ import { SeedEnum } from "entities/Inventory/model/types.ts";
 import { formatDate } from "../utilts.ts";
 import { CARD_POSITION } from "../types.ts";
 import ShopIcon from "shared/assets/icons/shop-24-24.svg";
+import {useLongPress} from "shared/hooks";
 
 export type ActivePlant = {
   amount: number;
