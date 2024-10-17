@@ -1,4 +1,3 @@
-import useSound from "use-sound";
 import {useEffect, useMemo, useState} from "react";
 import {Modal} from "shared/ui/Modal/Modal.tsx";
 import Bed from "shared/assets/images/game-1/bed.svg?react";
@@ -18,7 +17,8 @@ import {seedToImageAndBackgroundMapper} from "shared/const/pictureAndColorMappin
 import {BackButton} from "shared/ui/BackButton/BackButton.tsx";
 import {isSeed} from "../../../BuyProduct/utils.ts";
 import {CARD_POSITION} from "../types.ts";
-import {useMediaQuery} from "../../../../shared/hooks";
+import {useCoinsSound, useMediaQuery} from "shared/hooks";
+import {Sound} from "shared/ui/Sound/Sound.tsx";
 
 interface Props {
   onClose: () => void;
@@ -37,7 +37,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
 
   const inventory = useSelector(inventorySelector);
 
-  const [play] = useSound(coinSound);
+  const {play, isOnCoinsSound} = useCoinsSound();
 
   const handleSubmit = (plant: BedPlant) => {
     onSubmit(plant);
@@ -131,6 +131,7 @@ export const PlantModal = ({ onClose, onSubmit, opened, bedIndex }: Props) => {
           </AppLink>
         </div>
       </div>
+      <Sound src={coinSound} isLoop={false} isOn={isOnCoinsSound}/>
     </Modal>
   );
 };

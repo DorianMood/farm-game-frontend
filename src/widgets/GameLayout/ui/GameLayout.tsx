@@ -9,6 +9,7 @@ import cls from "./GameLayout.module.scss";
 import {isAuthentificatedSelector} from "entities/User/model/selectors";
 import {Tutorial} from "./Tutorial";
 import {Greeting} from "./Greeting";
+import {SoundButton} from "shared/ui/SoundButton/SoundButton.tsx";
 
 interface GameHeaderProps {
     className?: string;
@@ -31,6 +32,7 @@ export const GameLayout = memo(({children, className}: GameHeaderProps) => {
             {children}
             {showHeaderAndMenu && <GameMenu/>}
             <Greeting />
+            <SoundButton />
         </div>
     );
 });

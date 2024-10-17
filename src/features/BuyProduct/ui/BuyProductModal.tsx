@@ -1,6 +1,5 @@
 import { Modal } from "shared/ui/Modal/Modal.tsx";
 import coinSound from "shared/assets/sounds/coins.mp3";
-import useSound from "use-sound";
 import CoinIcon from "shared/assets/icons/coins-32-32.svg?react";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch.ts";
 import {
@@ -19,8 +18,10 @@ import {
   ModalButtonTheme,
 } from "shared/ui/ModalButton/ModalButton.tsx";
 import { getProductData } from "../utils.ts";
-import {ProductsCounter} from "../../../shared/ui/ProductsCounter/ProductsCounter.tsx";
+import {ProductsCounter} from "shared/ui/ProductsCounter/ProductsCounter.tsx";
 import {userSelector} from "../../../entities/User";
+import {useCoinsSound} from "shared/hooks";
+import {Sound} from "shared/ui/Sound/Sound.tsx";
 
 interface BuyProductModalProps {
   onClose: () => void;
@@ -51,7 +52,7 @@ export const BuyProductModal = ({
 
   const isUpdating = useSelector(productsIsUpdatingSelector);
   const [isSuccess, setSuccess] = useState(false);
-  const [play] = useSound(coinSound);
+  const {play, isOnCoinsSound} = useCoinsSound();
 
   useEffect(() => {
     setSuccess(false);
@@ -154,6 +155,7 @@ export const BuyProductModal = ({
           </ModalButton>
         </div>
       </div>
+      <Sound src={coinSound} isLoop={false} isOn={isOnCoinsSound}/>
     </Modal>
   );
 };
